@@ -24,7 +24,7 @@ const linkStyle={
   color: '#574cb9',
 }
   return (
-    <Grid >
+    <Grid style={{position: 'absolute'}} >
       {/* elevation da ese efecto de sombra */}
       <Paper elevation={10} style={paperStyle}>
         <Grid align='center'>

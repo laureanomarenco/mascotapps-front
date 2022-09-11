@@ -7,7 +7,7 @@ export default function LandingPage() {
   
   return (
     <Grid container columnGap={4}>
-      <Grid item xl={9}>
+      <Grid item xl={9} style={{position: 'absolute'}}>
         <MasonryImageList/>
       </Grid>
       <Grid item xl={3}>
