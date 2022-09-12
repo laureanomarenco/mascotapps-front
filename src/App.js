@@ -19,7 +19,7 @@ function App() {
     dispatch(fetchPets());
   }, [dispatch]);
   return (
-  <Container maxWidth='xl'>
+  <div className='.App'>
     {/* //   <header className="App-header">
     //     <img src={logo} className="App-logo" alt="logo" />
     //     <div>
@@ -38,7 +38,7 @@ function App() {
       <Route path="/login" element={<Login />}/>
     </Routes>
   </BrowserRouter>
-  </Container>
+  </div>
   )
 }
 
