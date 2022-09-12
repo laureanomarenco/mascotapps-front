@@ -8,8 +8,8 @@ export default function Login() {
         <div className="w-full max-w-md space-y-8">
           <div>
             <img
-              className="mx-auto h-12 w-auto"
-              src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+              className="mx-auto h-48 w-auto"
+              src="https://res.cloudinary.com/dfbxjt69z/image/upload/v1663007100/mascotapps/mascotapss_zihxad.png"
               alt="Your Company"
             />
             <h2 className="mt-6 text-center text-3xl font-bold tracking-tight text-gray-900">
@@ -19,7 +19,6 @@ export default function Login() {
               O 
               <Link to='/home'>
               <a
-                href="#"
                 className="font-medium text-indigo-600 hover:text-indigo-500"
                 > navega sin registrarte
               </a>
