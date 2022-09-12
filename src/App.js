@@ -3,7 +3,6 @@ import './App.css';
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 
-import Footer from './components/Footer/Footer';
 import Home from './components/Home/Home'
 import LandingPage from './components/LandingPage/LandingPage';
 import Login from './components/Login/Login';
@@ -36,7 +35,6 @@ function App() {
       <Route exact path='/' element={<LandingPage />} />
       <Route path="/home" element={<Home />} />
       <Route path="/login" element={<Login />}/>
-      <Route path="/footer" element={<Footer />}/>
     </Routes>
   </BrowserRouter>
   </div>
