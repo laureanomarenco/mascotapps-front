@@ -2,6 +2,8 @@ import React from 'react'
 
 export default function LandingPage() {
   return (
-    <div>LandingPage</div>
+    
+    <div>LandingPage esto es una prueba
+    </div>
   )
 }
