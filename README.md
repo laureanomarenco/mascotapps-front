@@ -1,4 +1,23 @@
+Lunes 19 primer demo --> PI
+
+Lunes 26 segunda demo --> Metodo de pago - Login
+
+Jueves 6 --> última demo
+
+Estructuración de usuarios.
+
+Firebase para login.
+
+Stripe metodo de compra.
+
+Pasar link de trello y de slacks.
+
 Workflow
+Documento UserStories
+https://docs.google.com/document/d/1fAjq08pfmNBTPWzJ7gmz8Wt8efi-6CLiNNMAzVLHMgc/edit?userstoinvite=roby494%40hotmail.com#
+
+Trello
+https://trello.com/w/proyectofinalgrupalhenry/home
 
 Backend..
 
