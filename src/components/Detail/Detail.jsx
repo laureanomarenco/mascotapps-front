@@ -22,7 +22,7 @@ export default function Detail() {
     <div className='flex flex-col justify-center content-center items-center  w-full mx-auto'>
         <div  className='my-4 flex flex-col'>
             <div className='flex content-center self-start'>
-                <Link  to='/home' type="button" className="text-white bg-[#ffd803] hover:bg-[#ffd803]/80 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2">
+                <Link  to='/home' type="button" className="text-black bg-[#ffd803] hover:bg-[#ffd803]/80 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2">
                     <BiArrowBack/>
                     Volver
                 </Link>
