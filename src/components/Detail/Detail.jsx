@@ -54,7 +54,7 @@ export default function Detail() {
                     
                     <div>
                         <p className='text-xl font-bold text-teal-800'>Resumen</p>
-                        <p className=' text-teal-900'>{pet.comments}</p>
+                        <p className=' text-teal-900 break-words'>{pet.comments}</p>
                     </div>
                     {/* linea */}
                     <div className='h-px bg-teal-800 '></div>
