@@ -52,17 +52,17 @@ const Navbar = () => {
       <div className="flex items-center justify-end flex-1 ml-" >
         <nav className="hidden lg:uppercase lg:text-gray-500 lg:tracking-wide lg:font-bold lg:text-xs lg:space-x-4 lg:flex">
          <label htmlFor=""></label>
-          <p className="block h-16 leading-[4rem] border-b-4 border-transparent hover:text-indigo-500 hover:border-current"
+          <p className="block h-16 leading-[4rem] border-b-4 border-transparent hover:text-indigo-500 hover:border-current hover:cursor-pointer"
           >
               Encontrados
           </p>
         
-          <p className="block h-16 leading-[4rem] border-b-4 border-transparent hover:text-indigo-500 hover:border-current"
+          <p className="block h-16 leading-[4rem] border-b-4 border-transparent hover:text-indigo-500 hover:border-current hover:cursor-pointer"
           >
               Extraviados
           </p>
 
-          <p className="block h-16 leading-[4rem] border-b-4 border-transparent hover:text-indigo-500 hover:border-current"
+          <p className="block h-16 leading-[4rem] border-b-4 border-transparent hover:text-indigo-500 hover:border-current hover:cursor-pointer"
           >
               Adopcion
           </p>
