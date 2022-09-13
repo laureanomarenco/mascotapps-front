@@ -1,7 +1,8 @@
-import { FETCH_PETS } from "../actions";
+import { FETCH_PETS, GET_DETAIL, RESET_DETAIL } from "../actions";
 
 const initalState = {
-    pets: []
+    pets: [],
+    pet:{}
   };
   
   export default function reducer(state = initalState, action) {
@@ -10,6 +11,15 @@ const initalState = {
         return {
           ...state,
           pets: action.payload,
+        };
+      case GET_DETAIL:
+        return {
+          ...state, 
+          pet: action.payload
+        };
+      case RESET_DETAIL:
+        return {
+          pet: {}
         };
   
       default:
