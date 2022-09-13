@@ -1,9 +1,8 @@
-import React from "react";
-import Navbar from "../Navbar/Navbar";
-import Footer from "../Footer/Footer";
-import {SiDatadog} from 'react-icons/si'
 import {FaHands} from 'react-icons/fa'
-
+import Footer from "../Footer/Footer";
+import Navbar from "../Navbar/Navbar";
+import React from "react";
+import {SiDatadog} from 'react-icons/si'
 
 export default function Home() {
   return (

@@ -19,7 +19,7 @@ export default function Login() {
               O 
               <Link to='/home'>
               <a
-                className="font-medium text-indigo-600 hover:text-indigo-500"
+                className="font-medium text-[#007663] hover:text-teal-500"
                 > Navega sin registrarte
               </a>
                 </Link>
@@ -64,7 +64,7 @@ export default function Login() {
                   id="remember-me"
                   name="remember-me"
                   type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500"
+                  className="h-4 w-4 rounded border-gray-300 text-[#007663] focus:ring-teal-500"
                 />
                 <label
                   name="remember-me"
@@ -77,7 +77,7 @@ export default function Login() {
               <div className="text-sm">
                 <a
                   href="#"
-                  className="font-medium text-indigo-600 hover:text-indigo-500"
+                  className="font-medium text-[#007663] hover:text-teal-500"
                 >
                   Olvidaste tu contraseña?
                 </a>
@@ -87,11 +87,11 @@ export default function Login() {
             <div>
               <button
                 type="submit"
-                className="group relative flex w-full justify-center rounded-md border border-transparent bg-indigo-600 py-2 px-4 text-sm font-medium text-white hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                className="group relative flex w-full justify-center rounded-md border border-transparent bg-[#ecca08] py-2 px-4 text-sm font-medium text-black hover:bg-[#ffd903]  focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
               >
                 <span className="absolute inset-y-0 left-0 flex items-center pl-3">
                   <svg
-                    className="h-5 w-5 text-indigo-500 group-hover:text-indigo-400"
+                    className="h-5 w-5 text-black group-hover:text-[#0f0f0f]"
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 20 20"
                     fill="currentColor"
