@@ -1,3 +1,4 @@
+import React from 'react';
 import './App.css';
 
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
@@ -6,7 +7,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import Home from './components/Home/Home'
 import LandingPage from './components/LandingPage/LandingPage';
 import Login from './components/Login/Login';
-import React from 'react';
 import { fetchPets } from './store/actions';
 import { useEffect } from 'react';
 
