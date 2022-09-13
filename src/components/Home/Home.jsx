@@ -17,7 +17,7 @@ export default function Home() {
               className="inline-block flex py-2 backdrop-brightness-50 text-white hover:text-black border-2 border-yellow-300 text-center hover:bg-yellow-300 font-bold hover:opacity-100  focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg mt-4 px-12 rounded-lg  lg:py-2 md:py-4 md:px-20 md:mt-32 "
             >
               <div className='flex gap-x-5 justify-items-center mx-auto items-center'>
-                <p>Dar en Adopción</p><FaHands size="35px"color="white" className='hover:'></FaHands>
+                <p>Dar en Adopción</p><FaHands size="35px" className='fill:black'></FaHands>
               </div>
             </a>
             <a
@@ -25,7 +25,7 @@ export default function Home() {
               className="inline-block flex py-2 backdrop-brightness-50 text-white hover:text-black border-2 border-yellow-300 text-center hover:bg-yellow-300 font-bold hover:opacity-100  focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg mt-4 px-12 rounded-lg  lg:py-2 md:py-4 md:px-20 md:mt-32 "
             >
               <div className='flex gap-x-5 justify-items-center mx-auto items-center'>
-                <p>Perdí mi Mascota</p><SiDatadog size="35px"color="white" className='hover:'></SiDatadog>
+                Perdí mi Mascota <SiDatadog size="35px" className='fill:black'></SiDatadog>
               </div>
             </a>
 
