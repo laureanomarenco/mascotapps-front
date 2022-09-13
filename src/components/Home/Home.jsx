@@ -1,7 +1,6 @@
 import React from "react";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
-import CardContainer from "../CardContainer/CardContainer.jsx";
 
 export default function Home() {
 	return (
@@ -39,7 +38,6 @@ export default function Home() {
 						></video>
 					</div>
 				</section>
-				<CardContainer />
 			</div>
 			<Footer />
 		</>

@@ -1,10 +1,15 @@
 /** @type {import('tailwindcss').Config} */
+// eslint-disable-next-line no-undef
 module.exports = {
   content: [
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily: {
+        'sans': ['Helvetica', 'system-ui', 'sans-serif' ],
+      },
+    },
   },
   plugins: [],
 }

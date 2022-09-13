@@ -1,9 +1,10 @@
 import React from "react";
 // import { Link } from "react-router-dom";
+import SearchBar from "../SearchBar/SearchBar";
 
 const Navbar = () => {
   return (
-    <div className=" bg-none flex items-center justify-between h-16 mt-4  max-w-screen-3xl sm:px-2 lg:px-2">
+    <div className=" w-full sticky bg-none flex items-center justify-between h-16 mt-4  max-w-screen-3xl sm:px-2 lg:px-2">
       <div className="flex items-center">
         <button type="button" className="p-2 sm:mr-4 lg:hidden">
           <svg
@@ -28,25 +29,9 @@ const Navbar = () => {
         </a>
       </div>
       {/* <div className="flex items-center ml-8 ">
-        <div className="flex items-center border-gray-100 divide-x divide-gray-100 border-x" >
-        <span className=" block p-6 border-b-4 border-transparent hover:border-indigo-500 hover:cursor-pointer hidden sm:block">
-                <svg className="w-4 h-4"
-                  xmlns="http://www.w3.org/2000/svg"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
-                  />
-                </svg>
-
-                <span className="sr-only"> Search </span>
-            </span> 
-        </div>
+        <div className="flex items-center border-gray-100 divide-x divide-gray-100 border-x" > */}
+            <SearchBar/>
+        {/* </div>
       </div> */}
 
       <div className="flex items-center justify-end flex-1 ml-" >
@@ -77,34 +62,10 @@ const Navbar = () => {
 
         <div className="flex items-center ml-8">
           <div className="flex items-center border-gray-100 divide-x divide-gray-100 border-x">
-            {/* <span>
-              <a
-                href="/cart"
-                className="block p-6 border-b-4 border-transparent hover:border-red-700"
-              >
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                  />
-                </svg>
-
-                <span className="sr-only">Cart</span>
-              </a>
-            </span> */}
-
-            <span>
+            <span className=" ml-2">
               <a
                 href="/account"
-                className="block p-6 border-b-4 border-transparent hover:border-indigo-500"
+                className="block md:p-6 p-2 border-b-4 border-transparent hover:border-indigo-500"
               >
                 <svg
                   className="w-4 h-4"
