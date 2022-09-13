@@ -54,7 +54,7 @@ export default function Detail() {
                     
                     <div>
                         <p className='text-xl font-bold text-teal-800'>Resumen</p>
-                        <p className='capitalize  text-teal-900'>{pet.comments}</p>
+                        <p className=' text-teal-900'>{pet.comments}</p>
                     </div>
                     {/* linea */}
                     <div className='h-px bg-teal-800 '></div>
@@ -74,7 +74,11 @@ export default function Detail() {
                         </div>
                     </div>
                     {/* linea */}
-                    <div className='h-px bg-teal-800  '></div>
+                    <div className='h-px bg-teal-800'></div>
+                    <div>
+                        <p className='text-xl font-bold text-teal-800'>Vacunación</p>
+                        <p className='capitalize  text-teal-900'>{pet.vaccinationSchemeStatus}</p>
+                    </div>
                     <p className='capitalize text-xl font-bold text-teal-600' >Contacto</p>
                 </div>
                 </div>) : (<h1>No Id</h1>)}
