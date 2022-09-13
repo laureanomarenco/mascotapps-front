@@ -9,7 +9,7 @@ export const RESET_DETAIL = 'RESET_DETAIL';
 
 export function fetchPets() {
     return async function(dispatch) {
-        const datos = await axios.get('https://mascotapps-stage.herokuapp.com/pets')
+        const datos = await axios.get('https://mascotapps-prod.herokuapp.com/pets')
        return dispatch({
             type: FETCH_PETS,
             payload: datos.data
@@ -20,8 +20,7 @@ export function fetchPets() {
 export function getDetail (id) {
     return async function(dispatch) {
         try {
-            const info = await axios.get('https://mascotapps-stage.herokuapp.com/pets/'+id)
-            console.log("🚀 ~ file: index.js ~ line 30 ~ returnfunction ~ info", info)    
+            const info = await axios.get('https://mascotapps-prod.herokuapp.com/pets/'+id)   
             return dispatch({ 
                 type: 'GET_DETAIL',
                 payload: info.data})
