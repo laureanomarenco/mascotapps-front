@@ -1,7 +1,7 @@
 import './App.css';
 
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
-
+import PetsContainer from './components/PetsContainer/PetsContainer';
 import Detail from './components/Detail/Detail';
 import Home from './components/Home/Home'
 import LandingPage from './components/LandingPage/LandingPage';
@@ -39,6 +39,7 @@ function App() {
       <Route path="/login" element={<Login />}/>
       <Route path="/account" element={<UserProfile/>}/>
       <Route path="/pets/:id" element={<Detail/>}/>
+      <Route path="/estado/:status" element={<PetsContainer />}/>
     </Routes>
   </BrowserRouter>
   </div>
