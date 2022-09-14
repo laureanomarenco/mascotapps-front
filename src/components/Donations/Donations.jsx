@@ -7,7 +7,7 @@ export default function Donations() {
         <div className='flex flex-col gap-2 text-white'>
             <p className='font-bold text-4xl mb-3'>Doná y colaborá con Mascotapp</p>
             <p>Toda cantidad es de ayuda cuando se trata de donaciones.</p>
-            <p>Ayuda a los animales en adopción con tu ayuda hoy!</p>
+            <p>Ayuda a los animales en adopción con tu ayuda hoy!</p> 
             <Link to="/donate" className='px-6 py-2 text-black bg-[#FFC700] hover:bg-[#ffd803] w-fit font-bold rounded-md my-5'>Donar</Link>  
         </div>
         <div className='absolute w-64 h-72 bottom-0 right-4'>
