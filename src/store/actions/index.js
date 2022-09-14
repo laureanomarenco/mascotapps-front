@@ -11,6 +11,7 @@ export const SET_LOADING = "SET_LOADING";
 
 export function fetchPets() {
   return async function (dispatch) {
+    dispatch(setLoading(true))
     const datos = await axios.get(
       "https://worker-production-2aad.up.railway.app/pets"
     );
@@ -24,6 +25,7 @@ export function fetchPets() {
 export function getDetail(id) {
   return async function (dispatch) {
     try {
+      dispatch(setLoading(true))
       const info = await axios.get(
         "https://worker-production-2aad.up.railway.app/pets/" + id
       );
