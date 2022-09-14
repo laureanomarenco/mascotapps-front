@@ -8,7 +8,7 @@ export default function Donations() {
             <p className='font-bold text-4xl mb-3'>Doná y colaborá con Mascotapp</p>
             <p>Toda cantidad es de ayuda cuando se trata de donaciones.</p>
             <p>Ayuda a los animales en adopción con tu ayuda hoy!</p>
-            <Link to="/donate" className='px-6 py-2 bg-[#ffd803] hover:bg-[#ffd803]/80 w-fit font-bold rounded-md my-5'>Donar</Link>  
+            <Link to="/donate" className='px-6 py-2 bg-[#FFC700] hover:bg-[#ffd803] w-fit font-bold rounded-md my-5'>Donar</Link>  
         </div>
         <div className='absolute w-64 h-72 bottom-0 right-4'>
             <img className='h-full w-full object-cover' src="https://res.cloudinary.com/dfbxjt69z/image/upload/v1663115562/mascotapps/purebred-dog-being-cute-in-studio-removebg-preview_nrleea.png" alt="" />

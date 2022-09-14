@@ -19,7 +19,7 @@ export default function Login() {
               O 
               <Link to='/home'>
               <a
-                className="font-medium text-[#007663] hover:text-teal-500"
+                className="font-medium text-[#28B0A2] hover:text-[#208a7f]"
                 > Navega sin registrarte
               </a>
                 </Link>
@@ -77,7 +77,7 @@ export default function Login() {
               <div className="text-sm">
                 <a
                   href="#"
-                  className="font-medium text-[#007663] hover:text-teal-500"
+                  className="font-medium text-[#28B0A2] hover:text-[#208a7f]"
                 >
                   Olvidaste tu contraseña?
                 </a>

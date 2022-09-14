@@ -1,11 +1,13 @@
-import React from "react";
 import { Link } from "react-router-dom";
-// import { Link } from "react-router-dom";
+import React from "react";
 import SearchBar from "../SearchBar/SearchBar";
+
+// import { Link } from "react-router-dom";
+
 
 const Navbar = () => {
   return (
-    <div className=" w-full sticky bg-none flex items-center justify-between h-16 mt-4  max-w-screen-3xl sm:px-2 lg:px-2">
+    <div className=" w-full sticky bg-[#F4F6F6]  z-50 flex top-0 items-center justify-between h-min max-w-screen-3xl sm:px-2 lg:px-2 ">
       <div className="flex items-center">
         <button type="button" className="p-2 sm:mr-4 lg:hidden">
           <svg
@@ -24,31 +26,25 @@ const Navbar = () => {
           </svg>
         </button> 
         <a href="/home" className="flex">
-         
-          <img src="https://images-ext-1.discordapp.net/external/NbkNzl5R3HRUApjIYRPJSuoSGAioBpGCaLrcNAxdTds/https/res.cloudinary.com/dfbxjt69z/image/upload/v1663007100/mascotapps/mascotapss_zihxad.png"
-              className="inline-block w-32 h-25  rounded-lg"></img>
+          <img src="https://res.cloudinary.com/dfbxjt69z/image/upload/v1663007100/mascotapps/mascotapss_zihxad.png"
+              className="inline-block w-20 h-20 rounded-lg"></img>
         </a>
-      </div>
-      {/* <div className="flex items-center ml-8 ">
-        <div className="flex items-center border-gray-100 divide-x divide-gray-100 border-x" > */}
-            <SearchBar/>
-        {/* </div>
-      </div> */}
-
-      <div className="flex items-center justify-end flex-1 ml-" >
-        <nav className="hidden lg:uppercase lg:text-gray-500 lg:tracking-wide lg:font-bold lg:text-xs lg:space-x-4 lg:flex">
+      </div>  
+      <SearchBar/>
+      <div className="flex items-center justify-end flex-1 " >
+        <nav className="hidden lg:uppercase lg:text-[#121212] lg:tracking-wide lg:font-bold lg:text-xs lg:space-x-4 lg:flex">
          <label htmlFor=""></label>
-          <Link to="/estado/encontrado" className="block h-16 leading-[4rem] border-b-4 border-transparent hover:text-indigo-500 hover:border-current hover:cursor-pointer"
+          <Link to="/estado/encontrado" className="block h-16 leading-[4rem] border-b-4 border-transparent ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer"
           >
               Encontrados
           </Link>
         
-          <Link to="/estado/extravido" className="block h-16 leading-[4rem] border-b-4 border-transparent hover:text-indigo-500 hover:border-current hover:cursor-pointer"
+          <Link to="/estado/extravido" className="block h-16 leading-[4rem] border-b-4 border-transparent ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer"
           >
               Extraviados
           </Link>
 
-          <Link to="/estado/adopcion" className="block h-16 leading-[4rem] border-b-4 border-transparent hover:text-indigo-500 hover:border-current hover:cursor-pointer"
+          <Link to="/estado/adopcion" className="block h-16 leading-[4rem] border-b-4 border-transparent ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer"
           >
               Adopcion
           </Link>
@@ -60,7 +56,7 @@ const Navbar = () => {
             <span className=" ml-2">
               <a
                 href="/account"
-                className="block md:p-6 p-2 border-b-4 border-transparent hover:border-indigo-500"
+                className="block md:p-6 p-2 border-b-4 border-transparent hover:text-[#28B0A2]"
               >
                 <svg
                   className="w-4 h-4"
