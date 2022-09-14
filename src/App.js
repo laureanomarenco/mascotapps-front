@@ -5,7 +5,6 @@ import PetsContainer from './components/PetsContainer/PetsContainer';
 import Detail from './components/Detail/Detail';
 import Home from './components/Home/Home'
 import LandingPage from './components/LandingPage/LandingPage';
-import Login from './components/Login/Login';
 import SignUp from './components/SignUp/SignUp';
 import Error from './components/Error/Error';
 
@@ -40,7 +39,6 @@ function App() {
     <Routes>
       <Route exact path='/' element={<LandingPage />} />
       <Route path="/home" element={<Home />} />
-      <Route path="/login" element={<Login />}/>
       <Route path="/register" element={<SignUp />}/>
       <Route path="/account" element={<UserProfile/>}/>
       <Route path="/pets/:id" element={<Detail/>}/>

@@ -84,6 +84,16 @@ export default function Login() {
               </div>
             </div>
 
+            <div className="text-sm text-center ">
+                <span className=" ">¿No tienes una cuenta? </span>
+                <a
+                  href="/register"
+                  className="font-medium text-[#28B0A2] hover:text-[#208a7f]"
+                >
+                  Crear usuario
+                </a>
+            </div>
+
             <div>
               <button
                 type="submit"

@@ -232,7 +232,7 @@ const SignUp = () => {
         </div>
         <p className="text-sm text-gray-500 text-center">
             ¿Ya tienes una cuenta?
-            <Link to="/login"><span className='font-medium text-[#007663] hover:text-teal-500'> Inicia Sesión</span></Link>
+            <Link to="/"><span className='font-medium text-[#007663] hover:text-teal-500'> Inicia Sesión</span></Link>
           </p>
       </form>
     </div>
