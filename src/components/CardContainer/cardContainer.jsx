@@ -10,9 +10,9 @@ export default function cardContainer() {
 		!pets.length && dispatch(fetchPets());
 	}, []);
 	return (
-		<div>
-			{pets.map(el => (
-				<Card key={el.id} data={el} />
+		<div className="grid gap-1 grid-cols-1 grid-rows-1 md:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 bg-[url('https://res.cloudinary.com/dax0wf30d/image/upload/v1663115601/shit/bg-5_nbb3sj.png')]">
+			{pets.map(pet => (
+				<Card key={pet.id} data={pet} />
 			))}
 		</div>
 	);
