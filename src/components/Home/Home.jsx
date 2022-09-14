@@ -1,3 +1,4 @@
+import Donations from '../Donations/Donations';
 import {FaHands} from 'react-icons/fa'
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
@@ -45,6 +46,7 @@ export default function Home() {
           </div>
         </section>
       </div>
+      <Donations/>
       <Footer />
     </>
   );
