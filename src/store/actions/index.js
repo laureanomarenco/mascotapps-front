@@ -10,7 +10,7 @@ export const GET_PETS_BY_STATUS = 'GET_PETS_BY_STATUS';
 
 export function fetchPets() {
     return async function(dispatch) {
-        const datos = await axios.get('https://mascotapps-prod.herokuapp.com/pets')
+        const datos = await axios.get('https://worker-production-2aad.up.railway.app/pets')
        return dispatch({
             type: FETCH_PETS,
             payload: datos.data
@@ -21,7 +21,7 @@ export function fetchPets() {
 export function getDetail (id) {
     return async function(dispatch) {
         try {
-            const info = await axios.get('https://mascotapps-prod.herokuapp.com/pets/'+id)   
+            const info = await axios.get('https://worker-production-2aad.up.railway.app/pets/'+id)   
             return dispatch({ 
                 type: 'GET_DETAIL',
                 payload: info.data})
@@ -37,7 +37,7 @@ export function getPetsByStatus(status){
     return async function (dispatch){
         
         try {
-          const info =await axios.get("https://mascotapps-stage.herokuapp.com/pets/"+status)  
+          const info =await axios.get("https://worker-production-2aad.up.railway.app/pets/"+status)  
           console.log(info.data)
           return dispatch({
             type:GET_PETS_BY_STATUS,

@@ -11,7 +11,7 @@ Repositorio
 https://github.com/laureanomarenco/mascotapps-back
 
 Producción(main)
-https://mascotapps-prod.herokuapp.com/ping
+https://worker-production-2aad.up.railway.app/ping
 
 Stagging(dev)
 https://mascotapps-stage.herokuapp.com/ping
@@ -27,10 +27,6 @@ https://github.com/laureanomarenco/mascotapps-front
 Producción(main)
 https://mascotapps.vercel.app/
 
-Stagging(dev)
-(pendiente de definición del template)
 
 Local
 ‘npm start → localhost 3000
-
-Los pull request a las ramas dev necesitan al menos un aprove para mergearse. Los pull request a las ramas main necesitan al menos dos aprove para mergearse.
