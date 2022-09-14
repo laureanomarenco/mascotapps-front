@@ -39,9 +39,9 @@ const Navbar = () => {
               Encontrados
           </Link>
         
-          <Link to="/estado/extravido" className="block h-16 leading-[4rem] border-b-4 border-transparent ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer"
+          <Link to="/estado/perdido" className="block h-16 leading-[4rem] border-b-4 border-transparent ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer"
           >
-              Extraviados
+              Perdidos
           </Link>
 
           <Link to="/estado/adopcion" className="block h-16 leading-[4rem] border-b-4 border-transparent ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer"
