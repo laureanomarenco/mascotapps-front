@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const Card = ({ data: { name, id, image, gender, age, specie, race } }) => {
 	return (
 		<Link
-			to={`/pets/${id}`}
+			to={'/pets/'+id}
 			key={id}
 			className="relative bg-[#F4F6F6] text-[#121212] my-8 mx-auto bg-600 w-80 rounded overflow-hidden shadow-md hover:shadow-lg cursor-pointer"
 		>
