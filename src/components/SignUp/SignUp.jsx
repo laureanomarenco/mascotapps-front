@@ -1,6 +1,10 @@
+
 import React, {useState} from 'react';
 // import {useDispatch, useSelector} from 'react-redux';
 // import {useHistory} from 'react-router-dom';
+
+
+
 import { Link } from 'react-router-dom'
 import {AiOutlineUserAdd} from 'react-icons/ai'
 import {MdAlternateEmail} from 'react-icons/md'
@@ -9,6 +13,7 @@ import {MdOutlineLocationOn} from 'react-icons/md'
 import {AiOutlineWhatsApp} from 'react-icons/ai'
 
 const SignUp = () => {
+
 
   const [input, setInput] = useState({
     name: '', email: '', password: '', 
@@ -67,6 +72,8 @@ const SignUp = () => {
     }
   }
 
+
+
   return (
   
   <section className="relative flex flex-wrap lg:h-screen lg:items-center">
@@ -81,24 +88,29 @@ const SignUp = () => {
         </p>
       </div>
   
+
       <form onSubmit={handleSubmit} className="max-w-md mx-auto mt-8 mb-0 space-y-2">
+
         <div>
           <label htmlFor="nombre" className="sr-only">Nombre</label>
   
           <div className="relative">
             <input
+
               onChange={handleChange}
               type="text"
               name="name"
               className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm "
               placeholder="Nombre"
               value={input.name}
+
             />
   
             <span className="absolute inset-y-0 inline-flex items-center right-4">
             <AiOutlineUserAdd color='grey'/>
             </span>
           </div>
+
           <div className="text-center text-xs text-red-500 mt-1">
         {!errors.name ? null : <span >*{errors.name}</span>}
           </div>
@@ -110,43 +122,54 @@ const SignUp = () => {
           <div className="relative">
             <input
               onChange={(e)=> handleChange(e)}
+
               type="email"
               name="email"
               className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
               placeholder="Email"
+
               value={input.email}
+
             />
   
             <span className="absolute inset-y-0 inline-flex items-center right-4">
             <MdAlternateEmail color='grey'/>
             </span>
           </div>
+
           <div className="text-center text-xs text-red-500 mt-1">
         {!errors.email ? null : <span >*{errors.email}</span>}
           </div>
+
         </div>
   
         <div>
           <label htmlFor="password" className="sr-only">Contraseña</label>
           <div className="relative">
             <input
+
               onChange={handleChange}
+
               type="password"
               name="password"
               className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
               placeholder="Contraseña"
+
               value={input.password}
+
             />
   
             <span className="absolute inset-y-0 inline-flex items-center right-4">
             <RiLockPasswordLine color='grey'/>
             </span>
           </div>
+
           <div className="text-center text-xs text-red-500 mt-1">
         {!errors.password ? null : <span >*{errors.password}</span>}
           </div>
         </div>
     
+
         <div>
           <label htmlFor="city" className="sr-only">Ciudad</label>
   
@@ -158,15 +181,18 @@ const SignUp = () => {
               className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
               placeholder="Ciudad"
               value={input.city}
+
             />
   
             <span className="absolute inset-y-0 inline-flex items-center right-4">
             <MdOutlineLocationOn color="grey"/>
             </span>
           </div>
+
           <div className="text-center text-xs text-red-500 mt-1">
         {!errors.city ? null : <span >*{errors.city}</span>}
           </div>
+
         </div>
 
         <div>
@@ -175,6 +201,7 @@ const SignUp = () => {
           <div className="relative">
             <input
               onChange={handleChange}
+
               type="text"
               name="contact"
               className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
@@ -186,6 +213,7 @@ const SignUp = () => {
             <AiOutlineWhatsApp color="grey"/>
             </span>
           </div>
+
           <div className="text-center text-xs text-red-500 mt-1">
         {!errors.contact ? null : <span >*{errors.contact}</span>}
           </div>
@@ -194,6 +222,7 @@ const SignUp = () => {
 
         <div className="flex items-center justify-between">
         
+
         <button
             type="submit"
             className="w-full rounded-md border border-transparent bg-[#ecca08] py-2  text-sm font-medium text-black hover:bg-[#ffd903]  focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
@@ -209,7 +238,9 @@ const SignUp = () => {
       </form>
     </div>
   
+
     <div className="relative  sm:h-96 lg:w-1/2 lg:h-full">
+
       <img
         className="absolute inset-0 object-cover w-full h-full"
         src="https://res.cloudinary.com/dfbxjt69z/image/upload/v1663007100/mascotapps/mascotapss_zihxad.png"

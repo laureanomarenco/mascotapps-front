@@ -1,14 +1,17 @@
 import './App.css';
 
 import {BrowserRouter, Route, Routes} from 'react-router-dom'
-
+import PetsContainer from './components/PetsContainer/PetsContainer';
 import Detail from './components/Detail/Detail';
 import Home from './components/Home/Home'
 import LandingPage from './components/LandingPage/LandingPage';
 import Login from './components/Login/Login';
+import SignUp from './components/SignUp/SignUp';
+
 import React from 'react';
 import UserProfile from './components/UserProfile/UserProfile';
 import SignUp from './components/SignUp/SignUp';
+
 import { fetchPets } from './store/actions';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -41,6 +44,7 @@ function App() {
       <Route path="/register" element={<SignUp />}/>
       <Route path="/account" element={<UserProfile/>}/>
       <Route path="/pets/:id" element={<Detail/>}/>
+      <Route path="/estado/:status" element={<PetsContainer />}/>
     </Routes>
   </BrowserRouter>
   </div>
