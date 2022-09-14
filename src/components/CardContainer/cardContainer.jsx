@@ -4,7 +4,7 @@ import { fetchPets } from "../../store/actions/index";
 import Card from "../Card/Card";
 
 export default function CardContainer() {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch(); 
   const pets = useSelector((state) => state.pets);
   useEffect(() => {
     !pets.length && dispatch(fetchPets());
@@ -14,6 +14,6 @@ export default function CardContainer() {
       {pets.map((pet) => (
         <Card key={pet.id} data={pet} />
       ))}
-    </div>
+    </div> 
   );
 }
