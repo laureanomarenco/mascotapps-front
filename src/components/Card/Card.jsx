@@ -6,7 +6,7 @@ const Card = ({ data: { name, id, image, gender, age, specie, race } }) => {
 			key={id}
 			className="relative bg-[#F4F6F6] text-[#121212] my-8 mx-auto bg-600 w-80 rounded overflow-hidden shadow-md hover:shadow-lg cursor-pointer"
 		>
-			<h1 className="text-center py-3 text-[#28B0A2] border-white border-b-2 font-semibold">
+			<h1 className="text-center py-3 capitalize text-[#28B0A2] border-white border-b-2 font-semibold">
 				{name ? name : "Mascota"}
 			</h1>
 			<img
