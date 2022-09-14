@@ -1,5 +1,6 @@
 import Donations from '../Donations/Donations';
-import {FaHands} from 'react-icons/fa'
+import {FaHands} from 'react-icons/fa';
+import CardContainer from '../CardContainer/CardContainer';
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 import React from "react";
@@ -9,6 +10,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
+      {/* Botones */}
       <div>
         <section className="relative py-40 px-4">
           <div className="z-20 relative  grid mt-40 lg:flex lg:justify-around md:flex md:justify-around sm:flex sm:justify-around md:mt-0 ">
@@ -46,6 +48,7 @@ export default function Home() {
           </div>
         </section>
       </div>
+      <CardContainer />
       <Donations/>
       <Footer />
     </>
