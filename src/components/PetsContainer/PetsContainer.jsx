@@ -1,5 +1,6 @@
 import React,{useEffect}from 'react'
 import {useParams } from 'react-router-dom'
+import Card from "../Card/Card"
 // import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 import{getPetsByStatus} from "../../store/actions/index"
@@ -10,18 +11,16 @@ const {status}=useParams();
 const pets=useSelector(state=>state.statusPets)
 useEffect(()=>{
   dispatch(getPetsByStatus(status))
-   console.log(status)
-   console.log(pets)
 },[])
   return (
     <div>
     <Navbar/>
-    <div className=''>
-    {pets.length>0? pets?.map(pet=>
+    <div className=" grid gap-1 grid-cols-1 gird-rows-1 md:grid-cols-2 xl:gird-cols-3 2xl:grid-cols-3 bg-[url('https://res.cloudinary.com/dax0wf30d/image/upload/v1663115601/shit/bg-5_nbb3sj.png')]">
+    { pets?.map(pet=>
       (
-       <h2 key={pet.id}>{pet.name}</h2>
+       <Card key={pet.id} data={pet}/>
       )
-    ):<h1>hola papi</h1>}
+    )}
     </div>
     {/* <Footer/> */}
     </div>
