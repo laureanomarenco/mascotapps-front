@@ -9,7 +9,7 @@ export default function Donations() {
             <p>Toda cantidad es de ayuda cuando se trata de donaciones.</p>
             <p>Ayuda a los animales en adopción con tu ayuda hoy!</p> 
             <Link to="/donate" className='px-6 py-2 text-black bg-[#FFC700] hover:bg-[#ffd803] w-fit font-bold rounded-md my-5'>Donar</Link>  
-        </div>
+        </div> 
         <div className='absolute w-64 h-72 bottom-0 right-4'>
             <img className='h-full w-full object-cover' src="https://res.cloudinary.com/dfbxjt69z/image/upload/v1663115562/mascotapps/purebred-dog-being-cute-in-studio-removebg-preview_nrleea.png" alt="" />
         </div>
