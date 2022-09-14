@@ -1,17 +1,3 @@
-Lunes 19 primer demo --> PI
-
-Lunes 26 segunda demo --> Metodo de pago - Login
-
-Jueves 6 --> última demo
-
-Estructuración de usuarios.
-
-Firebase para login.
-
-Stripe metodo de compra.
-
-Pasar link de trello y de slacks.
-
 Workflow
 Documento UserStories
 https://docs.google.com/document/d/1fAjq08pfmNBTPWzJ7gmz8Wt8efi-6CLiNNMAzVLHMgc/edit?userstoinvite=roby494%40hotmail.com#
@@ -25,7 +11,7 @@ Repositorio
 https://github.com/laureanomarenco/mascotapps-back
 
 Producción(main)
-https://mascotapps-prod.herokuapp.com/ping
+https://worker-production-2aad.up.railway.app/ping
 
 Stagging(dev)
 https://mascotapps-stage.herokuapp.com/ping
@@ -41,10 +27,6 @@ https://github.com/laureanomarenco/mascotapps-front
 Producción(main)
 https://mascotapps.vercel.app/
 
-Stagging(dev)
-(pendiente de definición del template)
 
 Local
 ‘npm start → localhost 3000
-
-Los pull request a las ramas dev necesitan al menos un aprove para mergearse. Los pull request a las ramas main necesitan al menos dos aprove para mergearse.
