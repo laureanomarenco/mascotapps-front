@@ -8,6 +8,7 @@ import LandingPage from './components/LandingPage/LandingPage';
 import Login from './components/Login/Login';
 import React from 'react';
 import UserProfile from './components/UserProfile/UserProfile';
+import SignUp from './components/SignUp/SignUp';
 import { fetchPets } from './store/actions';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
@@ -37,6 +38,7 @@ function App() {
       <Route exact path='/' element={<LandingPage />} />
       <Route path="/home" element={<Home />} />
       <Route path="/login" element={<Login />}/>
+      <Route path="/register" element={<SignUp />}/>
       <Route path="/account" element={<UserProfile/>}/>
       <Route path="/pets/:id" element={<Detail/>}/>
     </Routes>
