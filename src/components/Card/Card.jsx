@@ -1,14 +1,16 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Card = ({ data: { name, id, image, gender, age, specie, race } }) => {
 	return (
-		<section
+		<Link
+			to={`/pets/${id}`}
 			key={id}
 			className="relative bg-[#F4F6F6] text-[#121212] my-8 mx-auto bg-600 w-80 rounded overflow-hidden shadow-md hover:shadow-lg cursor-pointer"
 		>
 			<h1 className="text-center py-3 capitalize text-[#28B0A2] border-white border-b-2 font-semibold">
 				{name ? name : "Mascota"}
-			</h1> 
+			</h1>
 			<img
 				src={
 					image
@@ -33,7 +35,7 @@ const Card = ({ data: { name, id, image, gender, age, specie, race } }) => {
 					<span className="block text-center font-bold">raza: </span> {race}
 				</li>
 			</ul>
-		</section>
+		</Link>
 	);
 };
 

@@ -11,18 +11,18 @@ import Error from './components/Error/Error';
 import React from 'react';
 import UserProfile from './components/UserProfile/UserProfile';
 
-import { fetchPets } from './store/actions';
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
+// import { fetchPets } from './store/actions';
+// import { useDispatch } from 'react-redux';
+// import { useEffect } from 'react';
 import Donate from './components/Donate/Donate';
 
 function App() {
   //eslint-disable-next-line
   
-  let dispatch = useDispatch();
-  useEffect(() => {
-    dispatch(fetchPets());
-  }, [dispatch]);
+  // let dispatch = useDispatch();
+  // useEffect(() => {
+  //   dispatch(fetchPets());
+  // }, [dispatch]);
   return (
   <div className='.App'>
     {/* //   <header className="App-header">
@@ -38,13 +38,13 @@ function App() {
 
   <BrowserRouter>
     <Routes>
-      <Route exact path='/' element={<LandingPage />} />
+      <Route path="/pets/:id" element={<Detail/>}/>
+      <Route path="/estado/:status" element={<PetsContainer />}/>
       <Route path="/home" element={<Home />} />
       <Route path="/register" element={<SignUp />}/>
       <Route path="/account" element={<UserProfile/>}/>
-      <Route path="/pets/:id" element={<Detail/>}/>
-      <Route path="/estado/:status" element={<PetsContainer />}/>
       <Route path="/donate" element={<Donate />}/>
+      <Route exact path='/' element={<LandingPage />} />
       <Route path="*" element={<Error />} />
     </Routes>
   </BrowserRouter>
