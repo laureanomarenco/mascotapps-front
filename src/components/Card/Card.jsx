@@ -8,7 +8,7 @@ const Card = ({ data: { name, id, image, gender, age, specie, race } }) => {
 		>
 			<h1 className="text-center py-3 capitalize text-[#28B0A2] border-white border-b-2 font-semibold">
 				{name ? name : "Mascota"}
-			</h1>
+			</h1> 
 			<img
 				src={
 					image
