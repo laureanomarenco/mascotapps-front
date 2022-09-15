@@ -44,6 +44,13 @@ export default function reducer(state = initalState, action) {
         ...state,
         isLoading: action.payload,
       };
+    case FAVORITE_PET:
+      console.log(action.payload)
+      return {
+        ...state,
+        favs: [action.payload],
+
+      }
     default:
       return state;
   }
