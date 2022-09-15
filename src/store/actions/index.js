@@ -7,6 +7,8 @@ export const DELETE_PET = 'DELETE_PET';
 export const EDIT_PET = 'EDIT_PET';
 export const RESET_DETAIL = 'RESET_DETAIL';
 export const GET_PETS_BY_STATUS = 'GET_PETS_BY_STATUS';
+export const FILTER_PETS="FILTER_PETS";
+export const FILTER_RACE="FILTER_RACE";
 
 export function fetchPets() {
     return async function(dispatch) {
@@ -59,4 +61,11 @@ export function resetDetail () {
             payload: {}
         })
     }
+}
+export function filterPets(value){
+    return{type:FILTER_PETS, payload:value}
+
+}
+export function filterRace(value){
+    return{type:FILTER_RACE, payload:value}
 }
