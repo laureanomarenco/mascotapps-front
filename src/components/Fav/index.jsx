@@ -1,41 +1,43 @@
 import React, { useEffect, useState } from "react";
 import { AiOutlineHeart, AiFillHeart } from "react-icons/ai";
-import { useDispatch } from "react-redux";
-import {addFavs} from "../../store/actions/index";
 
-export default function Fav({id}) {
-  const corazon = JSON.parse(localStorage.getItem("favoritos")) || [];
-  console.log('este es el corazon ', corazon)
+
+
+export default function Fav({ pet }) {
+  var corazon = JSON.parse(localStorage.getItem("favoritos")) || []
+
   const [favoritos, setFavoritos] = useState(corazon);
   const [selected, setSelected] = useState(false);
 
-  const addFavorito = (id) => {
-    const dispatch = useDispatch()
-    if (favoritos.includes(id)) {
-      const newFavorites = favoritos.filter((fav) => fav !== id);
-      setFavoritos(newFavorites);
-      setSelected(false);
-    } else {
-      setFavoritos([...favoritos, id]);
+
+  const addFavorito = (pet) => {
+    if (!selected) {
+      setFavoritos([...favoritos, pet]);
       setSelected(true);
+
+    } else {
+      const newF =favoritos.filter((fav) => fav.id !== pet.id)
+      setFavoritos(newF);
+      setSelected(false);
     }
   };
-  console.log('id maldito ', id)
-  console.log('aquiiiiii estas en fav de local storage??', favoritos.filter((fav) => fav.id === id).length > 0)
-
   useEffect(() => {
+
     localStorage.setItem("favoritos", JSON.stringify(favoritos));
-    dispatch(addFavs(favoritos))
-  }, [favoritos, id, selected]);
+    if(favoritos.filter(e=>e.id === pet.id).length > 0 ){
+      setSelected(true)
+    }
+
+  }, [favoritos, pet.id]);
   return (
     <div>
-      {favoritos.filter((fav) => fav.id === id).length > 0 || selected ? (
+      {  selected ? (
         <AiFillHeart
-          onClick={() => addFavorito(id)}
+          onClick={() => addFavorito(pet)}
         />
       ) : (
         <AiOutlineHeart
-          onClick={() => addFavorito(id)}
+          onClick={() => addFavorito(pet)}
         />
       )}
     </div>

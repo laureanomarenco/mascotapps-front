@@ -4,7 +4,7 @@ import {
   RESET_DETAIL,
   GET_PETS_BY_STATUS,
   SET_LOADING,
-  FAVORITE_PET
+
 } from "../actions";
 
 const initalState = {
@@ -44,13 +44,7 @@ export default function reducer(state = initalState, action) {
         ...state,
         isLoading: action.payload,
       };
-    case FAVORITE_PET:
-      console.log(action.payload)
-      return {
-        ...state,
-        favs: [action.payload],
 
-      }
     default:
       return state;
   }

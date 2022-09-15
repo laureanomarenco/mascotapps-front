@@ -76,7 +76,7 @@ export default function Detail() {
                 </h1>
                   <div className="relative">
                     {/* favorito */}
-                  <div className="absolute flex items-center text-teal-600 right-1 top-1">Agregar a favoritos <Fav id={pet.id} /> </div>
+                  <div className="absolute flex items-center text-teal-600 right-1 top-1"><Fav pet={pet} /> </div>
                   <p className="text-xl flex font-bold items-center gap-2 text-teal-800 ">
                     {" "}
                     Estado
