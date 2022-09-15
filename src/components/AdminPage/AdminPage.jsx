@@ -182,7 +182,7 @@ const AdminPage = () => {
 
 
         <p className="text-4xl font-medium text-yellow-600">{136-34}</p>
-        <p className="text-sm text-gray-500">Usuarios no han publicado</p>
+        <p className="text-sm text-gray-500">Usuarios aún no han publicado</p>
       
     </article>
     <article className=" flex w-100 mt-px mx-16 mt-px items-center p-6 bg-white border  rounded-lg gap-4 sm:justify-between border-2 border-yellow-200 bg-gradient-to-br from-transparent to-yellow-100 ">
