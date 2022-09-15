@@ -15,13 +15,14 @@ import { fetchPets } from './store/actions';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
 import Donate from './components/Donate/Donate';
+import FavContainer from './components/FavContainer';
 
 function App() {
   //eslint-disable-next-line
-  
-  let dispatch = useDispatch();
+  const dispatch = useDispatch();
   useEffect(() => {
     dispatch(fetchPets());
+
   }, [dispatch]);
   return (
   <div className='.App'>
@@ -47,6 +48,7 @@ function App() {
       <Route path="/admin" element={<AdminPage />}/>
       <Route path="/donate" element={<Donate />}/>
       <Route path="*" element={<Error />} />
+      <Route path='/favoritos'  element={<FavContainer/>}></Route>
     </Routes>
   </BrowserRouter>
   </div>

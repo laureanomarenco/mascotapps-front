@@ -1,7 +1,7 @@
 import { Link, useParams } from "react-router-dom";
 import React, { useEffect } from "react";
 import { getDetail, resetDetail } from "../../store/actions/index";
-
+import Fav from "../Fav";
 import { BiArrowBack } from "react-icons/bi";
 import { FaPaw } from "react-icons/fa";
 import Footer from "../Footer/Footer";
@@ -74,7 +74,9 @@ export default function Detail() {
                   <FaPaw />
                   {pet.name}
                 </h1>
-                <div>
+                  <div className="relative">
+                    {/* favorito */}
+                  <div className="absolute flex items-center text-teal-600 right-1 top-1"><Fav pet={pet} /> </div>
                   <p className="text-xl flex font-bold items-center gap-2 text-teal-800 ">
                     {" "}
                     Estado
@@ -117,7 +119,7 @@ export default function Detail() {
               </div>
             </div>
           ) : (
-            <h1>No Id</h1>
+            <h1>No Existe ese perro</h1>
           )}
         </div>
       )}
