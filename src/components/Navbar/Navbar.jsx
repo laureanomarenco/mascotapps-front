@@ -132,6 +132,7 @@ export default function Navbar() {
                   <Link
                     name="adopcion"
                     to="/estado/adopcion"
+                    onClick={handleClick}
                     className=" text-base text-gray-800 ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer"
                   >
                     Adopción
@@ -530,6 +531,30 @@ export default function Navbar() {
                     <p className="text-base">Cart</p>
                   </a>
                 </li> */}
+                {/* cuenta */}
+                <Link
+                  to="/account"
+                  className="text-gray-800 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
+                >
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="fill-stroke"
+                    width={20}
+                    height={20}
+                    viewBox="0 0 20 20"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
+                  </svg>
+
+                  <p className="text-base">Mi perfil</p>
+                </Link>
                 <li>
                   <Link
                     to="/favoritos"
