@@ -8,6 +8,8 @@ export const EDIT_PET = "EDIT_PET";
 export const RESET_DETAIL = "RESET_DETAIL";
 export const GET_PETS_BY_STATUS = "GET_PETS_BY_STATUS";
 export const SET_LOADING = "SET_LOADING";
+export const FILTER_PETS="FILTER_PETS";
+export const FILTER_RACE="FILTER_RACE";
 
 
 
@@ -77,6 +79,15 @@ export const setLoading = (boolean) => (dispatch) => {
     payload: boolean,
   });
 };
+
+export function filterPets(value){
+    return{type:FILTER_PETS, payload:value}
+
+}
+export function filterRace(value){
+    return{type:FILTER_RACE, payload:value}
+}
+
 
 
 
