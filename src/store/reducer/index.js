@@ -5,7 +5,7 @@ import {
   GET_PETS_BY_STATUS,
   SET_LOADING,
   FILTER_PETS,
-  FILTER_RACE
+  FILTER_RACE,
 } from "../actions";
 
 const initalState = {
@@ -13,7 +13,8 @@ const initalState = {
   pet: {},
   statusPets: [],
   isLoading: true,
-  filterPets:[]
+  filterPets:[],
+  notFound:false,
 };
 
 export default function reducer(state = initalState, action) {
@@ -34,6 +35,7 @@ export default function reducer(state = initalState, action) {
       return {
         ...state,
         pet: {},
+        filterPets:[]
       };
     case GET_PETS_BY_STATUS:
       return {
@@ -47,6 +49,7 @@ export default function reducer(state = initalState, action) {
       };
       case FILTER_PETS:
         var match;
+        if(state.filterPets.length===0){
         if(action.payload==="perro"||action.payload==="gato"||action.payload==="otra especie"){
           match=state.statusPets.filter(i=>i.specie==action.payload)
         }else if(action.payload==="macho"||action.payload==="hembra"){
@@ -54,16 +57,29 @@ export default function reducer(state = initalState, action) {
         }else {
           match=state.statusPets.filter(i=>i.age==action.payload)
         }
+      }else{
+        if(action.payload==="perro"||action.payload==="gato"||action.payload==="otra especie"){
+          match=state.filterPets.filter(i=>i.specie==action.payload)
+        }else if(action.payload==="macho"||action.payload==="hembra"){
+          match=state.filterPets.filter(i=>i.gender==action.payload)
+        }else {
+          match=state.filterPets.filter(i=>i.age==action.payload)
+        }
+        
+      }
         
         return{
          ...state, 
-         filterPets:match
+         filterPets:match,
+         notFound: match.length===0?true:false
         }
         case FILTER_RACE:
-          var matched=state.statusPets.filter(i=>i.race===action.payload)
+          var matched= state.filterPets.length===0?state.statusPets.filter(i=>i.race===action.payload):
+          state.filterPets.filter(i=>i.race===action.payload)
           return{
             ...state,
-            filterPets:matched
+            filterPets:matched,
+            notFound: match.length===0?true:false
           }
     default:
       return state;

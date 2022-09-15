@@ -1,12 +1,17 @@
 import { Link } from "react-router-dom";
 import React from "react";
 import SearchBar from "../SearchBar/SearchBar";
-
+import{getPetsByStatus} from "../../store/actions/index"
+import { useDispatch } from "react-redux";
 // import { Link } from "react-router-dom";
 
-
 const Navbar = () => {
-  return (
+  const dispatch=useDispatch();
+
+  const handleClick=(e)=>{
+    dispatch(getPetsByStatus(e.target.name))
+  }
+    return (
     <div className=" w-full sticky bg-[#F4F6F6]  z-50 flex top-0 items-center justify-between h-min max-w-screen-3xl sm:px-2 lg:px-2 ">
       <div className="flex items-center">
         <button type="button" className="p-2 sm:mr-4 lg:hidden">
@@ -34,17 +39,17 @@ const Navbar = () => {
       <div className="flex items-center justify-end flex-1 " >
         <nav className="hidden lg:uppercase lg:text-[#121212] lg:tracking-wide lg:font-bold lg:text-xs lg:space-x-4 lg:flex">
          <label htmlFor=""></label>
-          <Link to="/estado/encontrado" className="block h-16 leading-[4rem] border-b-4 border-transparent ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer"
+          <Link onClick={handleClick} name="encontrado" to="/estado/encontrado" className="block h-16 leading-[4rem] border-b-4 border-transparent ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer"
           >
               Encontrados
           </Link>
         
-          <Link to="/estado/perdido" className="block h-16 leading-[4rem] border-b-4 border-transparent ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer"
+          <Link onClick={handleClick} name="perdido" to="/estado/perdido" className="block h-16 leading-[4rem] border-b-4 border-transparent ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer"
           >
               Perdidos
           </Link>
 
-          <Link to="/estado/adopcion" className="block h-16 leading-[4rem] border-b-4 border-transparent ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer"
+          <Link onClick={handleClick} name="adopcion" to="/estado/adopcion" className="block h-16 leading-[4rem] border-b-4 border-transparent ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer"
           >
               Adopcion
           </Link>
