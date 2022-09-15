@@ -8,6 +8,7 @@ export const EDIT_PET = "EDIT_PET";
 export const RESET_DETAIL = "RESET_DETAIL";
 export const GET_PETS_BY_STATUS = "GET_PETS_BY_STATUS";
 export const SET_LOADING = "SET_LOADING";
+export const FAVORITE_PET = "FAVORITE_PET";
 
 export function fetchPets() {
   return async function (dispatch) {
@@ -74,3 +75,11 @@ export const setLoading = (boolean) => (dispatch) => {
     payload: boolean,
   });
 };
+
+
+export const addFavs = (favs) => (dispatch) => {
+  dispatch({
+    type: FAVORITE_PET,
+    payload: favs,
+  })
+}
