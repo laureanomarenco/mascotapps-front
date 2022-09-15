@@ -7,7 +7,7 @@ import Home from './components/Home/Home'
 import LandingPage from './components/LandingPage/LandingPage';
 import SignUp from './components/SignUp/SignUp';
 import Error from './components/Error/Error';
-
+import AdminPage from './components/AdminPage/AdminPage';
 import React from 'react';
 import UserProfile from './components/UserProfile/UserProfile';
 
@@ -43,6 +43,7 @@ function App() {
       <Route path="/account" element={<UserProfile/>}/>
       <Route path="/pets/:id" element={<Detail/>}/>
       <Route path="/estado/:status" element={<PetsContainer />}/>
+      <Route path="/admin" element={<AdminPage />}/>
       <Route path="*" element={<Error />} />
     </Routes>
   </BrowserRouter>
