@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import React from "react";
 import SearchBar from "../SearchBar/SearchBar";
+
 import{getPetsByStatus} from "../../store/actions/index"
 import { useDispatch } from "react-redux";
+
+import {AiFillHeart} from 'react-icons/ai'
+
 // import { Link } from "react-router-dom";
 
 const Navbar = () => {
@@ -29,15 +33,20 @@ const Navbar = () => {
               d="M4 6h16M4 12h16M4 18h16"
             />
           </svg>
-        </button> 
+        </button>
         <a href="/home" className="flex">
           <img src="https://res.cloudinary.com/dfbxjt69z/image/upload/v1663007100/mascotapps/mascotapss_zihxad.png"
               className="inline-block w-20 h-20 rounded-lg"></img>
         </a>
-      </div>  
-      <SearchBar/>
+      </div>
+
+      <SearchBar />
+      <div className="flex items-center h-16 relative leading-[4rem] border-b-4 border-transparent ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer">
+        <Link to="/favoritos"  > <AiFillHeart  /> </Link>
+      </div>
       <div className="flex items-center justify-end flex-1 " >
         <nav className="hidden lg:uppercase lg:text-[#121212] lg:tracking-wide lg:font-bold lg:text-xs lg:space-x-4 lg:flex">
+
          <label htmlFor=""></label>
           <Link onClick={handleClick} name="encontrado" to="/estado/encontrado" className="block h-16 leading-[4rem] border-b-4 border-transparent ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer"
           >
@@ -45,6 +54,7 @@ const Navbar = () => {
           </Link>
         
           <Link onClick={handleClick} name="perdido" to="/estado/perdido" className="block h-16 leading-[4rem] border-b-4 border-transparent ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer"
+
           >
               Perdidos
           </Link>
@@ -53,7 +63,7 @@ const Navbar = () => {
           >
               Adopcion
           </Link>
-      
+
         </nav>
 
         <div className="flex items-center ml-8">
@@ -82,7 +92,7 @@ const Navbar = () => {
               </a>
             </span>
 
-           
+
           </div>
         </div>
       </div>

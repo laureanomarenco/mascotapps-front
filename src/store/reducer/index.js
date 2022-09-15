@@ -6,6 +6,7 @@ import {
   SET_LOADING,
   FILTER_PETS,
   FILTER_RACE,
+
 } from "../actions";
 
 const initalState = {
@@ -15,6 +16,8 @@ const initalState = {
   isLoading: true,
   filterPets:[],
   notFound:false,
+  
+
 };
 
 export default function reducer(state = initalState, action) {
@@ -47,6 +50,7 @@ export default function reducer(state = initalState, action) {
         ...state,
         isLoading: action.payload,
       };
+
       case FILTER_PETS:
         var match;
         if(state.filterPets.length===0){
@@ -81,6 +85,9 @@ export default function reducer(state = initalState, action) {
             filterPets:matched,
             notFound: match.length===0?true:false
           }
+
+
+
     default:
       return state;
   }

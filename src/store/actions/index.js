@@ -11,6 +11,9 @@ export const SET_LOADING = "SET_LOADING";
 export const FILTER_PETS="FILTER_PETS";
 export const FILTER_RACE="FILTER_RACE";
 
+
+
+
 export function fetchPets() {
   return async function (dispatch) {
     const datos = await axios.get(
@@ -76,6 +79,7 @@ export const setLoading = (boolean) => (dispatch) => {
     payload: boolean,
   });
 };
+
 export function filterPets(value){
     return{type:FILTER_PETS, payload:value}
 
@@ -83,3 +87,8 @@ export function filterPets(value){
 export function filterRace(value){
     return{type:FILTER_RACE, payload:value}
 }
+
+
+
+
+
