@@ -7,13 +7,14 @@ import Home from './components/Home/Home'
 import LandingPage from './components/LandingPage/LandingPage';
 import SignUp from './components/SignUp/SignUp';
 import Error from './components/Error/Error';
-
+import AdminPage from './components/AdminPage/AdminPage';
 import React from 'react';
 import UserProfile from './components/UserProfile/UserProfile';
 
 import { fetchPets } from './store/actions';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';
+import Donate from './components/Donate/Donate';
 
 function App() {
   //eslint-disable-next-line
@@ -43,6 +44,8 @@ function App() {
       <Route path="/account" element={<UserProfile/>}/>
       <Route path="/pets/:id" element={<Detail/>}/>
       <Route path="/estado/:status" element={<PetsContainer />}/>
+      <Route path="/admin" element={<AdminPage />}/>
+      <Route path="/donate" element={<Donate />}/>
       <Route path="*" element={<Error />} />
     </Routes>
   </BrowserRouter>
