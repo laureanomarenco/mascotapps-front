@@ -9,6 +9,9 @@ export const RESET_DETAIL = "RESET_DETAIL";
 export const GET_PETS_BY_STATUS = "GET_PETS_BY_STATUS";
 export const SET_LOADING = "SET_LOADING";
 
+
+
+
 export function fetchPets() {
   return async function (dispatch) {
     const datos = await axios.get(
@@ -74,3 +77,7 @@ export const setLoading = (boolean) => (dispatch) => {
     payload: boolean,
   });
 };
+
+
+
+

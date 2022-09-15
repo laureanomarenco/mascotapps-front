@@ -3,7 +3,8 @@ import {
   GET_DETAIL,
   RESET_DETAIL,
   GET_PETS_BY_STATUS,
-  SET_LOADING
+  SET_LOADING,
+
 } from "../actions";
 
 const initalState = {
@@ -11,6 +12,7 @@ const initalState = {
   pet: {},
   statusPets: [],
   isLoading: true,
+  favs:[]
 };
 
 export default function reducer(state = initalState, action) {
@@ -42,6 +44,7 @@ export default function reducer(state = initalState, action) {
         ...state,
         isLoading: action.payload,
       };
+
     default:
       return state;
   }

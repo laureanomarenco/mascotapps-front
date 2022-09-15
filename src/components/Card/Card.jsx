@@ -6,11 +6,11 @@ const Card = ({ data: { name, id, image, gender, age, specie, race } }) => {
 		<Link
 			to={'/pets/'+id}
 			key={id}
-			className="relative bg-[#F4F6F6] text-[#121212] my-8 mx-auto bg-600 w-80 rounded overflow-hidden shadow-md hover:shadow-lg cursor-pointer"
+			className="relative bg-[#F4F6F6] text-[#121212] my-8 mx-auto bg-600 max-h-[327px] w-80 rounded overflow-hidden shadow-md hover:shadow-lg cursor-pointer"
 		>
 			<h1 className="text-center py-3 capitalize bg-[#28B0A280] text-[#121212] border-white border-b-2 font-semibold">
 				{name ? name : "Mascota"}
-			</h1> 
+			</h1>
 			<img
 				src={
 					image
