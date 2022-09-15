@@ -40,7 +40,7 @@ const CheckoutForm = () => {
       const { id } = paymentMethod
 
       try {
-        const result = await axios.post('http://localhost:3001/checkout', {
+        const result = await axios.post('https://mascotapps-stage.herokuapp.com/checkout', {
           id,
           amount: amount * 100
         })
