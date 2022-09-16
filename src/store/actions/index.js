@@ -11,7 +11,7 @@ export const SET_LOADING = "SET_LOADING";
 export const FILTER_PETS="FILTER_PETS";
 export const FILTER_RACE="FILTER_RACE";
 export const FETCH_CITY = "FETCH_CITY"; 
-
+export const SEARCH_PETS = "SEARCH_PETS";
 
 
 export function fetchPets() {
@@ -103,6 +103,20 @@ export function filterRace(value){
     return{type:FILTER_RACE, payload:value}
 }
 
+export function searchPets(input){
+  return async function(dispatch) {
+    try {
+      const pets = await axios.post(`http://localhost:3001/pets/search?input=${input}`);
+      return dispatch({
+        type: SEARCH_PETS,
+        payload: pets
+      })
+
+    } catch (error) {
+      return error.message
+    }
+  }
+}
 
 
 
