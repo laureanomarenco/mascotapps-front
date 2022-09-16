@@ -37,6 +37,7 @@ export default function reducer(state = initalState, action) {
         ...state,
         pet: {},
         filterPets: [],
+        notFound: false,
       };
     case GET_PETS_BY_STATUS:
       return {
