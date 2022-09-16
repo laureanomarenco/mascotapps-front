@@ -6,6 +6,7 @@ import {
   SET_LOADING,
   FILTER_PETS,
   FILTER_RACE,
+  FETCH_CITY
 
 } from "../actions";
 
@@ -16,6 +17,7 @@ const initalState = {
   isLoading: true,
   filterPets:[],
   notFound:false,
+  cities: []
   
 
 };
@@ -85,6 +87,11 @@ export default function reducer(state = initalState, action) {
             filterPets:matched,
             notFound: match.length===0?true:false
           }
+    case FETCH_CITY:
+      return {
+        ...state,
+        cities: action.payload
+      }
 
 
 

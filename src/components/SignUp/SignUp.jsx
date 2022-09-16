@@ -1,24 +1,43 @@
-import React, {useState} from 'react';
-// import {useDispatch, useSelector} from 'react-redux';
+import React, {useState, useEffect} from 'react';
+import {useDispatch, useSelector} from 'react-redux';
 // import {useHistory} from 'react-router-dom';
-
-
-
+import {fetchCity} from '../../store/actions/index'
 import { Link } from 'react-router-dom'
+import TextField from '@mui/material/TextField';
+import Autocomplete from '@mui/material/Autocomplete';
 import {AiOutlineUserAdd} from 'react-icons/ai'
 import {MdAlternateEmail} from 'react-icons/md'
 import {RiLockPasswordLine} from 'react-icons/ri'
-import {MdOutlineLocationOn} from 'react-icons/md'
+// import {MdOutlineLocationOn} from 'react-icons/md'
 import {AiOutlineWhatsApp} from 'react-icons/ai'
 
 const SignUp = () => {
 
+  //CIUDADES ARG
+  const dispatch = useDispatch();
+  const cities = useSelector(state => state.cities)
+  useEffect(() => {
+    dispatch(fetchCity())
+  }, [dispatch])
+  
+  let localidades = cities?.map(loc => {
+    return {
+      nombre: loc.nombre,
+      provincia: loc.provincia.nombre
+    }
+  })
+
+  localidades = localidades.sort((a,b) => a.provincia - b.provincia).map(l=> `${l.nombre}, ${l.provincia}`)  
+
+  console.log(localidades)
+
+
+  //ESTADOS
 
   const [input, setInput] = useState({
     name: '', email: '', password: '', 
     city: '', contact: '', image:''
   });  
-
   const [errors, setErrors] = useState({});
 
   const handleChange= (e)=>{
@@ -32,13 +51,11 @@ const SignUp = () => {
   }))
   }
 
+  //VALIDACIONES
   function validate (input) {
-    let errorObj = {
-      // name: '', email: '', password: '', 
-      // city: '', contact: '',
-    }
+    let errorObj = {}
       if (!input.name.trim()) {
-        errorObj.name = "El nombre es obligatorio";
+        errorObj.name = "Todos los datos son obligatorios";
       }
       if (input.name.search("[0-9]") !== -1) {
         errorObj.name = "El nombre puede incluir números";
@@ -52,9 +69,9 @@ const SignUp = () => {
       if (!input.password.trim()) {
         errorObj.password = "Debes incluir una contraseña";
       }
-      if (!input.city.trim()) {
-        errorObj.city = "Debes indicar tu ciudad";
-      }
+      // if (!input.city.trim()) {
+      //   errorObj.city = "Debes indicar tu ciudad";
+      // }
       if (!input.contact.trim()) {
         errorObj.contact = "Debes incluir un número de contacto";
       }
@@ -74,8 +91,7 @@ const SignUp = () => {
 
 
   return (
-  
-  <section className="relative flex flex-wrap lg:h-screen lg:items-center">
+    <section className="relative flex flex-wrap lg:h-screen lg:items-center">
     <div className="w-full px-4 py-12 lg:w-1/2 sm:px-6 lg:px-8 sm:py-6 lg:py-12">
   
       <div className="max-w-lg mx-auto text-center">
@@ -170,22 +186,15 @@ const SignUp = () => {
     
 
         <div>
-          <label htmlFor="city" className="sr-only">Ciudad</label>
-  
           <div className="relative">
-            <input
-              onChange={handleChange}
-              type="text"
-              name="city"
-              className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-              placeholder="Ciudad"
-              value={input.city}
-
-            />
-  
-            <span className="absolute inset-y-0 inline-flex items-center right-4">
-            <MdOutlineLocationOn color="grey"/>
-            </span>
+              <Autocomplete
+                  disablePortal
+                  id="combo-box-demo"
+                  options={localidades}
+                  sx={{ width: 1, borderRadius: 16, border: 0  }}
+                  renderInput={(params) => <TextField {...params} label="Provincia, localidad ..." onChange={handleChange} name='city'/>}
+                  
+              />
           </div>
 
           <div className="text-center text-xs text-red-500 mt-1">
