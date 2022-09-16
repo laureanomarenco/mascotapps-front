@@ -8,11 +8,17 @@ export const EDIT_PET = "EDIT_PET";
 export const RESET_DETAIL = "RESET_DETAIL";
 export const GET_PETS_BY_STATUS = "GET_PETS_BY_STATUS";
 export const SET_LOADING = "SET_LOADING";
+<<<<<<< HEAD
 export const FILTER_PETS="FILTER_PETS";
 export const FILTER_RACE="FILTER_RACE";
 export const FETCH_CITY = "FETCH_CITY"; 
 export const SEARCH_PETS = "SEARCH_PETS";
 
+=======
+export const FILTER_PETS = "FILTER_PETS";
+export const FILTER_RACE = "FILTER_RACE";
+export const FETCH_CITY = "FETCH_CITY";
+>>>>>>> cd95b06f65f77ae0acd0cc15f5ec4c77fe488d1f
 
 export function fetchPets() {
   return async function (dispatch) {
@@ -64,19 +70,20 @@ export function getPetsByStatus(status) {
   };
 }
 
-export function fetchCity(){
-  return async function(dispatch) {
+export function fetchCity() {
+  return async function (dispatch) {
     try {
-      const cities = await axios.get('https://apis.datos.gob.ar/georef/api/municipios?max=2500');
+      const cities = await axios.get(
+        "https://apis.datos.gob.ar/georef/api/municipios?max=2500"
+      );
       return dispatch({
         type: FETCH_CITY,
-        payload: cities.data.municipios
-      })
-
+        payload: cities.data.municipios,
+      });
     } catch (error) {
-      return error.message
+      return error.message;
     }
-  }
+  };
 }
 
 export function resetDetail() {
@@ -95,10 +102,10 @@ export const setLoading = (boolean) => (dispatch) => {
   });
 };
 
-export function filterPets(value){
-    return{type:FILTER_PETS, payload:value}
-
+export function filterPets(value) {
+  return { type: FILTER_PETS, payload: value };
 }
+<<<<<<< HEAD
 export function filterRace(value){
     return{type:FILTER_RACE, payload:value}
 }
@@ -117,3 +124,5 @@ export function searchPets(input){
     }
   }
 }
+=======
+>>>>>>> cd95b06f65f77ae0acd0cc15f5ec4c77fe488d1f
