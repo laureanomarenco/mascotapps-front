@@ -307,7 +307,7 @@ export default function Navbar() {
           <div
             id="mobile-menu"
             className={`${
-              showMenu ? "flex z-50 sticky top-0 " : "hidden"
+              showMenu ? "flex z-50" : "hidden"
             } absolute z-10 inset-0 md:hidden bg-white flex-col h-screen w-full`}
           >
             <div className="flex items-center justify-between border-b border-gray-200  pb-4 p-4">
@@ -531,7 +531,7 @@ export default function Navbar() {
                     <p className="text-base">Cart</p>
                   </a>
                 </li> */}
-                {/* cuenta */}
+                
                 <Link
                   to="/account"
                   className="text-gray-800 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
