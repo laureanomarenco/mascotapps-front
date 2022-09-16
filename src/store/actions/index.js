@@ -8,17 +8,11 @@ export const EDIT_PET = "EDIT_PET";
 export const RESET_DETAIL = "RESET_DETAIL";
 export const GET_PETS_BY_STATUS = "GET_PETS_BY_STATUS";
 export const SET_LOADING = "SET_LOADING";
-<<<<<<< HEAD
 export const FILTER_PETS="FILTER_PETS";
 export const FILTER_RACE="FILTER_RACE";
 export const FETCH_CITY = "FETCH_CITY"; 
 export const SEARCH_PETS = "SEARCH_PETS";
 
-=======
-export const FILTER_PETS = "FILTER_PETS";
-export const FILTER_RACE = "FILTER_RACE";
-export const FETCH_CITY = "FETCH_CITY";
->>>>>>> cd95b06f65f77ae0acd0cc15f5ec4c77fe488d1f
 
 export function fetchPets() {
   return async function (dispatch) {
@@ -105,7 +99,7 @@ export const setLoading = (boolean) => (dispatch) => {
 export function filterPets(value) {
   return { type: FILTER_PETS, payload: value };
 }
-<<<<<<< HEAD
+
 export function filterRace(value){
     return{type:FILTER_RACE, payload:value}
 }
@@ -124,5 +118,3 @@ export function searchPets(input){
     }
   }
 }
-=======
->>>>>>> cd95b06f65f77ae0acd0cc15f5ec4c77fe488d1f
