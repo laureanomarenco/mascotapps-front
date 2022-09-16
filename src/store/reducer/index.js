@@ -55,7 +55,6 @@ export default function reducer(state = initalState, action) {
       var genders;
       var ages;
       var races;
-      if(action.payload.reset) races = state.statusPets
       action.payload.specie !== ""
         ? (especie = state.statusPets.filter(
             (i) => i.specie === action.payload.specie
