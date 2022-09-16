@@ -8,9 +8,13 @@ export default function CardContainer() {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.isLoading);
   const pets = useSelector((state) => state.pets);
+  const searchedPets = useSelector((state) => state.searchedPets);
+  console.log(searchedPets)
+
   useEffect(() => {
     !pets.length && dispatch(fetchPets());
   }, []);
+  
   return (
     <div
       className={`${
@@ -22,7 +26,10 @@ export default function CardContainer() {
       {loading ? (
         <Spinner />
       ) : (
-        pets.map((pet) => <Card key={pet.id} data={pet} />)
+        searchedPets.length !== 0 ? 
+        searchedPets?.map((pet, i) => <Card key={i} data={pet} />)
+        :
+        pets?.map((pet) => <Card key={pet.id} data={pet} />)
       )}
     </div>
   );
