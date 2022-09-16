@@ -1,16 +1,12 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import { resetDetail } from "../../store/actions";
-const NotFound = () => {
-  const dispatch=useDispatch()
-  const clear = () => {
-    dispatch(resetDetail());
-   
-  };
+
+const NotFound = ({ handleClearFilter }) => {
   return (
-    
-      <div className="flex items-center justify-between p-4 text-red-700 border rounded gap-4 border-red-900/10 bg-red-50"
-      role="alert" >
+    <div className=" w-max h-max">
+      <div
+        className="flex items-center justify-between p-4 text-red-700 border rounded gap-4 border-red-900/10 bg-red-50"
+        role="alert"
+      >
         <div className="flex items-center gap-4">
           <span className="p-2 text-white bg-red-600 rounded-full">
             <svg
@@ -38,8 +34,12 @@ const NotFound = () => {
           </p>
         </div>
 
-        <button onClick={clear} className="opacity-90" type="button">
-          <span className="sr-only">  </span>
+        <button
+          onClick={handleClearFilter}
+          className="opacity-90"
+          type="button"
+        >
+          <span className="sr-only"> </span>
 
           <svg
             className="w-4 h-4"
@@ -55,7 +55,7 @@ const NotFound = () => {
           </svg>
         </button>
       </div>
-    
+    </div>
   );
 };
 

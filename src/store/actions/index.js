@@ -100,9 +100,6 @@ export function filterPets(value) {
   return { type: FILTER_PETS, payload: value };
 }
 
-export function filterRace(value){
-    return{type:FILTER_RACE, payload:value}
-}
 
 export function searchPets(input){
   return async function(dispatch) {

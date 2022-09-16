@@ -1,38 +1,8 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { filterPets, resetDetail } from "../../store/actions";
+import React from "react";
+import {  useSelector } from "react-redux";
 
-const FormFilter = () => {
+const FormFilter = ({ handleClearFilter,filter,handleFilter}) => {
   const pets = useSelector((state) => state.statusPets);
-  const dispatch = useDispatch();
-  const [filter, setFilter] = useState({
-    specie: "",
-    gender: "",
-    age: "",
-    race: "",
-  });
-
-  const handleFilter = (e) => {
-    setFilter({
-      ...filter,
-      [e.target.name]: e.target.value,
-    });
-    const obj = {
-      ...filter,
-      [e.target.name] : e.target.value
-    }
-    dispatch(filterPets(obj));
-  };
-
-  const clear = () => {
-    dispatch(resetDetail());
-    setFilter({
-      specie: "",
-      gender: "",
-      age: "",
-      race: "",
-    });
-  };
   return (
     <div className="grid gap-1 grid-cols-1 md:grid-cols-2 xl:grid-cols-6 border-0 cursor-pointer rounded-full drop-shadow-md  w-70  duration-300 ">
       <select value={filter.specie} name="specie" onChange={handleFilter}>
@@ -64,7 +34,7 @@ const FormFilter = () => {
       <select>
         <option hidden>Ciudad</option>
       </select>
-      <button className="hover:bg-[#28B0A2]" onClick={clear}>reset</button>
+      <button className="hover:bg-[#28B0A2]" onClick={handleClearFilter}>reset</button>
     </div>
   );
 };
