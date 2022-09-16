@@ -14,7 +14,7 @@ const NavBar = () => {
   }
 
   return (
-    <header>
+    <header className='bg-gray-100'>
     <nav className="bg-gray-100 text-[#28B0A2] ">
       <div className="container mx-auto py-4 grid grid-cols-1 justify-items-center md:flex md:justify-between items-center">
         <h1 className="text-2xl font-bold text-gray-300">Admin Dashboard</h1>

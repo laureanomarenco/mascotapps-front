@@ -28,7 +28,7 @@ const AdminPage = () => {
   
       return (
           <>
-          <div className='absolute top-0 sticky'>
+          <div className='top-0 sticky z-10'>
             <SideMenu/>
           </div>
         <div id='general' className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
@@ -88,7 +88,7 @@ const AdminPage = () => {
  
       </div>
         <div id='mascotas'></div>
-        <section  className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-4 xl:grid-cols-4 gap-4 mt-28 w-9/12 mx-auto ">
+        <section className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-4 xl:grid-cols-4 gap-4 mt-28 w-9/12 mx-auto ">
                       
             <div className="flex justify-center w-full lg:border-r border-gray-300 py-6">
             <FaHands size={72} fill='#805AD5'/>
