@@ -36,7 +36,7 @@ export default function reducer(state = initalState, action) {
       return {
         ...state,
         pet: {},
-        filterPets: state.statusPets,
+        filterPets: [],
       };
     case GET_PETS_BY_STATUS:
       return {
@@ -54,6 +54,7 @@ export default function reducer(state = initalState, action) {
       var genders;
       var ages;
       var races;
+      if(action.payload.reset) races = state.statusPets
       action.payload.specie !== ""
         ? (especie = state.statusPets.filter(
             (i) => i.specie === action.payload.specie

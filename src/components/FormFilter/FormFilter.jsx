@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterPets, resetDetail } from "../../store/actions";
+import { filterPets } from "../../store/actions";
 
 const FormFilter = () => {
   const pets = useSelector((state) => state.statusPets);
@@ -25,7 +25,7 @@ const FormFilter = () => {
   };
 
   const clear = () => {
-    dispatch(resetDetail());
+    dispatch(filterPets({reset:true}));
     setFilter({
       specie: "",
       gender: "",
