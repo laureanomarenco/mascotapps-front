@@ -240,7 +240,9 @@ export default function Navbar() {
 							<div className="flex lg:hidden">
 								<button
 									aria-label="show options"
-									onClick={() => setMdOptionsToggle(!mdOptionsToggle)}
+									onClick={() =>
+										setMdOptionsToggle(!mdOptionsToggle)
+									}
 									className="text-black  hidden md:flex focus:outline-none focus:ring-2 rounded focus:ring-gray-600"
 								>
 									<svg
