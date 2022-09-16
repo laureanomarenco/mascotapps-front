@@ -10,7 +10,7 @@ export const GET_PETS_BY_STATUS = "GET_PETS_BY_STATUS";
 export const SET_LOADING = "SET_LOADING";
 export const FILTER_PETS="FILTER_PETS";
 export const FILTER_RACE="FILTER_RACE";
-export const FETCH_CITY = "FETCH_CITY"; 
+export const FETCH_CITY = "FETCH_CITY";
 export const SEARCH_PETS = "SEARCH_PETS";
 
 
@@ -107,7 +107,9 @@ export function filterRace(value){
 export function searchPets(input){
   return async function(dispatch) {
     try {
-      const pets = await axios.get(`http://localhost:3001/pets/search?input=${input}`);
+      const pets = await axios.get(
+        `https://mascotapps-stage.herokuapp.com/pets/search?input=${input}`
+      );
       return dispatch({
         type: SEARCH_PETS,
         payload: pets.data
