@@ -16,6 +16,7 @@ const initalState = {
   statusPets: [],
   isLoading: true,
   filterPets: [],
+  searchedPets: [],
   notFound: false,
   cities: [],
 };
@@ -103,7 +104,7 @@ export default function reducer(state = initalState, action) {
     case SEARCH_PETS:
       return {
         ...state,
-        pets: action.payload
+        searchedPets: action.payload
       }
     default:
       return state;

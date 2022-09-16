@@ -106,10 +106,10 @@ export function filterRace(value){
 export function searchPets(input){
   return async function(dispatch) {
     try {
-      const pets = await axios.post(`http://localhost:3001/pets/search?input=${input}`);
+      const pets = await axios.get(`http://localhost:3001/pets/search?input=${input}`);
       return dispatch({
         type: SEARCH_PETS,
-        payload: pets
+        payload: pets.data
       })
 
     } catch (error) {
@@ -117,6 +117,3 @@ export function searchPets(input){
     }
   }
 }
-
-
-

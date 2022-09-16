@@ -2,12 +2,22 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import { getPetsByStatus } from "../../store/actions/index";
 import { useDispatch } from "react-redux";
+import { searchPets } from "../../store/actions";
 
 export default function Navbar() {
   const [searchInput, setSearchInput] = useState(true);
   const [mdOptionsToggle, setMdOptionsToggle] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
-  const dispatch = useDispatch();
+  const [input, setInput] = useState("");
+
+  let dispatch = useDispatch()
+
+  function handleChange(e) {
+    e.preventDefault();
+    setInput(e.target.value);
+    dispatch(searchPets(input))
+  }
+
   const handleClick = (e) => {
     dispatch(getPetsByStatus(e.target.name));
   };
@@ -52,6 +62,7 @@ export default function Navbar() {
               <input
                 type="text"
                 placeholder="Buscar"
+                onChange={handleChange}
                 className="text-sm leading-none   text-gray-600 focus:outline-none"
               />
             </div>
@@ -174,6 +185,7 @@ export default function Navbar() {
                     id="searchInput"
                     type="text"
                     placeholder="Buscar..."
+                    onChange={handleChange}
                     className={` ${
                       searchInput ? "hidden" : ""
                     } text-sm   text-gray-600 rounded ml-1 border border-transparent focus:outline-none focus:border-gray-400 px-1`}
@@ -340,6 +352,7 @@ export default function Navbar() {
                 <input
                   type="text"
                   placeholder="Buscar..."
+                  onChange={handleChange}
                   className="text-sm  text-gray-600 placeholder-gray-600  focus:outline-none"
                 />
               </div>
