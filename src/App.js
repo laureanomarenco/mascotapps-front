@@ -10,7 +10,6 @@ import Error from './components/Error/Error';
 import AdminPage from './components/AdminPage/AdminPage';
 import React from 'react';
 import UserProfile from './components/UserProfile/UserProfile';
-
 import { fetchPets } from './store/actions';
 import { useDispatch } from 'react-redux';
 import { useEffect } from 'react';

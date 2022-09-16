@@ -1,20 +1,21 @@
 import React, {useEffect} from 'react'
 import {useDispatch, useSelector} from 'react-redux';
 import {fetchPets} from '../../store/actions/index';
+import SideMenu from './NavBar'
+// import Alert from './Alert';
+//icons
 import {MdPets} from 'react-icons/md'
 import {FaHands} from 'react-icons/fa';
-import {BsClipboardData} from 'react-icons/bs';
-import {AiOutlineLogout} from 'react-icons/ai';
 import {GiDogHouse} from 'react-icons/gi';
 import {MdImageSearch} from 'react-icons/md';
 import {CgSearchFound} from 'react-icons/cg';
-import {CgProfile} from 'react-icons/cg';
+import {BsEyeFill} from 'react-icons/bs';
 import {TbUsers} from 'react-icons/tb';
-import {TbLockOpenOff} from 'react-icons/tb';
+import {MdImageNotSupported} from 'react-icons/md';
 import {FaDonate} from 'react-icons/fa';
 import {BsImages} from 'react-icons/bs';
+import {TbView360} from 'react-icons/tb';
 import {BiDonateHeart} from 'react-icons/bi';
-
 
 const AdminPage = () => {
 
@@ -25,182 +26,142 @@ const AdminPage = () => {
     dispatch(fetchPets())   
 }, [dispatch])
   
-  return (
-  <div className='relative'>
-    <div className="absolute flex flex-col justify-between w-16 h-screen bg-white border-r">
-    <div>
-    <div className="inline-flex items-center justify-center w-16 h-16">
-      <img src="https://res.cloudinary.com/dyzge4vha/image/upload/v1663024302/cld-sample.jpg" alt="img-perfil" className="block w-14 h-12 bg-gray-200 rounded-xl"/>
-    </div>
-
-    <div className="border-t border-gray-100">
-      <nav className="flex flex-col p-2">
-        <div className="py-4">
-          <a
-            href=""
-            className="flex justify-center px-2 py-1.5 text-gray-500 rounded-xl hover:bg-yellow-200 hover:text-gray-700 group relative"
-          >
-            <BsClipboardData size="23"/>
-
-            <span
-              className="absolute text-xs font-medium text-white bg-gray-900 left-full ml-4 px-2 py-1.5 top-1/2 -translate-y-1/2 rounded opacity-0 group-hover:opacity-100"
-            >
-              General
-            </span>
-          </a>
-        </div>
-
-        <ul className="pt-4 border-t border-gray-100 space-y-1">
-          <li>
-            <a
-              href=""
-              className="flex justify-center px-2 py-1.5 text-gray-500 rounded-xl hover:bg-yellow-200 hover:text-gray-700 relative group"
-            >
-              <TbUsers size="23" />
-            </a>
-          </li>
-
-          <li>
-            <a
-              href=""
-              className="flex relative group justify-center px-2 py-1.5 text-gray-500 rounded-xl hover:bg-yellow-200 hover:text-gray-700"
-            >
-              <FaDonate size="23"/>
-            </a>
-          </li>
-
-          <li>
-            <a
-              href=""
-              className="flex justify-center px-2 py-1.5 text-gray-500 rounded-xl hover:bg-yellow-200 hover:text-gray-700 relative group"
-            >
-              <MdPets size="23"/>
-            </a>
-          </li>
-
-          <li>
-            <a
-              href=""
-              className="relative group flex justify-center px-2 py-1.5 text-gray-500 rounded-xl hover:bg-yellow-200 hover:text-gray-700"
-            >
-              <CgProfile size="23"/>
-
-            </a>
-          </li>
-        </ul>
-      </nav>
-    </div>
-    </div>
-
-    <div className="sticky inset-x-0 bottom-0 p-2 bg-white border-t border-gray-100">
-    <form >
-      <button
-        type="submit"
-        className="flex justify-center w-full  py-1.5 text-sm text-gray-500 rounded-lg hover:bg-gray-50 hover:text-gray-700 group  relative"
-      >
-        <AiOutlineLogout size="23"/>
-      </button>
-    </form>
-    </div>
-    </div>
-<div className="md:flex md:gap-12 md:mt-1 md:ml-1">
-    <div className="grid grid-cols-1">
-    <article className=" flex w-full mt-px mx-16 mt-px items-center p-6 bg-white border  rounded-lg gap-4 sm:justify-between border-2 border-yellow-200 bg-gradient-to-br from-transparent to-yellow-100 ">
-      <span className="p-2 text-yellow-500  rounded-full sm:order-last">
-        <MdPets size={70}></MdPets>
-      </span>
-
-      <div>
-        <p className="font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-br from-gray-50 to-yellow-500">{pets?pets.length : null}</p>
-
-        <p className="text-medium font-semibold text-gray-500">Mascotas totales</p>
+      return (
+          <>
+          <div className='absolute top-0 sticky'>
+            <SideMenu/>
+          </div>
+        <div id='general' className="max-w-xl mb-10 md:mx-auto sm:text-center lg:max-w-2xl md:mb-12">
+        <img 
+              className="mx-auto h-40 w-auto"
+              src="https://res.cloudinary.com/dfbxjt69z/image/upload/v1663007100/mascotapps/mascotapss_zihxad.png"
+              alt="Your Company"
+        />
+        <p className="text-base text-center text-gray-700 md:text-lg">
+          Supervisa las estadísticas de tu aplicación
+        </p>
       </div>
-    </article>
-    
-    <article className="flex w-full mt-px mx-16 items-center p-2 bg-gray-50 border border-gray-200 rounded-lg gap-4 sm:justify-between transform transition duration-200 hover:translate-x-12 hover:bg-gradient-to-br from-transparent to-yellow-100  hover:text-grey-50 ">
-      <span className="p-3 text-gray-600 bg-gray-100 rounded-full sm:order-last">
-        <FaHands size="30"></FaHands>
-      </span>
+      <div className="relative w-full p-px mx-auto mb-4 overflow-hidden transition-shadow duration-300 border rounded lg:mb-8 lg:max-w-4xl group hover:shadow-xl">
+        
+      <div  className="grid grid-cols-2 row-gap-8 md:grid-cols-4 ">
+        <a htmlFor="#mascotas" onClick={() => window.location.replace("/admin#mascotas")} className='hover:cursor-pointer'>
+          <div className="text-center md:border-r h-80 hover:scale-y-110">
+            <MdPets className="mx-auto h-1/2 fill-yellow-600" size={100}/>
+            <h6 className="text-4xl font-bold lg:text-5xl xl:text-6xl text-gray-800">{pets?pets.length : null}</h6>
+            <p className="text-sm font-medium tracking-widest text-yellow-600 uppercase lg:text-base">
+              Mascotas publicadas
+            </p>
+          </div>
+        </a>
 
-        <p className="text-4xl font-medium text-yellow-600">{pets?(pets.filter(p=> p.status === 'en adopción').length) : null}</p>
+        <a htmlFor="#usuarios" onClick={() => window.location.replace("/admin#usuarios")} className='hover:cursor-pointer' >
+          <div className="text-center md:border-r h-80 hover:scale-y-110">
+            <TbUsers className="mx-auto h-1/2 stroke-yellow-600" size={100}/>
+            <h6 className="text-4xl font-bold lg:text-5xl xl:text-6xl text-gray-800">136</h6>
+            <p className="text-sm font-medium tracking-widest text-yellow-600 uppercase lg:text-base">
+              Usuarios registrados
+            </p>
+          </div>
+        </a>
 
-        <p className="text-sm text-gray-500">Mascotas en Adopción</p>
-     
-    </article>
-    <article className="flex w-full mt-px mx-16 items-center p-2 bg-gray-50 border border-gray-200 rounded-lg gap-4 sm:justify-between transform transition duration-200 hover:translate-x-12 hover:bg-gradient-to-br from-transparent to-yellow-100  hover:text-grey-50 ">
-      <span className="p-3 text-gray-600 bg-gray-100 rounded-full sm:order-last">
-        <GiDogHouse size="30"></GiDogHouse>
-      </span>
+        <a htmlFor="#usuarios" onClick={() => window.location.replace("/admin#don-visits")} className='hover:cursor-pointer' >
+          <div className="text-center md:border-r h-80 hover:scale-y-110">
+            <FaDonate className="mx-auto h-1/2 fill-yellow-600" size={100}/>
+            <h6 className="text-4xl font-bold lg:text-5xl xl:text-6xl text-gray-800">4.5K</h6>
+            <p className="text-sm font-medium tracking-widest text-yellow-600 uppercase lg:text-base">
+              Donaciones
+            </p>
+          </div>
+        </a>
+
+        <a htmlFor="#usuarios" onClick={() => window.location.replace("/admin#don-visits")} className='hover:cursor-pointer' >
+          <div className="text-center md:border-r h-80 hover:scale-y-110">
+            <TbView360 className="mx-auto h-1/2 stroke-yellow-600" size={100} />
+            <h6 className="text-4xl font-bold lg:text-5xl xl:text-6xl text-gray-800">7533</h6>
+            <p className="text-sm font-medium tracking-widest text-yellow-600 uppercase lg:text-base">
+              Visitas a tu app
+            </p>
+          </div>
+        </a>
+
+      </div>
+ 
+      </div>
+        <div id='mascotas'></div>
+        <section  className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-4 xl:grid-cols-4 gap-4 mt-28 w-9/12 mx-auto ">
+                      
+            <div className="flex justify-center w-full lg:border-r border-gray-300 py-6">
+            <FaHands size={72} fill='#805AD5'/>
+                <div className="text-gray-800 w-1/2 pl-12">
+                    <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">{pets?(pets.filter(p=> p.status === 'en adopción').length) : null}</h1>
+                    <h2 className="text-base lg:text-lg mt-4 leading-8 tracking-wide">Mascotas en adopción</h2>
+                </div>
+            </div>
+
+            <div className="flex justify-center w-full lg:border-r border-gray-300 py-6">
+                <GiDogHouse size={72} fill='#805AD5' />
+                <div className="text-gray-800 w-1/2 pl-12">
+                    <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">{pets?(pets.filter(p=> p.status === 'adoptado').length) : null}</h1>
+                    <h2 className="text-base lg:text-lg mt-4 leading-8 tracking-wide">Mascotas adoptadas</h2>
+                </div>
+            </div>
+            <div className="flex justify-center w-full lg:border-r border-gray-300 py-6">
+                <MdImageSearch size={72} fill='#805AD5' />
+                <div className="text-gray-800 w-1/2 pl-12">
+                    <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">{pets?(pets.filter(p=> p.status === 'perdido').length) : null}</h1>
+                    <h2 className="text-base lg:text-lg mt-4 leading-8 tracking-wide">Mascotas perdidas</h2>
+                </div>
+            </div>
+            <div className="flex justify-center w-full py-6">
+                <CgSearchFound size={72} color='#805AD5' />
+                <div className="text-gray-800 w-1/2 pl-12">
+                    <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">{pets?(pets.filter(p=> p.status === 'encontrado').length) : null}</h1>
+                    <h2 className="text-base lg:text-lg mt-4 leading-8 tracking-wide">Mascotas encontradas</h2>
+                </div>
+            </div>
+        </section>
+
+        <section id='usuarios' className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 mt-28 w-9/12 mx-auto ">
+                      
+            <div className="flex justify-center w-full lg:border-r border-gray-300 py-6">
+            <BsImages size={72} fill='#805AD5'/>
+                <div className="text-gray-800 w-1/2 pl-12">
+                    <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">{pets?pets.length : null}</h1>
+                    <h2 className="text-base lg:text-lg mt-4 leading-8 tracking-wide">Usuarios con publicaciones</h2>
+                </div>
+            </div>
+
+            <div className="flex justify-center w-full lg:border-r border-gray-300 py-6">
+                <MdImageNotSupported size={72} fill='#805AD5' />
+                <div className="text-gray-800 w-1/2 pl-12">
+                    <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">{pets?136 - pets.length : null}</h1>
+                    <h2 className="text-base lg:text-lg mt-4 leading-8 tracking-wide">Usuarios sin publicaciones</h2>
+                </div>
+            </div>
+        </section>
+
+        <section id='don-visits' className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 mt-28 w-9/12 mx-auto ">
+                      
+            <div className="flex justify-center w-full lg:border-r border-gray-300 py-6">
+            <BiDonateHeart size={72} fill='#805AD5'/>
+                <div className="text-gray-800 w-1/2 pl-12">
+                    <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">{pets?(pets.filter(p=> p.status === 'en adopción').length) : null}</h1>
+                    <h2 className="text-base lg:text-lg mt-4 leading-8 tracking-wide">Donaciones recibidas</h2>
+                </div>
+            </div>
+
+            <div className="flex justify-center w-full lg:border-r border-gray-300 py-6">
+                <BsEyeFill size={72} fill='#805AD5' />
+                <div className="text-gray-800 w-1/2 pl-12">
+                    <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">7533</h1>
+                    <h2 className="text-base lg:text-lg mt-4 leading-8 tracking-wide">Visitas</h2>
+                </div>
+            </div>
+        </section>
+          </>
+      );
 
   
-        <p className="text-4xl font-medium text-yellow-600">{pets?(pets.filter(p=> p.status === 'adoptado').length) : null}</p>
-        <p className="text-sm text-gray-500">Mascotas Adoptadas</p>
-      
-    </article>
-    <article className="flex w-full mt-px mx-16 items-center p-2 bg-gray-50 border border-gray-200 rounded-lg gap-4 sm:justify-between transform transition duration-200 hover:translate-x-12 hover:bg-gradient-to-br from-transparent to-yellow-100  hover:text-grey-50 ">
-      <span className="p-3 text-gray-600 bg-gray-100 rounded-full sm:order-last">
-        <MdImageSearch size="30"></MdImageSearch>
-      </span>
-
-        <p className="text-4xl font-medium text-yellow-600">{pets?(pets.filter(p=> p.status === 'perdido').length) : null}</p>
-        <p className="text-sm text-gray-500">Mascotas Perdidas</p>
-    </article>
-    <article className="flex w-full mt-px mx-16 items-center p-2 bg-gray-50 border border-gray-200 rounded-lg gap-4 sm:justify-between transform transition duration-200 hover:translate-x-12 hover:bg-gradient-to-br from-transparent to-yellow-100  hover:text-grey-50 ">
-      <span className="p-3 text-gray-600 bg-gray-100 rounded-full sm:order-last">
-        <CgSearchFound size="30"></CgSearchFound>
-      </span>
-
-        <p className="text-4xl font-medium text-yellow-600">{pets?(pets.filter(p=> p.status === 'encontrado').length) : null}</p>
-        <p className="text-sm text-gray-500">Mascotas Encontradas</p>
-    </article>
-    </div>
-    <div className="grid grid-cols-1">
-    <article className=" flex w-100 mt-px mx-16 mt-px items-center p-6 bg-white border  rounded-lg gap-4 sm:justify-between border-2 border-yellow-200 bg-gradient-to-br from-transparent to-yellow-100 ">
-      <span className="p-2 text-yellow-500  rounded-full sm:order-last">
-        <TbUsers size={70}></TbUsers>
-      </span>
-
-        <p className="font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-br from-gray-50 to-yellow-500">136</p>
-
-        <p className="text-medium font-semibold text-gray-500">Usuarios registrados</p>
-    </article>
-    
-    <article className="flex w-100 mt-px mx-16 items-center p-2 bg-gray-50 border border-gray-200 rounded-lg gap-4 sm:justify-between transform transition duration-200 hover:translate-x-12 hover:bg-gradient-to-br from-transparent to-yellow-100  hover:text-grey-50 ">
-      <span className="p-3 text-gray-600 bg-gray-100 rounded-full sm:order-last">
-        <BsImages size="30"></BsImages>
-      </span>
-
-        <p className="text-4xl font-medium text-yellow-600">34</p>
-
-        <p className="text-sm text-gray-500">Usuarios han publicado</p>
-     
-    </article>
-    <article className="flex w-100 mt-px mx-16 items-center p-2 bg-gray-50 border border-gray-200 rounded-lg gap-4 sm:justify-between transform transition duration-200 hover:translate-x-12 hover:bg-gradient-to-br from-transparent to-yellow-100  hover:text-grey-50 ">
-      <span className="p-3 text-gray-600 bg-gray-100 rounded-full sm:order-last">
-        <TbLockOpenOff size="30"></TbLockOpenOff>
-      </span>
-
-
-        <p className="text-4xl font-medium text-yellow-600">{136-34}</p>
-        <p className="text-sm text-gray-500">Usuarios aún no han publicado</p>
-      
-    </article>
-    <article className=" flex w-100 mt-px mx-16 mt-px items-center p-6 bg-white border  rounded-lg gap-4 sm:justify-between border-2 border-yellow-200 bg-gradient-to-br from-transparent to-yellow-100 ">
-      <span className="p-2 text-yellow-500  rounded-full sm:order-last">
-        <BiDonateHeart size={70}></BiDonateHeart>
-      </span>
-
-      <div>
-        <p className="font-extrabold text-transparent text-8xl bg-clip-text bg-gradient-to-br from-gray-50 to-yellow-500">$10.300</p>
-
-        <p className="text-medium font-semibold text-gray-500">Donaciones</p>
-      </div>
-    </article>
-    <img src="https://res.cloudinary.com/dfbxjt69z/image/upload/v1663007100/mascotapps/mascotapss_zihxad.png" alt="" className='absolute w-80  right-0 mt-40' />
-    </div>
-    </div>
-  </div>
-  )
 }
 
 export default AdminPage
