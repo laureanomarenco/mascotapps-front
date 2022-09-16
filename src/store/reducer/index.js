@@ -66,7 +66,7 @@ export default function reducer(state = initalState, action) {
         ? (ages = genders.filter((i) => i.age === action.payload.age))
         : (ages = genders);
       action.payload.race !== ""
-        ? (races = ages.filter((i) => i.specie === action.payload.specie))
+        ? (races = ages.filter((i) => i.race === action.payload.race))
         : (races = ages);
 
       return {
