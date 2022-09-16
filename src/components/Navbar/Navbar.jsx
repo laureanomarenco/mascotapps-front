@@ -143,7 +143,7 @@ export default function Navbar() {
                 <div className="hidden lg:flex items-center">
                   <button
                     onClick={() => setSearchInput(!searchInput)}
-                    aria-label="search items"
+                    aria-label="Buscar"
                     className="text-gray-800   hover:text-[#28B0A2] "
                   >
                     <svg
@@ -173,7 +173,7 @@ export default function Navbar() {
                   <input
                     id="searchInput"
                     type="text"
-                    placeholder="search"
+                    placeholder="Buscar..."
                     className={` ${
                       searchInput ? "hidden" : ""
                     } text-sm   text-gray-600 rounded ml-1 border border-transparent focus:outline-none focus:border-gray-400 px-1`}
@@ -339,7 +339,7 @@ export default function Navbar() {
                 </div>
                 <input
                   type="text"
-                  placeholder="Search for products"
+                  placeholder="Buscar..."
                   className="text-sm  text-gray-600 placeholder-gray-600  focus:outline-none"
                 />
               </div>
@@ -531,7 +531,7 @@ export default function Navbar() {
                     <p className="text-base">Cart</p>
                   </a>
                 </li> */}
-                
+
                 <Link
                   to="/account"
                   className="text-gray-800 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
