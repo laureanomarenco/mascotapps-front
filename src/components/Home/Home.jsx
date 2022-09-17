@@ -4,19 +4,20 @@ import { FaHands } from "react-icons/fa";
 import CardContainer from "../CardContainer/CardContainer";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
+
 import { SiDatadog } from "react-icons/si";
 
 export default function Home() {
   return (
     <>
       <Navbar />
-      {/* Botones */}
+
       <div>
         <section className="relative py-40 px-4">
           <div className="z-20 relative  grid mt-40 lg:flex lg:justify-around md:flex md:justify-around sm:flex sm:justify-around md:mt-0 ">
             <a
               href="/"
-              className="inline-block flex py-2 backdrop-brightness-50 text-white hover:text-black border-2 border-yellow-300 text-center hover:bg-yellow-300 font-bold hover:opacity-100  focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg mt-4 px-12 rounded-lg  lg:py-2 md:py-4 md:px-20 md:mt-32 "
+              className=" flex py-2 backdrop-brightness-50 text-white hover:text-black border-2 border-yellow-300 text-center hover:bg-yellow-300 hover:opacity-100  focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium  mt-4 px-12 rounded-lg  lg:py-2 md:py-4 md:px-20 md:mt-32 "
             >
               <div className="flex gap-x-5 justify-items-center mx-auto items-center">
                 <p>Dar en Adopción</p>
@@ -25,7 +26,7 @@ export default function Home() {
             </a>
             <a
               href="/"
-              className="inline-block flex py-2 backdrop-brightness-50 text-white hover:text-black border-2 border-yellow-300 text-center hover:bg-yellow-300 font-bold hover:opacity-100  focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg mt-4 px-12 rounded-lg  lg:py-2 md:py-4 md:px-20 md:mt-32 "
+              className="flex py-2 backdrop-brightness-50 text-white hover:text-black border-2 border-yellow-300 text-center hover:bg-yellow-300 hover:opacity-100  focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium  mt-4 px-12 rounded-lg  lg:py-2 md:py-4 md:px-20 md:mt-32 "
             >
               <div className="flex gap-x-5 justify-items-center mx-auto items-center">
                 Perdí mi Mascota{" "}
