@@ -32,7 +32,7 @@ const PetsContainer = () => {
     dispatch(filterPets(obj));
   };
   const showAlert=()=>{
-    swal("Oops","No se encuntra una mascota con esas caracteristicas.","error",{
+    swal("Oops","No pudimos encontrar una mascota con esas características","error",{
       button:"ok"
     })
     .then(()=>handleClearFilter())
@@ -46,7 +46,6 @@ const PetsContainer = () => {
       race: "",
     });
   };
-{/* <NotFound  handleClearFilter={handleClearFilter} /> */}
   return (
     <div>
       <Navbar />
