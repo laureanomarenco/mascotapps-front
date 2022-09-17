@@ -50,7 +50,6 @@ export function getPetsByStatus(status) {
       const info = await axios.get(
         "https://worker-production-2aad.up.railway.app/pets/" + status
       );
-      console.log(info.data);
       return dispatch({
         type: GET_PETS_BY_STATUS,
         payload: info.data,
@@ -98,10 +97,6 @@ export const setLoading = (boolean) => (dispatch) => {
 
 export function filterPets(value) {
   return { type: FILTER_PETS, payload: value };
-}
-
-export function filterRace(value) {
-  return { type: FILTER_RACE, payload: value };
 }
 
 export function searchPets(input) {
