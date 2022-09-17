@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Card from "../Card/Card";
 // import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
-import swal from 'sweetalert2';
+import Swal from 'sweetalert2';
 import { useDispatch, useSelector } from "react-redux";
 import FormFilter from "../FormFilter/FormFilter";
 import { resetDetail, filterPets} from "../../store/actions";
@@ -32,8 +32,11 @@ const PetsContainer = () => {
     dispatch(filterPets(obj));
   };
   const showAlert=()=>{
-    swal.fire("Oops","No pudimos encontrar una mascota con esas características","error",{
-      button:"ok"
+    Swal.fire({
+      title:'Error!',
+      text:'No pudimos encontrar una mascota con esas características',
+      icon:'error',
+      confirmButtonText:'Ok'
     })
     .then(()=>handleClearFilter())
   }
