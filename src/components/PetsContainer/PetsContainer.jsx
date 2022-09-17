@@ -23,7 +23,10 @@ const PetsContainer = () => {
           : !notFound && pets?.map((pet) => <Card key={pet.id} data={pet} />)}
       </div>
       {/* <Footer/> */}
-      <Pagination filterPets={filterPets} pets={pets}></Pagination>
+      <Pagination
+        filterPets={filterPets.length}
+        pets={pets.length}
+      ></Pagination>
     </div>
   );
 };

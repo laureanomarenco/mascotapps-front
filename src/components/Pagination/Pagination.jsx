@@ -1,8 +1,10 @@
 import React from "react";
 
-const Pagination = ({ showPerPage, pets, pagination, page }) => {
+const Pagination = ({ showPerPage, pets, filterPets, pagination, page }) => {
   const pageNumbers = [];
-  const total = Math.ceil(pets / showPerPage);
+  const total = Math.ceil(
+    !filterPets ? pets / showPerPage : filterPets / showPerPage
+  );
   for (let i = 1; i <= total; i++) {
     pageNumbers.push(i);
   }
