@@ -8,7 +8,6 @@ import { useDispatch, useSelector } from "react-redux";
 import Spinner from "../Spinner/Spinner";
 import Rating from "@mui/material/Rating";
 
-
 export default function UsersPublicProfile() {
   const { id } = useParams();
   const dispatch = useDispatch();
