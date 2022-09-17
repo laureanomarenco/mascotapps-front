@@ -1,9 +1,10 @@
+import React from "react";
 import Donations from "../Donations/Donations";
 import { FaHands } from "react-icons/fa";
 import CardContainer from "../CardContainer/CardContainer";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
-import React from "react";
+
 import { SiDatadog } from "react-icons/si";
 
 export default function Home() {
