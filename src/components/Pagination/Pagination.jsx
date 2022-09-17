@@ -1,15 +1,24 @@
 import React from "react";
 
-const Pagination = ({ showPerPage, pets, filterPets, pagination, page }) => {
+const Pagination = ({
+  showPerPage,
+  pets,
+  pagination,
+  page,
+  statusPets,
+  filterPets,
+}) => {
   const pageNumbers = [];
-  const total = Math.ceil(
-    !filterPets ? pets / showPerPage : filterPets / showPerPage
-  );
+  const total =
+    !statusPets && !filterPets
+      ? Math.ceil(pets / showPerPage)
+      : Math.ceil(statusPets / showPerPage);
+
   for (let i = 1; i <= total; i++) {
     pageNumbers.push(i);
   }
 
-  console.log(pageNumbers);
+  // console.log(filterPets);
 
   return (
     <div className="flex w-full justify-self-center mx-auto gap-2">
