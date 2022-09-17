@@ -1,10 +1,10 @@
-import Donations from '../Donations/Donations';
-import {FaHands} from 'react-icons/fa';
-import CardContainer from '../CardContainer/CardContainer';
+import React from "react";
+import Donations from "../Donations/Donations";
+import { FaHands } from "react-icons/fa";
+import CardContainer from "../CardContainer/CardContainer";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
-import React from "react";
-import {SiDatadog} from 'react-icons/si'
+import { SiDatadog } from "react-icons/si";
 
 export default function Home() {
   return (
@@ -18,16 +18,18 @@ export default function Home() {
               href="/"
               className="inline-block flex py-2 backdrop-brightness-50 text-white hover:text-black border-2 border-yellow-300 text-center hover:bg-yellow-300 font-bold hover:opacity-100  focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg mt-4 px-12 rounded-lg  lg:py-2 md:py-4 md:px-20 md:mt-32 "
             >
-              <div className='flex gap-x-5 justify-items-center mx-auto items-center'>
-                <p>Dar en Adopción</p><FaHands size="35px" className='fill:black'></FaHands>
+              <div className="flex gap-x-5 justify-items-center mx-auto items-center">
+                <p>Dar en Adopción</p>
+                <FaHands size="35px" className="fill:black"></FaHands>
               </div>
             </a>
             <a
               href="/"
               className="inline-block flex py-2 backdrop-brightness-50 text-white hover:text-black border-2 border-yellow-300 text-center hover:bg-yellow-300 font-bold hover:opacity-100  focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium rounded-lg mt-4 px-12 rounded-lg  lg:py-2 md:py-4 md:px-20 md:mt-32 "
             >
-              <div className='flex gap-x-5 justify-items-center mx-auto items-center'>
-                Perdí mi Mascota <SiDatadog size="35px" className='fill:black'></SiDatadog>
+              <div className="flex gap-x-5 justify-items-center mx-auto items-center">
+                Perdí mi Mascota{" "}
+                <SiDatadog size="35px" className="fill:black"></SiDatadog>
               </div>
             </a>
 
@@ -49,7 +51,7 @@ export default function Home() {
         </section>
       </div>
       <CardContainer />
-      <Donations/>
+      <Donations />
       <Footer />
     </>
   );
