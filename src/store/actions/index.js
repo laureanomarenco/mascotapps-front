@@ -8,11 +8,11 @@ export const EDIT_PET = "EDIT_PET";
 export const RESET_DETAIL = "RESET_DETAIL";
 export const GET_PETS_BY_STATUS = "GET_PETS_BY_STATUS";
 export const SET_LOADING = "SET_LOADING";
-export const FILTER_PETS="FILTER_PETS";
-export const FILTER_RACE="FILTER_RACE";
+export const FILTER_PETS = "FILTER_PETS";
+export const FILTER_RACE = "FILTER_RACE";
 export const FETCH_CITY = "FETCH_CITY";
 export const SEARCH_PETS = "SEARCH_PETS";
-
+export const GET_USER_INFO = "GET_USER_INFO";
 
 export function fetchPets() {
   return async function (dispatch) {
@@ -99,20 +99,36 @@ export function filterPets(value) {
   return { type: FILTER_PETS, payload: value };
 }
 
-
-export function searchPets(input){
-  return async function(dispatch) {
+export function searchPets(input) {
+  return async function (dispatch) {
     try {
       const pets = await axios.get(
         `https://mascotapps-stage.herokuapp.com/pets/search?input=${input}`
       );
       return dispatch({
         type: SEARCH_PETS,
-        payload: pets.data
-      })
-
+        payload: pets.data,
+      });
     } catch (error) {
-      return error.message
+      return error.message;
     }
-  }
+  };
+}
+
+export function getUserInfo(id) {
+  return async function (dispatch) {
+    try {
+    const user = await axios.get(
+      "https://631fd45a9f82827dcf207254.mockapi.io/users/" +id
+      );
+    console.log("🚀 ~ file: index.js ~ line 128 ~ user", user.data)
+
+      return dispatch({
+        type: "GET_USER_INFO",
+        payload: user.data,
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }

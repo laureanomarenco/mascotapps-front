@@ -1,15 +1,21 @@
+
 import React, { useState } from "react";
+
 import Card from "../Card/Card";
 // import Footer from "../Footer/Footer";
+import Pagination from "../Pagination/Pagination";
 import Navbar from "../Navbar/Navbar";
+
 import Swal from 'sweetalert2';
 import { useDispatch, useSelector } from "react-redux";
 import FormFilter from "../FormFilter/FormFilter";
 import { resetDetail, filterPets} from "../../store/actions";
+
 const PetsContainer = () => {
   // const dispatch=useDispatch();
   // const {status}=useParams();
   const pets = useSelector((state) => state.statusPets);
+
   const filterPet = useSelector((state) => state.filterPets);
   const notFound = useSelector((state) => state.notFound);
   const dispatch = useDispatch();
@@ -60,6 +66,7 @@ const PetsContainer = () => {
           : !notFound && pets?.map((pet) => <Card key={pet.id} data={pet} />)}
       </div>
       {/* <Footer/> */}
+
     </div>
   );
 };
