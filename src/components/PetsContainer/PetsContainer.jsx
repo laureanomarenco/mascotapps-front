@@ -9,7 +9,6 @@ import { resetDetail, filterPets} from "../../store/actions";
 const PetsContainer = () => {
   // const dispatch=useDispatch();
   // const {status}=useParams();
-  
   const pets = useSelector((state) => state.statusPets);
   const filterPet = useSelector((state) => state.filterPets);
   const notFound = useSelector((state) => state.notFound);
@@ -20,6 +19,7 @@ const PetsContainer = () => {
     age: "",
     race: "",
   });
+    
   const handleFilter = (e) => {
     setFilter({
       ...filter,

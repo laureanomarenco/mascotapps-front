@@ -3,7 +3,10 @@ import {  useSelector } from "react-redux";
 
 const FormFilter = ({ handleClearFilter,filter,handleFilter}) => {
   const pets = useSelector((state) => state.statusPets);
+  const filterPets=useSelector((state)=>state.filterPets);
+  console.log(filterPets)
   return (
+  
     <div className="grid gap-1 grid-cols-1 md:grid-cols-2 xl:grid-cols-6 border-0 cursor-pointer rounded-full drop-shadow-md  w-70  duration-300 ">
       <select value={filter.specie} name="specie" onChange={handleFilter}>
         <option  hidden>Especie</option>
@@ -25,7 +28,8 @@ const FormFilter = ({ handleClearFilter,filter,handleFilter}) => {
       </select>
       <select  value={filter.race} name="race" onChange={handleFilter}>
         <option  hidden>Raza </option>
-        {pets?.map((pet) => (
+        {filterPets.length>0?filterPets.map(fPet=>{<option key={fPet.id}>{fPet.race}</option>}):
+        pets?.map((pet) => (
           <option key={pet.id} value={pet.race}>
             {pet.race}
           </option>
