@@ -12,7 +12,9 @@ const Pagination = ({
   const total =
     !statusPets && !filterPets
       ? Math.ceil(pets / showPerPage)
-      : Math.ceil(statusPets / showPerPage);
+      : statusPets && !filterPets
+      ? Math.ceil(statusPets / showPerPage)
+      : Math.ceil(filterPets / showPerPage);
 
   for (let i = 1; i <= total; i++) {
     pageNumbers.push(i);
