@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { getPetsByStatus } from "../../store/actions/index";
 import { useDispatch } from "react-redux";
 import { searchPets } from "../../store/actions";
@@ -112,42 +112,42 @@ export default function Navbar() {
               </h1>
               <ul className="hidden w-8/12 md:flex items-center justify-center space-x-8">
                 <li className=" border-b-4 border-transparent ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer">
-                  <Link
+                  <NavLink
                     to="/home"
                     className=" text-base text-gray-800 ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer"
                   >
                     Inicio
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className=" border-b-4 border-transparent ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer">
-                  <Link
+                  <NavLink
                     to="/estado/encontrado"
                     onClick={handleClick}
                     name="encontrado"
                     className=" text-base text-gray-800 ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer"
                   >
                     Encontrados
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className=" border-b-4 border-transparent ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer">
-                  <Link
+                  <NavLink
                     onClick={handleClick}
                     to="/estado/perdido"
                     name="perdido"
                     className=" text-base text-gray-800 ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer"
                   >
                     Perdidos
-                  </Link>
+                  </NavLink>
                 </li>
                 <li className=" border-b-4 border-transparent ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer">
-                  <Link
+                  <NavLink
                     name="adopcion"
                     to="/estado/adopcion"
                     onClick={handleClick}
                     className=" text-base text-gray-800 ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer"
                   >
                     Adopción
-                  </Link>
+                  </NavLink>
                 </li>
               </ul>
               <div className="md:w-2/12 justify-end flex items-center space-x-4 xl:space-x-8">
