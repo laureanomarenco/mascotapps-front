@@ -10,14 +10,18 @@ const NavBar = () => {
     Swal.fire({
       title: "¿Cerrar sesión?",
       text: "Estás cerrando sesión como administrador.",
-      icon: "warning",
+      icon: "question",
       showCancelButton: true,
       confirmButtonColor: "#28B0A2",
       cancelButtonColor: "#d33",
       confirmButtonText: "Si, cerrar sesión!",
     }).then((result) => {
       if (result.isConfirmed) {
-        Swal.fire("Hasta pronto!").then((result) => {
+        Swal.fire({
+          title: "Hasta pronto!",
+          confirmButtonColor: "#28B0A2",
+          icon: "success",
+        }).then((result) => {
           if (result.isConfirmed) {
             window.location.replace("/");
           }
