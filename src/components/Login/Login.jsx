@@ -3,7 +3,6 @@ import React from "react";
 
 export default function Login() {
   return (
-
     <>
       <div className="flex absolute w-full h-full items-center  justify-center  py-12 px-4 md:px-6 lg:px-8 md:w-1/3 lg:w-1/4 md:h-full md:right-10 bg-white">
         <div className="w-full max-w-md space-y-8">
@@ -17,13 +16,13 @@ export default function Login() {
               Ingresa a tu cuenta
             </h2>
             <p className="mt-2 text-center text-sm text-gray-600">
-              O 
-              <Link to='/home'>
-              <a
-                className="font-medium text-[#28B0A2] hover:text-[#208a7f]"
-                > Navega sin registrarte
-              </a>
-                </Link>
+              O
+              <Link to="/home">
+                <a className="font-medium text-[#28B0A2] hover:text-[#208a7f]">
+                  {" "}
+                  Navega sin registrarte
+                </a>
+              </Link>
             </p>
           </div>
           <form className="mt-8 space-y-6" action="#" method="POST">
@@ -58,7 +57,12 @@ export default function Login() {
                 />
               </div>
             </div>
-
+            <div>
+              {" "}
+              <a href="https://dev-roby-desarollo.up.railway.app/auth/google">
+                Sign in con Google
+              </a>{" "}
+            </div>
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <input
@@ -86,13 +90,13 @@ export default function Login() {
             </div>
 
             <div className="text-sm text-center ">
-                <span className=" ">¿No tienes una cuenta? </span>
-                <a
-                  href="/register"
-                  className="font-medium text-[#28B0A2] hover:text-[#208a7f]"
-                >
-                  Crear usuario
-                </a>
+              <span className=" ">¿No tienes una cuenta? </span>
+              <a
+                href="/register"
+                className="font-medium text-[#28B0A2] hover:text-[#208a7f]"
+              >
+                Crear usuario
+              </a>
             </div>
 
             <div>
