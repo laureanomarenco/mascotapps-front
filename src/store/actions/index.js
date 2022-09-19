@@ -1,6 +1,12 @@
 import axios from "axios";
-import { URL_ALLPETS, URL_PET_DETAIL, SEARCH_BY, URL_DONATION } from "../../url/url";
-import {URL_CIUDAD_API} from "../../url/url";
+import {
+  URL_ALLPETS,
+  URL_PET_DETAIL,
+  SEARCH_BY,
+  URL_DONATION,
+  URL_TOTAL_USERS,
+} from "../../url/url";
+import { URL_CIUDAD_API } from "../../url/url";
 
 export const FETCH_PETS = "FETCH_PETS";
 export const GET_DETAIL = "GET_DETAIL";
@@ -20,9 +26,7 @@ export const GET_DONATIONS = "GET_DONATIONS";
 
 export function fetchPets() {
   return async function (dispatch) {
-    const datos = await axios.get(
-      URL_ALLPETS
-    );
+    const datos = await axios.get(URL_ALLPETS);
     return dispatch({
       type: FETCH_PETS,
       payload: datos.data,
@@ -33,9 +37,7 @@ export function fetchPets() {
 export function getDetail(id) {
   return async function (dispatch) {
     try {
-      const info = await axios.get(
-        URL_PET_DETAIL + id
-      );
+      const info = await axios.get(URL_PET_DETAIL + id);
       return dispatch({
         type: "GET_DETAIL",
         payload: info.data,
@@ -51,9 +53,7 @@ export function getDetail(id) {
 export function getPetsByStatus(status) {
   return async function (dispatch) {
     try {
-      const info = await axios.get(
-       URL_PET_DETAIL + status
-      );
+      const info = await axios.get(URL_PET_DETAIL + status);
       return dispatch({
         type: GET_PETS_BY_STATUS,
         payload: info.data,
@@ -70,9 +70,7 @@ export function getPetsByStatus(status) {
 export function fetchCity() {
   return async function (dispatch) {
     try {
-      const cities = await axios.get(
-        URL_CIUDAD_API
-      );
+      const cities = await axios.get(URL_CIUDAD_API);
       return dispatch({
         type: FETCH_CITY,
         payload: cities.data.municipios,
@@ -106,9 +104,7 @@ export function filterPets(value) {
 export function searchPets(input) {
   return async function (dispatch) {
     try {
-      const pets = await axios.get(
-        SEARCH_BY+`${input}`
-      );
+      const pets = await axios.get(SEARCH_BY + `${input}`);
       return dispatch({
         type: SEARCH_PETS,
         payload: pets.data,
@@ -139,11 +135,7 @@ export function getUserInfo(id) {
 export function getAllUsers() {
   return async function (dispatch) {
     try {
-      const users = await axios.get(
-        "https://mascotapps-back-production.up.railway.app/users/numberOfUsersInDB"
-      );
-
-      console.log(JSON.stringify(users));
+      const users = await axios.get(URL_TOTAL_USERS);
       return dispatch({
         type: "GET_ALL_USERS",
         payload: users.data,
@@ -157,9 +149,7 @@ export function getAllUsers() {
 export function getDonations() {
   return async function (dispatch) {
     try {
-      const donations = await axios.get(
-        URL_DONATION
-      );
+      const donations = await axios.get(URL_DONATION);
       return dispatch({
         type: "GET_DONATIONS",
         payload: donations.data,
