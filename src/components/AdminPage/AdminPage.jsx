@@ -26,10 +26,14 @@ import { BiDonateHeart } from "react-icons/bi";
 
 const AdminPage = () => {
   const dispatch = useDispatch();
-  const pets = useSelector((state) => state.pets);
-  const donations = useSelector((state) => state.donations);
-  const amounts = donations.map((done) => done.amount);
-  const totalDonations = amounts.reduce((prev, next) => prev + next, 0);
+
+  const pets = useSelector(state => state.pets)
+  const donations = useSelector(state => state.donations)
+  const amounts = donations.map(done => done.amount)
+  const totalDonationsInCents = amounts.reduce((prev, next) => prev + next, 0)
+  const totalDonations = totalDonationsInCents / 100
+
+
 
   useEffect(() => {
     dispatch(fetchPets());
