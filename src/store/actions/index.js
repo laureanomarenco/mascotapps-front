@@ -123,7 +123,7 @@ export function getUserInfo() {
       console.log("aca esta el usuarioooo", user);
       return dispatch({
         type: "GET_USER_INFO",
-        payload: user,
+        payload: user.data,
       });
     } catch (error) {
       return dispatch({

@@ -26,7 +26,7 @@ export default function UserProfile() {
         <div className="w-52 h-52 rounded-full overflow-hidden mx-auto">
           <img
             className="object-cover w-full h-full object-center"
-            src={user.thumbnail}
+            src={user?.thumbnail}
             alt=""
           />
         </div>
@@ -35,8 +35,8 @@ export default function UserProfile() {
             Mis datos de registro
           </p>
           <div className="bg-teal-800 w-7 h-1"></div>
-          <p className="">Nombre {user.displayName}</p>
-          <p className="">Email {user.email}</p>
+          <p className="">Nombre {user?.displayName}</p>
+          <p className="">Email {user?.email}</p>
         </div>
         <div className=" md:min-h-[200px] h-full py-2 px-6">
           <p className="text-xl font-semibold text-teal-800">
@@ -44,7 +44,7 @@ export default function UserProfile() {
           </p>
           <div className="bg-teal-800 w-7 h-1"></div>
           <p>Celular</p>
-          <p>Email {user.email}</p>
+          <p>Email {user?.email}</p>
           <p>Zona</p>
         </div>
         <div className="flex flex-col w-full items-start justify-center gap-3 my-6 px-4  md:flex-row md:justify-center md:col-span-3">
