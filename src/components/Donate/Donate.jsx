@@ -13,6 +13,7 @@ import {
   useStripe,
   useElements,
 } from "@stripe/react-stripe-js";
+import Button from "../Button/Button";
 
 const stripePromise = loadStripe(
   "pk_test_51LhyryGUTOi474cyN5jZI4mhr9cjElNJIlhiGPTKknzHqjSCG0WHiJ60imLn2bOMTATJZ4rGotmC7pJ8goFlJukU00swTcu92P"
@@ -23,7 +24,11 @@ const CheckoutForm = () => {
   const elements = useElements();
   const [loaded, setLoaded] = useState(false);
 
-  let [amount, setAmount] = useState();
+  let [paymentData, setPaymentData] = useState({
+    amount: null,
+    email: null,
+  });
+
   let [paymentState, setPaymentState] = useState({
     state: null,
     msg: null,
@@ -31,9 +36,15 @@ const CheckoutForm = () => {
 
   const onInputChange = (e) => {
     e.preventDefault();
-    setAmount(e.target.value);
+    setPaymentData((prev) => {
+      const newPayment = {
+        ...prev,
+        [e.target.name]: e.target.value,
+      };
+      return newPayment;
+    });
   };
-
+  console.log(paymentData);
   const handleSubmit = async (e) => {
     setLoaded(true);
     e.preventDefault();
@@ -41,17 +52,18 @@ const CheckoutForm = () => {
       type: "card",
       card: elements.getElement(CardElement),
     });
-    console.log(error)
+    console.log(error);
     if (!error) {
       const { id } = paymentMethod;
 
       try {
-        console.log('Por hacer post a stripe')
+        console.log("Por hacer post a stripe");
         const result = await axios.post(
           "https://worker-production-2aad.up.railway.app/checkout",
           {
             id,
-            amount: amount * 100,
+            amount: paymentData.amount * 100,
+            email: paymentData.email,
           }
         );
 
@@ -97,10 +109,21 @@ const CheckoutForm = () => {
               onSubmit={handleSubmit}
               className="flex flex-col w-2/6 mx-auto mb-4 items-center"
             >
-            <a href='https://buy.stripe.com/test_dR615Q1v8cbL3Ju3cc' className="flex bg-[#F8EFBA] items-center w-full py-3 px-6 my-1 border-solid border-2 rounded">
-              Si deseas donar en pesos argentinos haz click aquí, o haz tu donación en dolares en esta misma página.
-            </a>
+              <a
+                href="https://buy.stripe.com/test_dR615Q1v8cbL3Ju3cc"
+                className="flex bg-[#F8EFBA] items-center w-full py-3 px-6 my-1 border-solid border-2 rounded"
+              >
+                Si deseas donar en pesos argentinos haz click aquí, o haz tu
+                donación en dolares en esta misma página.
+              </a>
               <CardElement className="bg-[white] w-full py-6 px-6 my-1 border-solid border-2 rounded" />
+              <input
+                type="text"
+                className="bg-[white] w-full py-6 px-6 my-1 border-solid border-2 rounded"
+                placeholder="Ingresá tu email"
+                name="email"
+                onChange={onInputChange}
+              ></input>
               <input
                 type="number"
                 className="bg-[white] w-full py-6 px-6 my-1 border-solid border-2 rounded"
@@ -121,6 +144,9 @@ const CheckoutForm = () => {
         {paymentState.state === "aproved" && (
           <div className="flex flex-col w-2/6 mx-auto mt-8 px-4 py-8 items-center bg-[#A5B462] font-semibold border-solid rounded">
             Gracias por tu ayuda!
+            <div className="px-6 py-3  bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300">
+            <Button path={"/home"} text={"Volver a home"}></Button>
+            </div>
           </div>
         )}
         {paymentState.state === "rejected" && (
