@@ -9,7 +9,7 @@ const LoginAdmin = () => {
     title: "Login Form",
     html: `<input type="password" id="login" class="swal2-input" placeholder="Username">
     <input type="password" id="password" class="swal2-input" placeholder="Password">`,
-    confirmButtonText: "Sign in",
+    confirmButtonText: "Inicia sesión",
     focusConfirm: false,
     preConfirm: () => {
       const login = Swal.getPopup().querySelector("#login").value;
@@ -32,7 +32,6 @@ const LoginAdmin = () => {
           window.location.replace("/admin/general");
         }
       });
-      // window.location.replace("/home");
     }
   });
 };

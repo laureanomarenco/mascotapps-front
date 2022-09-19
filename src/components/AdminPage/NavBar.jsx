@@ -9,7 +9,7 @@ const NavBar = () => {
   const handleClick = () => {
     Swal.fire({
       title: "¿Cerrar sesión?",
-      text: "Estás cerrando sesión como adminastrador.",
+      text: "Estás cerrando sesión como administrador.",
       icon: "warning",
       showCancelButton: true,
       confirmButtonColor: "#28B0A2",
@@ -22,7 +22,6 @@ const NavBar = () => {
             window.location.replace("/");
           }
         });
-        // window.location.replace("/home");
       }
     });
   };
@@ -33,7 +32,10 @@ const NavBar = () => {
         <div className="container mx-auto py-4 grid grid-cols-1 justify-items-center md:flex md:justify-between items-center">
           <h1 className="text-2xl font-bold text-gray-300">Admin Dashboard</h1>
           <div className="flex space-x-10">
-            <a className="flex items-center space-x-2 hover:cursor-pointer">
+            <a
+              className="flex items-center space-x-2 hover:cursor-pointer"
+              href="#general"
+            >
               <span>
                 <ImStatsDots size={20} />
               </span>
@@ -41,7 +43,10 @@ const NavBar = () => {
                 General
               </span>
             </a>
-            <a className="flex items-center space-x-2 hover:cursor-pointer">
+            <a
+              className="flex items-center space-x-2 hover:cursor-pointer"
+              href="#mascotas"
+            >
               <span>
                 <MdPets size={20} />
               </span>
@@ -49,7 +54,10 @@ const NavBar = () => {
                 Mascotas
               </span>
             </a>
-            <a className="flex items-center space-x-2 hover:cursor-pointer">
+            <a
+              className="flex items-center space-x-2 hover:cursor-pointer"
+              href="#usuarios"
+            >
               <span>
                 <TbUsers size={20} />
               </span>

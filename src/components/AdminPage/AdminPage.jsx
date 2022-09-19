@@ -51,7 +51,7 @@ const AdminPage = () => {
       </div>
       <div className="relative w-full p-px mx-auto mb-4 overflow-hidden transition-shadow duration-300 border rounded lg:mb-8 lg:max-w-4xl group hover:shadow-xl">
         <div className="grid grid-cols-2 row-gap-8 md:grid-cols-4 ">
-          <a className="hover:cursor-pointer">
+          <a className="hover:cursor-pointer" href="#mascotas">
             <div className="text-center md:border-r h-80 hover:scale-y-110">
               <MdPets className="mx-auto h-1/2 fill-yellow-600" size={100} />
               <h6 className="text-4xl font-bold lg:text-5xl xl:text-6xl text-gray-800">
@@ -63,7 +63,7 @@ const AdminPage = () => {
             </div>
           </a>
 
-          <a className="hover:cursor-pointer">
+          <a className="hover:cursor-pointer" href="#usuarios">
             <div className="text-center md:border-r h-80 hover:scale-y-110">
               <TbUsers className="mx-auto h-1/2 stroke-yellow-600" size={100} />
               <h6 className="text-4xl font-bold lg:text-5xl xl:text-6xl text-gray-800">
@@ -75,7 +75,7 @@ const AdminPage = () => {
             </div>
           </a>
 
-          <a className="hover:cursor-pointer">
+          <a className="hover:cursor-pointer" href="#don-visits">
             <div className="text-center md:border-r h-80 hover:scale-y-110">
               <FaDonate className="mx-auto h-1/2 fill-yellow-600" size={100} />
               <h6 className="text-4xl font-bold lg:text-5xl xl:text-6xl text-gray-800">
@@ -87,7 +87,7 @@ const AdminPage = () => {
             </div>
           </a>
 
-          <a className="hover:cursor-pointer">
+          <a className="hover:cursor-pointer" href="#don-visits">
             <div className="text-center md:border-r h-80 hover:scale-y-110">
               <TbView360
                 className="mx-auto h-1/2 stroke-yellow-600"
