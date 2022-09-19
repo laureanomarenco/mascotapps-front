@@ -6,3 +6,5 @@ export const URL_ALLPETS = URL_ROUTES + "pets";
 export const URL_PET_DETAIL = URL_ROUTES + "pets/";
 export const SEARCH_BY = URL_ROUTES + "pets/search?input=";
 export const URL_DONATION = URL_ROUTES + "checkout/balance";
+export const URL_PET_SPECIES=URL_ROUTES + "pets/especies"
+// export const URL_POST_PET=URL_ROUTES + "users/postnewpet"
