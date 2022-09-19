@@ -28,8 +28,6 @@ import { BiDonateHeart } from "react-icons/bi";
 import { getDonations } from "../../store/actions/index";
 
 const AdminPage = () => {
-  //porcentajes
-
   const dispatch = useDispatch();
 
   const pets = useSelector((state) => state.pets);
@@ -37,14 +35,13 @@ const AdminPage = () => {
   const donations = useSelector((state) => state.donations);
   const amounts = donations.map((done) => done.amount);
   const totalDonationsInCents = amounts.reduce((prev, next) => prev + next, 0);
-  // const totalDonations = totalDonationsInCents / 100;
 
   useEffect(() => {
     dispatch(fetchPets());
     dispatch(getDonations());
     dispatch(getAllUsers());
   }, [dispatch]);
-  console.log(totalDonationsInCents);
+
   return (
     <>
       <div className="top-0 sticky z-10">
