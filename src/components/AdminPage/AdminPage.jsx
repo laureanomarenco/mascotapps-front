@@ -1,9 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPets } from "../../store/actions/index";
+import { fetchPets, getAllUsers } from "../../store/actions/index";
 import SideMenu from "./NavBar";
 // import Stack from '@mui/material/Stack';
-import CircularProgress from "@mui/material/CircularProgress";
+// import CircularProgress from "@mui/material/CircularProgress";
 
 // import Alert from './Alert';
 //icons
@@ -33,6 +33,7 @@ const AdminPage = () => {
   const dispatch = useDispatch();
 
   const pets = useSelector((state) => state.pets);
+  const users = useSelector((state) => state.totalUsers);
   const donations = useSelector((state) => state.donations);
   const amounts = donations.map((done) => done.amount);
   const totalDonationsInCents = amounts.reduce((prev, next) => prev + next, 0);
@@ -41,8 +42,9 @@ const AdminPage = () => {
   useEffect(() => {
     dispatch(fetchPets());
     dispatch(getDonations());
+    dispatch(getAllUsers());
   }, [dispatch]);
-  console.log(donations);
+  console.log(users);
   return (
     <>
       <div className="top-0 sticky z-10">
@@ -79,7 +81,7 @@ const AdminPage = () => {
             <div className="text-center md:border-r h-80 hover:scale-y-110">
               <TbUsers className="mx-auto h-1/2 stroke-yellow-600" size={100} />
               <h6 className="text-4xl font-bold lg:text-5xl xl:text-6xl text-gray-800">
-                136
+                {users}
               </h6>
               <p className="text-sm font-medium tracking-widest text-yellow-600 uppercase lg:text-yellow-600">
                 Usuarios registrados
@@ -121,7 +123,7 @@ const AdminPage = () => {
         <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
           <div>
             <FaHands size={50} fill="#28B0A2" />
-            <CircularProgress variant="determinate" value={25} />
+            {/* <CircularProgress variant="determinate" value={25} /> */}
           </div>
           <div className="text-gray-800 w-1/2 pl-12">
             <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">
