@@ -5,6 +5,7 @@ import {
   SEARCH_BY,
   URL_DONATION,
   URL_USER_LOGGED,
+  URL_TOTAL_USERS,
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 
@@ -21,6 +22,7 @@ export const FILTER_RACE = "FILTER_RACE";
 export const FETCH_CITY = "FETCH_CITY";
 export const SEARCH_PETS = "SEARCH_PETS";
 export const GET_USER_INFO = "GET_USER_INFO";
+export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_DONATIONS = "GET_DONATIONS";
 
 export function fetchPets() {
@@ -128,6 +130,19 @@ export function getUserInfo() {
         type: "GET_USER_INFO",
         payload: error,
       });
+    }
+  };
+}
+export function getAllUsers() {
+  return async function (dispatch) {
+    try {
+      const users = await axios.get(URL_TOTAL_USERS);
+      return dispatch({
+        type: "GET_ALL_USERS",
+        payload: users.data,
+      });
+    } catch (error) {
+      console.log(error);
     }
   };
 }
