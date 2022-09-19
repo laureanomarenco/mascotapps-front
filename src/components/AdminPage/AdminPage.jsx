@@ -23,8 +23,9 @@ const AdminPage = () => {
   const dispatch = useDispatch();
   const pets = useSelector(state => state.pets)
   const donations = useSelector(state => state.donations)
-  const totalDonations = donations.reduce((prev, next) => prev.amount + next.amount, 0)
-  
+  const amounts = donations.map(done => done.amount)
+  const totalDonations = amounts.reduce((prev, next) => prev + next, 0)
+
   useEffect(()=> {
     dispatch(fetchPets())
     dispatch(getDonations())      

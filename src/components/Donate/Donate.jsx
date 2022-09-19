@@ -41,13 +41,14 @@ const CheckoutForm = () => {
       type: "card",
       card: elements.getElement(CardElement),
     });
-
+    console.log(error)
     if (!error) {
       const { id } = paymentMethod;
 
       try {
+        console.log('Por hacer post a stripe')
         const result = await axios.post(
-          "http://worker-production-d64c.up.railway.app/checkout",
+          "https://worker-production-d64c.up.railway.app/checkout",
           {
             id,
             amount: amount * 100,
