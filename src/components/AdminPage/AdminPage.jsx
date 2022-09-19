@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPets, getAllUsers } from "../../store/actions/index";
 import SideMenu from "./NavBar";
 // import Stack from '@mui/material/Stack';
-// import CircularProgress from "@mui/material/CircularProgress";
-
+// import CircularProgressWithLabel from "@mui/material/CircularProgress";
+import Percents from "./Percents";
 // import Alert from './Alert';
 //icons
 
@@ -117,12 +117,20 @@ const AdminPage = () => {
       <div id="mascotas"></div>
 
       <section className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-4 xl:grid-cols-4 gap-4 mt-28 w-9/12 mx-auto ">
-        <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
-          <div>
+        <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6 ">
+          <div className="grid w-1/2 justify-items-center">
             <FaHands size={50} fill="#28B0A2" />
-            {/* <CircularProgress variant="determinate" value={25} /> */}
+            <Percents
+              value={
+                (
+                  (pets.filter((p) => p.status === "en adopción").length *
+                    100) /
+                  pets.length
+                ).toFixed(2) + "%"
+              }
+            />
           </div>
-          <div className="text-gray-800 w-1/2 pl-12">
+          <div className="grid text-gray-800 w-1/2 pl-8">
             <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">
               {pets
                 ? pets.filter((p) => p.status === "en adopción").length
@@ -135,8 +143,18 @@ const AdminPage = () => {
         </div>
 
         <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
-          <GiDogHouse size={50} fill="#28B0A2" />
-          <div className="text-gray-800 w-1/2 pl-12">
+          <div className="grid w-1/2 justify-items-center">
+            <GiDogHouse size={50} fill="#28B0A2" />
+            <Percents
+              value={
+                (
+                  (pets.filter((p) => p.status === "adoptado").length * 100) /
+                  pets.length
+                ).toFixed(2) + "%"
+              }
+            />
+          </div>
+          <div className="grid text-gray-800 w-1/2 pl-8">
             <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">
               {pets ? pets.filter((p) => p.status === "adoptado").length : null}
             </h1>
@@ -146,8 +164,19 @@ const AdminPage = () => {
           </div>
         </div>
         <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
-          <MdImageSearch size={50} fill="#28B0A2" />
-          <div className="text-gray-800 w-1/2 pl-12">
+          <div className="grid w-1/2 justify-items-center">
+            <MdImageSearch size={50} fill="#28B0A2" />
+            <Percents
+              value={
+                (
+                  (pets.filter((p) => p.status === "perdido").length * 100) /
+                  pets.length
+                ).toFixed(2) + "%"
+              }
+            />
+          </div>
+
+          <div className="grid text-gray-800 w-1/2 pl-8">
             <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">
               {pets ? pets.filter((p) => p.status === "perdido").length : null}
             </h1>
@@ -157,8 +186,18 @@ const AdminPage = () => {
           </div>
         </div>
         <div className="flex justify-center w-full py-6">
-          <CgSearchFound size={50} color="#28B0A2" />
-          <div className="text-gray-800 w-1/2 pl-12">
+          <div className="grid w-1/2 justify-items-center">
+            <CgSearchFound size={50} color="#28B0A2" />
+            <Percents
+              value={
+                (
+                  (pets.filter((p) => p.status === "encontrado").length * 100) /
+                  pets.length
+                ).toFixed(2) + "%"
+              }
+            />
+          </div>
+          <div className="grid text-gray-800 w-1/2 pl-8">
             <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">
               {pets
                 ? pets.filter((p) => p.status === "encontrado").length
@@ -176,8 +215,18 @@ const AdminPage = () => {
         className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4 mt-2 w-9/12 mx-auto "
       >
         <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
-          <GiCat size={50} fill="#28B0A2" />
-          <div className="text-gray-800 w-1/2 pl-12">
+          <div className="grid w-1/2 justify-items-center">
+            <GiCat size={50} fill="#28B0A2" />
+            <Percents
+              value={
+                (
+                  (pets.filter((p) => p.specie === "gato").length * 100) /
+                  pets.length
+                ).toFixed(2) + "%"
+              }
+            />
+          </div>
+          <div className="grid text-gray-800 w-1/2 pl-8">
             <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">
               {pets ? pets.filter((p) => p.specie === "gato").length : null}
             </h1>
@@ -188,8 +237,19 @@ const AdminPage = () => {
         </div>
 
         <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
-          <GiSittingDog size={50} fill="#28B0A2" />
-          <div className="text-gray-800 w-1/2 pl-12">
+          <div className="grid w-1/2 justify-items-center">
+            <GiSittingDog size={50} fill="#28B0A2" />
+            <Percents
+              value={
+                (
+                  (pets.filter((p) => p.specie === "perro").length * 100) /
+                  pets.length
+                ).toFixed(2) + "%"
+              }
+            />
+          </div>
+
+          <div className="grid text-gray-800 w-1/2 pl-8">
             <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">
               {pets ? pets.filter((p) => p.specie === "perro").length : null}
             </h1>
@@ -199,8 +259,19 @@ const AdminPage = () => {
           </div>
         </div>
         <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
-          <GiNestBirds size={50} fill="#28B0A2" />
-          <div className="text-gray-800 w-1/2 pl-12">
+          <div className="grid w-1/2 justify-items-center">
+            <GiNestBirds size={50} fill="#28B0A2" />
+            <Percents
+              value={
+                (
+                  (pets.filter((p) => p.specie === "otra especie").length *
+                    100) /
+                  pets.length
+                ).toFixed(2) + "%"
+              }
+            />
+          </div>
+          <div className="grid text-gray-800 w-1/2 pl-8">
             <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">
               {pets
                 ? pets.filter((p) => p.specie === "otra especie").length
@@ -218,8 +289,19 @@ const AdminPage = () => {
         className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 mt-2 w-9/12 mx-auto "
       >
         <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
-          <AiOutlineWoman size={50} fill="#28B0A2" />
-          <div className="text-gray-800 w-1/2 pl-12">
+          <div className="grid w-1/2 justify-items-center">
+            <AiOutlineWoman size={50} fill="#28B0A2" />
+            <Percents
+              value={
+                (
+                  (pets.filter((p) => p.gender === "hembra").length * 100) /
+                  pets.length
+                ).toFixed(2) + "%"
+              }
+            />
+          </div>
+
+          <div className="grid text-gray-800 w-1/2 pl-8">
             <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">
               {pets ? pets.filter((p) => p.gender === "hembra").length : null}
             </h1>
@@ -230,8 +312,18 @@ const AdminPage = () => {
         </div>
 
         <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
-          <AiOutlineMan size={50} fill="#28B0A2" />
-          <div className="text-gray-800 w-1/2 pl-12">
+          <div className="grid w-1/2 justify-items-center">
+            <AiOutlineMan size={50} fill="#28B0A2" />
+            <Percents
+              value={
+                (
+                  (pets.filter((p) => p.gender === "macho").length * 100) /
+                  pets.length
+                ).toFixed(2) + "%"
+              }
+            />
+          </div>
+          <div className="grid text-gray-800 w-1/2 pl-8">
             <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">
               {pets ? pets.filter((p) => p.gender === "macho").length : null}
             </h1>
@@ -248,7 +340,7 @@ const AdminPage = () => {
       >
         <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
           <BsImages size={50} fill="#28B0A2" />
-          <div className="text-gray-800 w-1/2 pl-12">
+          <div className="grid text-gray-800 w-1/2 pl-8">
             <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">
               {pets ? pets.length : null}
             </h1>
@@ -260,7 +352,7 @@ const AdminPage = () => {
 
         <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
           <MdImageNotSupported size={72} fill="#28B0A2" />
-          <div className="text-gray-800 w-1/2 pl-12">
+          <div className="grid text-gray-800 w-1/2 pl-8">
             <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">
               {pets ? 136 - pets.length : null}
             </h1>
@@ -277,7 +369,7 @@ const AdminPage = () => {
       >
         <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
           <BiDonateHeart size={72} fill="#28B0A2" />
-          <div className="text-gray-800 w-1/2 pl-12">
+          <div className="grid text-gray-800 w-1/2 pl-8">
             <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">
               {amounts ? amounts.length : 0}
             </h1>
@@ -289,7 +381,7 @@ const AdminPage = () => {
 
         <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
           <BsEyeFill size={72} fill="#28B0A2" />
-          <div className="text-gray-800 w-1/2 pl-12">
+          <div className="grid text-gray-800 w-1/2 pl-8">
             <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">
               7533
             </h1>
