@@ -59,7 +59,7 @@ const CheckoutForm = () => {
       try {
         console.log('Por hacer post a stripe')
         const result = await axios.post(
-          "https://worker-production-d64c.up.railway.app/checkout",
+          "https://mascotapps-back-production.up.railway.app/checkout",
           // "https://worker-production-2aad.up.railway.app/checkout", descomentar despues del test en stage
           {
             id,
