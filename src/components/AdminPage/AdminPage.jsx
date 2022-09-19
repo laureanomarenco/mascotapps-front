@@ -5,6 +5,7 @@ import SideMenu from "./NavBar";
 
 // import Alert from './Alert';
 //icons
+
 import { MdPets } from "react-icons/md";
 import { FaHands } from "react-icons/fa";
 import { GiDogHouse } from "react-icons/gi";
@@ -44,6 +45,7 @@ const AdminPage = () => {
           className="mx-auto h-40 w-auto"
           src="https://res.cloudinary.com/dfbxjt69z/image/upload/v1663007100/mascotapps/mascotapss_zihxad.png"
           alt="Your Company"
+
         />
         <p className="text-gray-500 text-center text-gray-700 md:text-lg">
           Supervisa las estadísticas de tu aplicación
@@ -130,6 +132,7 @@ const AdminPage = () => {
               Mascotas adoptadas
             </h2>
           </div>
+
         </div>
         <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
           <MdImageSearch size={50} fill="#28B0A2" />
@@ -140,6 +143,7 @@ const AdminPage = () => {
             <h2 className="text-gray-500 lg:text-lg mt-4 leading-8 tracking-wide">
               Mascotas perdidas
             </h2>
+
           </div>
         </div>
         <div className="flex justify-center w-full py-6">
