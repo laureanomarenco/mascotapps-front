@@ -4,17 +4,14 @@ import React from "react";
 const FormFilter = ({ handleClearFilter, filter, handleFilter }) => {
   const filtered = useSelector((state) => state.filterPets);
   const pets = useSelector((state) => state.statusPets);
+
   const races =
     filtered.length > 0
       ? filtered?.map((pet) => pet.race)
       : pets.map((pet) => pet.race);
 
-  const result = new Set(races);
-
-  console.log(
-    "🚀 ~ file: FormFilter.jsx ~ line 13 ~ FormFilter ~ result",
-    result
-  );
+  const resulted = new Set(races);
+  const result = Array.from(resulted);
 
   return (
     <div className="grid gap-1 grid-cols-1 md:grid-cols-2 xl:grid-cols-6 border-0 cursor-pointer rounded-full drop-shadow-md  w-70  duration-300 ">
@@ -38,12 +35,12 @@ const FormFilter = ({ handleClearFilter, filter, handleFilter }) => {
       </select>
       <select value={filter.race} name="race" onChange={handleFilter}>
         <option hidden>Raza </option>
-        {/* {result.map((keyPet) => (
-          <option key={Math.random()} value={keyPet}>
+        {result.map((keyPet) => (
+          <option key={Math.random()} className="capitalize" value={keyPet}>
             {" "}
             {keyPet}{" "}
           </option>
-        ))} */}
+        ))}
       </select>
       <select>
         <option hidden>Ciudad</option>
