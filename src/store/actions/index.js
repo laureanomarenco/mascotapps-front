@@ -13,6 +13,7 @@ export const FILTER_RACE = "FILTER_RACE";
 export const FETCH_CITY = "FETCH_CITY";
 export const SEARCH_PETS = "SEARCH_PETS";
 export const GET_USER_INFO = "GET_USER_INFO";
+export const GET_DONATIONS = "GET_DONATIONS";
 
 export function fetchPets() {
   return async function (dispatch) {
@@ -103,7 +104,7 @@ export function searchPets(input) {
   return async function (dispatch) {
     try {
       const pets = await axios.get(
-        `https://mascotapps-stage.herokuapp.com/pets/search?input=${input}`
+        `https://worker-production-2aad.up.railway.app/pets/search?input=${input}`
       );
       return dispatch({
         type: SEARCH_PETS,
@@ -132,3 +133,18 @@ export function getUserInfo(id) {
     }
   };
 }
+
+export async function getDonations() {
+  try {
+    const donations = await axios.get(
+      `https://worker-production-d64c.up.railway.app/checkout/balance`
+    );
+    return dispatch({
+      type: "GET_DONATIONS",
+      payload: donations.data
+    });
+  } catch (error) {
+    return error.message;
+  }
+};
+
