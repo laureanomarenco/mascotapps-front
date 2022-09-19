@@ -1,4 +1,6 @@
 import axios from "axios";
+import { URL_ALLPETS, URL_PET_DETAIL, SEARCH_BY, URL_DONATION } from "../../url/url";
+import {URL_CIUDAD_API} from "../../url/url";
 
 export const FETCH_PETS = "FETCH_PETS";
 export const GET_DETAIL = "GET_DETAIL";
@@ -13,11 +15,12 @@ export const FILTER_RACE = "FILTER_RACE";
 export const FETCH_CITY = "FETCH_CITY";
 export const SEARCH_PETS = "SEARCH_PETS";
 export const GET_USER_INFO = "GET_USER_INFO";
+export const GET_DONATIONS = "GET_DONATIONS";
 
 export function fetchPets() {
   return async function (dispatch) {
     const datos = await axios.get(
-      "https://worker-production-2aad.up.railway.app/pets"
+      URL_ALLPETS
     );
     return dispatch({
       type: FETCH_PETS,
@@ -30,7 +33,7 @@ export function getDetail(id) {
   return async function (dispatch) {
     try {
       const info = await axios.get(
-        "https://worker-production-2aad.up.railway.app/pets/" + id
+        URL_PET_DETAIL + id
       );
       return dispatch({
         type: "GET_DETAIL",
@@ -48,7 +51,7 @@ export function getPetsByStatus(status) {
   return async function (dispatch) {
     try {
       const info = await axios.get(
-        "https://worker-production-2aad.up.railway.app/pets/" + status
+       URL_PET_DETAIL + status
       );
       return dispatch({
         type: GET_PETS_BY_STATUS,
@@ -67,7 +70,7 @@ export function fetchCity() {
   return async function (dispatch) {
     try {
       const cities = await axios.get(
-        "https://apis.datos.gob.ar/georef/api/municipios?max=2500"
+        URL_CIUDAD_API
       );
       return dispatch({
         type: FETCH_CITY,
@@ -103,7 +106,7 @@ export function searchPets(input) {
   return async function (dispatch) {
     try {
       const pets = await axios.get(
-        `https://mascotapps-stage.herokuapp.com/pets/search?input=${input}`
+        SEARCH_BY+`${input}`
       );
       return dispatch({
         type: SEARCH_PETS,
@@ -118,17 +121,33 @@ export function searchPets(input) {
 export function getUserInfo(id) {
   return async function (dispatch) {
     try {
-    const user = await axios.get(
-      "https://631fd45a9f82827dcf207254.mockapi.io/users/" +id
+      const user = await axios.get(
+        "https://631fd45a9f82827dcf207254.mockapi.io/users/" + id
       );
-    console.log("🚀 ~ file: index.js ~ line 128 ~ user", user.data)
+      console.log("🚀 ~ file: index.js ~ line 128 ~ user", user.data);
 
       return dispatch({
         type: "GET_USER_INFO",
         payload: user.data,
-      })
+      });
     } catch (error) {
       console.log(error);
+    }
+  };
+}
+
+export function getDonations() {
+  return async function (dispatch) {
+    try {
+      const donations = await axios.get(
+        URL_DONATION
+      );
+      return dispatch({
+        type: "GET_DONATIONS",
+        payload: donations.data,
+      });
+    } catch (error) {
+      return error.message;
     }
   };
 }

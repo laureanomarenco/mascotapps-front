@@ -7,6 +7,7 @@ import Home from "./components/Home/Home";
 import LandingPage from "./components/LandingPage/LandingPage";
 import SignUp from "./components/SignUp/SignUp";
 import Error from "./components/Error/Error";
+import LoginAdmin from "./components/AdminPage/LoginAdmin";
 import AdminPage from "./components/AdminPage/AdminPage";
 import React from "react";
 import UserProfile from "./components/UserProfile/UserProfile";
@@ -33,7 +34,8 @@ function App() {
           <Route path="/account" element={<UserProfile />} />
           <Route path="/pets/:id" element={<Detail />} />
           <Route path="/estado/:status" element={<PetsContainer />} />
-          <Route path="/admin" element={<AdminPage />} />
+          <Route path="/admin" element={<LoginAdmin />} />
+          <Route path="/admin/general" element={<AdminPage />} />
           <Route path="/donate" element={<Donate />} />
           <Route path="*" element={<Error />} />
           <Route path="/favoritos" element={<FavContainer />}></Route>
