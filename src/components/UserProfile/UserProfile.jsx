@@ -39,24 +39,13 @@ export default function UserProfile() {
         </div>
         <div className="flex flex-col w-full items-start justify-center gap-3 my-6 px-4  md:flex-row md:justify-center md:col-span-3">
           <Link
-            to="/"
+            to="/postpets"
             className="px-6 py-3  bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300"
           >
-            Perdí mi mascota
+            Postear un aviso
           </Link>
-          <Link
-            to="/"
-            className="px-6 py-3  bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300"
-          >
-            Encontré una mascota
-          </Link>
-          <Link
-            to="/"
-            className="px-6 py-3  bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300"
-          >
-            Dar en adopción
-          </Link>
-        </div>
+          </div>
+
       </div>
       <Footer />
     </div>
