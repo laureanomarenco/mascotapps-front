@@ -138,7 +138,7 @@ export function getDonations() {
   return async function (dispatch) {
     try {
       const donations = await axios.get(
-        `https://worker-production-d64c.up.railway.app/checkout/balance`
+        `https://worker-production-2aad.up.railway.app/checkout/balance`
       );
       return dispatch({
         type: "GET_DONATIONS",
