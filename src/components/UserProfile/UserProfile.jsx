@@ -8,6 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 export default function UserProfile() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
+  console.log("🚀 ~ file: UserProfile.jsx ~ line 11 ~ UserProfile ~ user", user)
 
   useEffect(() => {
     dispatch(getUserInfo());
