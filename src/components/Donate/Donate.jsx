@@ -6,7 +6,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import Footer from "../Footer/Footer";
 import Swal from "sweetalert2";
 import Spinner from "../Spinner/Spinner";
-import { newDonation } from "../../store/actions";
+
 import {
   Elements,
   CardElement,
@@ -57,8 +57,7 @@ const CheckoutForm = () => {
         if (result.data.msg === "Succesfull payment") {
           setLoaded(false);
           setPaymentState({ state: "aproved", msg: result.data.msg });
-          let newAmount = amount*100
-          newDonation(newAmount)
+
           elements.getElement(CardElement).clear();
           Swal.fire({
             title: "Tu donación fue recibida con éxito.",

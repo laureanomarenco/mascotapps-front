@@ -119,32 +119,33 @@ export function searchPets(input) {
 export function getUserInfo(id) {
   return async function (dispatch) {
     try {
-    const user = await axios.get(
-      "https://631fd45a9f82827dcf207254.mockapi.io/users/" +id
+      const user = await axios.get(
+        "https://631fd45a9f82827dcf207254.mockapi.io/users/" + id
       );
-    console.log("🚀 ~ file: index.js ~ line 128 ~ user", user.data)
+      console.log("🚀 ~ file: index.js ~ line 128 ~ user", user.data);
 
       return dispatch({
         type: "GET_USER_INFO",
         payload: user.data,
-      })
+      });
     } catch (error) {
       console.log(error);
     }
   };
 }
 
-export async function getDonations() {
-  try {
-    const donations = await axios.get(
-      `https://worker-production-d64c.up.railway.app/checkout/balance`
-    );
-    return dispatch({
-      type: "GET_DONATIONS",
-      payload: donations.data
-    });
-  } catch (error) {
-    return error.message;
-  }
-};
-
+export function getDonations() {
+  return async function (dispatch) {
+    try {
+      const donations = await axios.get(
+        `https://worker-production-d64c.up.railway.app/checkout/balance`
+      );
+      return dispatch({
+        type: "GET_DONATIONS",
+        payload: donations.data,
+      });
+    } catch (error) {
+      return error.message;
+    }
+  };
+}
