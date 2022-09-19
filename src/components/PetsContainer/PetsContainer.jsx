@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 import Card from "../Card/Card";
 // import Footer from "../Footer/Footer";
@@ -53,6 +53,17 @@ const PetsContainer = () => {
       race: "",
     });
   };
+  useEffect(() => {
+    return (() => {
+      dispatch(resetDetail())
+      setFilter({
+        specie: "",
+        gender: "",
+        age: "",
+        race: "",
+      });
+    })
+  }, [pets]);
 
   const [page, setPage] = useState(1);
   const showPerPage = 6;
@@ -72,6 +83,8 @@ const PetsContainer = () => {
         handleClearFilter={handleClearFilter}
         filter={filter}
         handleFilter={handleFilter}
+        filterPet={filterPet}
+        pets={pets}
       />
       {notFound && showAlert()}
       <div className=" grid gap-1 grid-cols-1 gird-rows-1 md:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 bg-[url('https://res.cloudinary.com/dax0wf30d/image/upload/v1663115601/shit/bg-5_nbb3sj.png')]">
