@@ -7,7 +7,7 @@ import {
   URL_DONATION,
   URL_USER_LOGGED,
   URL_TOTAL_USERS,
-  URL_PET_SPECIES 
+  URL_PET_SPECIES,
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 
@@ -26,18 +26,25 @@ export const SEARCH_PETS = "SEARCH_PETS";
 export const GET_USER_INFO = "GET_USER_INFO";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_DONATIONS = "GET_DONATIONS";
-export const GET_SPECIES="GET_SPECIES"
-export const POST_PET="POST_PET"
+export const GET_SPECIES = "GET_SPECIES";
+export const POST_PET = "POST_PET";
+
 export function fetchPets() {
   return async function (dispatch) {
-    const datos = await axios.get(URL_ALLPETS);
-    return dispatch({
-      type: FETCH_PETS,
-      payload: datos.data,
-    });
+    try {
+      const datos = await axios.get(URL_ALLPETS);
+      return dispatch({
+        type: FETCH_PETS,
+        payload: datos.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: FETCH_PETS,
+        payload: { error: error.message },
+      });
+    }
   };
 }
-
 
 export function getDetail(id) {
   return async function (dispatch) {
@@ -81,7 +88,10 @@ export function fetchCity() {
         payload: cities.data.municipios,
       });
     } catch (error) {
-      return error.message;
+      return dispatch({
+        type: FETCH_CITY,
+        payload: { error: error.message },
+      });
     }
   };
 }
@@ -115,7 +125,10 @@ export function searchPets(input) {
         payload: pets.data,
       });
     } catch (error) {
-      return error.message;
+      return dispatch({
+        type: SEARCH_PETS,
+        payload: { error: error.message },
+      });
     }
   };
 }
@@ -132,7 +145,7 @@ export function getUserInfo() {
     } catch (error) {
       return dispatch({
         type: "GET_USER_INFO",
-        payload: error,
+        payload: { error: error.message },
       });
     }
   };
@@ -146,7 +159,10 @@ export function getAllUsers() {
         payload: users.data,
       });
     } catch (error) {
-      console.log(error);
+      return dispatch({
+        type: GET_ALL_USERS,
+        payload: { error: error.message },
+      });
     }
   };
 }
@@ -160,40 +176,45 @@ export function getDonations() {
         payload: donations.data,
       });
     } catch (error) {
-      return error.message;
+      return dispatch({
+        type: GET_DONATIONS,
+        payload: { error: error.message },
+      });
     }
   };
 }
-export function getSpecies(){
+export function getSpecies() {
   return async function (dispatch) {
     try {
-      const datos =await axios.get(URL_PET_SPECIES)
+      const datos = await axios.get(URL_PET_SPECIES);
       return dispatch({
-        type:GET_SPECIES,
-        payload:datos.data
-      })
+        type: GET_SPECIES,
+        payload: datos.data,
+      });
     } catch (error) {
       return dispatch({
         type: GET_SPECIES,
         payload: { error: error.message },
       });
     }
-  }
+  };
 }
 
-export function postPet(pet){
-  console.log(pet)
-  return async function(dispatch) {
+export function postPet(pet) {
+  console.log(pet);
+  return async function (dispatch) {
     try {
-      var json=await axios.post("https://mascotapps-back-production.up.railway.app/users/postnewpet",pet)
-      console.log("pasooooo el postttttttt",json)
-      return dispatch({type: POST_PET, payload:json.data})
+      var json = await axios.post(
+        "https://mascotapps-back-production.up.railway.app/users/postnewpet",
+        pet
+      );
+      console.log("pasooooo el postttttttt", json);
+      return dispatch({ type: POST_PET, payload: json.data });
     } catch (error) {
       return dispatch({
         type: POST_PET,
         payload: { error: error.message },
       });
-      
     }
-  }
+  };
 }
