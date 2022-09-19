@@ -47,7 +47,7 @@ const CheckoutForm = () => {
 
       try {
         const result = await axios.post(
-          "https://worker-production-2aad.up.railway.app/checkout",
+          "http://worker-production-d64c.up.railway.app/checkout",
           {
             id,
             amount: amount * 100,
