@@ -1,4 +1,5 @@
 import axios from "axios";
+
 import {
   URL_ALLPETS,
   URL_PET_DETAIL,
@@ -6,6 +7,7 @@ import {
   URL_DONATION,
   URL_USER_LOGGED,
   URL_TOTAL_USERS,
+  URL_PET_SPECIES 
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 
@@ -24,7 +26,8 @@ export const SEARCH_PETS = "SEARCH_PETS";
 export const GET_USER_INFO = "GET_USER_INFO";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_DONATIONS = "GET_DONATIONS";
-
+export const GET_SPECIES="GET_SPECIES"
+export const POST_PET="POST_PET"
 export function fetchPets() {
   return async function (dispatch) {
     const datos = await axios.get(URL_ALLPETS);
@@ -34,6 +37,7 @@ export function fetchPets() {
     });
   };
 }
+
 
 export function getDetail(id) {
   return async function (dispatch) {
@@ -123,7 +127,7 @@ export function getUserInfo() {
       console.log("aca esta el usuarioooo", user);
       return dispatch({
         type: "GET_USER_INFO",
-        payload: user,
+        payload: user.data,
       });
     } catch (error) {
       return dispatch({
@@ -159,4 +163,37 @@ export function getDonations() {
       return error.message;
     }
   };
+}
+export function getSpecies(){
+  return async function (dispatch) {
+    try {
+      const datos =await axios.get(URL_PET_SPECIES)
+      return dispatch({
+        type:GET_SPECIES,
+        payload:datos.data
+      })
+    } catch (error) {
+      return dispatch({
+        type: GET_SPECIES,
+        payload: { error: error.message },
+      });
+    }
+  }
+}
+
+export function postPet(pet){
+  console.log(pet)
+  return async function(dispatch) {
+    try {
+      var json=await axios.post("https://mascotapps-back-production.up.railway.app/users/postnewpet",pet)
+      console.log("pasooooo el postttttttt",json)
+      return dispatch({type: POST_PET, payload:json.data})
+    } catch (error) {
+      return dispatch({
+        type: POST_PET,
+        payload: { error: error.message },
+      });
+      
+    }
+  }
 }
