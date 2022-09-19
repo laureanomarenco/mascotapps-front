@@ -4,6 +4,7 @@ import {
   URL_PET_DETAIL,
   SEARCH_BY,
   URL_DONATION,
+  URL_USER_LOGGED,
   URL_TOTAL_USERS,
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
@@ -115,20 +116,20 @@ export function searchPets(input) {
   };
 }
 
-export function getUserInfo(id) {
+export function getUserInfo() {
   return async function (dispatch) {
     try {
-      const user = await axios.get(
-        "https://631fd45a9f82827dcf207254.mockapi.io/users/" + id
-      );
-      console.log("🚀 ~ file: index.js ~ line 128 ~ user", user.data);
-
+      const user = await axios.get(URL_USER_LOGGED);
+      console.log("aca esta el usuarioooo", user);
       return dispatch({
         type: "GET_USER_INFO",
         payload: user.data,
       });
     } catch (error) {
-      console.log(error);
+      return dispatch({
+        type: "GET_USER_INFO",
+        payload: error,
+      });
     }
   };
 }
