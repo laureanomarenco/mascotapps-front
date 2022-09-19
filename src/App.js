@@ -16,7 +16,7 @@ import { useEffect } from "react";
 import Donate from "./components/Donate/Donate";
 import FavContainer from "./components/FavContainer";
 import UsersPublicProfile from "./components/UsersPublicProfile/UsersPublicProfile";
-
+import PostPets from "./PostPets/PostPets";
 function App() {
   //eslint-disable-next-line
   const dispatch = useDispatch();
@@ -38,6 +38,7 @@ function App() {
           <Route path="*" element={<Error />} />
           <Route path="/favoritos" element={<FavContainer />}></Route>
           <Route path="/profile/:id" element={<UsersPublicProfile />}></Route>
+          <Route path="/postpets" element={<PostPets/>}></Route>
         </Routes>
       </BrowserRouter>
     </div>

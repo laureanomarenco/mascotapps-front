@@ -28,8 +28,10 @@ const FormFilter = ({ handleClearFilter,filter,handleFilter}) => {
       </select>
       <select  value={filter.race} name="race" onChange={handleFilter}>
         <option  hidden>Raza </option>
-        {filterPets.length>0?filterPets.map(fPet=>{<option key={fPet.id}>{fPet.race}</option>}):
-        pets?.map((pet) => (
+        { filterPets.length>0?filterPets.map(f=>(<option key={f.id} value={f.race}>
+            {f.race}
+          </option>))
+        :pets?.map((pet) => (
           <option key={pet.id} value={pet.race}>
             {pet.race}
           </option>
