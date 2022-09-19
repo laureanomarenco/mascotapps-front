@@ -23,6 +23,7 @@ import { TbView360 } from "react-icons/tb";
 import { AiOutlineWoman } from "react-icons/ai";
 import { AiOutlineMan } from "react-icons/ai";
 import { BiDonateHeart } from "react-icons/bi";
+import { getDonations } from "../../store/actions/index";
 
 const AdminPage = () => {
   const dispatch = useDispatch();
@@ -33,10 +34,9 @@ const AdminPage = () => {
   const totalDonationsInCents = amounts.reduce((prev, next) => prev + next, 0)
   const totalDonations = totalDonationsInCents / 100
 
-
-
   useEffect(() => {
     dispatch(fetchPets());
+    dispatch(getDonations())
   }, [dispatch]);
   console.log(pets);
   return (
