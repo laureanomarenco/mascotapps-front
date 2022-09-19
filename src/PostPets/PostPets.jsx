@@ -1,6 +1,51 @@
-import React from "react";
-
+import {useDispatch, useSelector} from 'react-redux';
+import React, {useEffect,useState} from 'react';
+import {AiOutlineWhatsApp} from 'react-icons/ai'
+import {AiOutlineCamera} from 'react-icons/ai'
+import Autocomplete from '@mui/material/Autocomplete';
+import TextField from '@mui/material/TextField';
+import { fetchCity,getSpecies,postPet } from '../store/actions';
 const PostPets = () => {
+
+  const dispatch = useDispatch();
+  const Petspecies=useSelector(state=>state.species)
+  
+  //CIUDADES ARG
+  const cities = useSelector(state => state.cities)
+  useEffect(() => {
+    dispatch(fetchCity())
+    dispatch(getSpecies())
+  }, [dispatch])
+  let localidades = cities?.map(loc => {
+    return {
+      nombre: loc.nombre,
+      provincia: loc.provincia.nombre
+    }
+  })
+  localidades = localidades.sort((a,b) => a.provincia - b.provincia).map(l=> `${l.nombre}, ${l.provincia}`)  
+//-------------------------------------------------------------------------------------------------------------------
+ 
+const[input,setInput]=useState({
+    name:'',spices:'',race:'',state:'',
+    gender:'',age:'',vaccination:'',urlImage:'',
+    description:'', city:'',contact:'',
+  })
+  const handleChange=(e)=>{
+    setInput({
+      ...input,
+      [e.target.name]:e.target.value
+    })
+  }
+  const handleSubmit=(e)=>{
+    e.preventDefault();
+    dispatch(postPet(input))
+    alert("mascota cargada")
+    setInput({})
+   
+
+    
+  }
+
   return (
     <div className="relative flex flex-wrap lg:h-screen lg:items-center">
       <div className="w-full px-4 py-12 lg:w-1/2 sm:px-6 lg:px-8 sm:py-6 lg:py-12">
@@ -21,11 +66,12 @@ const PostPets = () => {
             </label>
             <div className="relative">
               <input
+                onChange={handleChange}
                 type="tetx"
                 name="name"
                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm "
                 placeholder="Nombre"
-                // value={input.name}
+                value={input.name}
               />
             </div>
           </div>
@@ -36,11 +82,14 @@ const PostPets = () => {
             </label>
             <div className="relative">
               <select
+                onChange={handleChange}
                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-                name="spice"
-                // value={input.spice}
+                name="spices"
+                value={input.spices}
               >
                 <option hidden>Especie</option>
+                {Petspecies?.map((pSpecies)=>(
+                <option className="capitalize" key={Math.random()} value={pSpecies}>{pSpecies}</option>))}
               </select>
             </div>
           </div>
@@ -51,11 +100,12 @@ const PostPets = () => {
             </label>
             <div className="relative">
               <input
+                onChange={handleChange}
                 type="tetx"
                 name="race"
                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm "
                 placeholder="Raza"
-                // value={input.race}
+                value={input.race}
               />
             </div>
           </div>
@@ -66,9 +116,10 @@ const PostPets = () => {
             </label>
             <div className="relative">
               <select
+                onChange={handleChange}
                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                 name="state"
-                // value={input.state}
+                value={input.state}
               >
                 <option hidden>Estado</option>
                 <option value="Perdido">Perdido</option>
@@ -84,9 +135,10 @@ const PostPets = () => {
             </label>
             <div className="relative">
               <select
+                onChange={handleChange}
                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                 name="gender"
-                // value={input.gender}
+                value={input.gender}
               >
                 <option hidden>Genero</option>
                 <option value="macho">Macho</option>
@@ -96,14 +148,35 @@ const PostPets = () => {
           </div>
 
           <div>
+            <label htmlFor="edad" className="sr-only">
+              Estado
+            </label>
+            <div className="relative">
+              <select
+                onChange={handleChange}
+                className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                name="age"  
+                value={input.age}
+              >
+                <option hidden>Edad</option>
+                <option value="Cachorro">Cachorro</option>
+                <option value="Joven">Joven</option>
+                <option value="Adulto">Adulto</option>
+                <option value="Adulto mayor">Adulto Mayor</option>
+              </select>
+            </div>
+          </div>        
+
+          <div>
             <label htmlFor="vacunacion" className="sr-only">
               Carnet de vacunacion
             </label>
             <div className="relative">
               <select
+                onChange={handleChange}
                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                 name="vaccination"
-                // value={input.vaccination}
+                value={input.vaccination}
               >
                 <option hidden>Vacunacion</option>
                 <option value="si">Si</option>
@@ -113,37 +186,92 @@ const PostPets = () => {
           </div>
 
           <div>
+          <label htmlFor="urlImage" className="sr-only">Email</label>
+  
+          <div className="relative">
+            <input
+              onChange={handleChange}
+              type="file"
+              name="urlImage"
+              className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+              accept="image/png, image/gif, image/jpeg"
+              placeholder="Imagen de la mascota"
+              value={input.urlImage}
+
+            />
+  
+            <span className="absolute inset-y-0 inline-flex items-center right-4">
+            <AiOutlineCamera color='grey'/>
+            </span>
+          </div>
+
+          {/* <div className="text-center text-xs text-red-500 mt-1">
+        {!errors.email ? null : <span >*{errors.email}</span>}
+          </div> */}
+
+        </div>
+
+          <div>
             <label htmlFor="descripcion" className="sr-only">
               Descripcion de la mascota
             </label>
             <div className="relative">
               <textarea
+                onChange={handleChange}
                 type="tetx"
                 name="description"
                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm "
-                placeholder="Descripcion"
-                // value={input.race}
+                placeholder="Descripcion de la mascota..."
+                value={input.description}
               />
             </div>
           </div>
 
+
           <div>
-            <label htmlFor="Contacto" className="sr-only">
-              Numero de contacto
-            </label>
-            <div className="relative">
-              <input
-                type="tetx"
-                name="contact"
-                className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm "
-                placeholder="Numero de contacto"
-                // value={input.race}
+          <div className="relative">
+              <Autocomplete
+                  disablePortal
+                  id="combo-box-demo"
+                  options={localidades}
+                  sx={{ width: 1, borderRadius: 16, border: 0  }}
+                  renderInput={(params) => <TextField {...params} label="Provincia, localidad ..." onChange={handleChange} value={input.city}  name='city'/>}
+                  
               />
-            </div>
           </div>
+
+          {/* <div className="text-center text-xs text-red-500 mt-1">
+        {!errors.city ? null : <span >*{errors.city}</span>}
+          </div> */}
+
+        </div>
+
+          <div>
+          <label htmlFor="contact" className="sr-only">Contacto</label>
+  
+          <div className="relative">
+            <input
+              onChange={handleChange}
+              type="text"
+              name="contact"
+              className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+              placeholder="Contacto"
+              value={input.contact}
+            />
+  
+            <span className="absolute inset-y-0 inline-flex items-center right-4">
+            <AiOutlineWhatsApp color="grey"/>
+            </span>
+          </div>
+
+          {/* <div className="text-center text-xs text-red-500 mt-1">
+        {!errors.contact ? null : <span >*{errors.contact}</span>}
+          </div> */}
+        </div>
 
           <div className="flex items-center justify-between">
             <button
+            onClick={handleSubmit}
               type="submit"
               className="w-full rounded-md border border-transparent bg-[#ecca08] py-2  text-sm font-medium text-black hover:bg-[#ffd903]  focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
             >
@@ -152,6 +280,14 @@ const PostPets = () => {
           </div>
         </form>
       </div>
+      <div className="relative  sm:h-96 lg:w-1/2 lg:h-full">
+
+      <img
+        className="absolute inset-0 object-cover w-full h-full"
+        src="https://res.cloudinary.com/dfbxjt69z/image/upload/v1663007100/mascotapps/mascotapss_zihxad.png"
+        alt=""
+      />
+    </div>
     </div>
   );
 };
