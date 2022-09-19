@@ -6,6 +6,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import Footer from "../Footer/Footer";
 import Swal from "sweetalert2";
 import Spinner from "../Spinner/Spinner";
+
 import {
   Elements,
   CardElement,
@@ -46,17 +47,17 @@ const CheckoutForm = () => {
 
       try {
         const result = await axios.post(
-          "https://mascotapps-stage.herokuapp.com/checkout",
+          "https://worker-production-2aad.up.railway.app/checkout",
           {
             id,
             amount: amount * 100,
           }
         );
-        console.log(result);
 
         if (result.data.msg === "Succesfull payment") {
           setLoaded(false);
           setPaymentState({ state: "aproved", msg: result.data.msg });
+
           elements.getElement(CardElement).clear();
           Swal.fire({
             title: "Tu donación fue recibida con éxito.",
@@ -88,18 +89,21 @@ const CheckoutForm = () => {
       <div className=" py-6 min-h-screen w-screen bg-[url('https://res.cloudinary.com/dax0wf30d/image/upload/v1663115601/shit/bg-5_nbb3sj.png')]">
         {paymentState.state === null && (
           <>
-            <h1 className="flex flex-col w-2/6 mx-auto  py-3 mb-2 items-center bg-[#28B0A280] text-[#121212] border-solid border-2 rounded font-semibold">
+            <h1 className="flex flex-col w-2/6 mx-auto py-8 items-center bg-[#28B0A280] text-[#121212] border-solid border-2 rounded font-semibold">
               Ayudanos a seguir recuperando animales
             </h1>
             <form
               onSubmit={handleSubmit}
               className="flex flex-col w-2/6 mx-auto mb-4 items-center"
             >
+            <a href='https://buy.stripe.com/test_dR615Q1v8cbL3Ju3cc' className="flex bg-[#F8EFBA] items-center w-full py-3 px-6 my-1 border-solid border-2 rounded">
+              Si deseas donar en pesos argentinos haz click aquí, o haz tu donación en dolares en esta misma página.
+            </a>
               <CardElement className="bg-[white] w-full py-6 px-6 my-1 border-solid border-2 rounded" />
               <input
                 type="number"
                 className="bg-[white] w-full py-6 px-6 my-1 border-solid border-2 rounded"
-                placeholder="Monto de la donación"
+                placeholder="Monto de la donación USD"
                 name="amount"
                 onChange={onInputChange}
               ></input>

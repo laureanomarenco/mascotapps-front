@@ -8,6 +8,7 @@ import {
   FETCH_CITY,
   SEARCH_PETS,
   GET_USER_INFO,
+  GET_DONATIONS
 } from "../actions";
 
 const initalState = {
@@ -17,6 +18,7 @@ const initalState = {
   isLoading: true,
   filterPets: [],
   searchedPets: [],
+  donations: [],
   notFound: false,
   cities: [],
   user: {},
@@ -96,6 +98,13 @@ export default function reducer(state = initalState, action) {
         ...state,
         user: action.payload,
       }
+
+    case GET_DONATIONS:
+      return {
+        ...state,
+        donations: action.payload,
+      }
+
     default:
       return state;
   }

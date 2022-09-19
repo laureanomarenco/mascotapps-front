@@ -16,14 +16,18 @@ import {FaDonate} from 'react-icons/fa';
 import {BsImages} from 'react-icons/bs';
 import {TbView360} from 'react-icons/tb';
 import {BiDonateHeart} from 'react-icons/bi';
+import { getDonations } from '../../store/actions/index';
+
 
 const AdminPage = () => {
-
   const dispatch = useDispatch();
   const pets = useSelector(state => state.pets)
-
+  const donations = useSelector(state => state.donations)
+  const totalDonations = donations.reduce((prev, next) => prev.amount + next.amount, 0)
+  
   useEffect(()=> {
-    dispatch(fetchPets())   
+    dispatch(fetchPets())
+    dispatch(getDonations())      
 }, [dispatch])
   
       return (
@@ -67,7 +71,7 @@ const AdminPage = () => {
         <a htmlFor="#usuarios" onClick={() => window.location.replace("/admin#don-visits")} className='hover:cursor-pointer' >
           <div className="text-center md:border-r h-80 hover:scale-y-110">
             <FaDonate className="mx-auto h-1/2 fill-yellow-600" size={100}/>
-            <h6 className="text-4xl font-bold lg:text-5xl xl:text-6xl text-gray-800">4.5K</h6>
+            <h6 className="text-4xl font-bold lg:text-5xl xl:text-6xl text-gray-800">{totalDonations}</h6>
             <p className="text-sm font-medium tracking-widest text-yellow-600 uppercase lg:text-base">
               Donaciones
             </p>
