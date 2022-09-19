@@ -15,6 +15,7 @@ export const FILTER_RACE = "FILTER_RACE";
 export const FETCH_CITY = "FETCH_CITY";
 export const SEARCH_PETS = "SEARCH_PETS";
 export const GET_USER_INFO = "GET_USER_INFO";
+export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_DONATIONS = "GET_DONATIONS";
 
 export function fetchPets() {
@@ -129,6 +130,23 @@ export function getUserInfo(id) {
       return dispatch({
         type: "GET_USER_INFO",
         payload: user.data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+export function getAllUsers() {
+  return async function (dispatch) {
+    try {
+      const users = await axios.get(
+        "https://mascotapps-back-production.up.railway.app/users/numberOfUsersInDB"
+      );
+
+      console.log(JSON.stringify(users));
+      return dispatch({
+        type: "GET_ALL_USERS",
+        payload: users.data,
       });
     } catch (error) {
       console.log(error);

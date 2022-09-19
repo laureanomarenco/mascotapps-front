@@ -1,7 +1,9 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPets } from "../../store/actions/index";
+import { fetchPets, getAllUsers } from "../../store/actions/index";
 import SideMenu from "./NavBar";
+// import Stack from '@mui/material/Stack';
+// import CircularProgress from "@mui/material/CircularProgress";
 
 // import Alert from './Alert';
 //icons
@@ -28,17 +30,18 @@ import { getDonations } from "../../store/actions/index";
 const AdminPage = () => {
   const dispatch = useDispatch();
 
-  const pets = useSelector(state => state.pets)
-  const donations = useSelector(state => state.donations)
-  const amounts = donations.map(done => done.amount)
-  const totalDonationsInCents = amounts.reduce((prev, next) => prev + next, 0)
-  const totalDonations = totalDonationsInCents / 100
+  const pets = useSelector((state) => state.pets);
+  const users = useSelector((state) => state.totalUsers);
+  const donations = useSelector((state) => state.donations);
+  const amounts = donations.map((done) => done.amount);
+  const totalDonationsInCents = amounts.reduce((prev, next) => prev + next, 0);
 
   useEffect(() => {
     dispatch(fetchPets());
-    dispatch(getDonations())
+    dispatch(getDonations());
+    dispatch(getAllUsers());
   }, [dispatch]);
-  console.log(pets);
+
   return (
     <>
       <div className="top-0 sticky z-10">
@@ -75,7 +78,7 @@ const AdminPage = () => {
             <div className="text-center md:border-r h-80 hover:scale-y-110">
               <TbUsers className="mx-auto h-1/2 stroke-yellow-600" size={100} />
               <h6 className="text-4xl font-bold lg:text-5xl xl:text-6xl text-gray-800">
-                136
+                {users}
               </h6>
               <p className="text-sm font-medium tracking-widest text-yellow-600 uppercase lg:text-yellow-600">
                 Usuarios registrados
@@ -87,7 +90,7 @@ const AdminPage = () => {
             <div className="text-center md:border-r h-80 hover:scale-y-110">
               <FaDonate className="mx-auto h-1/2 fill-yellow-600" size={100} />
               <h6 className="text-4xl font-bold lg:text-5xl xl:text-6xl text-gray-800">
-                {totalDonations}
+                ${totalDonationsInCents}
               </h6>
               <p className="text-sm font-medium tracking-widest text-yellow-600 uppercase lg:text-yellow-600">
                 Donaciones
@@ -105,7 +108,7 @@ const AdminPage = () => {
                 7533
               </h6>
               <p className="text-sm font-medium tracking-widest text-yellow-600 uppercase lg:text-yellow-600">
-                Visitas a tu app
+                Visitas
               </p>
             </div>
           </a>
@@ -115,7 +118,10 @@ const AdminPage = () => {
 
       <section className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-4 xl:grid-cols-4 gap-4 mt-28 w-9/12 mx-auto ">
         <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
-          <FaHands size={50} fill="#28B0A2" />
+          <div>
+            <FaHands size={50} fill="#28B0A2" />
+            {/* <CircularProgress variant="determinate" value={25} /> */}
+          </div>
           <div className="text-gray-800 w-1/2 pl-12">
             <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">
               {pets
@@ -273,9 +279,7 @@ const AdminPage = () => {
           <BiDonateHeart size={72} fill="#28B0A2" />
           <div className="text-gray-800 w-1/2 pl-12">
             <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">
-              {pets
-                ? pets.filter((p) => p.status === "en adopción").length
-                : null}
+              {amounts ? amounts.length : 0}
             </h1>
             <h2 className="text-gray-500 lg:text-lg mt-4 leading-8 tracking-wide">
               Donaciones recibidas

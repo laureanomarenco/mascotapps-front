@@ -6,10 +6,12 @@ const LoginAdmin = () => {
   const adminPass = "mascotapp1234";
 
   return Swal.fire({
-    title: "Login Form",
+    title: "Bienvenido",
+    text: "Inicia sesión para continuar",
     html: `<input type="password" id="login" class="swal2-input" placeholder="Username">
     <input type="password" id="password" class="swal2-input" placeholder="Password">`,
     confirmButtonText: "Inicia sesión",
+    confirmButtonColor: "#28B0A2",
     focusConfirm: false,
     preConfirm: () => {
       const login = Swal.getPopup().querySelector("#login").value;
