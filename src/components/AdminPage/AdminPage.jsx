@@ -90,7 +90,7 @@ const AdminPage = () => {
             <div className="text-center md:border-r h-80 hover:scale-y-110">
               <FaDonate className="mx-auto h-1/2 fill-yellow-600" size={100} />
               <h6 className="text-4xl font-bold lg:text-5xl xl:text-6xl text-gray-800">
-                ${totalDonationsInCents}
+                ${totalDonationsInCents / 100}
               </h6>
               <p className="text-sm font-medium tracking-widest text-yellow-600 uppercase lg:text-yellow-600">
                 Donaciones
