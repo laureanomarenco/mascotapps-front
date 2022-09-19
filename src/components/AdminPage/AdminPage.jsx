@@ -44,7 +44,7 @@ const AdminPage = () => {
     dispatch(getDonations());
     dispatch(getAllUsers());
   }, [dispatch]);
-  console.log(users);
+  console.log(totalDonationsInCents);
   return (
     <>
       <div className="top-0 sticky z-10">
