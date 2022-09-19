@@ -23,7 +23,12 @@ const CheckoutForm = () => {
   const elements = useElements();
   const [loaded, setLoaded] = useState(false);
 
-  let [amount, setAmount] = useState();
+  let [paymentData, setPaymentData] = useState({
+    amount: null,
+    email: null
+  });
+
+
   let [paymentState, setPaymentState] = useState({
     state: null,
     msg: null,
@@ -31,9 +36,15 @@ const CheckoutForm = () => {
 
   const onInputChange = (e) => {
     e.preventDefault();
-    setAmount(e.target.value);
+    setPaymentData(prev => {
+      const newPayment = {
+      ...prev,
+      [e.target.name]: e.target.value,
+      }
+      return newPayment
+    })
   };
-
+  console.log(paymentData)
   const handleSubmit = async (e) => {
     setLoaded(true);
     e.preventDefault();
@@ -48,10 +59,12 @@ const CheckoutForm = () => {
       try {
         console.log('Por hacer post a stripe')
         const result = await axios.post(
-          "https://worker-production-2aad.up.railway.app/checkout",
+          "http://worker-production-d64c.up.railway.app/checkout",
+          // "https://worker-production-2aad.up.railway.app/checkout", descomentar despues del test en stage
           {
             id,
-            amount: amount * 100,
+            amount: paymentData.amount * 100,
+            email: paymentData.email
           }
         );
 
@@ -101,6 +114,13 @@ const CheckoutForm = () => {
               Si deseas donar en pesos argentinos haz click aquí, o haz tu donación en dolares en esta misma página.
             </a>
               <CardElement className="bg-[white] w-full py-6 px-6 my-1 border-solid border-2 rounded" />
+              <input
+                type="text"
+                className="bg-[white] w-full py-6 px-6 my-1 border-solid border-2 rounded"
+                placeholder="Ingresá tu email"
+                name="email"
+                onChange={onInputChange}
+              ></input>
               <input
                 type="number"
                 className="bg-[white] w-full py-6 px-6 my-1 border-solid border-2 rounded"
