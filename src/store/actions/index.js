@@ -28,6 +28,7 @@ export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_DONATIONS = "GET_DONATIONS";
 export const GET_SPECIES = "GET_SPECIES";
 export const POST_PET = "POST_PET";
+export const IS_LOGGED = "IS_LOGGED";
 
 export function fetchPets() {
   return async function (dispatch) {
@@ -214,6 +215,23 @@ export function postPet(pet) {
     } catch (error) {
       return dispatch({
         type: POST_PET,
+        payload: { error: error.message },
+      });
+    }
+  };
+}
+
+export default function isLogged() {
+  return async function (dispatch) {
+    try {
+      var log = await axios.get(
+        "https://worker-production-2aad.up.railway.app/auth/logged_in", { withCredentials: true }
+      );
+      console.log(log)
+      return dispatch({ type: IS_LOGGED, payload: log.data });
+    } catch (error) {
+      return dispatch({
+        type: IS_LOGGED,
         payload: { error: error.message },
       });
     }
