@@ -21,9 +21,10 @@ export default function CardContainer() {
   const showSearch = searchedPets.slice(firstOnPage, lastOnPage);
 
   function pagination(pageNumber) {
-    // window.scrollTo(0, 0);
     setPage(pageNumber);
   }
+  console.log(searchedPets);
+  console.log(pets);
 
   useEffect(() => {
     !pets.length && dispatch(fetchPets());
@@ -35,7 +36,7 @@ export default function CardContainer() {
       text: "Hubo un error en el servidor. Reintente recargando la página",
       icon: "error",
       confirmButtonText: "Recargar",
-    }).then(() => location.reload());
+    }).then(() => window.location.reload());
   };
   return (
     <div
@@ -48,7 +49,7 @@ export default function CardContainer() {
       {notFound && showAlert()}
       {loading && !notFound ? (
         <Spinner />
-      ) : searchedPets.length > 0 ? (
+      ) : searchedPets.length ? (
         showSearch?.map((pet, i) => <Card key={i} data={pet} />)
       ) : (
         showPets?.map((pet) => <Card key={pet.id} data={pet} />)
@@ -56,8 +57,12 @@ export default function CardContainer() {
 
       <div className="md:col-span-3 justify-self-center">
         <Pagination
-          pets={searchedPets.length < 1 && pets.length > 0 ? pets.length : null}
-          searchedPets={searchedPets.length > 0 ? searchedPets.length : null}
+          pets={pets.length}
+          searchedPets={
+            searchedPets.length !== pets.length
+              ? searchedPets.length
+              : pets.length
+          }
           showPerPage={showPerPage}
           page={page}
           pagination={pagination}
