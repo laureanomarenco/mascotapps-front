@@ -18,6 +18,7 @@ export default function CardContainer() {
   const lastOnPage = page * showPerPage;
   const firstOnPage = lastOnPage - showPerPage;
   const showPets = pets.slice(firstOnPage, lastOnPage);
+  const showSearch = searchedPets.slice(firstOnPage, lastOnPage);
 
   function pagination(pageNumber) {
     // window.scrollTo(0, 0);
@@ -34,7 +35,7 @@ export default function CardContainer() {
       text: "Hubo un error en el servidor. Reintente recargando la página",
       icon: "error",
       confirmButtonText: "Recargar",
-    }).then(() => location.reload);
+    }).then(() => location.reload());
   };
   return (
     <div
@@ -47,15 +48,16 @@ export default function CardContainer() {
       {notFound && showAlert()}
       {loading && !notFound ? (
         <Spinner />
-      ) : searchedPets.length !== 0 ? (
-        searchedPets?.map((pet, i) => <Card key={i} data={pet} />)
+      ) : searchedPets.length > 0 ? (
+        showSearch?.map((pet, i) => <Card key={i} data={pet} />)
       ) : (
         showPets?.map((pet) => <Card key={pet.id} data={pet} />)
       )}
 
       <div className="md:col-span-3 justify-self-center">
         <Pagination
-          pets={pets.length}
+          pets={searchedPets.length < 1 && pets.length > 0 ? pets.length : null}
+          searchedPets={searchedPets.length > 0 ? searchedPets.length : null}
           showPerPage={showPerPage}
           page={page}
           pagination={pagination}

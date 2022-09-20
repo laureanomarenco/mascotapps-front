@@ -7,10 +7,13 @@ const Pagination = ({
   page,
   statusPets,
   filterPets,
+  searchedPets,
 }) => {
   const pageNumbers = [];
   const total =
-    !statusPets && !filterPets
+    searchedPets && !pets && !statusPets && !filterPets
+      ? Math.ceil(searchedPets / showPerPage)
+      : !statusPets && !filterPets && !searchedPets
       ? Math.ceil(pets / showPerPage)
       : statusPets && !filterPets
       ? Math.ceil(statusPets / showPerPage)
