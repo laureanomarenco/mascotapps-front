@@ -2,7 +2,7 @@ export const URL_ROUTES = "https://worker-production-2aad.up.railway.app/";
 
 export const URL_CIUDAD_API =
   "https://apis.datos.gob.ar/georef/api/municipios?max=2500";
-export const URL_AUTH = "https://dev-roby-desarollo.up.railway.app/";
+export const URL_AUTH = "https://dev-roby-desarollo.up.railway.app";
 export const URL_TOTAL_USERS =
   "https://worker-production-2aad.up.railway.app/users/numberOfUsersInDB";
 
