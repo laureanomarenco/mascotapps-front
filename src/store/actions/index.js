@@ -1,4 +1,5 @@
 import axios from "axios";
+axios.defaults.withCredentials = true; // Setear que axios, por default, envíe cookie. Su valor por default es false.
 import {
   URL_ALLPETS,
   URL_PET_DETAIL,
@@ -206,7 +207,7 @@ export function postPet(pet) {
     try {
       var json = await axios.post(
         "https://mascotapps-back-production.up.railway.app/users/postnewpet",
-        pet, { withCredentials: true }
+        pet
       );
       console.log("pasooooo el postttttttt", json);
       return dispatch({ type: POST_PET, payload: json.data });
