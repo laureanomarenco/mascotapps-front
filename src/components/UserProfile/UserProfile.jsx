@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from "react-redux";
 export default function UserProfile() {
   const dispatch = useDispatch();
   const user = useSelector((state) => state.user);
-  const statusLog = useSelector((state) => state.statusLogin);
+  //const statusLog = useSelector((state) => state.statusLogin);
   console.log(
     "🚀 ~ file: UserProfile.jsx ~ line 11 ~ UserProfile ~ user",
     user
@@ -19,7 +19,7 @@ export default function UserProfile() {
     dispatch(isLogged());
   }, []);
 
-  if(statusLog){
+
     return (
       <div className="flex flex-col items-center w-full h-full min-w-screen">
       <Navbar className="w-full" />
@@ -65,5 +65,5 @@ export default function UserProfile() {
       <Footer />
     </div>
   );
-  } else {return(<div>No estas logueado</div>)}
+ 
 }
