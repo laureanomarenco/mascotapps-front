@@ -136,7 +136,7 @@ export function searchPets(input) {
 export function getUserInfo() {
   return async function (dispatch) {
     try {
-      const user = await axios.get(URL_USER_LOGGED);
+      const user = await axios.get(URL_USER_LOGGED, { withCredentials: true });
       console.log("aca esta el usuarioooo", user);
       return dispatch({
         type: "GET_USER_INFO",
