@@ -134,7 +134,7 @@ export default function reducer(state = initalState, action) {
       };
 
     case IS_LOGGED:
-      let status;
+      var status;
       if(action.payload.isLogged) {status = true}
       else {status = false}
       return {
