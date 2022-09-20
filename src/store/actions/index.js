@@ -226,7 +226,9 @@ export function postPet(pet) {
 export function isLogged() {
   return async function (dispatch) {
     try {
+
       var log = await axios.get(LOGIN_LOGGED, { withCredentials: true });
+
       console.log(log)
       return dispatch({ type: IS_LOGGED, payload: log.data });
     } catch (error) {
