@@ -1,5 +1,5 @@
 import axios from "axios";
-
+axios.defaults.withCredentials = true
 import {
   URL_ALLPETS,
   URL_PET_DETAIL,
