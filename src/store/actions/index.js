@@ -225,7 +225,7 @@ export function isLogged() {
   return async function (dispatch) {
     try {
       var log = await axios.get(
-        "https://worker-production-2aad.up.railway.app/auth/logged_in", { withCredentials: true }
+        "https://dev-roby-desarollo.up.railway.app/auth/logged_in", { withCredentials: true }
       );
       console.log(log)
       return dispatch({ type: IS_LOGGED, payload: log.data });
