@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import React from "react";
+import { LOGIN } from "../../url/url";
 
 export default function Login() {
   return (
@@ -59,7 +60,7 @@ export default function Login() {
             </div>
             <div>
               {" "}
-              <a href="https://dev-roby-desarollo.up.railway.app/auth/google">
+              <a href={LOGIN}>
                 Sign in con Google
               </a>{" "}
             </div>
