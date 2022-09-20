@@ -1,20 +1,18 @@
-export const URL_ROUTES = "https://worker-production-2aad.up.railway.app/";
-
+export const URL = "https://worker-production-2aad.up.railway.app/";
 export const URL_CIUDAD_API =
   "https://apis.datos.gob.ar/georef/api/municipios?max=2500";
-export const URL_AUTH = "https://dev-roby-desarollo.up.railway.app";
-export const URL_TOTAL_USERS =
-  "https://worker-production-2aad.up.railway.app/users/numberOfUsersInDB";
 
-export const URL_ALLPETS = URL_ROUTES + "pets";
-export const URL_PET_DETAIL = URL_ROUTES + "pets/";
-export const SEARCH_BY = URL_ROUTES + "pets/search?input=";
-export const URL_DONATION = URL_ROUTES + "checkout/balance";
 
-export const URL_PET_SPECIES=URL_ROUTES + "pets/especies"
+export const TOTAL_USERS = URL + "users/numberOfUsersInDB";
+export const ALLPETS = URL + "pets";
+export const PET_DETAIL = URL + "pets/";
+export const SEARCH_BY = URL + "pets/search?input=";
+export const DONATION = URL + "checkout/balance";
+
+export const PET_SPECIES = URL + "pets/especies";
 // export const URL_POST_PET=URL_ROUTES + "users/postnewpet"
+export const POST = "https://mascotapps-back-production.up.railway.app/users/postnewpet";
 
-
-export const URL_LOGIN = URL_AUTH + "/auth/google";
-export const URL_USER_LOGGED = URL_AUTH + "/profile";
-
+export const LOGIN = URL + "auth/google";
+export const LOGIN_LOGGED = URL + "auth/logged_in";
+export const USER_LOGGED = URL + "profile";
