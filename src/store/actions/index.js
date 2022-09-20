@@ -1,5 +1,5 @@
 import axios from "axios";
-
+axios.defaults.withCredentials = true; // Setear que axios, por default, envíe cookie. Su valor por default es false.
 import {
   URL_ALLPETS,
   URL_PET_DETAIL,
