@@ -221,7 +221,7 @@ export function postPet(pet) {
   };
 }
 
-export default function isLogged() {
+export function isLogged() {
   return async function (dispatch) {
     try {
       var log = await axios.get(
