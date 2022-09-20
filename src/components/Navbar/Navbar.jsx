@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { getPetsByStatus } from "../../store/actions/index";
 import { useDispatch } from "react-redux";
-import { searchPets } from "../../store/actions";
+import { searchPets, resetDetail } from "../../store/actions";
 
 export default function Navbar() {
   const [searchInput, setSearchInput] = useState(true);
@@ -10,12 +10,15 @@ export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
   const [input, setInput] = useState("");
 
-  let dispatch = useDispatch()
+  let dispatch = useDispatch();
 
   function handleChange(e) {
     e.preventDefault();
-    setInput(e.target.value);
-    dispatch(searchPets(input))
+    if (e.target.value !== "") {
+      setInput(e.target.value);
+      dispatch(searchPets(input));
+    }
+    dispatch(resetDetail());
   }
 
   const handleClick = (e) => {
