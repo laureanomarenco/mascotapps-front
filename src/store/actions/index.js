@@ -138,6 +138,7 @@ export function getUserInfo() {
     try {
       const user = await axios.get(URL_USER_LOGGED, { withCredentials: true });
       console.log("aca esta el usuarioooo", user);
+      console.log(`user.data = ${user.data}`);
       return dispatch({
         type: "GET_USER_INFO",
         payload: user.data,
