@@ -1,4 +1,4 @@
-export const URL = "https://worker-production-2aad.up.railway.app/";
+export const URL = "https://mascotapps-back-main.up.railway.app/";
 export const URL_CIUDAD_API =
   "https://apis.datos.gob.ar/georef/api/municipios?max=2500";
 

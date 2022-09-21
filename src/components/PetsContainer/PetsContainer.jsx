@@ -8,7 +8,8 @@ import Pagination from "../Pagination/Pagination";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import FormFilter from "../FormFilter/FormFilter";
-import { resetDetail, filterPets } from "../../store/actions";
+import { resetDetail, filterPets, getPetsByStatus } from "../../store/actions";
+import { useLocation } from "react-router-dom";
 
 const PetsContainer = () => {
   const pets = useSelector((state) => state.statusPets);
@@ -23,6 +24,12 @@ const PetsContainer = () => {
     race: "",
   });
 
+  let location = useLocation()
+
+  useEffect(() => {
+    dispatch(getPetsByStatus(location.pathname.split('/')[2]))
+  }, []);
+  
   const handleFilter = (e) => {
     setFilter({
       ...filter,
@@ -87,22 +94,21 @@ const PetsContainer = () => {
         pets={pets}
       />
       {notFound && showAlert()}
-      <div className=" grid gap-1 grid-cols-1 gird-rows-1 md:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-3 bg-[url('https://res.cloudinary.com/dax0wf30d/image/upload/v1663115601/shit/bg-5_nbb3sj.png')]">
+      {/* xs:col-span-2 md:col-span-2 justify-self-center */}
+        <Pagination
+          filterPets={filterPet.length}
+          statusPets={pets.length}
+          pagination={pagination}
+          showPerPage={showPerPage}
+          page={page}
+        />
+      <div className="grid gap-1 grid-rows-1 md:grid-cols-2 xl:grid-cols-3 justify-self-center">
         {showPets.length > 0 && !notFound
           ? showPets.map((fPet) => <Card key={fPet.id} data={fPet} />)
           : !notFound &&
             showByStatus?.map((pet) => <Card key={pet.id} data={pet} />)}
-        <div className="md:col-span-3 mx-auto mb-2 mt-0">
-          <Pagination
-            filterPets={filterPet.length}
-            statusPets={pets.length}
-            pagination={pagination}
-            showPerPage={showPerPage}
-            page={page}
-          ></Pagination>
-        </div>
-        {/* <Footer/> */}
       </div>
+        {/* <Footer/> */}
     </div>
   );
 };
