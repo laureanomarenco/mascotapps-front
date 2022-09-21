@@ -11,7 +11,7 @@ import axios from "axios";
 export default function UserProfile() {
   //eslint-disable-next-line
   const { user, isAuthenticated, isLoading } = useAuth0();
-  const statusLog = useSelector((state) => state.statusLogin);
+  //const statusLog = useSelector((state) => state.statusLogin);
   console.log(
     "🚀 ~ file: UserProfile.jsx ~ line 11 ~ UserProfile ~ user",
     user
@@ -40,6 +40,7 @@ export default function UserProfile() {
 
   useEffect(() => {
     dispatch(isLogged())
+    dispatch(getUserInfo())
   }, []);
 
   function logOut() {
@@ -92,6 +93,9 @@ export default function UserProfile() {
           <button onClick={logOut}>
             LOGOUT DE PASSPORT!
           </button>
+          <div>
+            
+          </div>
         </div>
         <Footer />
       </div>
