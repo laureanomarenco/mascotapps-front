@@ -1,4 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
+
 import React, { useEffect, useState } from "react";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import { AiOutlineCamera } from "react-icons/ai";
@@ -7,6 +8,7 @@ import TextField from "@mui/material/TextField";
 import { fetchCity, getSpecies, postPet } from "../../store/actions";
 import validate from "./validate";
 import Swal from "sweetalert2";
+// import Button from "../Button/Button"
 
 const PostPets = () => {
   const dispatch = useDispatch();
@@ -113,9 +115,9 @@ const PostPets = () => {
     dispatch(getSpecies());
   }, [dispatch]);
   return (
-    <div className="relative flex flex-wrap lg:h-screen lg:items-center">
-      <div className="w-full px-4 py-12 lg:w-1/2 sm:px-6 lg:px-8 sm:py-6 lg:py-12">
-        <div className="max-w-lg mx-auto text-center">
+    <div className="relative flex flex-wrap lg:h-screen lg:items-center ">
+      <div className="w-full px-4 py-12 lg:w-1/2 sm:px-4 lg:px-4 sm:py-6 lg:py-12 ">
+        <div className="max-w-lg mx-auto text-center ">
           <h1 className="text-2xl font-bold sm:text-3xl">Postea una mascota</h1>
 
           <p className="mt-4 text-gray-500">
@@ -125,7 +127,7 @@ const PostPets = () => {
           </p>
         </div>
 
-        <form className="max-w-md mx-auto mt-8 mb-0 space-y-2">
+        <form className="max-w-md mx-auto mt-8 mb-0 space-y-2 p-6 border border-1 border-[#ecca08]">
           <div>
             <label htmlFor="nombre" className="sr-only">
               Nombre
@@ -139,6 +141,15 @@ const PostPets = () => {
                 placeholder="Nombre"
                 value={input.name}
               />
+            </div>
+            <div className="text-center text-xs mt-1">
+              {!error.name ? (
+                <span className="text-black">
+                  Si no sabes el nombre deja el campo vacio*
+                </span>
+              ) : (
+                <span className="text-red-500">*{error.name}</span>
+              )}
             </div>
           </div>
 
@@ -165,6 +176,9 @@ const PostPets = () => {
                 ))}
               </select>
             </div>
+            <div className="text-center text-xs text-red-500 mt-1">
+              {!error.spices ? null : <span>*{error.spices}</span>}
+            </div>
           </div>
 
           <div>
@@ -181,86 +195,105 @@ const PostPets = () => {
                 value={input.race}
               />
             </div>
-          </div>
-
-          <div>
-            <label htmlFor="estado" className="sr-only">
-              Estado
-            </label>
-            <div className="relative">
-              <select
-                onChange={handleChange}
-                className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-                name="state"
-                value={input.state}
-              >
-                <option hidden>Estado</option>
-                <option value="Perdido">Perdido</option>
-                <option value="Adopcion">Adopcion</option>
-                <option value="Encontrado">Encontrado</option>
-              </select>
+            <div className="text-center text-xs text-red-500 mt-1">
+              {!error.race ? null : <span>*{error.race}</span>}
             </div>
           </div>
 
-          <div>
-            <label htmlFor="genero" className="sr-only">
-              Género
-            </label>
-            <div className="relative">
-              <select
-                onChange={handleChange}
-                className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-                name="gender"
-                value={input.gender}
-              >
-                <option hidden>Genero</option>
-                <option value="macho">Macho</option>
-                <option value="hembra">Hembra</option>
-              </select>
+          <div className="md:flex md:w-full md:gap-[10px] md:justify-evenly ">
+            <div className=" md:w-1/2">
+              <label htmlFor="estado" className="sr-only">
+                Estado
+              </label>
+              <div className="relative w-full ">
+                <select
+                  onChange={handleChange}
+                  className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                  name="state"
+                  value={input.state}
+                >
+                  <option hidden>Estado</option>
+                  <option value="Perdido">Perdido</option>
+                  <option value="Adopcion">Adopcion</option>
+                  <option value="Encontrado">Encontrado</option>
+                </select>
+              </div>
+              <div className="text-center text-xs text-red-500 mt-1">
+                {!error.state ? null : <span>*{error.state}</span>}
+              </div>
+            </div>
+
+            <div className=" md:w-1/2">
+              <label htmlFor="genero" className="sr-only">
+                Género
+              </label>
+              <div className="relative basis-2/4">
+                <select
+                  onChange={handleChange}
+                  className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                  name="gender"
+                  value={input.gender}
+                >
+                  <option hidden>Genero</option>
+                  <option value="macho">Macho</option>
+                  <option value="hembra">Hembra</option>
+                </select>
+              </div>
+              <div className="text-center text-xs text-red-500 mt-1">
+                {!error.gender ? null : <span>*{error.gender}</span>}
+              </div>
             </div>
           </div>
 
-          <div>
-            <label htmlFor="edad" className="sr-only">
-              Estado
-            </label>
-            <div className="relative">
-              <select
-                onChange={handleChange}
-                className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-                name="age"
-                value={input.age}
-              >
-                <option hidden>Edad</option>
-                <option value="Cachorro">Cachorro</option>
-                <option value="Joven">Joven</option>
-                <option value="Adulto">Adulto</option>
-                <option value="Adulto mayor">Adulto Mayor</option>
-              </select>
+          <div className="md:flex md:w-full md:gap-[10px] md:justify-evenly">
+            <div className=" md:w-1/2">
+              <label htmlFor="edad" className="sr-only">
+                Estado
+              </label>
+              <div className="relative">
+                <select
+                  onChange={handleChange}
+                  className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                  name="age"
+                  value={input.age}
+                >
+                  <option hidden>Edad</option>
+                  <option value="Cachorro">Cachorro</option>
+                  <option value="Joven">Joven</option>
+                  <option value="Adulto">Adulto</option>
+                  <option value="Adulto mayor">Adulto Mayor</option>
+                </select>
+              </div>
+              <div className="text-center text-xs text-red-500 mt-1">
+                {!error.age ? null : <span>*{error.age}</span>}
+              </div>
             </div>
-          </div>
 
-          <div>
-            <label htmlFor="vacunacion" className="sr-only">
-              Carnet de vacunacion
-            </label>
-            <div className="relative">
-              <select
-                onChange={handleChange}
-                className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-                name="vaccination"
-                value={input.vaccination}
-              >
-                <option hidden>Vacunacion</option>
-                <option value="si">Si</option>
-                <option value="No">No</option>
-              </select>
+            <div className=" md:w-1/2">
+              <label htmlFor="vacunacion" className="sr-only">
+                Carnet de vacunacion
+              </label>
+              <div className="relative">
+                <select
+                  onChange={handleChange}
+                  className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                  name="vaccination"
+                  value={input.vaccination}
+                >
+                  <option hidden>Vacunacion</option>
+                  <option value="si">Si</option>
+                  <option value="No">No</option>
+                </select>
+              </div>
+              <div className="text-center text-xs text-red-500 mt-1">
+                {!error.vaccination ? null : <span>*{error.vaccination}</span>}
+              </div>
             </div>
           </div>
 
           <div>
             <label htmlFor="urlImage" className="sr-only">
-              Email
+              Imagen
             </label>
 
             <div className="relative">
@@ -278,9 +311,9 @@ const PostPets = () => {
               </span>
             </div>
 
-            {/* <div className="text-center text-xs text-red-500 mt-1">
-        {!errors.email ? null : <span >*{errors.email}</span>}
-          </div> */}
+            <div className="text-center text-xs text-red-500 mt-1">
+              {!error.email ? null : <span>*{error.email}</span>}
+            </div>
           </div>
 
           <div>
@@ -297,11 +330,15 @@ const PostPets = () => {
                 value={input.description}
               />
             </div>
+            <div className="text-center text-xs text-red-500 mt-1">
+              {!error.description ? null : <span>*{error.description}</span>}
+            </div>
           </div>
 
           <div>
             <div className="relative">
               <Autocomplete
+                value={input.city}
                 disablePortal
                 id="combo-box-demo"
                 options={localidades}
@@ -318,9 +355,9 @@ const PostPets = () => {
               />
             </div>
 
-            {/* <div className="text-center text-xs text-red-500 mt-1">
-        {!errors.city ? null : <span >*{errors.city}</span>}
-          </div> */}
+            <div className="text-center text-xs text-red-500 mt-1">
+              {!error.city ? null : <span>*{error.city}</span>}
+            </div>
           </div>
 
           <div>
@@ -342,20 +379,30 @@ const PostPets = () => {
                 <AiOutlineWhatsApp color="grey" />
               </span>
             </div>
-
-            {/* <div className="text-center text-xs text-red-500 mt-1">
-        {!errors.contact ? null : <span >*{errors.contact}</span>}
-          </div> */}
+            <div className="text-center text-xs text-red-500 mt-1">
+              {!error.contact ? null : <span>*{error.contact}</span>}
+            </div>
           </div>
 
-          <div className="flex items-center justify-between">
-            <button
-              onClick={handleSubmit}
-              type="submit"
-              className="w-full rounded-md border border-transparent bg-[#ecca08] py-2  text-sm font-medium text-black hover:bg-[#ffd903]  focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
-            >
-              Siguiente
-            </button>
+          <div className="flex w-full gap-[10px] justify-between ">
+            <div className="flex items-center basis-2/4 justify-between">
+              <button
+                onClick={handleSubmit}
+                type="submit"
+                className="w-full rounded-md border border-transparent bg-[#ecca08] py-2  text-sm font-medium text-black hover:bg-[#ffd903]  focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
+              >
+                Siguiente
+              </button>
+            </div>
+            <div className="flex items-center basis-2/4 justify-between">
+              <button
+                onClick={handleSubmit}
+                type="submit"
+                className="w-full rounded-md border border-transparent bg-[#ecca08] py-2  text-sm font-medium text-black hover:bg-[#ffd903]  focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
+              >
+                Volver al inicio
+              </button>
+            </div>
           </div>
         </form>
       </div>
