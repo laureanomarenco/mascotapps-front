@@ -8,7 +8,8 @@ import Pagination from "../Pagination/Pagination";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import FormFilter from "../FormFilter/FormFilter";
-import { resetDetail, filterPets } from "../../store/actions";
+import { resetDetail, filterPets, getPetsByStatus } from "../../store/actions";
+import { useLocation } from "react-router-dom";
 
 const PetsContainer = () => {
   const pets = useSelector((state) => state.statusPets);
@@ -23,6 +24,12 @@ const PetsContainer = () => {
     race: "",
   });
 
+  let location = useLocation()
+
+  useEffect(() => {
+    dispatch(getPetsByStatus(location.pathname.split('/')[2]))
+  }, []);
+  
   const handleFilter = (e) => {
     setFilter({
       ...filter,
