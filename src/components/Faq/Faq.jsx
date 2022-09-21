@@ -2,9 +2,9 @@ import React from "react";
 
 const Faq = () => {
   return (
-    <div className="space-y-4">
+    <div className="space-y-4 md:w-3/4 md:mx-auto">
       <details
-        className="p-6 border-l-4 border-green-500 bg-gray-50 group"
+        className="p-6 border-l-4 border-[#FFC700] bg-gray-50 group"
         open
       >
         <summary className="flex items-center justify-between cursor-pointer">
@@ -17,7 +17,7 @@ const Faq = () => {
               xmlns="http://www.w3.org/2000/svg"
               className="flex-shrink-0 w-5 h-5 transition duration-300 group-open:-rotate-45"
               viewBox="0 0 20 20"
-              fill="currentColor"
+              fill="#28B0A2"
             >
               <path
                 fillRule="evenodd"
@@ -36,7 +36,7 @@ const Faq = () => {
         </p>
       </details>
 
-      <details className="p-6 border-l-4 border-green-500 bg-gray-50 group">
+      <details className="p-6 border-l-4 border-[#FFC700] bg-gray-50 group">
         <summary className="flex items-center justify-between cursor-pointer">
           <h5 className="text-lg font-medium text-gray-900">
             Lorem ipsum dolor sit amet consectetur adipisicing?
@@ -47,7 +47,7 @@ const Faq = () => {
               xmlns="http://www.w3.org/2000/svg"
               className="flex-shrink-0 w-5 h-5 transition duration-300 group-open:-rotate-45"
               viewBox="0 0 20 20"
-              fill="currentColor"
+              fill="#28B0A2"
             >
               <path
                 fillRule="evenodd"
