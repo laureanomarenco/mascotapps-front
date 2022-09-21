@@ -1,21 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { getPetsByStatus } from "../../store/actions/index";
 import { useDispatch } from "react-redux";
-import { searchPets } from "../../store/actions";
+import { isLogged } from "../../store/actions";
+import { searchPets, resetDetail } from "../../store/actions";
+import { useSelector } from "react-redux";
 
 export default function Navbar() {
   const [searchInput, setSearchInput] = useState(true);
   const [mdOptionsToggle, setMdOptionsToggle] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
   const [input, setInput] = useState("");
+  const logStatus = useSelector((state) => state.statusLogin)
+  
 
-  let dispatch = useDispatch()
+  let dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(isLogged())
+  }, [dispatch, logStatus])
 
   function handleChange(e) {
     e.preventDefault();
-    setInput(e.target.value);
-    dispatch(searchPets(input))
+    if (e.target.value !== "") {
+      setInput(e.target.value);
+      dispatch(searchPets(input));
+    }
+    dispatch(resetDetail());
   }
 
   const handleClick = (e) => {
@@ -67,6 +78,31 @@ export default function Navbar() {
               />
             </div>
             <div className="space-x-6 flex items-center">
+              {logStatus &&
+              <Link
+              to="/account"
+              className="text-gray-800  focus:outline-none hover:text-[#28B0A2] "
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="fill-stroke"
+                  width={24}
+                  height={24}
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
+                </svg>
+
+                <span className="sr-only"> Account </span>
+              </Link>
+              }
               <Link
                 to="/favoritos"
                 aria-label="view favourites"

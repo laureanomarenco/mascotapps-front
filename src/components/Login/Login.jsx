@@ -1,7 +1,12 @@
 import { Link } from "react-router-dom";
 import React from "react";
 
+
 export default function Login() {
+  const googleLogin = () => {
+    window.open("https://worker-production-2aad.up.railway.app/auth/google", "_self")
+  }
+
   return (
     <>
       <div className="flex absolute w-full h-full items-center  justify-center  py-12 px-4 md:px-6 lg:px-8 md:w-1/3 lg:w-1/4 md:h-full md:right-10 bg-white">
@@ -58,10 +63,9 @@ export default function Login() {
               </div>
             </div>
             <div>
-              {" "}
-              <a href="https://dev-roby-desarollo.up.railway.app/auth/google">
+              <button onClick={googleLogin}>
                 Sign in con Google
-              </a>{" "}
+              </button>
             </div>
             <div className="flex items-center justify-between">
               <div className="flex items-center">

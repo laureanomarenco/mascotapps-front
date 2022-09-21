@@ -7,16 +7,33 @@ const Pagination = ({
   page,
   statusPets,
   filterPets,
+  searchedPets,
 }) => {
   const pageNumbers = [];
   const total =
-    !statusPets && !filterPets
+    pets && !searchedPets
       ? Math.ceil(pets / showPerPage)
+      : searchedPets && pets
+      ? Math.ceil(searchedPets / showPerPage)
       : statusPets && !filterPets
       ? Math.ceil(statusPets / showPerPage)
-      : Math.ceil(filterPets / showPerPage);
+      : filterPets && Math.ceil(filterPets / showPerPage);
 
-  for (let i = 1; i <= total; i++) {
+  // console.log({
+  //   showPerPage,
+  //   pets,
+  //   pagination,
+  //   page,
+  //   statusPets,
+  //   filterPets,
+  //   searchedPets,
+  // });
+
+  // console.log(searchedPets);
+  // console.log(pets);
+
+  console.log(total);
+  for (let i = 1; i <= Math.ceil(total); i++) {
     pageNumbers.push(i);
   }
 

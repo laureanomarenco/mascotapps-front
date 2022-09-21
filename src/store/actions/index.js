@@ -1,13 +1,15 @@
 import axios from "axios";
 
 import {
-  URL_ALLPETS,
-  URL_PET_DETAIL,
+  ALLPETS,
+  PET_DETAIL,
   SEARCH_BY,
-  URL_DONATION,
-  URL_USER_LOGGED,
-  URL_TOTAL_USERS,
-  URL_PET_SPECIES,
+  DONATION,
+  USER_LOGGED,
+  TOTAL_USERS,
+  PET_SPECIES,
+  LOGIN_LOGGED,
+  POST,
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 
@@ -28,11 +30,12 @@ export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_DONATIONS = "GET_DONATIONS";
 export const GET_SPECIES = "GET_SPECIES";
 export const POST_PET = "POST_PET";
+export const IS_LOGGED = "IS_LOGGED";
 
 export function fetchPets() {
   return async function (dispatch) {
     try {
-      const datos = await axios.get(URL_ALLPETS);
+      const datos = await axios.get(ALLPETS);
       return dispatch({
         type: FETCH_PETS,
         payload: datos.data,
@@ -49,7 +52,7 @@ export function fetchPets() {
 export function getDetail(id) {
   return async function (dispatch) {
     try {
-      const info = await axios.get(URL_PET_DETAIL + id);
+      const info = await axios.get(PET_DETAIL + id);
       return dispatch({
         type: "GET_DETAIL",
         payload: info.data,
@@ -65,7 +68,7 @@ export function getDetail(id) {
 export function getPetsByStatus(status) {
   return async function (dispatch) {
     try {
-      const info = await axios.get(URL_PET_DETAIL + status);
+      const info = await axios.get(PET_DETAIL + status);
       return dispatch({
         type: GET_PETS_BY_STATUS,
         payload: info.data,
@@ -136,7 +139,7 @@ export function searchPets(input) {
 export function getUserInfo() {
   return async function (dispatch) {
     try {
-      const user = await axios.get(URL_USER_LOGGED, { withCredentials: true });
+      const user = await axios.get(USER_LOGGED, { withCredentials: true });
       console.log("aca esta el usuarioooo", user);
       console.log(`user.data = ${user.data}`);
       return dispatch({
@@ -154,7 +157,7 @@ export function getUserInfo() {
 export function getAllUsers() {
   return async function (dispatch) {
     try {
-      const users = await axios.get(URL_TOTAL_USERS);
+      const users = await axios.get(TOTAL_USERS);
       return dispatch({
         type: "GET_ALL_USERS",
         payload: users.data,
@@ -171,7 +174,7 @@ export function getAllUsers() {
 export function getDonations() {
   return async function (dispatch) {
     try {
-      const donations = await axios.get(URL_DONATION);
+      const donations = await axios.get(DONATION);
       return dispatch({
         type: "GET_DONATIONS",
         payload: donations.data,
@@ -187,7 +190,7 @@ export function getDonations() {
 export function getSpecies() {
   return async function (dispatch) {
     try {
-      const datos = await axios.get(URL_PET_SPECIES);
+      const datos = await axios.get(PET_SPECIES);
       return dispatch({
         type: GET_SPECIES,
         payload: datos.data,
@@ -206,7 +209,7 @@ export function postPet(pet) {
   return async function (dispatch) {
     try {
       var json = await axios.post(
-        "https://mascotapps-back-production.up.railway.app/users/postnewpet",
+        POST,
         pet
       );
       console.log("pasooooo el postttttttt", json);
@@ -214,6 +217,23 @@ export function postPet(pet) {
     } catch (error) {
       return dispatch({
         type: POST_PET,
+        payload: { error: error.message },
+      });
+    }
+  };
+}
+
+export function isLogged() {
+  return async function (dispatch) {
+    try {
+
+      var log = await axios.get(LOGIN_LOGGED, { withCredentials: true });
+
+      console.log(log)
+      return dispatch({ type: IS_LOGGED, payload: log.data });
+    } catch (error) {
+      return dispatch({
+        type: IS_LOGGED,
         payload: { error: error.message },
       });
     }

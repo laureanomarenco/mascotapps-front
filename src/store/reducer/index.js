@@ -12,21 +12,26 @@ import {
   GET_SPECIES,
   POST_PET,
   GET_ALL_USERS,
+  IS_LOGGED,
 } from "../actions";
 
 const initalState = {
   pets: [],
   pet: {},
   statusPets: [],
-  isLoading: true,
   filterPets: [],
   searchedPets: [],
-  donations: [],
-  notFound: false,
-  cities: [],
-  user: {},
   species: [],
+  
+  donations: [],
+  cities: [],
+
+  user: {},
   totalUsers: "",
+  statusLogin: false,
+
+  isLoading: true,
+  notFound: false,
 };
 
 export default function reducer(state = initalState, action) {
@@ -50,6 +55,7 @@ export default function reducer(state = initalState, action) {
         ...state,
         pet: {},
         filterPets: [],
+        searchedPets: [],
         notFound: false,
       };
     case GET_PETS_BY_STATUS:
@@ -126,6 +132,15 @@ export default function reducer(state = initalState, action) {
       return {
         ...state,
         totalUsers: action.payload,
+      };
+
+    case IS_LOGGED:
+      var status;
+      if(action.payload.isLogged) {status = true}
+      else {status = false}
+      return {
+        ...state,
+        statusLogin: status,
       };
 
     default:
