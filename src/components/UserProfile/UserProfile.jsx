@@ -4,7 +4,7 @@ import Navbar from "../Navbar/Navbar";
 import React, { useEffect } from "react";
 import { getUserInfo, isLogged } from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
-import { FaLongArrowAltUp } from "react-icons/fa";
+//import { FaLongArrowAltUp } from "react-icons/fa";
 import axios from "axios";
 
 export default function UserProfile() {
