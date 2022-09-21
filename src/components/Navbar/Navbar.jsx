@@ -1,16 +1,25 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import { Link, NavLink } from "react-router-dom";
 import { getPetsByStatus } from "../../store/actions/index";
 import { useDispatch } from "react-redux";
+
 import { searchPets, resetDetail } from "../../store/actions";
 
+import { useAuth0 } from "@auth0/auth0-react";
+import { LoginButton } from "../Login/LoginButton";
+
 export default function Navbar() {
+  const { isAuthenticated } = useAuth0();
   const [searchInput, setSearchInput] = useState(true);
   const [mdOptionsToggle, setMdOptionsToggle] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
   const [input, setInput] = useState("");
 
   let dispatch = useDispatch();
+
+  // useEffect(() => {
+  //   dispatch(isLogged());
+  // }, [dispatch, logStatus]);
 
   function handleChange(e) {
     e.preventDefault();
@@ -70,29 +79,34 @@ export default function Navbar() {
               />
             </div>
             <div className="space-x-6 flex items-center">
-              <Link
-                to="/account"
-                className="text-gray-800  focus:outline-none hover:text-[#28B0A2] "
-              >
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  className="fill-stroke"
-                  width={24}
-                  height={24}
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
+              {isAuthenticated ? (
+                <Link
+                  to="/account"
+                  className="text-gray-800  focus:outline-none hover:text-[#28B0A2] "
                 >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                  />
-                </svg>
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="fill-stroke"
+                    width={24}
+                    height={24}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                    />
+                  </svg>
 
-                <span className="sr-only"> Account </span>
-              </Link>
+                  <span className="sr-only"> Account </span>
+                </Link>
+              ) : (
+                <LoginButton />
+              )}
+
               <Link
                 to="/favoritos"
                 aria-label="view favourites"
@@ -240,29 +254,33 @@ export default function Navbar() {
                       />
                     </svg>
                   </Link>
-                  <Link
-                    to="/account"
-                    className="text-gray-800  focus:outline-none hover:text-[#28B0A2] "
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="fill-stroke"
-                      width={24}
-                      height={24}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
+                  {isAuthenticated ? (
+                    <Link
+                      to="/account"
+                      className="text-gray-800  focus:outline-none hover:text-[#28B0A2] "
                     >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth="2"
-                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                      />
-                    </svg>
+                      <svg
+                        xmlns="http://www.w3.org/2000/svg"
+                        className="fill-stroke"
+                        width={24}
+                        height={24}
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2"
+                          d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                        />
+                      </svg>
 
-                    <span className="sr-only"> Account </span>
-                  </Link>
+                      <span className="sr-only"> Account </span>
+                    </Link>
+                  ) : (
+                    <LoginButton />
+                  )}
                 </div>
                 <div className="flex lg:hidden">
                   <button
@@ -570,30 +588,34 @@ export default function Navbar() {
                     <p className="text-base">Cart</p>
                   </a>
                 </li> */}
-
-                <Link
-                  to="/account"
-                  className="text-gray-800 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
-                >
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    className="fill-stroke"
-                    width={20}
-                    height={20}
-                    viewBox="0 0 20 20"
-                    fill="none"
-                    stroke="currentColor"
+                {isAuthenticated ? (
+                  <Link
+                    to="/account"
+                    className="text-gray-800 flex items-center space-x-2 focus:outline-none focus:ring-2 focus:ring-gray-800 hover:underline"
                   >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
-                    />
-                  </svg>
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      className="fill-stroke"
+                      width={20}
+                      height={20}
+                      viewBox="0 0 20 20"
+                      fill="none"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"
+                      />
+                    </svg>
 
-                  <p className="text-base">Mi perfil</p>
-                </Link>
+                    <p className="text-base">Mi perfil</p>
+                  </Link>
+                ) : (
+                  <LoginButton />
+                )}
+
                 <li>
                   <Link
                     to="/favoritos"
