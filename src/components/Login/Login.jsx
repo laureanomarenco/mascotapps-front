@@ -168,6 +168,9 @@ export default function Login() {
                 </a>
               </Link>
             </p>
+            <button onClick={googleLogin}>
+              LOGIN CON PASSPORT
+            </button>
           </div>
         </div>
       </div>
