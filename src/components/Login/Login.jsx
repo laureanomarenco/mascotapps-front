@@ -4,7 +4,7 @@ import { LOGIN } from "../../url/url";
 import { LoginButton } from "./LoginButton";
 import { Logout } from "../Logout/Logout";
 import { useAuth0 } from "@auth0/auth0-react";
-import Profile from "./Profile";
+
 
 export default function Login() {
   const { isAuthenticated } = useAuth0();
@@ -73,7 +73,7 @@ export default function Login() {
               <>
                 {" "}
                 <Logout />
-                <Profile />{" "}
+
               </>
             ) : (
               <LoginButton />
