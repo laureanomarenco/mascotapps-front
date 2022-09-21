@@ -73,7 +73,7 @@ export default function UserProfile() {
               to="/postpets"
               className="px-6 py-3  bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300"
             >
-              Postear un aviso
+              Postear un aviso!
             </Link>
             <Logout />
           </div>
