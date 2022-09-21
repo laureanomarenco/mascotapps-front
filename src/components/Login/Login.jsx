@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import React from "react";
-import { LOGIN } from "../../url/url";
+
 
 export default function Login() {
   const googleLogin = () => {

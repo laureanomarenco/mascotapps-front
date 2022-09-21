@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { getPetsByStatus } from "../../store/actions/index";
 import { useDispatch } from "react-redux";
 import { isLogged } from "../../store/actions";
 import { searchPets, resetDetail } from "../../store/actions";
+import { useSelector } from "react-redux";
 
 export default function Navbar() {
   const [searchInput, setSearchInput] = useState(true);
@@ -11,6 +12,7 @@ export default function Navbar() {
   const [showMenu, setShowMenu] = useState(false);
   const [input, setInput] = useState("");
   const logStatus = useSelector((state) => state.statusLogin)
+  
 
   let dispatch = useDispatch();
 
