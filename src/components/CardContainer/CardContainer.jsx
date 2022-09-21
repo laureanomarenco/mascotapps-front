@@ -37,23 +37,7 @@ export default function CardContainer() {
     }).then(() => window.location.reload());
   };
   return (
-    <div
-      className={`${
-        loading
-          ? "grid gap-1 grid-rows-1 pt-40"
-          : "grid gap-1 grid-rows-1 md:grid-cols-2 xl:grid-cols-3 "
-      } grid-cols-1 min-h-[70vh]`}
-    >
-      {notFound && showAlert()}
-      {loading && !notFound ? (
-        <Spinner />
-      ) : searchedPets.length ? (
-        showSearch?.map((pet, i) => <Card key={i} data={pet} />)
-      ) : (
-        showPets?.map((pet) => <Card key={pet.id} data={pet} />)
-      )}
-
-      <div className="md:col-span-3 justify-self-center">
+    <>
         <Pagination
           pets={pets.length}
           searchedPets={
@@ -65,7 +49,24 @@ export default function CardContainer() {
           page={page}
           pagination={pagination}
         />
-      </div>
+    <div
+      className={`${
+        loading
+          ? "grid gap-1 grid-rows-1 pt-40"
+          : "grid gap-1 grid-rows-1 md:grid-cols-2 xl:grid-cols-3"
+      } min-h-[70vh]`}
+    >
+      {notFound && showAlert()}
+      {loading && !notFound ? (
+        <Spinner />
+      ) : searchedPets.length ? (
+        showSearch?.map((pet, i) => <Card key={i} data={pet} />)
+      ) : (
+        showPets?.map((pet) => <Card key={pet.id} data={pet} />)
+      )}
+
     </div>
+    </>
+
   );
 }
