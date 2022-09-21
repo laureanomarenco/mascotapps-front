@@ -1,10 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link, NavLink } from "react-router-dom";
 import { getPetsByStatus } from "../../store/actions/index";
 import { useDispatch } from "react-redux";
+import { isLogged } from "../../store/actions";
 import { searchPets, resetDetail } from "../../store/actions";
+
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoginButton } from "../Login/LoginButton";
+
 
 export default function Navbar() {
   const { isAuthenticated } = useAuth0();
@@ -12,8 +15,14 @@ export default function Navbar() {
   const [mdOptionsToggle, setMdOptionsToggle] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
   const [input, setInput] = useState("");
+  const logStatus = useSelector((state) => state.statusLogin)
+  
 
   let dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(isLogged())
+  }, [dispatch, logStatus])
 
   function handleChange(e) {
     e.preventDefault();
@@ -73,6 +82,7 @@ export default function Navbar() {
               />
             </div>
             <div className="space-x-6 flex items-center">
+
               {isAuthenticated ? (
                 <Link
                   to="/account"
@@ -100,6 +110,7 @@ export default function Navbar() {
               ) : (
                 <LoginButton />
               )}
+
 
               <Link
                 to="/favoritos"

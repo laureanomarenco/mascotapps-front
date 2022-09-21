@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import React from "react";
+
 import { LOGIN } from "../../url/url";
 import { LoginButton } from "./LoginButton";
 import { Logout } from "../Logout/Logout";
 import { useAuth0 } from "@auth0/auth0-react";
+
 
 
 export default function Login() {
@@ -11,8 +13,10 @@ export default function Login() {
 
   //eslint-disable-next-line
   const googleLogin = () => {
+
     window.open(`${LOGIN}`, "_self");
   };
+
 
   return (
     <>
