@@ -5,10 +5,28 @@ import { AiOutlineCamera } from "react-icons/ai";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
 import { fetchCity, getSpecies, postPet } from "../../store/actions";
+import validate from "./validate";
+import Swal from "sweetalert2";
 
 const PostPets = () => {
   const dispatch = useDispatch();
   const Petspecies = useSelector((state) => state.species);
+  const [error, setError] = useState({});
+  const [input, setInput] = useState({
+    name: "",
+    spices: "",
+    race: "",
+    state: "",
+    gender: "",
+    age: "",
+    vaccination: "",
+    urlImage: "",
+    description: "",
+    city: "",
+    contact: "",
+  });
+
+  //CLOUDINARY-------------------------------------
   //eslint-disable-next-line
 
   const CLOUD_NAME = "imagenes";
@@ -30,7 +48,7 @@ const PostPets = () => {
     });
     // reemplazar con un mensaje de éxito o la acción deseada
   };
-
+  //-------------------------------------------------------------
   //CIUDADES ARG
   const cities = useSelector((state) => state.cities);
 
@@ -45,30 +63,49 @@ const PostPets = () => {
     .map((l) => `${l.nombre}, ${l.provincia}`);
   //-------------------------------------------------------------------------------------------------------------------
 
-  const [input, setInput] = useState({
-    name: "",
-    spices: "",
-    race: "",
-    state: "",
-    gender: "",
-    age: "",
-    vaccination: "",
-    urlImage: "",
-    description: "",
-    city: "",
-    contact: "",
-  });
+  const showAlert = () => {
+    Swal.fire({
+      title: "Gracias!",
+      text: "Tu mascota fue guardada con exitos",
+      icon: "success",
+      confirmButtonText: "Ok",
+    });
+  };
+  const showError = () => {
+    Swal.fire({
+      title: "Error!",
+      text: "verifique los campos",
+      icon: "error",
+      confirmButtonText: "Ok",
+    });
+  };
+
+  //VALIDACIONES
+
+  //-------------------------------------------
+
+  //+ MANEJO DE ERROREESSSSSSSSSSS
   const handleChange = (e) => {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
     });
+    setError(
+      validate({
+        ...input,
+        [e.target.name]: e.target.value,
+      })
+    );
   };
   const handleSubmit = (e) => {
     e.preventDefault();
-    dispatch(postPet(input));
-    alert("mascota cargada");
-    setInput({});
+    if (error) {
+      showError();
+    } else {
+      dispatch(postPet(input));
+      showAlert();
+      setInput({});
+    }
   };
 
   useEffect(() => {
@@ -229,6 +266,7 @@ const PostPets = () => {
             <div className="relative">
               <input
                 type="file"
+                accept=".png, .jpg, .jpeg"
                 name="urlImage"
                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                 placeholder="Imagen"
