@@ -23,8 +23,6 @@ export default function CardContainer() {
   function pagination(pageNumber) {
     setPage(pageNumber);
   }
-  console.log(searchedPets);
-  console.log(pets);
 
   useEffect(() => {
     !pets.length && dispatch(fetchPets());

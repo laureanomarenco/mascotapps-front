@@ -19,25 +19,9 @@ const Pagination = ({
       ? Math.ceil(statusPets / showPerPage)
       : filterPets && Math.ceil(filterPets / showPerPage);
 
-  // console.log({
-  //   showPerPage,
-  //   pets,
-  //   pagination,
-  //   page,
-  //   statusPets,
-  //   filterPets,
-  //   searchedPets,
-  // });
-
-  // console.log(searchedPets);
-  // console.log(pets);
-
-  console.log(total);
   for (let i = 1; i <= Math.ceil(total); i++) {
     pageNumbers.push(i);
   }
-
-  // console.log(filterPets);
 
   return (
     <div className="flex w-full justify-self-center mx-auto gap-2">
