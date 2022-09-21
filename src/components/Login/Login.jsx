@@ -1,11 +1,22 @@
 import { Link } from "react-router-dom";
 import React from "react";
 
+import { LOGIN } from "../../url/url";
+import { LoginButton } from "./LoginButton";
+import { Logout } from "../Logout/Logout";
+import { useAuth0 } from "@auth0/auth0-react";
+
+
 
 export default function Login() {
+  const { isAuthenticated } = useAuth0();
+
+  //eslint-disable-next-line
   const googleLogin = () => {
-    window.open("https://worker-production-2aad.up.railway.app/auth/google", "_self")
-  }
+
+    window.open(`${LOGIN}`, "_self");
+  };
+
 
   return (
     <>
@@ -62,11 +73,19 @@ export default function Login() {
                 />
               </div>
             </div>
-            <div>
-              <button onClick={googleLogin}>
-                Sign in con Google
-              </button>
-            </div>
+            {isAuthenticated ? (
+              <>
+                {" "}
+                <Logout />
+
+              </>
+            ) : (
+              <LoginButton />
+            )}
+
+            {/* <div>
+              <button onClick={googleLogin}>Sign in con Google</button>
+            </div> */}
             <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <input
