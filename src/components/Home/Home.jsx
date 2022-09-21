@@ -4,10 +4,11 @@ import { FaHands } from "react-icons/fa";
 import CardContainer from "../CardContainer/CardContainer";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
-
 import { SiDatadog } from "react-icons/si";
 
+
 export default function Home() {
+
   return (
     <>
       <Navbar />

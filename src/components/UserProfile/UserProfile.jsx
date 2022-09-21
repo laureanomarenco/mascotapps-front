@@ -4,6 +4,8 @@ import Navbar from "../Navbar/Navbar";
 import React, { useEffect } from "react";
 import { getUserInfo, isLogged } from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
+import { FaLongArrowAltUp } from "react-icons/fa";
+import axios from "axios";
 
 export default function UserProfile() {
   const dispatch = useDispatch();
@@ -18,6 +20,10 @@ export default function UserProfile() {
     dispatch(getUserInfo());
     dispatch(isLogged());
   }, []);
+
+  function logOut() {
+    axios.get("https://worker-production-2aad.up.railway.app/auth/logout", { withCredentials: true })
+  }
 
 
     return (
@@ -61,6 +67,7 @@ export default function UserProfile() {
             Postear un aviso
           </Link>
         </div>
+        <button onClick={logOut}>LOGOUT</button>
       </div>
       <Footer />
     </div>

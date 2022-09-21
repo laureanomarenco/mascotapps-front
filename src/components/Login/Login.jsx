@@ -4,7 +4,7 @@ import { LOGIN } from "../../url/url";
 
 export default function Login() {
   const googleLogin = () => {
-    window.open(`${LOGIN}`, "_self")
+    window.open("https://worker-production-2aad.up.railway.app/auth/google", "_self")
   }
 
   return (
