@@ -6,7 +6,6 @@ import React, { useEffect } from "react";
 // import { getUserInfo, isLogged } from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 
-
 export default function UserProfile() {
   //eslint-disable-next-line
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -18,10 +17,8 @@ export default function UserProfile() {
 
   useEffect(() => {}, []);
 
-
   return (
     <div className="flex flex-col items-center w-full h-full min-w-screen">
-
       <Navbar className="w-full" />
       <div className="grid md:grid-cols-3 gap-2 items-center justify-center content-center w-full px-4  max-h-fit ">
         <div className="md:col-span-3 h-36 text-center flex content-center items-center justify-center">
@@ -41,7 +38,7 @@ export default function UserProfile() {
             Mis datos de registro
           </p>
           <div className="bg-teal-800 w-7 h-1"></div>
-          <p className="">Nombre {user?.given_name }</p>
+          <p className="">Nombre {user?.given_name}</p>
           <p className="">Email </p>
         </div>
         <div className=" md:min-h-[200px] h-full py-2 px-6">
@@ -61,7 +58,6 @@ export default function UserProfile() {
             Postear un aviso
           </Link>
         </div>
-        <button onClick={logOut}>LOGOUT</button>
       </div>
       <Footer />
     </div>
