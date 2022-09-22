@@ -19,7 +19,7 @@ const validate = (input) => {
   if (input.race.search("[^A-Za-z0-9]") !== -1) {
     error.name = "El Nombre no puede tener simbolos*";
   }
-  if (!input.state) {
+  if (!input.status) {
     error.state = "Selecciona el estado de la mascota*";
   }
   if (!input.gender) {
@@ -31,15 +31,17 @@ const validate = (input) => {
   if (!input.vaccination) {
     error.vaccination = "Seleccione una opcion*";
   }
+  if(!input.description){
+    error.description="Completa con una breve descripcion";
+
+  }
   if (input.description.search("[0-9]") !== -1) {
     error.description = "La descripcion no puede tener numeros*";
   }
-  if (input.description.search("[^A-Za-z0-9]") !== -1) {
-    error.description = "La descripcion no puede tener simbolos*";
-  }
-  if (input.city) {
+  if (input.city==="") {
     error.city = "Seleccione una opcion*";
   }
+  
   return error;
 };
 export default validate;

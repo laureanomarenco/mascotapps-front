@@ -13,12 +13,13 @@ import Swal from "sweetalert2";
 const PostPets = () => {
   const dispatch = useDispatch();
   const Petspecies = useSelector((state) => state.species);
+  const loggedUser = useSelector((state) => state.loggedUser);
   const [error, setError] = useState({});
   const [input, setInput] = useState({
     name: "",
-    spices: "",
+    specie: "",
     race: "",
-    state: "",
+    status: "",
     gender: "",
     age: "",
     vaccination: "",
@@ -99,12 +100,44 @@ const PostPets = () => {
       })
     );
   };
+  // {
+  //   name: "",
+  //   specie: "",
+  //   race: "",
+  //   state: "",
+  //   gender: "",
+  //   age: "",
+  //   vaccination: "",
+  //   urlImage: "",
+  //   description: "",
+  //   city: "",
+  //   contact: "",
+  // }
+
+  console.log(loggedUser);
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (error) {
+    if (
+      error.specie ||
+      error.race ||
+      error.status ||
+      error.gender ||
+      error.age ||
+      error.vaccination ||
+      error.urlImage ||
+      error.description ||
+      error.city ||
+      error.contact
+    ) {
       showError();
     } else {
-      dispatch(postPet(input));
+      if (input.name === "") {
+        setInput({
+          ...input,
+          name: undefined,
+        });
+      }
+      dispatch(postPet(input, loggedUser.id));
       showAlert();
       setInput({});
     }
@@ -161,8 +194,8 @@ const PostPets = () => {
               <select
                 onChange={handleChange}
                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-                name="spices"
-                value={input.spices}
+                name="specie"
+                value={input.specie}
               >
                 <option hidden>Especie</option>
                 {Petspecies?.map((pSpecies) => (
@@ -177,7 +210,7 @@ const PostPets = () => {
               </select>
             </div>
             <div className="text-center text-xs text-red-500 mt-1">
-              {!error.spices ? null : <span>*{error.spices}</span>}
+              {!error.specie ? null : <span>*{error.specie}</span>}
             </div>
           </div>
 
@@ -209,17 +242,17 @@ const PostPets = () => {
                 <select
                   onChange={handleChange}
                   className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-                  name="state"
-                  value={input.state}
+                  name="status"
+                  value={input.status}
                 >
                   <option hidden>Estado</option>
-                  <option value="Perdido">Perdido</option>
-                  <option value="Adopcion">Adopcion</option>
-                  <option value="Encontrado">Encontrado</option>
+                  <option value="perdido">Perdido</option>
+                  <option value="en adopción">Adopcion</option>
+                  <option value="encontrado">Encontrado</option>
                 </select>
               </div>
               <div className="text-center text-xs text-red-500 mt-1">
-                {!error.state ? null : <span>*{error.state}</span>}
+                {!error.status ? null : <span>*{error.status}</span>}
               </div>
             </div>
 
@@ -258,10 +291,11 @@ const PostPets = () => {
                   value={input.age}
                 >
                   <option hidden>Edad</option>
-                  <option value="Cachorro">Cachorro</option>
-                  <option value="Joven">Joven</option>
-                  <option value="Adulto">Adulto</option>
-                  <option value="Adulto mayor">Adulto Mayor</option>
+                  <option value="muy joven">Cachorro</option>
+                  <option value="joven">Joven</option>
+                  <option value="adulto">Adulto</option>
+                  <option value="viejo">Adulto Mayor</option>
+                  <option value="desconocido">Desconocido</option>
                 </select>
               </div>
               <div className="text-center text-xs text-red-500 mt-1">
@@ -282,7 +316,7 @@ const PostPets = () => {
                 >
                   <option hidden>Vacunacion</option>
                   <option value="si">Si</option>
-                  <option value="No">No</option>
+                  <option value="no">No</option>
                 </select>
               </div>
               <div className="text-center text-xs text-red-500 mt-1">
@@ -338,7 +372,7 @@ const PostPets = () => {
           <div>
             <div className="relative">
               <Autocomplete
-                onChange={(event,value) =>setInput({...input,city:value})}
+                onChange={(event, value) => setInput({ ...input, city: value })}
                 disablePortal
                 id="combo-box-demo"
                 options={localidades}

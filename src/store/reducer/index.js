@@ -22,14 +22,14 @@ const initalState = {
   filterPets: [],
   searchedPets: [],
   species: [],
-  
+
   donations: [],
   cities: [],
 
   user: {},
   totalUsers: "",
   statusLogin: false,
-
+  loggedUser: {},
   isLoading: true,
   notFound: false,
 };
@@ -136,11 +136,19 @@ export default function reducer(state = initalState, action) {
 
     case IS_LOGGED:
       var status;
-      if(action.payload.isLogged) {status = true}
-      else {status = false}
+      if (action.payload.isLogged) {
+        status = true;
+      } else {
+        status = false;
+      }
       return {
         ...state,
         statusLogin: status,
+      };
+    case "SET_LOGGED_USER":
+      return {
+        ...state,
+        loggedUser: action.payload,
       };
 
     default:

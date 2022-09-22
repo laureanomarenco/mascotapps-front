@@ -1,7 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 import React from "react";
-
-import { LOGIN } from "../../url/url";
+import axios from "axios";
 //eslint-disable-next-line
 import { Logout } from "../Logout/Logout";
 //eslint-disable-next-line
@@ -10,21 +9,24 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Login() {
   //eslint-disable-next-line
-  const { user, isAuthenticated, isLoading, loginWithRedirect, logout } =
-    useAuth0();
+  const { user, isAuthenticated, loginWithRedirect } = useAuth0();
   //eslint-disable-next-line
   const navigate = useNavigate();
 
-  //eslint-disable-next-line
-  const googleLogin = () => {
-    window.open(`${LOGIN}`, "_self");
-  };
-  function handleValidation (){
-    if (isAuthenticated) {
-      navigate("/home");
-    }
+  async function handleValidation(user) {
+    let existe = await axios.post(
+      "https://mascotapps-back-dev-2.up.railway.app/",
+      {
+        id: user?.sub,
+      }
+    );
+    console.log("respuesta del post ", existe.data);
+    // if (isAuthenticated) {
+    //   navigate("/home");
+    // }
   }
-  handleValidation()
+
+  handleValidation(user);
 
   return (
     <>
@@ -40,88 +42,9 @@ export default function Login() {
               Bienvenidos a Mascotapp
             </h2>
             <form className="mt-8 space-y-6" action="#" method="POST">
-              {/*<input type="hidden" name="remember" value="true" />
-            <div className="-space-y-px rounded-md shadow-sm">
-              <div>
-                <label name="email-address" className="sr-only">
-                  Email
-                </label>
-                <input
-                  id="email-address"
-                  name="email"
-                  type="email"
-                  autoComplete="email"
-                  required
-                  className="relative block w-full appearance-none rounded-none rounded-t-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                  placeholder="Email"
-                />
-              </div>
-              <div>
-                <label name="password" className="sr-only">
-                  Password
-                </label>
-                <input
-                  id="password"
-                  name="password"
-                  type="password"
-                  autoComplete="current-password"
-                  required
-                  className="relative block w-full appearance-none rounded-none rounded-b-md border border-gray-300 px-3 py-2 text-gray-900 placeholder-gray-500 focus:z-10 focus:border-indigo-500 focus:outline-none focus:ring-indigo-500 sm:text-sm"
-                  placeholder="Password"
-                />
-              </div>
-            </div>
-            {isAuthenticated ? (
-              <>
-                {" "}
-                <Logout />
-              </>
-            ) : (
-              <LoginButton />
-            )} */}
-
-              {/* <div>
-              <button onClick={googleLogin}>Sign in con Google</button>
-            </div> */}
-              {/* <div className="flex items-center justify-between">
-              <div className="flex items-center">
-                <input
-                  id="remember-me"
-                  name="remember-me"
-                  type="checkbox"
-                  className="h-4 w-4 rounded border-gray-300 text-[#007663] focus:ring-teal-500"
-                />
-                <label
-                  name="remember-me"
-                  className="ml-2 block text-sm text-gray-900"
-                >
-                  Recordarme
-                </label>
-              </div>
-
-              <div className="text-sm">
-                <a
-                  href="#"
-                  className="font-medium text-[#28B0A2] hover:text-[#208a7f]"
-                >
-                  Olvidaste tu contraseña?
-                </a>
-              </div>
-            </div>
-
-            <div className="text-sm text-center ">
-              <span className=" ">¿No tienes una cuenta? </span>
-              <a
-                href="/register"
-                className="font-medium text-[#28B0A2] hover:text-[#208a7f]"
-              >
-                Crear usuario
-              </a>
-            </div> */}
-
               {isAuthenticated ? (
                 <div>
-                  <Logout/>
+                  <Logout />
                 </div>
               ) : (
                 <div>
@@ -168,9 +91,6 @@ export default function Login() {
                 </a>
               </Link>
             </p>
-            <button onClick={googleLogin}>
-              LOGIN CON PASSPORT
-            </button>
           </div>
         </div>
       </div>
