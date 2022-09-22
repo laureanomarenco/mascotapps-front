@@ -83,9 +83,25 @@ const SignUp = () => {
     } else {
       console.log("aca mando el usuario maldita sea!", input);
       dispatch(CreateUser(input));
-      alert("Usuario creado correctamente");
-      setInput({});
-      navigate("/home");
+ 
+      Swal.fire({
+        title: "Usuario creado correctamente",
+        text: "Gracias por registrarte en Mascotapp.",
+        icon: "success",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#28B0A2",
+        cancelButtonText: "Ok",
+      }).then((result) => {
+        if (result.isConfirmed) {
+          navigate("/home");
+          setInput({});
+          dispatch(setLoggedUser(input));
+        }
+      });
+      // setInput({});
+      // navigate("/home");
+
       // dispatch(setLoggedUser(input));
     }
   };
