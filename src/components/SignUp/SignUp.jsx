@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCity} from "../../store/actions/index";
-import { Link, useNavigate } from "react-router-dom";
+import { fetchCity } from "../../store/actions/index";
+import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { AiOutlineUserAdd } from "react-icons/ai";
@@ -114,12 +114,12 @@ const SignUp = () => {
         <div className="w-full px-4 py-12 lg:w-1/2 sm:px-6 lg:px-8 sm:py-6 lg:py-12">
           <div className="max-w-lg mx-auto text-center">
             <h1 className="text-2xl font-bold sm:text-3xl">
-              Registro de Usuario
+              Bienvenid@ a Mascotapp
             </h1>
 
             <p className="mt-4 text-gray-500">
-              Registrate completando el siguiente formulario y<br></br>
-              accede a todas las funcionalidades de la app!
+              Es tu primera vez aquí, te pedimos que completes tu perfil para
+              continuar<br></br>y accede a todas las funcionalidades de la app!
             </p>
           </div>
 
@@ -232,15 +232,6 @@ const SignUp = () => {
                 Regístrate
               </button>
             </div>
-            <p className="text-sm text-gray-500 text-center">
-              ¿Ya tienes una cuenta?
-              <Link to="/">
-                <span className="font-medium text-[#007663] hover:text-teal-500">
-                  {" "}
-                  Inicia Sesión
-                </span>
-              </Link>
-            </p>
           </form>
         </div>
 
