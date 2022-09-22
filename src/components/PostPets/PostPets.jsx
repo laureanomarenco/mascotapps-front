@@ -13,7 +13,6 @@ import Swal from "sweetalert2";
 const PostPets = () => {
   const dispatch = useDispatch();
   const Petspecies = useSelector((state) => state.species);
-  const [tfValue, setTFValue] = useState("My Text");
   const [error, setError] = useState({});
   const [input, setInput] = useState({
     name: "",
@@ -92,7 +91,6 @@ const PostPets = () => {
     setInput({
       ...input,
       [e.target.name]: e.target.value,
-      [e.target.city]:tfValue
     });
     setError(
       validate({
@@ -340,7 +338,7 @@ const PostPets = () => {
           <div>
             <div className="relative">
               <Autocomplete
-                value={input.city}
+                onChange={(event,value) =>setInput({...input,city:value})}
                 disablePortal
                 id="combo-box-demo"
                 options={localidades}
@@ -349,8 +347,6 @@ const PostPets = () => {
                   <TextField
                     {...params}
                     label="Provincia, localidad ..."
-                    value={tfValue}
-                    onChange={(newValue) => setTFValue(newValue.target.value)}
                     name="city"
                   />
                 )}
