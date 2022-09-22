@@ -41,7 +41,7 @@ function App() {
           <Route path="/donate" element={<Donate />} />
           <Route path="*" element={<Error />} />
           <Route path="/favoritos" element={<FavContainer />}></Route>
-          <Route path="/profile/:id" element={<UsersPublicProfile />}></Route>
+          <Route path="/profile" element={<UsersPublicProfile />}></Route>
           <Route path="/postpets" element={<PostPets />}></Route>
           <Route path="/faqs" element={<Faq />}></Route>
         </Routes>

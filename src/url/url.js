@@ -1,4 +1,4 @@
-export const URL = "https://mascotapps-back-main.up.railway.app/";
+export const URL = "https://mascotapps-back-dev-2.up.railway.app/";
 export const URL_CIUDAD_API =
   "https://apis.datos.gob.ar/georef/api/municipios?max=2500";
 
@@ -17,3 +17,4 @@ export const POST =
 export const LOGIN = URL + "auth/google";
 export const LOGIN_LOGGED = URL + "auth/logged_in";
 export const USER_LOGGED = URL + "profile";
+export const GET_INFO_FROM_DETAIL = URL + "users/contactinfo/";

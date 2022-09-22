@@ -8,10 +8,10 @@ import {
   USER_LOGGED,
   TOTAL_USERS,
   PET_SPECIES,
-  LOGIN_LOGGED,
   POST,
   CREAT,
   GET_MY_PETS,
+  GET_INFO_FROM_DETAIL,
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 
@@ -35,6 +35,8 @@ export const POST_PET = "POST_PET";
 export const IS_LOGGED = "IS_LOGGED";
 export const CREAT_USER = "CREAT_USER";
 export const GET_PETS="GET_PETS"
+export const GET_PUBLIC_USER_DETAIL = "GET_PUBLIC_USER_DETAIL";
+
 export function fetchPets() {
   return async function (dispatch) {
     try {
@@ -176,14 +178,14 @@ export function getUserInfo() {
   };
 }
 
-export function setLoggedUser(user) {
-  return function (dispatch) {
-    return dispatch({
-      type: "SET_LOGGED_USER",
-      payload: user,
-    });
-  };
-}
+// export function setLoggedUser(user) {
+//   return function (dispatch) {
+//     return dispatch({
+//       type: "SET_LOGGED_USER",
+//       payload: user,
+//     });
+//   };
+// }
 
 export function getAllUsers() {
   return async function (dispatch) {
@@ -236,7 +238,10 @@ export function getSpecies() {
 }
 
 export function postPet(pet, id) {
-  console.log(pet, id);
+  console.log("esto es lo que mando en la action ", {
+    pet: pet,
+    user: { id: id },
+  });
   return async function (dispatch) {
     try {
       var json = await axios.post(POST, { pet: pet, user: { id: id } });
@@ -251,21 +256,21 @@ export function postPet(pet, id) {
   };
 }
 
-export function isLogged() {
-  return async function (dispatch) {
-    try {
-      var log = await axios.get(LOGIN_LOGGED, { withCredentials: true });
+// export function isLogged() {
+//   return async function (dispatch) {
+//     try {
+//       var log = await axios.get(LOGIN_LOGGED, { withCredentials: true });
 
-      console.log(log);
-      return dispatch({ type: IS_LOGGED, payload: log.data });
-    } catch (error) {
-      return dispatch({
-        type: IS_LOGGED,
-        payload: { error: error.message },
-      });
-    }
-  };
-}
+//       console.log(log);
+//       return dispatch({ type: IS_LOGGED, payload: log.data });
+//     } catch (error) {
+//       return dispatch({
+//         type: IS_LOGGED,
+//         payload: { error: error.message },
+//       });
+//     }
+//   };
+// }
 
 export function CreateUser(input) {
   return async function (dispatch) {
@@ -281,3 +286,23 @@ export function CreateUser(input) {
     }
   };
 }
+
+export function publicUserDetail(id) {
+  return async function (dispatch) {
+    try {
+      var detail = await axios.get(GET_INFO_FROM_DETAIL + id);
+      console.log("🚀 ~ file: index.js ~ line 272 ~ detail", detail)
+      return dispatch({
+        type: GET_PUBLIC_USER_DETAIL,
+        payload: detail.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: GET_PUBLIC_USER_DETAIL,
+        payload: { error: error.message },
+      });
+    }
+  };
+}
+
+

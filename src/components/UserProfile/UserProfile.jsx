@@ -9,7 +9,6 @@ import Swal from "sweetalert2";
 import { useDispatch } from "react-redux";
 
 export default function UserProfile() {
-  //eslint-disable-next-line
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
 
@@ -20,6 +19,23 @@ export default function UserProfile() {
     "🚀 ~ file: UserProfile.jsx ~ line 11 ~ UserProfile ~ user",
     user
   );
+//PROVISORIO POR FAVOR NO TOCAR ESTA FUNCION------------------------------------------------------------
+  const callAll = async () => {
+    const idUser = { id: user?.sub };
+    console.log(idUser);
+    var allpets = await axios.post(
+      "https://mascotapps-back-dev-2.up.railway.app/users/getallpetsofusers",
+      { idUser }
+    );
+    console.log(allpets);
+  };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      callAll();
+    }
+  });
+// --------------------------------------------------------------------------------------------------
   if (!isAuthenticated) {
     Swal.fire({
       title: "No estás logueado",
@@ -62,7 +78,7 @@ export default function UserProfile() {
             </p>
             <div className="bg-teal-800 w-7 h-1"></div>
             <p className="">Nombre {user?.given_name}</p>
-            <p className="">Email </p>
+            <p className="">Email {user?.email}</p>
           </div>
           <div className=" md:min-h-[200px] h-full py-2 px-6">
             <p className="text-xl font-semibold text-teal-800">

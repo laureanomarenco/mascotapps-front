@@ -14,6 +14,7 @@ import {
   GET_ALL_USERS,
   IS_LOGGED,
   GET_PETS,
+  GET_PUBLIC_USER_DETAIL,
 } from "../actions";
 
 const initalState = {
@@ -29,9 +30,9 @@ const initalState = {
   userPets:[],
   totalUsers: "",
   statusLogin: false,
-  loggedUser: {},
   isLoading: true,
   notFound: false,
+  publicUserDetail: {},
 };
 
 export default function reducer(state = initalState, action) {
@@ -145,10 +146,11 @@ export default function reducer(state = initalState, action) {
         ...state,
         statusLogin: status,
       };
-    case "SET_LOGGED_USER":
+
+    case GET_PUBLIC_USER_DETAIL:
       return {
         ...state,
-        loggedUser: action.payload,
+        publicUserDetail: action.payload,
       };
       case GET_PETS:
         return{

@@ -8,12 +8,16 @@ import TextField from "@mui/material/TextField";
 import { fetchCity, getSpecies, postPet } from "../../store/actions";
 import validate from "./validate";
 import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
+import { useAuth0 } from "@auth0/auth0-react";
+
 // import Button from "../Button/Button"
 
 const PostPets = () => {
+  const { user } = useAuth0();
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const Petspecies = useSelector((state) => state.species);
-  const loggedUser = useSelector((state) => state.loggedUser);
   const [error, setError] = useState({});
   const [input, setInput] = useState({
     name: "",
@@ -22,9 +26,9 @@ const PostPets = () => {
     status: "",
     gender: "",
     age: "",
-    vaccination: "",
-    urlImage: "",
-    description: "",
+    vaccinationSchemeStatus: "",
+    image: "",
+    comments: "",
     city: "",
     contact: "",
   });
@@ -47,7 +51,7 @@ const PostPets = () => {
     const dataNew = await response.json();
     setInput({
       ...input,
-      urlImage: dataNew.secure_url,
+      image: dataNew.secure_url,
     });
     // reemplazar con un mensaje de éxito o la acción deseada
   };
@@ -69,9 +73,13 @@ const PostPets = () => {
   const showAlert = () => {
     Swal.fire({
       title: "Gracias!",
-      text: "Tu mascota fue guardada con exitos",
+      text: "Tu mascota fue guardada con exito",
       icon: "success",
       confirmButtonText: "Ok",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/home");
+      }
     });
   };
   const showError = () => {
@@ -108,13 +116,12 @@ const PostPets = () => {
   //   gender: "",
   //   age: "",
   //   vaccination: "",
-  //   urlImage: "",
-  //   description: "",
+  //   image: "",
+  //   comments: "",
   //   city: "",
   //   contact: "",
   // }
 
-  console.log(loggedUser);
   const handleSubmit = (e) => {
     e.preventDefault();
     if (
@@ -123,9 +130,9 @@ const PostPets = () => {
       error.status ||
       error.gender ||
       error.age ||
-      error.vaccination ||
-      error.urlImage ||
-      error.description ||
+      error.vaccinationSchemeStatus ||
+      error.image ||
+      error.comments ||
       error.city ||
       error.contact
     ) {
@@ -137,7 +144,7 @@ const PostPets = () => {
           name: undefined,
         });
       }
-      dispatch(postPet(input, loggedUser.id));
+      dispatch(postPet(input, user?.sub));
       showAlert();
       setInput({});
     }
@@ -311,22 +318,25 @@ const PostPets = () => {
                 <select
                   onChange={handleChange}
                   className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-                  name="vaccination"
-                  value={input.vaccination}
+                  name="vaccinationSchemeStatus"
+                  value={input.vaccinationSchemeStatus}
                 >
                   <option hidden>Vacunacion</option>
-                  <option value="si">Si</option>
-                  <option value="no">No</option>
+                  <option value="completo">Completo</option>
+                  <option value="incompleto">Incompleto</option>
+                  <option value="desconocido">Desconocido</option>
                 </select>
               </div>
               <div className="text-center text-xs text-red-500 mt-1">
-                {!error.vaccination ? null : <span>*{error.vaccination}</span>}
+                {!error.vaccinationSchemeStatus ? null : (
+                  <span>*{error.vaccinationSchemeStatus}</span>
+                )}
               </div>
             </div>
           </div>
 
           <div>
-            <label htmlFor="urlImage" className="sr-only">
+            <label htmlFor="image" className="sr-only">
               Imagen
             </label>
 
@@ -334,7 +344,7 @@ const PostPets = () => {
               <input
                 type="file"
                 accept=".png, .jpg, .jpeg"
-                name="urlImage"
+                name="image"
                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                 placeholder="Imagen"
                 onChange={upload}
@@ -358,14 +368,14 @@ const PostPets = () => {
               <textarea
                 onChange={handleChange}
                 type="text"
-                name="description"
+                name="comments"
                 className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm "
                 placeholder="Descripcion de la mascota..."
-                value={input.description}
+                value={input.comments}
               />
             </div>
             <div className="text-center text-xs text-red-500 mt-1">
-              {!error.description ? null : <span>*{error.description}</span>}
+              {!error.comments ? null : <span>*{error.comments}</span>}
             </div>
           </div>
 
@@ -423,12 +433,12 @@ const PostPets = () => {
                 type="submit"
                 className="w-full rounded-md border border-transparent bg-[#ecca08] py-2  text-sm font-medium text-black hover:bg-[#ffd903]  focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
               >
-                Siguiente
+                Postear
               </button>
             </div>
             <div className="flex items-center basis-2/4 justify-between">
               <button
-                onClick={handleSubmit}
+                onClick={() => navigate("/home")}
                 type="submit"
                 className="w-full rounded-md border border-transparent bg-[#ecca08] py-2  text-sm font-medium text-black hover:bg-[#ffd903]  focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
               >
