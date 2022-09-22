@@ -13,12 +13,22 @@ export default function Detail() {
   const dispatch = useDispatch();
   const pet = useSelector((state) => state.pet);
   const loading = useSelector((state) => state.isLoading);
+
+  const [visible, setVisible] = React.useState(true)
   useEffect(() => {
     dispatch(getDetail(id));
     return () => {
       dispatch(resetDetail());
     };
   }, [id]);
+
+  //HARDCODEO DE USUARIO
+  //eslint-disable-next-line
+  const user = {
+    contact: 115555555
+  };
+
+  
   return (
     <div className="flex flex-col justify-center content-center items-center min-h-screen w-full mx-auto">
       {loading ? (
@@ -74,9 +84,11 @@ export default function Detail() {
                   <FaPaw />
                   {pet.name}
                 </h1>
-                  <div className="relative">
-                    {/* favorito */}
-                  <div className="absolute flex items-center text-teal-600 right-1 top-1"><Fav pet={pet} /> </div>
+                <div className="relative">
+                  {/* favorito */}
+                  <div className="absolute flex items-center text-teal-600 right-1 top-1">
+                    <Fav pet={pet} />{" "}
+                  </div>
                   <p className="text-xl flex font-bold items-center gap-2 text-teal-800 ">
                     {" "}
                     Estado
@@ -116,6 +128,8 @@ export default function Detail() {
                 <p className="capitalize text-xl font-bold text-teal-600">
                   Contacto
                 </p>
+                <button onClick={()=> user.contact ? setVisible(false) : true}>Ver datos</button>
+                <span hidden={visible}>{user.contact}</span>
               </div>
             </div>
           ) : (
