@@ -9,6 +9,7 @@ import SignUp from "./components/SignUp/SignUp";
 import Error from "./components/Error/Error";
 import LoginAdmin from "./components/AdminPage/LoginAdmin";
 import AdminPage from "./components/AdminPage/AdminPage";
+import Faq from "./components/Faq/Faq";
 import React from "react";
 import UserProfile from "./components/UserProfile/UserProfile";
 import { fetchPets } from "./store/actions";
@@ -18,7 +19,6 @@ import Donate from "./components/Donate/Donate";
 import FavContainer from "./components/FavContainer";
 import UsersPublicProfile from "./components/UsersPublicProfile/UsersPublicProfile";
 import PostPets from "./components/PostPets/PostPets";
-
 
 function App() {
   //eslint-disable-next-line
@@ -42,7 +42,8 @@ function App() {
           <Route path="*" element={<Error />} />
           <Route path="/favoritos" element={<FavContainer />}></Route>
           <Route path="/profile/:id" element={<UsersPublicProfile />}></Route>
-          <Route path="/postpets" element={<PostPets/>}></Route>
+          <Route path="/postpets" element={<PostPets />}></Route>
+          <Route path="/faqs" element={<Faq />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

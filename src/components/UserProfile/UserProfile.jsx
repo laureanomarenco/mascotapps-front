@@ -1,15 +1,16 @@
 import Footer from "../Footer/Footer";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
-import React, { useEffect } from "react";
+import React from "react";
 import { Logout } from "../Logout/Logout";
-// import { getUserInfo, isLogged } from "../../store/actions";
+
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
+
 export default function UserProfile() {
   //eslint-disable-next-line
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  //const statusLog = useSelector((state) => state.statusLogin);
+  const { user, isAuthenticated } = useAuth0();
+
   console.log(
     "🚀 ~ file: UserProfile.jsx ~ line 11 ~ UserProfile ~ user",
     user
@@ -33,7 +34,6 @@ export default function UserProfile() {
     });
   }
 
-  useEffect(() => {}, []);
   if (isAuthenticated) {
     return (
       <div className="flex flex-col items-center w-full h-full min-w-screen">
