@@ -34,12 +34,9 @@ const validate = (input) => {
   if (input.description.search("[0-9]") !== -1) {
     error.description = "La descripcion no puede tener numeros*";
   }
-  if (input.description.search("[A-Za-z0-9]") !== -1) {
-    error.description = "La descripcion no puede tener simbolos*";
-  }
-  if (input.city) {
-    error.city = "Seleccione una opcion*";
-  }
+  // if (input.city) {
+  //   error.city = "Seleccione una opcion*";
+  // }
   return error;
 };
 export default validate;

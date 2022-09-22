@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 // import {useHistory} from 'react-router-dom';
-import { fetchCity } from "../../store/actions/index";
+import { fetchCity, setLoggedUser } from "../../store/actions/index";
 import { Link, useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
@@ -90,9 +90,10 @@ const SignUp = () => {
     } else {
       console.log("aca mando el usuario maldita sea!", input);
       dispatch(CreateUser(input));
-      alert("Usuario creado correctamente");
+      alert("Usuario creado correctamente"); //ALERTA CONDICIONAL (SI YA ESXISTE O NO)
       setInput({});
       navigate("/home");
+      dispatch(setLoggedUser(input));
     }
   };
   if (!isAuthenticated) {

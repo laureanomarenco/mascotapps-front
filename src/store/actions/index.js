@@ -10,7 +10,7 @@ import {
   PET_SPECIES,
   LOGIN_LOGGED,
   POST,
-  CREAT
+  CREAT,
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 
@@ -156,6 +156,16 @@ export function getUserInfo() {
     }
   };
 }
+
+export function setLoggedUser(user) {
+  return function (dispatch) {
+    return dispatch({
+      type: "SET_LOGGED_USER",
+      payload: user,
+    });
+  };
+}
+
 export function getAllUsers() {
   return async function (dispatch) {
     try {
@@ -206,14 +216,11 @@ export function getSpecies() {
   };
 }
 
-export function postPet(pet) {
-  console.log(pet);
+export function postPet(pet, id) {
+  console.log(pet, id);
   return async function (dispatch) {
     try {
-      var json = await axios.post(
-        POST,
-        pet
-      );
+      var json = await axios.post(POST, { pet: pet, user: { id: id } });
       console.log("pasooooo el postttttttt", json);
       return dispatch({ type: POST_PET, payload: json.data });
     } catch (error) {
@@ -228,10 +235,9 @@ export function postPet(pet) {
 export function isLogged() {
   return async function (dispatch) {
     try {
-
       var log = await axios.get(LOGIN_LOGGED, { withCredentials: true });
 
-      console.log(log)
+      console.log(log);
       return dispatch({ type: IS_LOGGED, payload: log.data });
     } catch (error) {
       return dispatch({
@@ -242,18 +248,17 @@ export function isLogged() {
   };
 }
 
-
-export function CreateUser(input){
-  return async function(dispatch){
+export function CreateUser(input) {
+  return async function (dispatch) {
     try {
       var json = await axios.post(CREAT, input);
-      console.log('aca viaja el userrrrrrr', json)
-       return dispatch({ type: CREAT_USER, payload: json.data });
+      console.log("aca viaja el userrrrrrr", json);
+      return dispatch({ type: CREAT_USER, payload: json.data });
     } catch (error) {
-       return dispatch({
+      return dispatch({
         type: CREAT_USER,
-        payload: { error: error.message }
+        payload: { error: error.message },
       });
     }
-  }
+  };
 }
