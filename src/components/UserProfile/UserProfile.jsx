@@ -3,14 +3,19 @@ import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import React from "react";
 import { Logout } from "../Logout/Logout";
-
+import { getMyPets } from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
+import { useDispatch } from "react-redux";
 
 export default function UserProfile() {
   //eslint-disable-next-line
   const { user, isAuthenticated } = useAuth0();
+  const dispatch = useDispatch();
 
+  const handelSubmit = () => {
+    dispatch(getMyPets(user.sub));
+  };
   console.log(
     "🚀 ~ file: UserProfile.jsx ~ line 11 ~ UserProfile ~ user",
     user
@@ -75,6 +80,14 @@ export default function UserProfile() {
             >
               Postear un aviso!
             </Link>
+            <div className="flex flex-col w-full  max-w-[500px] items-start justify-center gap-3 my-6 px-4  md:flex-row md:justify-center md:col-span-3">
+              <button
+                className="px-6 py-3 bg-[#FFC700] rounded-md font-bold hover:bg-[ffd803]/80 transition-all duration-300"
+                onClick={handelSubmit}
+              >
+                Ver mis mascotas!
+              </button>
+            </div>
             <Logout />
           </div>
         </div>

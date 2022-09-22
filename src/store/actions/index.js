@@ -11,6 +11,7 @@ import {
   LOGIN_LOGGED,
   POST,
   CREAT,
+  GET_MY_PETS,
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 
@@ -33,7 +34,7 @@ export const GET_SPECIES = "GET_SPECIES";
 export const POST_PET = "POST_PET";
 export const IS_LOGGED = "IS_LOGGED";
 export const CREAT_USER = "CREAT_USER";
-
+export const GET_PETS="GET_PETS"
 export function fetchPets() {
   return async function (dispatch) {
     try {
@@ -49,6 +50,24 @@ export function fetchPets() {
       });
     }
   };
+}
+export function getMyPets(userId){
+    console.log(userId)
+  return async function(dispatch){
+    try {
+      const datos=await axios.Post(GET_MY_PETS,userId);
+      console.log("MANDO EL POSSSSTTTTTTT,RESPUESTA---->>",datos.data)
+      return dispatch({
+        type:GET_PETS,
+        payload:datos.data
+      });
+    } catch (error) {
+      return dispatch({
+        type:GET_PETS,
+        payload:error.data
+      })
+    }
+  }
 }
 
 export function getDetail(id) {

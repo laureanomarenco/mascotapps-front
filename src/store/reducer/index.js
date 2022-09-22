@@ -13,6 +13,7 @@ import {
   POST_PET,
   GET_ALL_USERS,
   IS_LOGGED,
+  GET_PETS,
 } from "../actions";
 
 const initalState = {
@@ -22,11 +23,10 @@ const initalState = {
   filterPets: [],
   searchedPets: [],
   species: [],
-
   donations: [],
   cities: [],
-
   user: {},
+  userPets:[],
   totalUsers: "",
   statusLogin: false,
   loggedUser: {},
@@ -150,6 +150,11 @@ export default function reducer(state = initalState, action) {
         ...state,
         loggedUser: action.payload,
       };
+      case GET_PETS:
+        return{
+          ...state,
+          userPets: action.payload,
+        }
 
     default:
       return state;
