@@ -91,7 +91,7 @@ const PostPets = () => {
   const handleChange = (e) => {
     setInput({
       ...input,
-      [e.target.name]: e.target.value.toLowerCase(),
+      [e.target.name]: e.target.value,
     });
     setError(
       validate({
@@ -246,9 +246,9 @@ const PostPets = () => {
                   value={input.status}
                 >
                   <option hidden>Estado</option>
-                  <option value="Perdido">Perdido</option>
-                  <option value="Adopcion">Adopcion</option>
-                  <option value="Encontrado">Encontrado</option>
+                  <option value="perdido">Perdido</option>
+                  <option value="en adopción">Adopcion</option>
+                  <option value="encontrado">Encontrado</option>
                 </select>
               </div>
               <div className="text-center text-xs text-red-500 mt-1">
@@ -316,7 +316,7 @@ const PostPets = () => {
                 >
                   <option hidden>Vacunacion</option>
                   <option value="si">Si</option>
-                  <option value="No">No</option>
+                  <option value="no">No</option>
                 </select>
               </div>
               <div className="text-center text-xs text-red-500 mt-1">
