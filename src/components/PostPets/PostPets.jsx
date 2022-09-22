@@ -18,8 +18,6 @@ const PostPets = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const Petspecies = useSelector((state) => state.species);
-  //eslint-disable-next-line
-  const loggedUser = useSelector((state) => state.loggedUser);
   const [error, setError] = useState({});
   const [input, setInput] = useState({
     name: "",
