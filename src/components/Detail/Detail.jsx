@@ -1,24 +1,47 @@
 import { Link, useParams } from "react-router-dom";
 import React, { useEffect } from "react";
-import { getDetail, resetDetail } from "../../store/actions/index";
+import {
+  getDetail,
+  resetDetail,
+  publicUserDetail,
+} from "../../store/actions/index";
 import Fav from "../Fav";
 import { BiArrowBack } from "react-icons/bi";
 import { FaPaw } from "react-icons/fa";
 import Footer from "../Footer/Footer";
 import Spinner from "../Spinner/Spinner";
+//eslint-disable-next-line
+import UsersPublicProfile from "../UsersPublicProfile/UsersPublicProfile";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Detail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const pet = useSelector((state) => state.pet);
+  console.log("🚀 ~ file: Detail.jsx ~ line 21 ~ Detail ~ pet", pet)
   const loading = useSelector((state) => state.isLoading);
+  //eslint-disable-next-line
+  const [visible, setVisible] = React.useState(true);
   useEffect(() => {
     dispatch(getDetail(id));
     return () => {
       dispatch(resetDetail());
     };
   }, [id]);
+
+  //HARDCODEO DE USUARIO
+  //eslint-disable-next-line
+  const user = {
+    id: 1,
+    name: "gonzalo",
+    email: "correo@correo.com",
+    city: "Lanús, Buenos Aires",
+    image: "url de imagen",
+    contact: 115555555,
+  };
+  const handleClick = () => {
+    dispatch(publicUserDetail(id));
+  };
   return (
     <div className="flex flex-col justify-center content-center items-center min-h-screen w-full mx-auto">
       {loading ? (
@@ -74,9 +97,11 @@ export default function Detail() {
                   <FaPaw />
                   {pet.name}
                 </h1>
-                  <div className="relative">
-                    {/* favorito */}
-                  <div className="absolute flex items-center text-teal-600 right-1 top-1"><Fav pet={pet} /> </div>
+                <div className="relative">
+                  {/* favorito */}
+                  <div className="absolute flex items-center text-teal-600 right-1 top-1">
+                    <Fav pet={pet} />{" "}
+                  </div>
                   <p className="text-xl flex font-bold items-center gap-2 text-teal-800 ">
                     {" "}
                     Estado
@@ -116,6 +141,7 @@ export default function Detail() {
                 <p className="capitalize text-xl font-bold text-teal-600">
                   Contacto
                 </p>
+                <button onClick={handleClick}>Ver datos</button>
               </div>
             </div>
           ) : (

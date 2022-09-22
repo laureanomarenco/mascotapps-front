@@ -3,18 +3,34 @@ import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import React from "react";
 import { Logout } from "../Logout/Logout";
-
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
+import { useEffect } from "react";
+import axios from "axios";
 
 export default function UserProfile() {
-  //eslint-disable-next-line
   const { user, isAuthenticated } = useAuth0();
-
   console.log(
     "🚀 ~ file: UserProfile.jsx ~ line 11 ~ UserProfile ~ user",
     user
   );
+//PROVISORIO POR FAVOR NO TOCAR ESTA FUNCION------------------------------------------------------------
+  const callAll = async () => {
+    const idUser = { id: user?.sub };
+    console.log(idUser);
+    var allpets = await axios.post(
+      "https://mascotapps-back-dev-2.up.railway.app/users/getallpetsofusers",
+      { idUser }
+    );
+    console.log(allpets);
+  };
+
+  useEffect(() => {
+    if (isAuthenticated) {
+      callAll();
+    }
+  });
+// --------------------------------------------------------------------------------------------------
   if (!isAuthenticated) {
     Swal.fire({
       title: "No estás logueado",
@@ -75,6 +91,7 @@ export default function UserProfile() {
             >
               Postear un aviso!
             </Link>
+
             <Logout />
           </div>
         </div>

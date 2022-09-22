@@ -1,21 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
 import Navbar from "../Navbar/Navbar";
 import RatingStar from "../RatingStar/RatingStar";
 import Footer from "../Footer/Footer";
-import { useParams } from "react-router-dom";
-import { getUserInfo } from "../../store/actions/index";
-import { useDispatch, useSelector } from "react-redux";
+
+
 import Spinner from "../Spinner/Spinner";
 import Rating from "@mui/material/Rating";
 
-export default function UsersPublicProfile() {
-  const { id } = useParams();
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
-  useEffect(() => {
-    dispatch(getUserInfo(id));
-  }, [dispatch, id]);
-  if (!user.name) {
+export default function UsersPublicProfile({ user }) {
+  if (!user?.name) {
     return (
       <>
         <Navbar />
@@ -30,14 +23,14 @@ export default function UsersPublicProfile() {
         <div className="grid md:grid-cols-3 gap-2 items-start justify-center content-center w-full px-4  max-h-fit ">
           <div className="md:col-span-3 h-36 text-center flex content-center items-center justify-center">
             <p className="text-4xl font-semibold uppercase text-[#28B0A2]">
-              Perfil de {user.name}
+              Perfil de {user?.name}
             </p>
           </div>
           <div className="w-52 h-52 rounded-full overflow-hidden mx-auto">
             <img
               className="object-cover w-full h-full object-center"
-              src={user.image}
-              alt={user.name}
+              src={user?.image}
+              alt={user?.name}
             />
           </div>
 
@@ -46,9 +39,9 @@ export default function UsersPublicProfile() {
               Datos de contacto
             </p>
             <div className="bg-teal-800 w-7 h-1"></div>
-            <p>Celular {user.contact}</p>
-            <p>Email {user.email}</p>
-            <p>Zona: {user.city}</p>
+            <p>Celular {user?.contact}</p>
+            <p>Email {user?.email}</p>
+            <p>Zona: {user?.city}</p>
           </div>
           <div>
             <RatingStar />
@@ -61,7 +54,7 @@ export default function UsersPublicProfile() {
             </h2>
 
             <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12">
-              {user.review?.map((review) => (
+              {user?.review?.map((review) => (
                 <blockquote key={Math.random()}>
                   {console.log(review)}
                   <header className="sm:items-center sm:flex">
