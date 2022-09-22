@@ -8,7 +8,6 @@ import {
   USER_LOGGED,
   TOTAL_USERS,
   PET_SPECIES,
-  LOGIN_LOGGED,
   POST,
   CREAT,
   GET_INFO_FROM_DETAIL,
@@ -237,21 +236,21 @@ export function postPet(pet, id) {
   };
 }
 
-export function isLogged() {
-  return async function (dispatch) {
-    try {
-      var log = await axios.get(LOGIN_LOGGED, { withCredentials: true });
+// export function isLogged() {
+//   return async function (dispatch) {
+//     try {
+//       var log = await axios.get(LOGIN_LOGGED, { withCredentials: true });
 
-      console.log(log);
-      return dispatch({ type: IS_LOGGED, payload: log.data });
-    } catch (error) {
-      return dispatch({
-        type: IS_LOGGED,
-        payload: { error: error.message },
-      });
-    }
-  };
-}
+//       console.log(log);
+//       return dispatch({ type: IS_LOGGED, payload: log.data });
+//     } catch (error) {
+//       return dispatch({
+//         type: IS_LOGGED,
+//         payload: { error: error.message },
+//       });
+//     }
+//   };
+// }
 
 export function CreateUser(input) {
   return async function (dispatch) {

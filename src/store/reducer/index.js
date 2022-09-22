@@ -13,7 +13,7 @@ import {
   POST_PET,
   GET_ALL_USERS,
   IS_LOGGED,
-  GET_PUBLIC_USER_DETAIL
+  GET_PUBLIC_USER_DETAIL,
 } from "../actions";
 
 const initalState = {
@@ -23,17 +23,14 @@ const initalState = {
   filterPets: [],
   searchedPets: [],
   species: [],
-
   donations: [],
   cities: [],
-
   user: {},
   totalUsers: "",
   statusLogin: false,
-  loggedUser: {},
   isLoading: true,
   notFound: false,
-  publicUserDetail: {}
+  publicUserDetail: {},
 };
 
 export default function reducer(state = initalState, action) {
@@ -147,16 +144,12 @@ export default function reducer(state = initalState, action) {
         ...state,
         statusLogin: status,
       };
-    case "SET_LOGGED_USER":
+
+    case GET_PUBLIC_USER_DETAIL:
       return {
         ...state,
-        loggedUser: action.payload,
+        publicUserDetail: action.payload,
       };
-      case GET_PUBLIC_USER_DETAIL:
-        return {
-          ...state,
-          publicUserDetail: action.payload
-        }
     default:
       return state;
   }

@@ -4,7 +4,6 @@ import axios from "axios";
 //eslint-disable-next-line
 import { Logout } from "../Logout/Logout";
 //eslint-disable-next-line
-
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Login() {
@@ -14,9 +13,6 @@ export default function Login() {
   const navigate = useNavigate();
   // eslint-disable-next-line
   const handleValidation = async (user, isAuthenticated) => {
-    console.log("esto mando al back", {
-      id: user?.sub,
-    });
     try {
       if (isAuthenticated && user) {
         let existe = await axios.post(

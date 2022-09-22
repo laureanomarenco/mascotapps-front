@@ -40,7 +40,7 @@ export default function Detail() {
     contact: 115555555,
   };
   const handleClick = () => {
-    dispatch(publicUserDetail(user.id));
+    dispatch(publicUserDetail(id));
   };
   return (
     <div className="flex flex-col justify-center content-center items-center min-h-screen w-full mx-auto">
