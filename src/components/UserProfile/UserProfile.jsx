@@ -1,17 +1,16 @@
 import Footer from "../Footer/Footer";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
-import React, { useEffect } from "react";
+import React from "react";
 import { Logout } from "../Logout/Logout";
-import { getUserInfo, isLogged } from "../../store/actions";
+
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
-import { useDispatch } from "react-redux";
-import axios from "axios";
+
 export default function UserProfile() {
   //eslint-disable-next-line
-  const { user, isAuthenticated, isLoading } = useAuth0();
-  const statusLog = useSelector((state) => state.statusLogin);
+  const { user, isAuthenticated } = useAuth0();
+
   console.log(
     "🚀 ~ file: UserProfile.jsx ~ line 11 ~ UserProfile ~ user",
     user
@@ -33,17 +32,6 @@ export default function UserProfile() {
         window.location.href = "/home";
       }
     });
-  }
-
-  //PASSPORT
-  let dispatch = useDispatch()
-
-  useEffect(() => {
-    dispatch(isLogged())
-  }, []);
-
-  function logOut() {
-    axios.get('https://mascotapps-back-main.up.railway.app/auth/logout')
   }
 
   if (isAuthenticated) {
@@ -89,9 +77,6 @@ export default function UserProfile() {
             </Link>
             <Logout />
           </div>
-          <button onClick={logOut}>
-            LOGOUT DE PASSPORT!
-          </button>
         </div>
         <Footer />
       </div>

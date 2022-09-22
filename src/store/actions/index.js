@@ -10,6 +10,7 @@ import {
   PET_SPECIES,
   LOGIN_LOGGED,
   POST,
+  CREAT
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 
@@ -31,6 +32,7 @@ export const GET_DONATIONS = "GET_DONATIONS";
 export const GET_SPECIES = "GET_SPECIES";
 export const POST_PET = "POST_PET";
 export const IS_LOGGED = "IS_LOGGED";
+export const CREAT_USER = "CREAT_USER";
 
 export function fetchPets() {
   return async function (dispatch) {
@@ -238,4 +240,20 @@ export function isLogged() {
       });
     }
   };
+}
+
+
+export function CreateUser(input){
+  return async function(dispatch){
+    try {
+      var json = await axios.post(CREAT, input);
+      console.log('aca viaja el userrrrrrr', json)
+       return dispatch({ type: CREAT_USER, payload: json.data });
+    } catch (error) {
+       return dispatch({
+        type: CREAT_USER,
+        payload: { error: error.message }
+      });
+    }
+  }
 }

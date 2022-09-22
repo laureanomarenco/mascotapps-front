@@ -18,7 +18,7 @@ const PostPets = () => {
     name: "",
     spices: "",
     race: "",
-    state: "",
+    status: "",
     gender: "",
     age: "",
     vaccination: "",
@@ -99,11 +99,31 @@ const PostPets = () => {
       })
     );
   };
+  // {
+  //   name: "",
+  //   spices: "",
+  //   race: "",
+  //   state: "",
+  //   gender: "",
+  //   age: "",
+  //   vaccination: "",
+  //   urlImage: "",
+  //   description: "",
+  //   city: "",
+  //   contact: "",
+  // }
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (error) {
+    if (error.spices||error.race||error.status||error.gender||error.age||
+      error.vaccination||error.urlImage||error.description||error.city||error.contact) {
       showError();
     } else {
+      if(input.name===""){
+        setInput({
+          ...input,
+          name:undefined,
+        })
+      }
       dispatch(postPet(input));
       showAlert();
       setInput({});
@@ -209,8 +229,8 @@ const PostPets = () => {
                 <select
                   onChange={handleChange}
                   className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-                  name="state"
-                  value={input.state}
+                  name="status"
+                  value={input.status}
                 >
                   <option hidden>Estado</option>
                   <option value="Perdido">Perdido</option>
@@ -219,7 +239,7 @@ const PostPets = () => {
                 </select>
               </div>
               <div className="text-center text-xs text-red-500 mt-1">
-                {!error.state ? null : <span>*{error.state}</span>}
+                {!error.status ? null : <span>*{error.status}</span>}
               </div>
             </div>
 

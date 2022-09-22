@@ -153,10 +153,10 @@ export default function Navbar() {
               <ul className="hidden w-8/12 md:flex items-center justify-center space-x-8">
                 <li className=" border-b-4 border-transparent ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer">
                   <NavLink
-                    to="/home"
+                    to="/register"
                     className=" text-base text-gray-800 ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer"
                   >
-                    Inicio
+                    Registro
                   </NavLink>
                 </li>
                 <li className=" border-b-4 border-transparent ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer">

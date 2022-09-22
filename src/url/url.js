@@ -8,7 +8,7 @@ export const ALLPETS = URL + "pets";
 export const PET_DETAIL = URL + "pets/";
 export const SEARCH_BY = URL + "pets/search?input=";
 export const DONATION = URL + "checkout/balance";
-
+export const CREAT="https://mascotapps-back-dev-2.up.railway.app/users/newuser"
 export const PET_SPECIES = URL + "pets/especies";
 // export const URL_POST_PET=URL_ROUTES + "users/postnewpet"
 export const POST = "https://mascotapps-back-production.up.railway.app/users/postnewpet";
