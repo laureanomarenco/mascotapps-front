@@ -73,7 +73,7 @@ export default function UserProfile() {
             </p>
             <div className="bg-teal-800 w-7 h-1"></div>
             <p className="">Nombre {user?.given_name}</p>
-            <p className="">Email </p>
+            <p className="">Email {user?.email}</p>
           </div>
           <div className=" md:min-h-[200px] h-full py-2 px-6">
             <p className="text-xl font-semibold text-teal-800">
