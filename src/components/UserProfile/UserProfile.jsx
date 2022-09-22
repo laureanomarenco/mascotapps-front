@@ -1,8 +1,7 @@
 import Footer from "../Footer/Footer";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
-import React,{useEffect} from "react";
-import axios from "axios";
+import React from "react";
 import { Logout } from "../Logout/Logout";
 import { getMyPets } from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -21,21 +20,21 @@ export default function UserProfile() {
     user
   );
 //PROVISORIO POR FAVOR NO TOCAR ESTA FUNCION------------------------------------------------------------
-  const callAll = async () => {
-    const idUser = { id: user?.sub };
-    console.log(idUser);
-    var allpets = await axios.post(
-      "https://mascotapps-back-dev-2.up.railway.app/users/getallpetsofusers",
-      { idUser }
-    );
-    console.log(allpets);
-  };
+  // const callAll = async () => {
+  //   const idUser = { id: user?.sub };
+  //   console.log(idUser);
+  //   var allpets = await axios.post(
+  //     "https://mascotapps-back-dev-2.up.railway.app/users/getallpetsofusers",
+  //     { idUser }
+  //   );
+  //   console.log(allpets);
+  // };
 
-  useEffect(() => {
-    if (isAuthenticated) {
-      callAll();
-    }
-  });
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     callAll();
+  //   }
+  // });
 // --------------------------------------------------------------------------------------------------
   if (!isAuthenticated) {
     Swal.fire({
