@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCity, setLoggedUser } from "../../store/actions/index";
+import { fetchCity} from "../../store/actions/index";
 import { Link, useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
@@ -86,7 +86,7 @@ const SignUp = () => {
       alert("Usuario creado correctamente");
       setInput({});
       navigate("/home");
-      dispatch(setLoggedUser(input));
+      // dispatch(setLoggedUser(input));
     }
   };
   if (!isAuthenticated) {
