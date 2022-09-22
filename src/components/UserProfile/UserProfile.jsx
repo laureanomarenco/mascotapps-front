@@ -1,7 +1,8 @@
 import Footer from "../Footer/Footer";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
-import React from "react";
+import React,{useEffect} from "react";
+import axios from "axios";
 import { Logout } from "../Logout/Logout";
 import { getMyPets } from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
