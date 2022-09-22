@@ -158,14 +158,14 @@ export function getUserInfo() {
   };
 }
 
-export function setLoggedUser(user) {
-  return function (dispatch) {
-    return dispatch({
-      type: "SET_LOGGED_USER",
-      payload: user,
-    });
-  };
-}
+// export function setLoggedUser(user) {
+//   return function (dispatch) {
+//     return dispatch({
+//       type: "SET_LOGGED_USER",
+//       payload: user,
+//     });
+//   };
+// }
 
 export function getAllUsers() {
   return async function (dispatch) {
