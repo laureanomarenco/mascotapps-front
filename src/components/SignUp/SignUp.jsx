@@ -91,7 +91,6 @@ const SignUp = () => {
         showCancelButton: true,
         confirmButtonColor: "#3085d6",
         cancelButtonColor: "#28B0A2",
-        cancelButtonText: "Ok",
       }).then((result) => {
         if (result.isConfirmed) {
           navigate("/home");
