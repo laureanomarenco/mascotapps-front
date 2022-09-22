@@ -14,7 +14,7 @@ export default function UserProfile() {
     "🚀 ~ file: UserProfile.jsx ~ line 11 ~ UserProfile ~ user",
     user
   );
-
+//PROVISORIO POR FAVOR NO TOCAR ESTA FUNCION------------------------------------------------------------
   const callAll = async () => {
     const idUser = { id: user?.sub };
     console.log(idUser);
@@ -30,7 +30,7 @@ export default function UserProfile() {
       callAll();
     }
   });
-
+// --------------------------------------------------------------------------------------------------
   if (!isAuthenticated) {
     Swal.fire({
       title: "No estás logueado",
