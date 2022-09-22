@@ -83,7 +83,7 @@ const SignUp = () => {
     } else {
       console.log("aca mando el usuario maldita sea!", input);
       dispatch(CreateUser(input));
- 
+
       Swal.fire({
         title: "Usuario creado correctamente",
         text: "Gracias por registrarte en Mascotapp.",
@@ -96,13 +96,8 @@ const SignUp = () => {
         if (result.isConfirmed) {
           navigate("/home");
           setInput({});
-          dispatch(setLoggedUser(input));
         }
       });
-      // setInput({});
-      // navigate("/home");
-
-      // dispatch(setLoggedUser(input));
     }
   };
   if (!isAuthenticated) {
