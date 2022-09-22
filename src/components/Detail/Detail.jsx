@@ -1,20 +1,27 @@
 import { Link, useParams } from "react-router-dom";
 import React, { useEffect } from "react";
-import { getDetail, resetDetail } from "../../store/actions/index";
+import {
+  getDetail,
+  resetDetail,
+  publicUserDetail,
+} from "../../store/actions/index";
 import Fav from "../Fav";
 import { BiArrowBack } from "react-icons/bi";
 import { FaPaw } from "react-icons/fa";
 import Footer from "../Footer/Footer";
 import Spinner from "../Spinner/Spinner";
+//eslint-disable-next-line
+import UsersPublicProfile from "../UsersPublicProfile/UsersPublicProfile";
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Detail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const pet = useSelector((state) => state.pet);
+  console.log("🚀 ~ file: Detail.jsx ~ line 21 ~ Detail ~ pet", pet)
   const loading = useSelector((state) => state.isLoading);
-
-  const [visible, setVisible] = React.useState(true)
+  //eslint-disable-next-line
+  const [visible, setVisible] = React.useState(true);
   useEffect(() => {
     dispatch(getDetail(id));
     return () => {
@@ -25,10 +32,16 @@ export default function Detail() {
   //HARDCODEO DE USUARIO
   //eslint-disable-next-line
   const user = {
-    contact: 115555555
+    id: 1,
+    name: "gonzalo",
+    email: "correo@correo.com",
+    city: "Lanús, Buenos Aires",
+    image: "url de imagen",
+    contact: 115555555,
   };
-
-  
+  const handleClick = () => {
+    dispatch(publicUserDetail(user.id));
+  };
   return (
     <div className="flex flex-col justify-center content-center items-center min-h-screen w-full mx-auto">
       {loading ? (
@@ -128,8 +141,7 @@ export default function Detail() {
                 <p className="capitalize text-xl font-bold text-teal-600">
                   Contacto
                 </p>
-                <button onClick={()=> user.contact ? setVisible(false) : true}>Ver datos</button>
-                <span hidden={visible}>{user.contact}</span>
+                <button onClick={handleClick}>Ver datos</button>
               </div>
             </div>
           ) : (

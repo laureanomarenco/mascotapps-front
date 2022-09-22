@@ -11,6 +11,7 @@ import {
   LOGIN_LOGGED,
   POST,
   CREAT,
+  GET_INFO_FROM_DETAIL,
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 
@@ -33,6 +34,7 @@ export const GET_SPECIES = "GET_SPECIES";
 export const POST_PET = "POST_PET";
 export const IS_LOGGED = "IS_LOGGED";
 export const CREAT_USER = "CREAT_USER";
+export const GET_PUBLIC_USER_DETAIL = "GET_PUBLIC_USER_DETAIL";
 
 export function fetchPets() {
   return async function (dispatch) {
@@ -217,7 +219,10 @@ export function getSpecies() {
 }
 
 export function postPet(pet, id) {
-  console.log(pet, id);
+  console.log("esto es lo que mando en la action ", {
+    pet: pet,
+    user: { id: id },
+  });
   return async function (dispatch) {
     try {
       var json = await axios.post(POST, { pet: pet, user: { id: id } });
@@ -262,3 +267,23 @@ export function CreateUser(input) {
     }
   };
 }
+
+export function publicUserDetail(id) {
+  return async function (dispatch) {
+    try {
+      var detail = await axios.get(GET_INFO_FROM_DETAIL + id);
+      console.log("🚀 ~ file: index.js ~ line 272 ~ detail", detail)
+      return dispatch({
+        type: GET_PUBLIC_USER_DETAIL,
+        payload: detail.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: GET_PUBLIC_USER_DETAIL,
+        payload: { error: error.message },
+      });
+    }
+  };
+}
+
+

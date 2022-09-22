@@ -13,6 +13,7 @@ import {
   POST_PET,
   GET_ALL_USERS,
   IS_LOGGED,
+  GET_PUBLIC_USER_DETAIL
 } from "../actions";
 
 const initalState = {
@@ -32,6 +33,7 @@ const initalState = {
   loggedUser: {},
   isLoading: true,
   notFound: false,
+  publicUserDetail: {}
 };
 
 export default function reducer(state = initalState, action) {
@@ -150,7 +152,11 @@ export default function reducer(state = initalState, action) {
         ...state,
         loggedUser: action.payload,
       };
-
+      case GET_PUBLIC_USER_DETAIL:
+        return {
+          ...state,
+          publicUserDetail: action.payload
+        }
     default:
       return state;
   }

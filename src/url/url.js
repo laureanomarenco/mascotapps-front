@@ -17,3 +17,4 @@ export const POST =
 export const LOGIN = URL + "auth/google";
 export const LOGIN_LOGGED = URL + "auth/logged_in";
 export const USER_LOGGED = URL + "profile";
+export const GET_INFO_FROM_DETAIL = URL + "users/contactinfo/";

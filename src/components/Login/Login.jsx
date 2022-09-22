@@ -14,6 +14,9 @@ export default function Login() {
   const navigate = useNavigate();
   // eslint-disable-next-line
   const handleValidation = async (user, isAuthenticated) => {
+    console.log("esto mando al back", {
+      id: user?.sub,
+    });
     try {
       if (isAuthenticated && user) {
         let existe = await axios.post(
@@ -27,21 +30,18 @@ export default function Login() {
           existe
         );
         console.log("respuesta del post ", existe.data);
+        if (existe.data.msg) {
+          navigate("/home");
+        } else {
+          navigate("/register");
+        }
       }
-      //   if (existe) {
-      //     navigate("/home");
-      //   } else {
-      //     navigate("/register");
-      // }
-      // if (isAuthenticated) {
-      //   navigate("/home");
-      // }
     } catch (error) {
       console.log(error);
     }
   };
 
-  // handleValidation(user, isAuthenticated);
+  handleValidation(user, isAuthenticated);
 
   return (
     <>
