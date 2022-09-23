@@ -18,10 +18,11 @@ export default function Detail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const pet = useSelector((state) => state.pet);
-  console.log("🚀 ~ file: Detail.jsx ~ line 21 ~ Detail ~ pet", pet)
+  console.log("🚀 ~ file: Detail.jsx ~ line 21 ~ Detail ~ pet", pet);
   const loading = useSelector((state) => state.isLoading);
+  const userContact = useSelector((state) => state.publicUserDetail);
+  console.log(userContact);
   //eslint-disable-next-line
-  const [visible, setVisible] = React.useState(true);
   useEffect(() => {
     dispatch(getDetail(id));
     return () => {
@@ -29,16 +30,6 @@ export default function Detail() {
     };
   }, [id]);
 
-  //HARDCODEO DE USUARIO
-  //eslint-disable-next-line
-  const user = {
-    id: 1,
-    name: "gonzalo",
-    email: "correo@correo.com",
-    city: "Lanús, Buenos Aires",
-    image: "url de imagen",
-    contact: 115555555,
-  };
   const handleClick = () => {
     dispatch(publicUserDetail(id));
   };
