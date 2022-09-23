@@ -13,6 +13,7 @@ import { BsTelephoneFill } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
+import ModalEdit from "./ModalEdit/ModalEdit";
 
 export default function UserProfile() {
   const { user, isAuthenticated } = useAuth0();
@@ -65,6 +66,7 @@ export default function UserProfile() {
             <p className="text-4xl font-semibold uppercase text-[#28B0A2]">
               Mi perfil de usuario
             </p>
+              <ModalEdit />
           </div>
           <div className="w-52 h-52 rounded-full overflow-hidden mx-auto">
             <img
