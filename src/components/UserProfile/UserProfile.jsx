@@ -69,7 +69,7 @@ export default function UserProfile() {
           </div>
 
           <div className="relative w-fit mx-auto p-2">
-            <ModalProfile />
+            <ModalProfile myProfileData={myProfileData} />
             <img
               className=" w-52 h-52 rounded-full overflow-hidden mx-auto relative object-cover object-center"
               src={image}
