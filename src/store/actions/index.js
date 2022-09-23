@@ -53,11 +53,11 @@ export function fetchPets() {
     }
   };
 }
-export function getMyPets(userId){
-    console.log(userId)
+export function getMyPets(user){
+    console.log(user)
   return async function(dispatch){
     try {
-      const datos=await axios.Post(GET_MY_PETS,userId);
+      const datos=await axios.post(GET_MY_PETS,{id:user?.sub});
       console.log("MANDO EL POSSSSTTTTTTT,RESPUESTA---->>",datos.data)
       return dispatch({
         type:GET_PETS,

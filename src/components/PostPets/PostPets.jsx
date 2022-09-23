@@ -144,6 +144,12 @@ const PostPets = () => {
           name: undefined,
         });
       }
+      if(input.image===""){
+        setInput({
+          ...input,
+          image:"https://res.cloudinary.com/dfbxjt69z/image/upload/v1663276317/mascotapps/perrito_apwyz0.png"
+        })
+      }
       dispatch(postPet(input, user?.sub));
       showAlert();
       setInput({});
