@@ -57,6 +57,7 @@ export default function reducer(state = initalState, action) {
         pet: {},
         filterPets: [],
         searchedPets: [],
+        publicUserDetail: {},
         notFound: false,
       };
     case GET_PETS_BY_STATUS:

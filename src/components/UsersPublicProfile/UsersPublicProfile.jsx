@@ -3,11 +3,13 @@ import Navbar from "../Navbar/Navbar";
 import RatingStar from "../RatingStar/RatingStar";
 import Footer from "../Footer/Footer";
 
-
 import Spinner from "../Spinner/Spinner";
 import Rating from "@mui/material/Rating";
+import { useLocation } from "react-router-dom";
 
-export default function UsersPublicProfile({ user }) {
+export default function UsersPublicProfile() {
+  const location = useLocation();
+  const { user } = location.state;
   if (!user?.name) {
     return (
       <>

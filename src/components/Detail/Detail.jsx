@@ -1,5 +1,5 @@
 import { Link, useParams } from "react-router-dom";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   getDetail,
   resetDetail,
@@ -7,21 +7,28 @@ import {
 } from "../../store/actions/index";
 import Fav from "../Fav";
 import { BiArrowBack } from "react-icons/bi";
+import { MdContactMail } from "react-icons/md";
 import { FaPaw } from "react-icons/fa";
 import Footer from "../Footer/Footer";
 import Spinner from "../Spinner/Spinner";
+import { useAuth0 } from "@auth0/auth0-react";
 //eslint-disable-next-line
-import UsersPublicProfile from "../UsersPublicProfile/UsersPublicProfile";
+import UserContact from "./UserContact";
+// import UsersPublicProfile from "../UsersPublicProfile/UsersPublicProfile";
+
 import { useDispatch, useSelector } from "react-redux";
 
 export default function Detail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const pet = useSelector((state) => state.pet);
-  console.log("🚀 ~ file: Detail.jsx ~ line 21 ~ Detail ~ pet", pet)
+  console.log("🚀 ~ file: Detail.jsx ~ line 21 ~ Detail ~ pet", pet);
   const loading = useSelector((state) => state.isLoading);
+  const userContact = useSelector((state) => state.publicUserDetail);
+  console.log(userContact);
+  const { isAuthenticated } = useAuth0();
+  const [hidden, setHidden] = useState(true);
   //eslint-disable-next-line
-  const [visible, setVisible] = React.useState(true);
   useEffect(() => {
     dispatch(getDetail(id));
     return () => {
@@ -29,18 +36,13 @@ export default function Detail() {
     };
   }, [id]);
 
-  //HARDCODEO DE USUARIO
-  //eslint-disable-next-line
-  const user = {
-    id: 1,
-    name: "gonzalo",
-    email: "correo@correo.com",
-    city: "Lanús, Buenos Aires",
-    image: "url de imagen",
-    contact: 115555555,
-  };
   const handleClick = () => {
     dispatch(publicUserDetail(id));
+    setHidden(hidden === true ? false : true);
+  };
+
+  const handleBack = () => {
+    dispatch(resetDetail());
   };
   return (
     <div className="flex flex-col justify-center content-center items-center min-h-screen w-full mx-auto">
@@ -53,6 +55,7 @@ export default function Detail() {
               to="/home"
               type="button"
               className="text-black bg-[#ffd803] hover:bg-[#ffd803]/80 focus:ring-4 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2"
+              onClick={handleBack}
             >
               <BiArrowBack />
               Volver
@@ -141,7 +144,31 @@ export default function Detail() {
                 <p className="capitalize text-xl font-bold text-teal-600">
                   Contacto
                 </p>
-                <button onClick={handleClick}>Ver datos</button>
+
+                <div>
+                  <button
+                    hidden={isAuthenticated ? false : true}
+                    onClick={handleClick}
+                    className="text-black bg-[#ffd803] hover:bg-[#ffd803]/80 focus:ring-2 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2 gap-6 "
+                  >
+                    <span>
+                      <MdContactMail size={22} />
+                    </span>
+
+                    <span className="text-sm font-medium">
+                      Información de Contacto
+                    </span>
+                  </button>
+                  <div>
+                    <div hidden={hidden} className="w-full">
+                      <UserContact
+                        user={userContact}
+                        hidden={hidden}
+                        setHidden={setHidden}
+                      />
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
           ) : (
