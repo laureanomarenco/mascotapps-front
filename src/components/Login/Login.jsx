@@ -42,7 +42,6 @@ export default function Login() {
     <>
       {isLoading ? (
         <div className="w-full h-full flex justify-center items-center">
-
           <Spinner />
         </div>
       ) : (
@@ -94,19 +93,20 @@ export default function Login() {
             </div>
             <div>
               <p className="mt-2 text-center  text-gray-600 ">
-                <Link to="/home">
-                  <a className="font-medium text-[#28B0A2] hover:text-[#208a7f]">
-                    {" "}
-                    Navegar sin registrarse
-                  </a>
+                <Link
+                  to="/home"
+                  className="font-medium text-[#28B0A2] hover:text-[#208a7f]"
+                >
+                  {" "}
+                  Navegar sin registrarse
                 </Link>
               </p>
               <p className="mt-2 text-center  text-gray-600">
-                <Link to="/faqs">
-                  <a className="font-medium text-[#28B0A2] hover:text-[#208a7f]">
-                    {" "}
-                    FAQs
-                  </a>
+                <Link
+                  to="/faqs"
+                  className="font-medium text-[#28B0A2] hover:text-[#208a7f]"
+                >
+                  FAQs
                 </Link>
               </p>
             </div>

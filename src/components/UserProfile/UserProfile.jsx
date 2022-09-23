@@ -3,50 +3,45 @@ import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import React from "react";
 import { Logout } from "../Logout/Logout";
-import { getMyPets } from "../../store/actions";
+import { getMyPets, myProfile, resetMyProfile } from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import BadgesPets from "../BadgesPets/BadgesPets";
+import { useEffect } from "react";
+import { BsTelephoneFill } from "react-icons/bs";
+import { GrMail } from "react-icons/gr";
+import { FaMapMarkerAlt } from "react-icons/fa";
+import { FaUser } from "react-icons/fa";
 
 export default function UserProfile() {
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
   const myPets = useSelector((state) => state.userPets);
+  const { name, city, contact, image } = myProfileData;
+
 
   const handelSubmit = () => {
     if (isAuthenticated) {
       dispatch(getMyPets(user));
     }
   };
-  console.log(
-    "🚀 ~ file: UserProfile.jsx ~ line 11 ~ UserProfile ~ user",
-    user
-  );
-  //PROVISORIO POR FAVOR NO TOCAR ESTA FUNCION------------------------------------------------------------
-  // const callAll = async () => {
-  //   var allpets = await axios.post(
-  //     "https://mascotapps-back-dev-2.up.railway.app/users/getallpetsofuser",
-  //     { id: user?.sub }
-  //   );
-  //   console.log("🚀 ~ file: UserProfile.jsx ~ line 23 ~ callAll ~ allpets", allpets)
-  // };
 
-  // useEffect(() => {
-  //   if (isAuthenticated) {
-  //     callAll();
-  //   }
-  // }, []);
-  // --------------------------------------------------------------------------------------------------
+  useEffect(() => {
+    dispatch(myProfile({ id: user?.sub }));
+    return () => {
+      dispatch(resetMyProfile());
+    };
+  }, []);
   if (!isAuthenticated) {
     Swal.fire({
       title: "No estás logueado",
       text: "Debes iniciar sesión para ver tu perfil.",
       icon: "info",
       showCancelButton: true,
-      confirmButtonColor: "#3085d6",
-      cancelButtonColor: "#28B0A2",
-      cancelButtonText: "Volver a inicio",
+      confirmButtonColor: "#28B0A2",
+      cancelButtonColor: "#B0B0B0",
+      cancelButtonText: "Ir a inicio",
       confirmButtonText: "Iniciar sesión",
     }).then((result) => {
       if (result.isConfirmed) {
@@ -71,8 +66,8 @@ export default function UserProfile() {
             <img
               className="object-cover w-full h-full object-center"
               src={
-                user?.picture
-                  ? user?.picture
+                image
+                  ? image
                   : "https://res.cloudinary.com/dfbxjt69z/image/upload/v1663934784/mascotapps/mascotapss_jxt9hl.png"
               }
               alt=""
@@ -83,17 +78,42 @@ export default function UserProfile() {
               Mis datos de registro
             </p>
             <div className="bg-teal-800 w-7 h-1"></div>
-            <p className="">Nombre {user?.given_name}</p>
-            <p className="">Email {user?.email}</p>
+            <div className="flex items-center justify-start gap-3 my-2">
+              <p className=" text-teal-800">
+                <FaUser />{" "}
+              </p>
+              <p>{name} </p>
+            </div>
+            <div className="flex items-center justify-start gap-3 my-2">
+              <p className=" text-teal-800">
+                <GrMail />{" "}
+              </p>
+              <p>{user?.email} </p>
+            </div>
           </div>
           <div className=" md:min-h-[200px] h-full py-2 px-6">
             <p className="text-xl font-semibold text-teal-800">
               Mis datos de contacto
             </p>
             <div className="bg-teal-800 w-7 h-1"></div>
-            <p>Celular</p>
-            <p>Email {user?.email} </p>
-            <p>Zona</p>
+            <div className="flex items-center justify-start gap-3 my-2">
+              <p className=" text-teal-800">
+                <BsTelephoneFill />
+              </p>
+              <p>{contact}</p>
+            </div>
+            <div className="flex items-center justify-start gap-3 my-2">
+              <p className=" text-teal-800">
+                <GrMail />{" "}
+              </p>
+              <p>{user?.email} </p>
+            </div>
+            <div className="flex items-center justify-start gap-3 my-2">
+              <p className=" text-teal-800">
+                <FaMapMarkerAlt />
+              </p>
+              <p>{city}</p>
+            </div>
           </div>
           <div className="flex flex-col w-full  max-w-[700px] items-start justify-center gap-6 my-6 px-4  md:flex-row md:justify-center md:col-span-3">
             <Link

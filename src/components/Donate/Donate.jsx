@@ -44,7 +44,6 @@ const CheckoutForm = () => {
       return newPayment;
     });
   };
-  console.log(paymentData);
   const handleSubmit = async (e) => {
     setLoaded(true);
     e.preventDefault();
@@ -57,7 +56,6 @@ const CheckoutForm = () => {
       const { id } = paymentMethod;
 
       try {
-        console.log("Por hacer post a stripe");
         const result = await axios.post(
           "https://worker-production-2aad.up.railway.app/checkout",
           {
@@ -145,7 +143,7 @@ const CheckoutForm = () => {
           <div className="flex flex-col w-2/6 mx-auto mt-8 px-4 py-8 items-center bg-[#A5B462] font-semibold border-solid rounded">
             Gracias por tu ayuda!
             <div className="px-6 py-3  bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300">
-            <Button path={"/home"} text={"Volver a home"}></Button>
+              <Button path={"/home"} text={"Volver a home"}></Button>
             </div>
           </div>
         )}
