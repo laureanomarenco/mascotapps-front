@@ -13,6 +13,7 @@ import {
   POST_PET,
   GET_ALL_USERS,
   IS_LOGGED,
+  GET_PETS,
   GET_PUBLIC_USER_DETAIL,
 } from "../actions";
 
@@ -26,6 +27,7 @@ const initalState = {
   donations: [],
   cities: [],
   user: {},
+  userPets:[],
   totalUsers: "",
   statusLogin: false,
   isLoading: true,
@@ -151,6 +153,13 @@ export default function reducer(state = initalState, action) {
         ...state,
         publicUserDetail: action.payload,
       };
+      case GET_PETS:
+        console.log("kdsjkdsjfksd",action.payload)
+        return{
+          ...state,
+          userPets: action.payload,
+        }
+
     default:
       return state;
   }
