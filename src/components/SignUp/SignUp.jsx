@@ -88,7 +88,7 @@ const SignUp = () => {
         title: "Usuario creado correctamente",
         text: "Gracias por registrarte en Mascotapp.",
         icon: "success",
-        showCancelButton: true,
+        showCancelButton: false,
         confirmButtonColor: "#3085d6",
       }).then((result) => {
         if (result.isConfirmed) {
