@@ -4,7 +4,7 @@ const validate = (input) => {
   if (input.name.search("[0-9]") !== -1) {
     error.name = "El Nombre no puede tener numeros*";
   }
-  if (input.name.search("[^A-Za-z0-9]") !== -1) {
+  if (input.name.search("[A-Za-z0-9]") !== -1) {
     error.name = "El Nombre no puede tener simbolos*";
   }
   // if (!input.spices) {

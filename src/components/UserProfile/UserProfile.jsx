@@ -121,21 +121,22 @@ export default function UserProfile() {
               <p>{city}</p>
             </div>
           </div>
-          <div className="flex flex-col w-full  max-w-[500px] items-start justify-center gap-3 my-6 px-4  md:flex-row md:justify-center md:col-span-3 ">
+          <div className="flex flex-col w-full  max-w-[700px] items-start justify-center gap-6 my-6 px-4  md:flex-row md:justify-center md:col-span-3">
             <Link
               to="/postpets"
               className="px-6 py-3  bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300"
             >
               Postear un aviso!
             </Link>
-            <div className="flex flex-col w-full  max-w-[500px] items-start justify-center gap-3 my-6 px-4  md:flex-row md:justify-center md:col-span-3">
-              <button
-                className="px-6 py-3 bg-[#FFC700] rounded-md font-bold hover:bg-[ffd803]/80 transition-all duration-300"
-                onClick={handelSubmit}
-              >
-                Ver mis mascotas!
-              </button>
-            </div>
+
+            <button
+              className="px-6 py-3 bg-[#FFC700] rounded-md font-bold hover:bg-[ffd803]/80 transition-all duration-300"
+              onClick={handelSubmit}
+            >
+              {" "}
+              Ver mis mascotas!
+            </button>
+
             <Logout />
           </div>
           {myPets.length > 0 ? <BadgesPets /> : null}
