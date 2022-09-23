@@ -19,7 +19,7 @@ export default function UserProfile() {
     const idUser = { id: user?.sub };
     console.log(idUser);
     var allpets = await axios.post(
-      "https://mascotapps-back-dev-2.up.railway.app/users/getallpetsofusers",
+      "https://mascotapps-back-dev-2.up.railway.app/users/getallpetsofuser",
       { idUser }
     );
     console.log(allpets);
