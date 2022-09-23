@@ -130,7 +130,10 @@ export default function UserProfile() {
             <button
               className="px-6 py-3 bg-[#FFC700] rounded-md font-bold hover:bg-[ffd803]/80 transition-all duration-300"
               onClick={handelSubmit}
-            > Ver mis mascotas!</button>
+            >
+              {" "}
+              Ver mis mascotas!
+            </button>
 
             <Logout />
           </div>
