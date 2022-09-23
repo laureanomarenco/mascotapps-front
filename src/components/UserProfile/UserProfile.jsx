@@ -6,17 +6,17 @@ import { Logout } from "../Logout/Logout";
 import { getMyPets } from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
-import { useDispatch,useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import BadgesPets from "../BadgesPets/BadgesPets";
 
 export default function UserProfile() {
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
-  const myPets=useSelector(state=>state.userPets);
+  const myPets = useSelector((state) => state.userPets);
 
   const handelSubmit = () => {
-    if(isAuthenticated){
-    dispatch(getMyPets(user));
+    if (isAuthenticated) {
+      dispatch(getMyPets(user));
     }
   };
   console.log(
@@ -95,24 +95,22 @@ export default function UserProfile() {
             <p>Email {user?.email} </p>
             <p>Zona</p>
           </div>
-          <div className="flex flex-col w-full  max-w-[500px] items-start justify-center gap-3 my-6 px-4  md:flex-row md:justify-center md:col-span-3">
+          <div className="flex flex-col w-full  max-w-[700px] items-start justify-center gap-6 my-6 px-4  md:flex-row md:justify-center md:col-span-3">
             <Link
               to="/postpets"
               className="px-6 py-3  bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300"
             >
               Postear un aviso!
             </Link>
-            <div className="flex flex-col w-full  max-w-[500px] items-start justify-center gap-3 my-6 px-4  md:flex-row md:justify-center md:col-span-3">
-              <button
-                className="px-6 py-3 bg-[#FFC700] rounded-md font-bold hover:bg-[ffd803]/80 transition-all duration-300"
-                onClick={handelSubmit}
-              >
-                Ver mis mascotas!
-              </button>
-            </div>
+
+            <button
+              className="px-6 py-3 bg-[#FFC700] rounded-md font-bold hover:bg-[ffd803]/80 transition-all duration-300"
+              onClick={handelSubmit}
+            > Ver mis mascotas!</button>
+
             <Logout />
           </div>
-          {myPets.length>0?<BadgesPets/>:null}
+          {myPets.length > 0 ? <BadgesPets /> : null}
         </div>
         <Footer />
       </div>
