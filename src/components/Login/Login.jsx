@@ -7,33 +7,28 @@ import { Logout } from "../Logout/Logout";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoginButton } from "./LoginButton";
-import Spinner from "../Spinner/Spinner";
-import { useState } from "react";
+
+
 
 export default function Login() {
   //eslint-disable-next-line
-  const { user, isAuthenticated, loginWithRedirect } = useAuth0();
-  const [load, setLoad] = useState(false);
+  const { user, isAuthenticated } = useAuth0();
+
 
   const navigate = useNavigate();
   const handleValidation = async (user, isAuthenticated) => {
     try {
       if (isAuthenticated && user) {
-        setLoad(true);
         let existe = await axios.post(
           "https://mascotapps-back-dev-2.up.railway.app/users/exists ",
           {
             id: user?.sub,
           }
         );
-        if (existe.data) {
-          setLoad(false);
-          console.log("respuesta del post ", existe.data);
-          if (existe.data.msg) {
-            navigate("/home");
-          } else {
-            navigate("/register");
-          }
+        if (existe.data.msg) {
+          navigate("/home");
+        } else {
+          navigate("/register");
         }
       }
     } catch (error) {
@@ -43,7 +38,7 @@ export default function Login() {
   if (isAuthenticated) {
     handleValidation(user, isAuthenticated);
   }
-  if (!load) {
+
     return (
       <>
         <div className="absolute w-full h-full items-center  justify-center  py-12 px-4 md:px-6 lg:px-8 md:w-1/3 lg:w-1/4 md:h-full md:right-10 bg-white">
@@ -114,11 +109,5 @@ export default function Login() {
         </div>
       </>
     );
-  } else {
-    return (
-      <div>
-        <Spinner />
-      </div>
-    );
   }
-}
+
