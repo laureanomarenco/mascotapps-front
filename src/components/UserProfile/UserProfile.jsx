@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import React from "react";
 import { Logout } from "../Logout/Logout";
+//eslint-disable-next-line
 import { getMyPets, myProfile, resetMyProfile } from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
@@ -13,19 +14,25 @@ import { BsTelephoneFill } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
+import ModalProfile from "./ModalEdit/ModalEdit";
 
 export default function UserProfile() {
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
   const myPets = useSelector((state) => state.userPets);
   const myProfileData = useSelector((state) => state.myProfile);
-  console.log(
-    "🚀 ~ file: UserProfile.jsx ~ line 18 ~ UserProfile ~ myProfileData",
-    myProfileData
-  );
-  const { name, city, contact, image } = myProfileData;
+  const { image, name, city, contact } = myProfileData;
 
-  const handelSubmit = () => {
+  //eslint-disable-next-line
+  const belloPerfil = {
+    id: `${user?.sub}`,
+    email: `${user?.email}`,
+    name: name,
+    city: city,
+    contact: contact,
+    image: image,
+  };
+  const handleSubmit = () => {
     if (isAuthenticated) {
       dispatch(getMyPets(user));
     }
@@ -33,6 +40,7 @@ export default function UserProfile() {
 
   useEffect(() => {
     dispatch(myProfile({ id: user?.sub }));
+    handleSubmit();
     return () => {
       dispatch(resetMyProfile());
     };
@@ -61,23 +69,22 @@ export default function UserProfile() {
       <div className="flex flex-col items-center w-full h-full min-w-screen">
         <Navbar className="w-full" />
         <div className="grid md:grid-cols-3 gap-2 items-center justify-center content-center w-full px-4  max-h-fit ">
-          <div className="md:col-span-3 h-36 text-center flex content-center items-center justify-center">
-            <p className="text-4xl font-semibold uppercase text-[#28B0A2]">
+          <div className="md:col-span-3 gap-3 h-36 text-center flex content-center items-center justify-center">
+            <p className="text-4xl md:text-4xl font-semibold uppercase text-[#28B0A2]">
               Mi perfil de usuario
             </p>
           </div>
-          <div className="w-52 h-52 rounded-full overflow-hidden mx-auto">
+
+          <div className="relative w-fit mx-auto p-2">
+            <ModalProfile belloPerfil={belloPerfil} />
             <img
-              className="object-cover w-full h-full object-center"
-              src={
-                image
-                  ? image
-                  : "https://res.cloudinary.com/dfbxjt69z/image/upload/v1663934784/mascotapps/mascotapss_jxt9hl.png"
-              }
+              className=" w-52 h-52 rounded-full overflow-hidden mx-auto relative object-cover object-center"
+              src={image}
               alt=""
             />
           </div>
-          <div className=" h-full md:min-h-[200px] py-2 px-6">
+
+          <div className=" h-full md:min-h-[200px] py-2 px-6 mx-auto">
             <p className="text-xl font-semibold text-teal-800">
               Mis datos de registro
             </p>
@@ -95,7 +102,7 @@ export default function UserProfile() {
               <p>{user?.email} </p>
             </div>
           </div>
-          <div className=" md:min-h-[200px] h-full py-2 px-6">
+          <div className=" md:min-h-[200px] h-full py-2 px-6 mx-auto">
             <p className="text-xl font-semibold text-teal-800">
               Mis datos de contacto
             </p>
@@ -129,7 +136,7 @@ export default function UserProfile() {
 
             <button
               className="px-6 py-3 bg-[#FFC700] rounded-md font-bold hover:bg-[ffd803]/80 transition-all duration-300"
-              onClick={handelSubmit}
+              onClick={handleSubmit}
             >
               {" "}
               Ver mis mascotas!
