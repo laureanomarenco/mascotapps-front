@@ -15,6 +15,8 @@ import {
   IS_LOGGED,
   GET_PETS,
   GET_PUBLIC_USER_DETAIL,
+  MY_PROFILE_DETAIL,
+  RESET_MY_PROFILE,
 } from "../actions";
 
 const initalState = {
@@ -27,12 +29,13 @@ const initalState = {
   donations: [],
   cities: [],
   user: {},
-  userPets:[],
+  userPets: [],
   totalUsers: "",
   statusLogin: false,
   isLoading: true,
   notFound: false,
   publicUserDetail: {},
+  myProfile:{},
 };
 
 export default function reducer(state = initalState, action) {
@@ -158,7 +161,17 @@ export default function reducer(state = initalState, action) {
         return{
           ...state,
           userPets: action.payload,
-        }
+      }
+    case MY_PROFILE_DETAIL:
+      return {
+        ...state,
+        myProfile: action.payload,
+      };
+    case RESET_MY_PROFILE:
+      return {
+        ...state,
+        myProfile: {},
+      };
 
     default:
       return state;

@@ -3,23 +3,32 @@ import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import React from "react";
 import { Logout } from "../Logout/Logout";
-import { getMyPets } from "../../store/actions";
+import { getMyPets, myProfile, resetMyProfile } from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import BadgesPets from "../BadgesPets/BadgesPets";
+import { useEffect } from "react";
 
 export default function UserProfile() {
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
   const myPets = useSelector((state) => state.userPets);
-
+  const myProfileData = useSelector((state) => state.myProfile);
+  console.log("🚀 ~ file: UserProfile.jsx ~ line 18 ~ UserProfile ~ myProfileData", myProfileData)
+console.log("esto tendria que mandar", { id: user?.sub });
   const handelSubmit = () => {
     if (isAuthenticated) {
       dispatch(getMyPets(user));
     }
   };
 
+  useEffect(() => {
+    dispatch(myProfile({id:user?.sub}));
+    return () => {
+      dispatch(resetMyProfile());
+    };
+  }, []);
   if (!isAuthenticated) {
     Swal.fire({
       title: "No estás logueado",
