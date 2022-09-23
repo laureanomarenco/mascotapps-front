@@ -13,6 +13,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const SignUp = () => {
   const { user, isAuthenticated } = useAuth0();
+  console.log("🚀 ~ file: SignUp.jsx ~ line 16 ~ SignUp ~ user", user)
 
   //CIUDADES ARG--------------------------------------------------------------------------
   const dispatch = useDispatch();
