@@ -18,7 +18,6 @@ export default function Detail() {
   const { id } = useParams();
   const dispatch = useDispatch();
   const pet = useSelector((state) => state.pet);
-  console.log("🚀 ~ file: Detail.jsx ~ line 21 ~ Detail ~ pet", pet)
   const loading = useSelector((state) => state.isLoading);
   //eslint-disable-next-line
   const [visible, setVisible] = React.useState(true);
@@ -28,6 +27,7 @@ export default function Detail() {
       dispatch(resetDetail());
     };
   }, [id]);
+  const { image } = pet;
 
   //HARDCODEO DE USUARIO
   //eslint-disable-next-line
@@ -42,6 +42,7 @@ export default function Detail() {
   const handleClick = () => {
     dispatch(publicUserDetail(id));
   };
+
   return (
     <div className="flex flex-col justify-center content-center items-center min-h-screen w-full mx-auto">
       {loading ? (
@@ -63,7 +64,11 @@ export default function Detail() {
               <div className="w-full  mx-auto">
                 <div className="md:h-96 md:w-96 rounded-lg overflow-hidden mx-auto drop-shadow-md">
                   <img
-                    src={pet.image}
+                    src={
+                      image === null
+                        ? "https://res.cloudinary.com/dfbxjt69z/image/upload/v1663276317/mascotapps/perrito_apwyz0.png"
+                        : image
+                    }
                     className="w-full h-full object-cover"
                     alt={pet.name}
                   />
@@ -71,21 +76,33 @@ export default function Detail() {
                 <div className=" grid w-full  grid-cols-3 gap-1 md:w-96 h-32 mx-auto my-3">
                   <div className="brightness-125 rounded-lg overflow-auto drop-shadow-xl">
                     <img
-                      src={pet.image}
+                      src={
+                        image === null
+                          ? "https://res.cloudinary.com/dfbxjt69z/image/upload/v1663276317/mascotapps/perrito_apwyz0.png"
+                          : image
+                      }
                       className="w-full h-full object-cover "
                       alt={pet.name}
                     />
                   </div>
                   <div className="brightness-125 rounded-lg overflow-auto drop-shadow-xl">
                     <img
-                      src={pet.image}
+                      src={
+                        image
+                          ? image
+                          : "https://res.cloudinary.com/dfbxjt69z/image/upload/v1663276317/mascotapps/perrito_apwyz0.png"
+                      }
                       className="w-full h-full object-cover "
                       alt={pet.name}
                     />
                   </div>
                   <div className="brightness-125 rounded-lg overflow-auto drop-shadow-xl">
                     <img
-                      src={pet.image}
+                      src={
+                        image
+                          ? image
+                          : "https://res.cloudinary.com/dfbxjt69z/image/upload/v1663276317/mascotapps/perrito_apwyz0.png"
+                      }
                       className="w-full h-full object-cover "
                       alt={pet.name}
                     />
@@ -98,7 +115,6 @@ export default function Detail() {
                   {pet.name}
                 </h1>
                 <div className="relative">
-                  {/* favorito */}
                   <div className="absolute flex items-center text-teal-600 right-1 top-1">
                     <Fav pet={pet} />{" "}
                   </div>
@@ -145,7 +161,7 @@ export default function Detail() {
               </div>
             </div>
           ) : (
-            <h1>No Existe ese perro</h1>
+            <h1>Oops! Esta mascota ya no está mas en la lista</h1>
           )}
         </div>
       )}
