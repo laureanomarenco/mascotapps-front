@@ -17,14 +17,14 @@ export default function Home() {
           <div className="z-20 relative  grid mt-40 lg:flex lg:justify-around md:flex md:justify-around sm:flex sm:justify-around md:mt-0 ">
             <Link
               to="/postpets"
-              className=" flex py-2 backdrop-brightness-50 text-white hover:text-black border-2 border-yellow-300 text-center hover:bg-yellow-300 hover:opacity-100  focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium  mt-4 px-12 rounded-lg  lg:py-2 md:py-4 md:px-20 md:mt-32 "
+              className=" flex py-2 justify-center items-center gap-3 backdrop-brightness-50 text-white hover:text-black border-2 border-yellow-300 text-center hover:bg-yellow-300 hover:opacity-100  focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium  mt-4 px-12 rounded-lg  lg:py-2 md:py-4 md:px-20 md:mt-32 "
             >
               <p>Dar en Adopción</p>
               <FaHands size="35px" className="fill:black"></FaHands>
             </Link>
             <Link
               to="/postpets"
-              className="flex py-2 backdrop-brightness-50 text-white hover:text-black border-2 border-yellow-300 text-center hover:bg-yellow-300 hover:opacity-100  focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium  mt-4 px-12 rounded-lg  lg:py-2 md:py-4 md:px-20 md:mt-32 "
+              className="flex py-2 backdrop-brightness-50 justify-center items-center  gap-3 text-white hover:text-black border-2 border-yellow-300 text-center hover:bg-yellow-300 hover:opacity-100  focus:ring-4 focus:outline-none focus:ring-yellow-300 font-medium  mt-4 px-12 rounded-lg  lg:py-2 md:py-4 md:px-20 md:mt-32 "
             >
               Perdí mi Mascota{" "}
               <SiDatadog size="35px" className="fill:black"></SiDatadog>
