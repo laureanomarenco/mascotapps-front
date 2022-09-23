@@ -4,7 +4,11 @@ import { AiOutlineUserAdd } from "react-icons/ai";
 import Swal from "sweetalert2";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCity } from "../../../store/actions/index";
+import {
+  fetchCity,
+  updateProfile,
+  myProfile,
+} from "../../../store/actions/index";
 import { useNavigate } from "react-router-dom";
 import TextField from "@mui/material/TextField";
 import { AiOutlineWhatsApp } from "react-icons/ai";
@@ -12,13 +16,17 @@ import { MdAlternateEmail } from "react-icons/md";
 import Autocomplete from "@mui/material/Autocomplete";
 import { AiOutlineCamera } from "react-icons/ai";
 
-export default function ModalProfile({ myProfileData }) {
-  const { name, contact, city, image } = myProfileData;
+export default function ModalProfile({ belloPerfil }) {
   const [showModal, setShowModal] = React.useState(false);
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const cities = useSelector((state) => state.cities);
+  //eslint-disable-next-line
+  const [input, setInput] = useState({
+    id: user?.sub,
+    email: user?.email,
+  });
 
   useEffect(() => {
     dispatch(fetchCity());
@@ -59,14 +67,6 @@ export default function ModalProfile({ myProfileData }) {
 
   //ESTADOS ---------------------------------------------------------------------------------------------------------
 
-  const [input, setInput] = useState({
-    id: `${user?.sub}`,
-    name: `${name}`,
-    email: `${user?.email}`,
-    city: `${city}`,
-    contact: `${contact}`,
-    image: `${image}`,
-  });
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
@@ -74,6 +74,7 @@ export default function ModalProfile({ myProfileData }) {
       ...input,
       [e.target.name]: e.target.value,
     });
+
     setErrors(
       validate({
         ...input,
@@ -105,22 +106,34 @@ export default function ModalProfile({ myProfileData }) {
     if (errors.name || errors.city || errors.contact) {
       alert("Verifique los campos");
     } else {
-      //   dispatch(CreateUser(input));
+      if (e.target.name === "city" && e.target.value.length === "") {
+        setInput({
+          ...input,
+          city: belloPerfil?.city,
+        });
+      }
+      if (e.target.name === "name" && e.target.value.length === "") {
+        setInput({
+          ...input,
+          name: belloPerfil?.name,
+        });
+      }
+      if (e.target.name === "contact" && e.target.value.length === "") {
+        setInput({
+          ...input,
+          contact: belloPerfil?.contact,
+        });
+      }
+      dispatch(updateProfile(input));
       Swal.fire({
-        title: "Usuario modificado correctamente",
+        title: "Perfil modificado correctamente",
         icon: "success",
         showCancelButton: false,
         confirmButtonColor: "#3085d6",
       }).then((result) => {
         if (result.isConfirmed) {
-            setInput({
-              id: `${user?.sub}`,
-              name: `${name}`,
-              email: `${user?.email}`,
-              city: `${city}`,
-              contact: `${contact}`,
-              image: `${image}`,
-            });
+            setShowModal(false);
+            dispatch(myProfile({id: user?.sub}));
         }
       });
     }
@@ -143,12 +156,24 @@ export default function ModalProfile({ myProfileData }) {
       }
     });
   }
+
+  function handleClick() {
+    setShowModal(true);
+    setInput({
+      ...input,
+      name: belloPerfil.name,
+      city: belloPerfil.city,
+      contact: belloPerfil.contact,
+      image: belloPerfil.image,
+    });
+  }
+
   return (
     <>
       <button
         className="absolute right-0 top-0  text-teal-600 font-bold uppercase text-lg px-4 py-3 rounded hover:text-teal-800 focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
         type="button"
-        onClick={() => setShowModal(true)}
+        onClick={handleClick}
       >
         <BsPencilSquare />
       </button>
@@ -189,7 +214,6 @@ export default function ModalProfile({ myProfileData }) {
                           type="text"
                           name="name"
                           className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm "
-                          placeholder="Nombre"
                           value={input.name}
                         />
 
@@ -259,7 +283,7 @@ export default function ModalProfile({ myProfileData }) {
                           options={localidades}
                           sx={{ width: 1, borderRadius: 16, border: 0 }}
                           renderInput={(params) => (
-                            <TextField {...params} label={city} />
+                            <TextField {...params} label={input?.city} />
                           )}
                         />
                       </div>

@@ -3,35 +3,15 @@ import React from "react";
 import Card from "../Card/Card";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
-import Swal from "sweetalert2";
-import { useNavigate } from "react-router-dom";
+// import Swal from "sweetalert2";
+// import { useNavigate } from "react-router-dom";
 
 export default function FavContainer() {
   var corazon = JSON.parse(localStorage.getItem("favoritos")) || [];
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const alertNoFav = () => {
-    let timerInterval;
-    Swal.fire({
-      title: "No tienes favoritos!",
-      html: "Puedes entrar al detalle de una mascota y agregarla a favoritos",
-      timer: 2000,
-      didOpen: () => {
-        Swal.showLoading();
-        const b = Swal.getHtmlContainer().querySelector("b");
-        timerInterval = setInterval(() => {
-          b.textContent = Swal.getTimerLeft();
-        }, 100);
-      },
-      willClose: () => {
-        clearInterval(timerInterval);
-      },
-    }).then((result) => {
-      /* Read more about handling dismissals below */
-      if (result.dismiss === Swal.DismissReason.timer) {
-        navigate("/home");
-      }
-    });
+    alert('no hay')
   };
   if (corazon.length === 0) {
     //sweet alert
