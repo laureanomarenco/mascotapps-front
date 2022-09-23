@@ -24,12 +24,14 @@ export default function Detail() {
   const pet = useSelector((state) => state.pet);
   const loading = useSelector((state) => state.isLoading);
   const userContact = useSelector((state) => state.publicUserDetail);
-  console.log(userContact);
+  console.log("hay o no", userContact);
+  //eslint-disable-next-line
   const { isAuthenticated } = useAuth0();
   const [hidden, setHidden] = useState(true);
   //eslint-disable-next-line
   useEffect(() => {
     dispatch(getDetail(id));
+    dispatch(publicUserDetail(id));
     return () => {
       dispatch(resetDetail());
     };
@@ -37,15 +39,16 @@ export default function Detail() {
   const { image } = pet;
 
   const handleClick = () => {
-    dispatch(publicUserDetail(id));
     setHidden(hidden === true ? false : true);
   };
 
   const handleBack = () => {
     dispatch(resetDetail());
   };
-
-
+  console.log(
+    "resultado",
+    userContact.error === "Request failed with status code 404"
+  );
   return (
     <div className="flex flex-col justify-center content-center items-center min-h-screen w-full mx-auto">
       {loading ? (
@@ -158,34 +161,39 @@ export default function Detail() {
                     {pet.vaccinationSchemeStatus}
                   </p>
                 </div>
-                <p className="capitalize text-xl font-bold text-teal-600">
-                  Contacto
-                </p>
 
-                <div>
-                  <button
-                    hidden={isAuthenticated ? false : true}
-                    onClick={handleClick}
-                    className="text-black bg-[#ffd803] hover:bg-[#ffd803]/80 focus:ring-2 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2 gap-6 "
-                  >
-                    <span>
-                      <MdContactMail size={22} />
-                    </span>
+                {isAuthenticated && !userContact.error ? (
+                  <>
+                    <p className="capitalize text-xl font-bold text-teal-600">
+                      Contacto
+                    </p>
+                    <div>
+                      <button
+                        onClick={handleClick}
+                        className="text-black bg-[#ffd803] hover:bg-[#ffd803]/80 focus:ring-2 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2 gap-6 "
+                      >
+                        <span>
+                          <MdContactMail size={22} />
+                        </span>
 
-                    <span className="text-sm font-medium">
-                      Información de Contacto
-                    </span>
-                  </button>
-                  <div>
-                    <div hidden={hidden} className="w-full">
-                      <UserContact
-                        user={userContact}
-                        hidden={hidden}
-                        setHidden={setHidden}
-                      />
+                        <span className="text-sm font-medium">
+                          Información de Contacto
+                        </span>
+                      </button>
+                      <div>
+                        <div hidden={hidden} className="w-full">
+                          <UserContact
+                            user={userContact}
+                            hidden={hidden}
+                            setHidden={setHidden}
+                          />
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
+                  </>
+                ) : (
+                  <h1>No hay datos de contacto</h1>
+                )}
               </div>
             </div>
           ) : (

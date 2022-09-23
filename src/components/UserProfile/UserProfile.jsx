@@ -61,7 +61,11 @@ export default function UserProfile() {
           <div className="w-52 h-52 rounded-full overflow-hidden mx-auto">
             <img
               className="object-cover w-full h-full object-center"
-              src={user?.picture}
+              src={
+                user?.picture
+                  ? user?.picture
+                  : "https://res.cloudinary.com/dfbxjt69z/image/upload/v1663934784/mascotapps/mascotapss_jxt9hl.png"
+              }
               alt=""
             />
           </div>
