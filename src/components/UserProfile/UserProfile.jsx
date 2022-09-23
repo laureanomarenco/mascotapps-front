@@ -14,13 +14,11 @@ export default function UserProfile() {
     "🚀 ~ file: UserProfile.jsx ~ line 11 ~ UserProfile ~ user",
     user
   );
-//PROVISORIO POR FAVOR NO TOCAR ESTA FUNCION------------------------------------------------------------
+  //PROVISORIO POR FAVOR NO TOCAR ESTA FUNCION------------------------------------------------------------
   const callAll = async () => {
-    const idUser = { id: user?.sub };
-    console.log(idUser);
     var allpets = await axios.post(
       "https://mascotapps-back-dev-2.up.railway.app/users/getallpetsofuser",
-      { idUser }
+      { id: user?.sub }
     );
     console.log(allpets);
   };
@@ -29,8 +27,8 @@ export default function UserProfile() {
     if (isAuthenticated) {
       callAll();
     }
-  });
-// --------------------------------------------------------------------------------------------------
+  }, []);
+  // --------------------------------------------------------------------------------------------------
   if (!isAuthenticated) {
     Swal.fire({
       title: "No estás logueado",
