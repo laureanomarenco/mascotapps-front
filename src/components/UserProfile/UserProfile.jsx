@@ -73,8 +73,6 @@ export default function UserProfile() {
               className="object-cover w-full h-full object-center"
               src={
                 image
-                  ? image
-                  : "https://res.cloudinary.com/dfbxjt69z/image/upload/v1663934784/mascotapps/mascotapss_jxt9hl.png"
               }
               alt=""
             />
