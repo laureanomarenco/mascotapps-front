@@ -20,7 +20,7 @@ export default function UserProfile() {
       "https://mascotapps-back-dev-2.up.railway.app/users/getallpetsofuser",
       { id: user?.sub }
     );
-    console.log(allpets);
+    console.log("🚀 ~ file: UserProfile.jsx ~ line 23 ~ callAll ~ allpets", allpets)
   };
 
   useEffect(() => {
