@@ -12,6 +12,7 @@ import {
   CREAT,
   GET_MY_PETS,
   GET_INFO_FROM_DETAIL,
+  MY_PROFILE,
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 
@@ -34,8 +35,10 @@ export const GET_SPECIES = "GET_SPECIES";
 export const POST_PET = "POST_PET";
 export const IS_LOGGED = "IS_LOGGED";
 export const CREAT_USER = "CREAT_USER";
-export const GET_PETS="GET_PETS"
+export const GET_PETS = "GET_PETS";
 export const GET_PUBLIC_USER_DETAIL = "GET_PUBLIC_USER_DETAIL";
+export const MY_PROFILE_DETAIL = "MY_PROFILE_DETAIL";
+export const RESET_MY_PROFILE = "RESET_MY_PROFILE";
 
 export function fetchPets() {
   return async function (dispatch) {
@@ -53,23 +56,23 @@ export function fetchPets() {
     }
   };
 }
-export function getMyPets(user){
-    console.log(user)
-  return async function(dispatch){
+export function getMyPets(user) {
+  console.log(user);
+  return async function (dispatch) {
     try {
-      const datos=await axios.post(GET_MY_PETS,{id:user?.sub});
-      console.log("MANDO EL POSSSSTTTTTTT,RESPUESTA---->>",datos.data)
+      const datos = await axios.post(GET_MY_PETS, { id: user?.sub });
+      console.log("MANDO EL POSSSSTTTTTTT,RESPUESTA---->>", datos.data);
       return dispatch({
-        type:GET_PETS,
-        payload:datos.data
+        type: GET_PETS,
+        payload: datos.data,
       });
     } catch (error) {
       return dispatch({
-        type:GET_PETS,
-        payload:error.data
-      })
+        type: GET_PETS,
+        payload: error.data,
+      });
     }
-  }
+  };
 }
 
 export function getDetail(id) {
@@ -178,13 +181,12 @@ export function getUserInfo() {
   };
 }
 
-
 export function getAllUsers() {
   return async function (dispatch) {
     try {
       const users = await axios.get(TOTAL_USERS);
       return dispatch({
-        type: "GET_ALL_USERS",
+        type: GET_ALL_USERS,
         payload: users.data,
       });
     } catch (error) {
@@ -201,7 +203,7 @@ export function getDonations() {
     try {
       const donations = await axios.get(DONATION);
       return dispatch({
-        type: "GET_DONATIONS",
+        type: GET_DONATIONS,
         payload: donations.data,
       });
     } catch (error) {
@@ -248,8 +250,6 @@ export function postPet(pet, id) {
   };
 }
 
-
-
 export function CreateUser(input) {
   return async function (dispatch) {
     try {
@@ -269,7 +269,7 @@ export function publicUserDetail(id) {
   return async function (dispatch) {
     try {
       var detail = await axios.get(GET_INFO_FROM_DETAIL + id);
-      console.log("🚀 ~ file: index.js ~ line 272 ~ detail", detail)
+      console.log("🚀 ~ file: index.js ~ line 272 ~ detail", detail);
       return dispatch({
         type: GET_PUBLIC_USER_DETAIL,
         payload: detail.data,
@@ -283,4 +283,27 @@ export function publicUserDetail(id) {
   };
 }
 
+export function myProfile(id) {
+  return async function (dispatch) {
+    try {
+      var detail = await axios.post(MY_PROFILE, id);
+      return dispatch({
+        type: MY_PROFILE_DETAIL,
+        payload: detail.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: MY_PROFILE_DETAIL,
+        payload: { error: error.message },
+      });
+    }
+  };
+}
 
+export function resetMyProfile() {
+  return async function (dispatch) {
+  dispatch({
+    type: RESET_MY_PROFILE,
+    payload: {},
+  });
+}; }

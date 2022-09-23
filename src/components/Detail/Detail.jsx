@@ -24,7 +24,6 @@ export default function Detail() {
   const pet = useSelector((state) => state.pet);
   const loading = useSelector((state) => state.isLoading);
   const userContact = useSelector((state) => state.publicUserDetail);
-  console.log("hay o no", userContact);
   //eslint-disable-next-line
   const { isAuthenticated } = useAuth0();
   const [hidden, setHidden] = useState(true);
@@ -45,10 +44,7 @@ export default function Detail() {
   const handleBack = () => {
     dispatch(resetDetail());
   };
-  console.log(
-    "resultado",
-    userContact.error === "Request failed with status code 404"
-  );
+
   return (
     <div className="flex flex-col justify-center content-center items-center min-h-screen w-full mx-auto">
       {loading ? (

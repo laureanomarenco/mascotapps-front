@@ -13,8 +13,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 const SignUp = () => {
   const { user, isAuthenticated } = useAuth0();
-  console.log("🚀 ~ file: SignUp.jsx ~ line 16 ~ SignUp ~ user", user)
-
   //CIUDADES ARG--------------------------------------------------------------------------
   const dispatch = useDispatch();
   const cities = useSelector((state) => state.cities);
@@ -82,7 +80,6 @@ const SignUp = () => {
     if (errors.name || errors.city || errors.contact) {
       alert("Verifique los campos");
     } else {
-      console.log("aca mando el usuario maldita sea!", input);
       dispatch(CreateUser(input));
 
       Swal.fire({

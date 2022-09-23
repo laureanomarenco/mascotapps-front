@@ -58,7 +58,6 @@ export default function UsersPublicProfile() {
             <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12">
               {user?.review?.map((review) => (
                 <blockquote key={Math.random()}>
-                  {console.log(review)}
                   <header className="sm:items-center sm:flex">
                     <div className="flex -ml-1">
                       {" "}
