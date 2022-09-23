@@ -77,7 +77,7 @@ export default function UserProfile() {
               alt=""
             />
           </div>
-          <div className=" h-full md:min-h-[200px] py-2 px-6">
+          <div className=" h-full md:min-h-[200px] py-2 px-6 mx-auto">
             <p className="text-xl font-semibold text-teal-800">
               Mis datos de registro
             </p>
@@ -95,7 +95,7 @@ export default function UserProfile() {
               <p>{user?.email} </p>
             </div>
           </div>
-          <div className=" md:min-h-[200px] h-full py-2 px-6">
+          <div className=" md:min-h-[200px] h-full py-2 px-6 mx-auto">
             <p className="text-xl font-semibold text-teal-800">
               Mis datos de contacto
             </p>
@@ -119,7 +119,7 @@ export default function UserProfile() {
               <p>{city}</p>
             </div>
           </div>
-          <div className="flex flex-col w-full  max-w-[500px] items-start justify-center gap-3 my-6 px-4  md:flex-row md:justify-center md:col-span-3">
+          <div className="flex flex-col w-full  max-w-[500px] items-start justify-center gap-3 my-6 px-4  md:flex-row md:justify-center md:col-span-3 ">
             <Link
               to="/postpets"
               className="px-6 py-3  bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300"
