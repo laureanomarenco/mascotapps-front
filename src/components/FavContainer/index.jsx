@@ -3,18 +3,22 @@ import React from "react";
 import Card from "../Card/Card";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
-// import Swal from "sweetalert2";
-// import { useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { useNavigate } from "react-router-dom";
 
 export default function FavContainer() {
   var corazon = JSON.parse(localStorage.getItem("favoritos")) || [];
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
 
   const alertNoFav = () => {
-    alert('no hay')
+    Swal.fire({
+      title: "No tenes ningún favorito",
+      text: "Podes agregar favoritos y luego verlos acá",
+      icon: "info",
+      confirmButtonText: "Ok",
+    }).then(() => navigate("/home"));
   };
   if (corazon.length === 0) {
-    //sweet alert
     alertNoFav();
   }
   return (
