@@ -12,13 +12,16 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <Auth0Provider
-    domain='dev-nxuk8wmn.us.auth0.com'
-    clientId='YKWqA32lwyrttvqr5ce3sWfmkY1y9CME'
-    redirectUri={window.location.origin}>
-    <Provider store={store}>
-      <App className="font-sans" />
-    </Provider>
-</Auth0Provider>
+      domain="dev-nxuk8wmn.us.auth0.com"
+      clientId="YKWqA32lwyrttvqr5ce3sWfmkY1y9CME"
+      redirectUri={window.location.origin}
+      useRefreshTokens={true}
+      cacheLocation="localstorage"
+    >
+      <Provider store={store}>
+        <App className="font-sans" />
+      </Provider>
+    </Auth0Provider>
   </React.StrictMode>
 );
 

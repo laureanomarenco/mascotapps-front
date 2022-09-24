@@ -8,13 +8,20 @@ import { useLocation } from "react-router-dom";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { BsTelephoneFill } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";
+import { useDispatch } from "react-redux";
+import { beginTransaction } from "../../store/actions";
+
 
 export default function UsersPublicProfile() {
   const location = useLocation();
   const { user } = location.state;
+  const dispatch = useDispatch()
+  console.log(user)
+
   const [contact, setContact] = useState(false);
-  function beginTransaction() {
+  function handleBeginTransaction() {
     setContact(true);
+    dispatch(beginTransaction());
   }
   if (!user?.name) {
     return (
@@ -28,6 +35,7 @@ export default function UsersPublicProfile() {
     return (
       <div>
         <Navbar />
+
         <div className="bg-[#F2F2F2] my-8 mx-3 md:mx-20 rounded-sm drop-shadow-md">
           {/* perfil */}
           <div className="grid md:grid-cols-2 gap-2 items-center justify-center content-center w-full px-4  max-h-fit ">
@@ -72,7 +80,7 @@ export default function UsersPublicProfile() {
                 </>
               ) : (
                 <button
-                  onClick={beginTransaction}
+                  onClick={handleBeginTransaction}
                   className="px-6 py-3 my-4 bg-[#FFC700] rounded-md font-bold hover:bg-[ffd803]/80 transition-all duration-300"
                 >
                   Adoptar
