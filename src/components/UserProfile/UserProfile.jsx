@@ -1,10 +1,10 @@
 import Footer from "../Footer/Footer";
 import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
-import React from "react";
+import React,{useState} from "react";
 import { Logout } from "../Logout/Logout";
 //eslint-disable-next-line
-import { getMyPets, myProfile, resetMyProfile } from "../../store/actions";
+import { getMyPets, myProfile, resetMyProfile,resetDetail } from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
@@ -21,7 +21,9 @@ export default function UserProfile() {
   const dispatch = useDispatch();
   const myPets = useSelector((state) => state.userPets);
   const myProfileData = useSelector((state) => state.myProfile);
+  console.log("🚀 ~ file: UserProfile.jsx ~ line 24 ~ UserProfile ~ myProfileData", myProfileData)
   const { image, name, city, contact } = myProfileData;
+  const [hidden, setHidden] = useState(true);
 
   //eslint-disable-next-line
   const belloPerfil = {
@@ -35,14 +37,20 @@ export default function UserProfile() {
   const handleSubmit = () => {
     if (isAuthenticated) {
       dispatch(getMyPets(user));
+      
     }
   };
+  const handleClick=()=>{
+    setHidden(hidden === true ? false : true);
+  }
+
 
   useEffect(() => {
     dispatch(myProfile({ id: user?.sub }));
-    handleSubmit();
+    handleSubmit()
     return () => {
       dispatch(resetMyProfile());
+      dispatch(resetDetail())
     };
   }, []);
   if (!isAuthenticated) {
@@ -79,7 +87,7 @@ export default function UserProfile() {
             <ModalProfile belloPerfil={belloPerfil} />
             <img
               className=" w-52 h-52 rounded-full overflow-hidden mx-auto relative object-cover object-center"
-              src={image}
+              src={myProfileData[0]?.image}
               alt=""
             />
           </div>
@@ -93,7 +101,7 @@ export default function UserProfile() {
               <p className=" text-teal-800">
                 <FaUser />{" "}
               </p>
-              <p>{name} </p>
+              <p>{myProfileData[0]?.name} </p>
             </div>
             <div className="flex items-center justify-start gap-3 my-2">
               <p className=" text-teal-800">
@@ -111,7 +119,7 @@ export default function UserProfile() {
               <p className=" text-teal-800">
                 <BsTelephoneFill />
               </p>
-              <p>{contact}</p>
+              <p>{myProfileData[0]?.contact}</p>
             </div>
             <div className="flex items-center justify-start gap-3 my-2">
               <p className=" text-teal-800">
@@ -123,7 +131,7 @@ export default function UserProfile() {
               <p className=" text-teal-800">
                 <FaMapMarkerAlt />
               </p>
-              <p>{city}</p>
+              <p>{myProfileData[0]?.city}</p>
             </div>
           </div>
           <div className="flex flex-col w-full  max-w-[700px] items-start justify-center gap-6 my-6 px-4  md:flex-row md:justify-center md:col-span-3">
@@ -136,7 +144,7 @@ export default function UserProfile() {
 
             <button
               className="px-6 py-3 bg-[#FFC700] rounded-md font-bold hover:bg-[ffd803]/80 transition-all duration-300"
-              onClick={handleSubmit}
+              onClick={handleClick}
             >
               {" "}
               Ver mis mascotas!
@@ -144,8 +152,13 @@ export default function UserProfile() {
 
             <Logout />
           </div>
-          {myPets.length > 0 ? <BadgesPets /> : null}
-        </div>
+        </div >
+        <div hidden={hidden} className="w-full">
+          {myPets.length > 0 ? 
+          <BadgesPets 
+          user={user}
+          hidden={hidden}
+          setHidden={setHidden}/> : null}</div>
         <Footer />
       </div>
     );
