@@ -17,10 +17,6 @@ export default function Navbar({ setPage }) {
 
   let dispatch = useDispatch();
 
-  // useEffect(() => {
-  //   dispatch(isLogged());
-  // }, [dispatch, logStatus]);
-
   function handleChange(e) {
     e.preventDefault();
     if (e.target.value !== "") {
