@@ -1,20 +1,20 @@
 import Footer from "../Footer/Footer";
-import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
-import React from "react";
+import React, { useEffect } from "react";
+import BadgesPets from "../BadgesPets/BadgesPets";
+import ModalProfile from "./ModalEdit/ModalEdit";
+import Transactions from "./Transactions/Transactions";
 import { Logout } from "../Logout/Logout";
+import { Link } from "react-router-dom";
 //eslint-disable-next-line
+import { useDispatch, useSelector } from "react-redux";
 import { getMyPets, myProfile, resetMyProfile } from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
-import { useDispatch, useSelector } from "react-redux";
-import BadgesPets from "../BadgesPets/BadgesPets";
-import { useEffect } from "react";
 import { BsTelephoneFill } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
-import ModalProfile from "./ModalEdit/ModalEdit";
 
 export default function UserProfile() {
   const { user, isAuthenticated } = useAuth0();
@@ -22,7 +22,8 @@ export default function UserProfile() {
   const myPets = useSelector((state) => state.userPets);
   const myProfileData = useSelector((state) => state.myProfile);
   const { image, name, city, contact } = myProfileData;
-
+  console.log(image, name, city, contact);
+  console.log(myProfileData);
   //eslint-disable-next-line
   const belloPerfil = {
     id: `${user?.sub}`,
@@ -125,6 +126,9 @@ export default function UserProfile() {
               </p>
               <p>{city}</p>
             </div>
+          </div>
+          <div className="md:col-span-3 w-3/4 mx-auto ">
+            <Transactions myProfileData={myProfileData} />
           </div>
           <div className="flex flex-col w-full  max-w-[700px] items-start justify-center gap-6 my-6 px-4  md:flex-row md:justify-center md:col-span-3">
             <Link

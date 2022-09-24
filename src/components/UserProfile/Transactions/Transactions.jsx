@@ -1,7 +1,7 @@
 import React from "react";
 
-const Transactions = ({ users }) => {
-  console.log(users);
+const Transactions = ({ myProfileData }) => {
+  console.log(myProfileData);
   return (
     <div className="bg-white p-8 rounded-md w-full">
       <div>
@@ -28,54 +28,50 @@ const Transactions = ({ users }) => {
                 </tr>
               </thead>
               <tbody>
-                {users?.map((u) => {
-                  return (
-                    <>
-                      <tr key={u.id}>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <div className="flex items-center">
-                            <img
-                              className="w-12 h-12 rounded-full"
-                              src={u.image}
-                              alt="user-img"
-                            />
+                <>
+                  <tr key={myProfileData.name}>
+                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <div className="flex items-center">
+                        <img
+                          className="w-12 h-12 rounded-full"
+                          src={myProfileData.image}
+                          alt="user-img"
+                        />
 
-                            <div className="ml-3 grid">
-                              <p className="text-gray-900 whitespace-no-wrap capitalize">
-                                {u.name}
-                              </p>
-                              <p className="text-gray-400 whitespace-no-wrap">
-                                {u.email}
-                              </p>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <div className="ml-3 grid">
+                          <p className="text-gray-900 whitespace-no-wrap capitalize">
+                            {myProfileData.name}
+                          </p>
+                          <p className="text-gray-400 whitespace-no-wrap">
+                            {myProfileData.email}
+                          </p>
+                        </div>
+                      </div>
+                    </td>
+                    {/* <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <p className="text-gray-900 whitespace-no-wrap">
                             {u.createdAt.slice(0, 10)}
                           </p>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <p className="text-gray-900 whitespace-no-wrap">
-                            {u.city}
-                          </p>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <p className="text-gray-900 whitespace-no-wrap">43</p>
-                        </td>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                            <span
-                              aria-hidden
-                              className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
-                            ></span>
-                            <span className="relative">Activo</span>
-                          </span>
-                        </td>
-                      </tr>
-                    </>
-                  );
-                })}
+                        </td> */}
+                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <p className="text-gray-900 whitespace-no-wrap">
+                        {myProfileData.city}
+                      </p>
+                    </td>
+                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <p className="text-gray-900 whitespace-no-wrap">43</p>
+                    </td>
+                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                      <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                        <span
+                          aria-hidden
+                          className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
+                        ></span>
+                        <span className="relative">Activo</span>
+                      </span>
+                    </td>
+                  </tr>
+                </>
               </tbody>
             </table>
             <div className="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
