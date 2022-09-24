@@ -20,7 +20,6 @@ export default function RatingStar() {
 
   const handleClick = (event) => {
     event.preventDefault();
-    console.log(review);
   };
 
   return (

@@ -108,19 +108,6 @@ const PostPets = () => {
       })
     );
   };
-  // {
-  //   name: "",
-  //   specie: "",
-  //   race: "",
-  //   state: "",
-  //   gender: "",
-  //   age: "",
-  //   vaccination: "",
-  //   image: "",
-  //   comments: "",
-  //   city: "",
-  //   contact: "",
-  // }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -143,6 +130,12 @@ const PostPets = () => {
           ...input,
           name: undefined,
         });
+      }
+      if(input.image===""){
+        setInput({
+          ...input,
+          image:"https://res.cloudinary.com/dfbxjt69z/image/upload/v1663276317/mascotapps/perrito_apwyz0.png"
+        })
       }
       dispatch(postPet(input, user?.sub));
       showAlert();

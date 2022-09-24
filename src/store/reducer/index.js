@@ -13,7 +13,11 @@ import {
   POST_PET,
   GET_ALL_USERS,
   IS_LOGGED,
+  GET_PETS,
   GET_PUBLIC_USER_DETAIL,
+  MY_PROFILE_DETAIL,
+  RESET_MY_PROFILE,
+  ADMIN_FETCH_USERS,
 } from "../actions";
 
 const initalState = {
@@ -26,11 +30,14 @@ const initalState = {
   donations: [],
   cities: [],
   user: {},
+  userPets: [],
   totalUsers: "",
   statusLogin: false,
   isLoading: true,
   notFound: false,
   publicUserDetail: {},
+  myProfile: {},
+  usersInfo: [],
 };
 
 export default function reducer(state = initalState, action) {
@@ -55,6 +62,7 @@ export default function reducer(state = initalState, action) {
         pet: {},
         filterPets: [],
         searchedPets: [],
+        publicUserDetail: {},
         notFound: false,
       };
     case GET_PETS_BY_STATUS:
@@ -144,12 +152,33 @@ export default function reducer(state = initalState, action) {
         ...state,
         statusLogin: status,
       };
-
+    case ADMIN_FETCH_USERS:
+      return {
+        ...state,
+        usersInfo: action.payload,
+      };
     case GET_PUBLIC_USER_DETAIL:
       return {
         ...state,
         publicUserDetail: action.payload,
       };
+    case GET_PETS:
+      console.log("kdsjkdsjfksd", action.payload);
+      return {
+        ...state,
+        userPets: action.payload,
+      };
+    case MY_PROFILE_DETAIL:
+      return {
+        ...state,
+        myProfile: action.payload,
+      };
+    case RESET_MY_PROFILE:
+      return {
+        ...state,
+        myProfile: {},
+      };
+
     default:
       return state;
   }
