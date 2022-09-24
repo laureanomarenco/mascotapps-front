@@ -17,6 +17,7 @@ import {
   GET_PUBLIC_USER_DETAIL,
   MY_PROFILE_DETAIL,
   RESET_MY_PROFILE,
+  ADMIN_FETCH_USERS,
 } from "../actions";
 
 const initalState = {
@@ -35,7 +36,8 @@ const initalState = {
   isLoading: true,
   notFound: false,
   publicUserDetail: {},
-  myProfile:{},
+  myProfile: {},
+  usersInfo: [],
 };
 
 export default function reducer(state = initalState, action) {
@@ -151,18 +153,22 @@ export default function reducer(state = initalState, action) {
         ...state,
         statusLogin: status,
       };
-
+    case ADMIN_FETCH_USERS:
+      return {
+        ...state,
+        usersInfo: action.payload,
+      };
     case GET_PUBLIC_USER_DETAIL:
       return {
         ...state,
         publicUserDetail: action.payload,
       };
-      case GET_PETS:
-        console.log("kdsjkdsjfksd",action.payload)
-        return{
-          ...state,
-          userPets: action.payload,
-      }
+    case GET_PETS:
+      console.log("kdsjkdsjfksd", action.payload);
+      return {
+        ...state,
+        userPets: action.payload,
+      };
     case MY_PROFILE_DETAIL:
       return {
         ...state,

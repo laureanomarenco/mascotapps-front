@@ -12,9 +12,8 @@ import { FaPaw } from "react-icons/fa";
 import Footer from "../Footer/Footer";
 import Spinner from "../Spinner/Spinner";
 import { useAuth0 } from "@auth0/auth0-react";
-//eslint-disable-next-line
 import UserContact from "./UserContact";
-// import UsersPublicProfile from "../UsersPublicProfile/UsersPublicProfile";
+
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -24,10 +23,8 @@ export default function Detail() {
   const pet = useSelector((state) => state.pet);
   const loading = useSelector((state) => state.isLoading);
   const userContact = useSelector((state) => state.publicUserDetail);
-  //eslint-disable-next-line
   const { isAuthenticated } = useAuth0();
   const [hidden, setHidden] = useState(true);
-  //eslint-disable-next-line
   useEffect(() => {
     dispatch(getDetail(id));
     dispatch(publicUserDetail(id));
@@ -188,7 +185,7 @@ export default function Detail() {
                     </div>
                   </>
                 ) : (
-                  <h1 className="text-teal-700 ">No hay datos de contacto</h1>
+                  <h1 className="text-teal-700 ">Registrate para ver datos de contacto</h1>
                 )}
               </div>
             </div>

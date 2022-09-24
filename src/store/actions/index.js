@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import {
+  URL,
   ALLPETS,
   PET_DETAIL,
   SEARCH_BY,
@@ -14,6 +15,7 @@ import {
   GET_INFO_FROM_DETAIL,
   MY_PROFILE,
   UPDATE_MY_PROFILE,
+  INIT_TRANSACTION,
   DELETE,
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
@@ -41,8 +43,7 @@ export const GET_PETS = "GET_PETS";
 export const GET_PUBLIC_USER_DETAIL = "GET_PUBLIC_USER_DETAIL";
 export const MY_PROFILE_DETAIL = "MY_PROFILE_DETAIL";
 export const RESET_MY_PROFILE = "RESET_MY_PROFILE";
-
-
+export const ADMIN_FETCH_USERS = "ADMIN_FETCH_USERS";
 export function fetchPets() {
   return async function (dispatch) {
     try {
@@ -327,6 +328,24 @@ export function resetMyProfile() {
     });
   };
 }
+
+export function adminFetchUsers() {
+  return async function (dispatch) {
+    try {
+      const datos = await axios.get(URL + "users/");
+      return dispatch({
+        type: ADMIN_FETCH_USERS,
+        payload: datos.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: ADMIN_FETCH_USERS,
+        payload: { error: error.message },
+      });
+    }
+  };
+}
+
 export function deletePet(user,petId){
   console.log(user,petId);
   return async function (dispatch) {
@@ -344,4 +363,22 @@ export function deletePet(user,petId){
       
     }
   }
+}
+export function beginTransaction(petId, idUser) {
+  console.log("INICIA LA TRANSACT");
+  return async function (dispatch) {
+    try {
+      var detail = await axios.put(INIT_TRANSACTION+"?petId="+petId, idUser);
+      console.log("a ver si pasooo", detail);
+      return dispatch({
+        type: MY_PROFILE_DETAIL,
+        payload: detail.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: MY_PROFILE_DETAIL,
+        payload: { error: error.message },
+      });
+    }
+  };
 }

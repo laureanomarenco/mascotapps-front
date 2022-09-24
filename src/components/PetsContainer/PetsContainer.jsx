@@ -24,12 +24,12 @@ const PetsContainer = () => {
     race: "",
   });
 
-  let location = useLocation()
+  let location = useLocation();
 
   useEffect(() => {
-    dispatch(getPetsByStatus(location.pathname.split('/')[2]))
+    dispatch(getPetsByStatus(location.pathname.split("/")[2]));
   }, []);
-  
+
   const handleFilter = (e) => {
     setFilter({
       ...filter,
@@ -61,15 +61,15 @@ const PetsContainer = () => {
     });
   };
   useEffect(() => {
-    return (() => {
-      dispatch(resetDetail())
+    return () => {
+      dispatch(resetDetail());
       setFilter({
         specie: "",
         gender: "",
         age: "",
         race: "",
       });
-    })
+    };
   }, [pets]);
 
   const [page, setPage] = useState(1);
@@ -85,7 +85,7 @@ const PetsContainer = () => {
 
   return (
     <div>
-      <Navbar />
+      <Navbar setPage={setPage} />
       <FormFilter
         handleClearFilter={handleClearFilter}
         filter={filter}
@@ -95,20 +95,20 @@ const PetsContainer = () => {
       />
       {notFound && showAlert()}
       {/* xs:col-span-2 md:col-span-2 justify-self-center */}
-        <Pagination
-          filterPets={filterPet.length}
-          statusPets={pets.length}
-          pagination={pagination}
-          showPerPage={showPerPage}
-          page={page}
-        />
+      <Pagination
+        filterPets={filterPet.length}
+        statusPets={pets.length}
+        pagination={pagination}
+        showPerPage={showPerPage}
+        page={page}
+      />
       <div className="grid gap-1 grid-rows-1 md:grid-cols-2 xl:grid-cols-3 justify-self-center">
         {showPets.length > 0 && !notFound
           ? showPets.map((fPet) => <Card key={fPet.id} data={fPet} />)
           : !notFound &&
             showByStatus?.map((pet) => <Card key={pet.id} data={pet} />)}
       </div>
-        {/* <Footer/> */}
+      {/* <Footer/> */}
     </div>
   );
 };
