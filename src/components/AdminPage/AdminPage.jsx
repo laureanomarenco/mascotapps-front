@@ -1,10 +1,15 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchPets, getAllUsers } from "../../store/actions/index";
+import {
+  fetchPets,
+  getAllUsers,
+  adminFetchUsers,
+} from "../../store/actions/index";
 import SideMenu from "./NavBar";
 // import Stack from '@mui/material/Stack';
 // import CircularProgressWithLabel from "@mui/material/CircularProgress";
 import Percents from "./Percents";
+import Users from "./Users";
 // import Alert from './Alert';
 //icons
 
@@ -29,6 +34,7 @@ import { getDonations } from "../../store/actions/index";
 
 const AdminPage = () => {
   const dispatch = useDispatch();
+  const usersDetails = useSelector((state) => state.usersInfo);
 
   const pets = useSelector((state) => state.pets);
   const users = useSelector((state) => state.totalUsers);
@@ -40,6 +46,7 @@ const AdminPage = () => {
     dispatch(fetchPets());
     dispatch(getDonations());
     dispatch(getAllUsers());
+    dispatch(adminFetchUsers());
   }, [dispatch]);
 
   return (
@@ -333,7 +340,7 @@ const AdminPage = () => {
           </div>
         </div>
       </section>
-
+      <Users users={usersDetails} />
       <section
         id="usuarios"
         className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 mt-28 w-9/12 mx-auto "
