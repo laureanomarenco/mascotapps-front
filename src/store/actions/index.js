@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import {
+  URL,
   ALLPETS,
   PET_DETAIL,
   SEARCH_BY,
@@ -40,7 +41,7 @@ export const GET_PETS = "GET_PETS";
 export const GET_PUBLIC_USER_DETAIL = "GET_PUBLIC_USER_DETAIL";
 export const MY_PROFILE_DETAIL = "MY_PROFILE_DETAIL";
 export const RESET_MY_PROFILE = "RESET_MY_PROFILE";
-
+export const ADMIN_FETCH_USERS = "ADMIN_FETCH_USERS";
 export function fetchPets() {
   return async function (dispatch) {
     try {
@@ -323,5 +324,22 @@ export function resetMyProfile() {
       type: RESET_MY_PROFILE,
       payload: {},
     });
+  };
+}
+
+export function adminFetchUsers() {
+  return async function (dispatch) {
+    try {
+      const datos = await axios.get(URL + "users/");
+      return dispatch({
+        type: ADMIN_FETCH_USERS,
+        payload: datos.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: ADMIN_FETCH_USERS,
+        payload: { error: error.message },
+      });
+    }
   };
 }
