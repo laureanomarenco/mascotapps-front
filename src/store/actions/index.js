@@ -14,6 +14,7 @@ import {
   GET_INFO_FROM_DETAIL,
   MY_PROFILE,
   UPDATE_MY_PROFILE,
+  DELETE,
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 
@@ -40,6 +41,7 @@ export const GET_PETS = "GET_PETS";
 export const GET_PUBLIC_USER_DETAIL = "GET_PUBLIC_USER_DETAIL";
 export const MY_PROFILE_DETAIL = "MY_PROFILE_DETAIL";
 export const RESET_MY_PROFILE = "RESET_MY_PROFILE";
+
 
 export function fetchPets() {
   return async function (dispatch) {
@@ -324,4 +326,22 @@ export function resetMyProfile() {
       payload: {},
     });
   };
+}
+export function deletePet(user,petId){
+  console.log(user,petId);
+  return async function (dispatch) {
+    try {
+      var datos= await axios.delete(DELETE+petId,{ petId:petId ,id: user?.sub })
+      return dispatch({
+        type:DELETE_PET,
+        payload:datos.data
+      })
+    } catch (error) {
+      return dispatch({
+        type: DELETE_PET,
+        payload: { error: error.message },
+      });
+      
+    }
+  }
 }

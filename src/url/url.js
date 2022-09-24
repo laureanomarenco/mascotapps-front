@@ -13,7 +13,7 @@ export const PET_SPECIES = URL + "pets/especies";
 // export const URL_POST_PET=URL_ROUTES + "users/postnewpet"
 export const POST =
   "https://mascotapps-back-dev-2.up.railway.app/pets/postnewpet";
-
+export const DELETE=URL+"users/deletepet"
 export const LOGIN = URL + "auth/google";
 export const LOGIN_LOGGED = URL + "auth/logged_in";
 export const USER_LOGGED = URL + "profile";

@@ -1,12 +1,28 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import {Link}  from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 // import { HiPlusCircle } from "react-icons/hi";
+import {BsPencilSquare} from "react-icons/bs"
+import {RiChatDeleteFill} from "react-icons/ri"
+import { deletePet } from "../../store/actions";
 
-const BadgesPets = () => {
+
+
+const BadgesPets = ({user,hidden, setHidden}) => {
+  const dispatch=useDispatch();
+  const handleClick = (petId)=>{
+    console.log(user,petId)
+    dispatch(deletePet(user,petId))
+  }
   const myPets = useSelector((state) => state.userPets);
   return (
-    <div className="flex flex-col items-center gap-5 grid-rows-1 py-5 px-5 md:grid md:grid-cols-2 xl:grid-cols-3 w-full relative border border-gray-300  rounded-lg my-2 shadow-lg  ">
-      <button className="absolute p-1 bg-gray-100 border border-gray-300 rounded-full -top-1 -right-1">
+    <div className="flex flex-col items-center gap-5 grid-rows-1 py-5 px-5 md:grid md:grid-cols-2 xl:grid-cols-3 w-full relative border border-gray-300  rounded-lg my-2 shadow-lg  "
+      hidden={hidden}  
+    >
+    
+      <button className="absolute p-1 bg-gray-100 border border-gray-300 rounded-full -top-1 -right-1"
+        onClick={() =>  setHidden(hidden === true ? false : true)}
+        >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="w-3 h-3"
@@ -22,10 +38,8 @@ const BadgesPets = () => {
       </button>
       {myPets
         ? myPets.map((a) => (
-            <div
-              key={a.id}
-              className=" relative border border-gray-300 w-full rounded-lg my-2 shadow-lg "
-            >
+          <Link key={a.id} to={'/pets/'+a.id}>
+            <div className=" relative border border-gray-300 w-full rounded-lg my-2 shadow-lg ">
               <div className="flex items-center p-4">
                 <img
                   alt="user-img"
@@ -42,9 +56,18 @@ const BadgesPets = () => {
                     Raza: <span className="font-semibold">{a.race}</span>
                   </p>
                 </div>
+                  <div className="flex mx-auto gap-10 ">
+                    <p className="text-2xl  ">
+                    <BsPencilSquare/>
+                    </p>
+                    <p className="text-2xl "
+                    onClick={handleClick(a.id)}>
+                    <RiChatDeleteFill color="red"/>
+                    </p>
+                  </div>
               </div>
             </div>
-          ))
+              </Link>))
         : null}
     </div>
   );
