@@ -8,7 +8,7 @@ import { searchPets, resetDetail } from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoginButton } from "../Login/LoginButton";
 
-export default function Navbar() {
+export default function Navbar({ setPage }) {
   const { isAuthenticated } = useAuth0();
   const [searchInput, setSearchInput] = useState(true);
   const [mdOptionsToggle, setMdOptionsToggle] = useState(true);
@@ -32,6 +32,7 @@ export default function Navbar() {
 
   const handleClick = (e) => {
     dispatch(getPetsByStatus(e.target.name));
+    setPage(1);
   };
 
   return (
@@ -574,7 +575,7 @@ export default function Navbar() {
                     <p className="text-base">Mi perfil</p>
                   </Link>
                 ) : (
-                  <LoginButton text='Iniciar sesión' />
+                  <LoginButton text="Iniciar sesión" />
                 )}
 
                 <li>
