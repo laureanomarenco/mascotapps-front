@@ -1,6 +1,6 @@
 import React from "react";
 
-const Users = ({ users }) => {
+const Transactions = ({ users }) => {
   console.log(users);
   return (
     <div className="bg-white p-8 rounded-md w-full">
@@ -99,4 +99,4 @@ const Users = ({ users }) => {
   );
 };
 
-export default Users;
+export default Transactions;
