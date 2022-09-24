@@ -31,10 +31,10 @@ export default function UserProfile() {
   const belloPerfil = {
     id: `${user?.sub}`,
     email: `${user?.email}`,
-    name: name,
-    city: city,
-    contact: contact,
-    image: image,
+    name: myProfileData[0]?.name,
+    city: myProfileData[0]?.city,
+    contact: myProfileData[0]?.contact,
+    image: myProfileData[0]?.image,
   };
   const handleSubmit = () => {
     if (isAuthenticated) {

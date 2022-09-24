@@ -346,29 +346,31 @@ export function adminFetchUsers() {
   };
 }
 
-export function deletePet(user,petId){
-  console.log("ESTOY EN LAS ACTIONS",user,petId);
+export function deletePet(user, petId) {
+  console.log("ESTOY EN LAS ACTIONS", user, petId);
   return async function (dispatch) {
     try {
-      var datos= await axios.post(DELETE,{ petId:petId ,id: user?.sub })
+      var datos = await axios.post(DELETE, { petId: petId, id: user?.sub });
       return dispatch({
-        type:DELETE_PET,
-        payload:datos.data
-      })
+        type: DELETE_PET,
+        payload: datos.data,
+      });
     } catch (error) {
       return dispatch({
         type: DELETE_PET,
         payload: { error: error.message },
       });
-      
     }
-  }
+  };
 }
 export function beginTransaction(petId, idUser) {
   console.log("INICIA LA TRANSACT", petId, idUser);
   return async function (dispatch) {
     try {
-      var detail = await axios.put(INIT_TRANSACTION+"?petId="+petId, idUser);
+      var detail = await axios.post(
+        INIT_TRANSACTION + "?petId=" + petId,
+        idUser
+      );
       console.log("a ver si pasooo", detail);
       return dispatch({
         type: MY_PROFILE_DETAIL,
