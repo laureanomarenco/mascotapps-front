@@ -1,22 +1,14 @@
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
-<<<<<<< HEAD
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import BadgesPets from "../BadgesPets/BadgesPets";
 import ModalProfile from "./ModalEdit/ModalEdit";
 import Transactions from "./Transactions/Transactions";
-=======
-import React,{useState} from "react";
->>>>>>> main
 import { Logout } from "../Logout/Logout";
 import { Link } from "react-router-dom";
 //eslint-disable-next-line
-<<<<<<< HEAD
 import { useDispatch, useSelector } from "react-redux";
-import { getMyPets, myProfile, resetMyProfile } from "../../store/actions";
-=======
 import { getMyPets, myProfile, resetMyProfile,resetDetail } from "../../store/actions";
->>>>>>> main
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
 import { BsTelephoneFill } from "react-icons/bs";
@@ -31,13 +23,10 @@ export default function UserProfile() {
   const myProfileData = useSelector((state) => state.myProfile);
   console.log("🚀 ~ file: UserProfile.jsx ~ line 24 ~ UserProfile ~ myProfileData", myProfileData)
   const { image, name, city, contact } = myProfileData;
-<<<<<<< HEAD
   console.log(image, name, city, contact);
   console.log(myProfileData);
-=======
   const [hidden, setHidden] = useState(true);
 
->>>>>>> main
   //eslint-disable-next-line
   const belloPerfil = {
     id: `${user?.sub}`,
@@ -50,7 +39,7 @@ export default function UserProfile() {
   const handleSubmit = () => {
     if (isAuthenticated) {
       dispatch(getMyPets(user));
-      
+
     }
   };
   const handleClick=()=>{
@@ -170,8 +159,8 @@ export default function UserProfile() {
           </div>
         </div >
         <div hidden={hidden} className="w-full">
-          {myPets.length > 0 ? 
-          <BadgesPets 
+          {myPets.length > 0 ?
+          <BadgesPets
           user={user}
           hidden={hidden}
           setHidden={setHidden}/> : null}</div>
