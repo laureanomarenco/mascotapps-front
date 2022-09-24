@@ -188,7 +188,7 @@ export default function Detail() {
                     </div>
                   </>
                 ) : (
-                  <h1 className="text-teal-700 ">No hay datos de contacto</h1>
+                  <h1 className="text-teal-700 ">Registrate para ver datos de contacto</h1>
                 )}
               </div>
             </div>
