@@ -346,7 +346,7 @@ export function adminFetchUsers() {
 }
 
 export function beginTransaction(petId, idUser) {
-  console.log("INICIA LA TRANSACT");
+  console.log("INICIA LA TRANSACT", petId, idUser);
   return async function (dispatch) {
     try {
       var detail = await axios.put(INIT_TRANSACTION+"?petId="+petId, idUser);
