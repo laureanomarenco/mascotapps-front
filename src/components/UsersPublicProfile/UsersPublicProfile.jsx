@@ -9,6 +9,7 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { BsTelephoneFill } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";
 
+
 export default function UsersPublicProfile() {
   const location = useLocation();
   const { user } = location.state;
@@ -28,6 +29,7 @@ export default function UsersPublicProfile() {
     return (
       <div>
         <Navbar />
+
         <div className="bg-[#F2F2F2] my-8 mx-3 md:mx-20 rounded-sm drop-shadow-md">
           {/* perfil */}
           <div className="grid md:grid-cols-2 gap-2 items-center justify-center content-center w-full px-4  max-h-fit ">
