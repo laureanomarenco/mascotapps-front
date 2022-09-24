@@ -16,6 +16,7 @@ import {
   MY_PROFILE,
   UPDATE_MY_PROFILE,
   INIT_TRANSACTION,
+  DELETE,
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 
@@ -345,8 +346,26 @@ export function adminFetchUsers() {
   };
 }
 
+export function deletePet(user,petId){
+  console.log("ESTOY EN LAS ACTIONS",user,petId);
+  return async function (dispatch) {
+    try {
+      var datos= await axios.post(DELETE,{ petId:petId ,id: user?.sub })
+      return dispatch({
+        type:DELETE_PET,
+        payload:datos.data
+      })
+    } catch (error) {
+      return dispatch({
+        type: DELETE_PET,
+        payload: { error: error.message },
+      });
+      
+    }
+  }
+}
 export function beginTransaction(petId, idUser) {
-  console.log("INICIA LA TRANSACT");
+  console.log("INICIA LA TRANSACT", petId, idUser);
   return async function (dispatch) {
     try {
       var detail = await axios.put(INIT_TRANSACTION+"?petId="+petId, idUser);

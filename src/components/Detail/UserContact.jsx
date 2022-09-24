@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { HiPlusCircle } from "react-icons/hi";
 
-const UserContact = ({ user, hidden, setHidden }) => {
+const UserContact = ({ user, hidden, setHidden, idPet }) => {
   return (
     <div
       className="relative border border-gray-300 rounded-lg shadow-lg "
@@ -46,7 +46,7 @@ const UserContact = ({ user, hidden, setHidden }) => {
             Zona: <span className="font-semibold">{user.city}</span>
           </p>
         </div>
-        <Link to="/profile" state={{ user: user }}>
+        <Link to="/profile" state={{ userProf: user , idPet:idPet}}>
           <HiPlusCircle
             className="ml-8 hover:scale-y-110 hover:scale-x-110 cursor-pointer"
             size={28}

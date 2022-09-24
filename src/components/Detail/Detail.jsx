@@ -178,7 +178,8 @@ export default function Detail() {
                           <UserContact
                             user={userContact}
                             hidden={hidden}
-                            setHidden={setHidden}
+                              setHidden={setHidden}
+                              idPet={id}
                           />
                         </div>
                       </div>
