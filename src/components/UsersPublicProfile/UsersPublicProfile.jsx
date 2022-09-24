@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
-
 import Spinner from "../Spinner/Spinner";
 import Rating from "@mui/material/Rating";
 import { useLocation } from "react-router-dom";
@@ -10,20 +9,23 @@ import { BsTelephoneFill } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";
 import { useDispatch } from "react-redux";
 import { beginTransaction } from "../../store/actions";
+import{useAuth0} from "@auth0/auth0-react";
 
 
-export default function UsersPublicProfile() {
+export default function UserPuserProfsPublicProfile() {
+  const {user}=useAuth0();
   const location = useLocation();
-  const { user } = location.state;
+  const { userProf, idPet } = location.state;
+  console.log("🚀 ~ file: UsersPublicProfile.jsx ~ line 18 ~ UsersPublicProfile ~ idPet", idPet)
   const dispatch = useDispatch()
-  console.log(user)
+  console.log(userProf)
 
   const [contact, setContact] = useState(false);
   function handleBeginTransaction() {
     setContact(true);
-    dispatch(beginTransaction());
+    dispatch(beginTransaction( idPet, user?.sub));
   }
-  if (!user?.name) {
+  if (!userProf?.name) {
     return (
       <>
         <Navbar />
@@ -36,19 +38,19 @@ export default function UsersPublicProfile() {
       <div>
         <Navbar />
 
-        <div className="bg-[#F2F2F2] my-8 mx-3 md:mx-20 rounded-sm drop-shadow-md">
+        <div className=" my-8 mx-3 md:mx-20 rounded-sm drop-shadow-md">
           {/* perfil */}
           <div className="grid md:grid-cols-2 gap-2 items-center justify-center content-center w-full px-4  max-h-fit ">
             <div className="md:col-span-3 h-36 text-center flex content-center items-center justify-center">
               <p className="text-4xl font-semibold uppercase text-[#28B0A2]">
-                Perfil de {user?.name}
+                Perfil de {userProf?.name}
               </p>
             </div>
             <div className="w-52 h-52 rounded-full overflow-hidden mx-auto">
               <img
                 className="object-cover w-full h-full object-center"
-                src={user?.image}
-                alt={user?.name}
+                src={userProf?.image}
+                alt={userProf?.name}
               />
             </div>
 
@@ -61,7 +63,7 @@ export default function UsersPublicProfile() {
                 <p className="text-teal-800">
                   <FaMapMarkerAlt />
                 </p>
-                <p>{user?.city}</p>
+                <p>{userProf?.city}</p>
               </div>
               {contact ? (
                 <>
@@ -69,13 +71,13 @@ export default function UsersPublicProfile() {
                     <p className="text-teal-800">
                       <BsTelephoneFill />
                     </p>
-                    <p>{user?.contact}</p>
+                    <p>{userProf?.contact}</p>
                   </div>
                   <div className="flex gap-3 items-center">
                     <p className="text-teal-800">
                       <GrMail />
                     </p>
-                    <p> {user?.email}</p>
+                    <p> {userProf?.email}</p>
                   </div>
                 </>
               ) : (
@@ -96,8 +98,8 @@ export default function UsersPublicProfile() {
               </h2>
 
               <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12">
-                {user?.review ? (
-                  user.review?.map((review) => (
+                {userProf?.review ? (
+                  userProf.review?.map((review) => (
                     <blockquote key={Math.random()}>
                       <header className="sm:items-center sm:flex">
                         <div className="flex -ml-1">

@@ -21,6 +21,7 @@ export default function UserProfile() {
   const dispatch = useDispatch();
   const myPets = useSelector((state) => state.userPets);
   const myProfileData = useSelector((state) => state.myProfile);
+  console.log("🚀 ~ file: UserProfile.jsx ~ line 24 ~ UserProfile ~ myProfileData", myProfileData)
   const { image, name, city, contact } = myProfileData;
 
   //eslint-disable-next-line
@@ -37,7 +38,7 @@ export default function UserProfile() {
       dispatch(getMyPets(user));
     }
   };
-
+console.log(myProfileData[0]?.image);
   useEffect(() => {
     dispatch(myProfile({ id: user?.sub }));
     handleSubmit();
@@ -79,7 +80,7 @@ export default function UserProfile() {
             <ModalProfile belloPerfil={belloPerfil} />
             <img
               className=" w-52 h-52 rounded-full overflow-hidden mx-auto relative object-cover object-center"
-              src={image}
+              src={myProfileData[0]?.image}
               alt=""
             />
           </div>
@@ -93,7 +94,7 @@ export default function UserProfile() {
               <p className=" text-teal-800">
                 <FaUser />{" "}
               </p>
-              <p>{name} </p>
+              <p>{myProfileData[0]?.name} </p>
             </div>
             <div className="flex items-center justify-start gap-3 my-2">
               <p className=" text-teal-800">
@@ -111,7 +112,7 @@ export default function UserProfile() {
               <p className=" text-teal-800">
                 <BsTelephoneFill />
               </p>
-              <p>{contact}</p>
+              <p>{myProfileData[0]?.contact}</p>
             </div>
             <div className="flex items-center justify-start gap-3 my-2">
               <p className=" text-teal-800">
@@ -123,7 +124,7 @@ export default function UserProfile() {
               <p className=" text-teal-800">
                 <FaMapMarkerAlt />
               </p>
-              <p>{city}</p>
+              <p>{myProfileData[0]?.city}</p>
             </div>
           </div>
           <div className="flex flex-col w-full  max-w-[700px] items-start justify-center gap-6 my-6 px-4  md:flex-row md:justify-center md:col-span-3">
