@@ -20,3 +20,4 @@ export const USER_LOGGED = URL + "profile";
 export const GET_INFO_FROM_DETAIL = URL + "users/contactinfo/";
 export const MY_PROFILE = URL + "users/someUserInfo";
 export const UPDATE_MY_PROFILE = URL + "users/update";
+export const INIT_TRANSACTION = URL + "transactions/newTransaction";
