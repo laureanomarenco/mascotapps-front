@@ -15,6 +15,7 @@ import {
   GET_INFO_FROM_DETAIL,
   MY_PROFILE,
   UPDATE_MY_PROFILE,
+  INIT_TRANSACTION,
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 
@@ -338,6 +339,25 @@ export function adminFetchUsers() {
     } catch (error) {
       return dispatch({
         type: ADMIN_FETCH_USERS,
+        payload: { error: error.message },
+      });
+    }
+  };
+}
+
+export function beginTransaction(petId, idUser) {
+  console.log("INICIA LA TRANSACT");
+  return async function (dispatch) {
+    try {
+      var detail = await axios.put(INIT_TRANSACTION+"?petId="+petId, idUser);
+      console.log("a ver si pasooo", detail);
+      return dispatch({
+        type: MY_PROFILE_DETAIL,
+        payload: detail.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: MY_PROFILE_DETAIL,
         payload: { error: error.message },
       });
     }
