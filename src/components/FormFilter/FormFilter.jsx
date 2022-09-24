@@ -14,7 +14,7 @@ const FormFilter = ({ handleClearFilter, filter, handleFilter }) => {
   const result = Array.from(resulted);
 
   return (
-    <div className="grid gap-1 grid-cols-1 md:grid-cols-2 xl:grid-cols-6 border-0 cursor-pointer rounded-full drop-shadow-md  w-70  duration-300 ">
+    <div className="grid gap-1 grid-cols-1 md:grid-cols-2 xl:grid-cols-6 border-0 cursor-pointer rounded-full drop-shadow-md  w-70  duration-300 my-3 mx-3">
       <select value={filter.specie} name="specie" onChange={handleFilter}>
         <option hidden>Especie</option>
         <option value="perro">Perro</option>
@@ -22,7 +22,7 @@ const FormFilter = ({ handleClearFilter, filter, handleFilter }) => {
         <option value="otra especie">Otro</option>
       </select>
       <select value={filter.gender} name="gender" onChange={handleFilter}>
-        <option hidden>Genero </option>
+        <option hidden>Género </option>
         <option value="macho">Macho</option>
         <option value="hembra">Hembra</option>
       </select>
@@ -37,16 +37,18 @@ const FormFilter = ({ handleClearFilter, filter, handleFilter }) => {
         <option hidden>Raza </option>
         {result.map((keyPet) => (
           <option key={Math.random()} className="capitalize" value={keyPet}>
-            {" "}
-            {keyPet}{" "}
+            {keyPet}
           </option>
         ))}
       </select>
       <select>
         <option hidden>Ciudad</option>
       </select>
-      <button className="hover:bg-[#28B0A2]" onClick={handleClearFilter}>
-        reset
+      <button
+        className="bg-[#28B0A2]  text-white py-1 hover:bg-teal-600"
+        onClick={handleClearFilter}
+      >
+        Limpiar filtros
       </button>
     </div>
   );

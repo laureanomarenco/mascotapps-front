@@ -108,19 +108,6 @@ const PostPets = () => {
       })
     );
   };
-  // {
-  //   name: "",
-  //   specie: "",
-  //   race: "",
-  //   state: "",
-  //   gender: "",
-  //   age: "",
-  //   vaccination: "",
-  //   image: "",
-  //   comments: "",
-  //   city: "",
-  //   contact: "",
-  // }
 
   const handleSubmit = (e) => {
     e.preventDefault();

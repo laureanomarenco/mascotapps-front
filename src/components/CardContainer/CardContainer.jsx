@@ -10,7 +10,7 @@ import SortBy from "../SortBy/SortBy";
 export default function CardContainer() {
   const dispatch = useDispatch();
   const loading = useSelector((state) => state.isLoading);
-  const pets = useSelector((state) => state.pets);
+  const pets = useSelector((state) => state.allPets);
   const searchedPets = useSelector((state) => state.searchedPets);
   const notFound = useSelector((state) => state.notFound);
 
@@ -39,18 +39,20 @@ export default function CardContainer() {
   };
   return (
     <>
-        <Pagination
-          pets={pets.length}
-          searchedPets={
-            searchedPets.length !== pets.length
-              ? searchedPets.length
-              : pets.length
-          }
-          showPerPage={showPerPage}
-          page={page}
-          pagination={pagination}
+    <div className="flex flex-row-reverse ">
+      <Pagination
+        pets={pets.length}
+        searchedPets={
+          searchedPets.length !== pets.length
+          ? searchedPets.length
+          : pets.length
+        }
+        showPerPage={showPerPage}
+        page={page}
+        pagination={pagination}
         />
-        <SortBy/>
+      <SortBy/>
+    </div>
     <div
       className={`${
         loading

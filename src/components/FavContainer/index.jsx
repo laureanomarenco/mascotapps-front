@@ -11,31 +11,14 @@ export default function FavContainer() {
   const navigate = useNavigate();
 
   const alertNoFav = () => {
-    let timerInterval;
     Swal.fire({
-      title: "No tienes favoritos!",
-      html: "Puedes entrar al detalle de una mascota y agregarla a favoritos",
-      timer: 2000,
-      didOpen: () => {
-        Swal.showLoading();
-        const b = Swal.getHtmlContainer().querySelector("b");
-        timerInterval = setInterval(() => {
-          b.textContent = Swal.getTimerLeft();
-        }, 100);
-      },
-      willClose: () => {
-        clearInterval(timerInterval);
-      },
-    }).then((result) => {
-      /* Read more about handling dismissals below */
-      if (result.dismiss === Swal.DismissReason.timer) {
-        console.log("I was closed by the timer");
-        navigate("/home");
-      }
-    });
+      title: "No tenes ningún favorito",
+      text: "Podes agregar favoritos y luego verlos acá",
+      icon: "info",
+      confirmButtonText: "Ok",
+    }).then(() => navigate("/home"));
   };
   if (corazon.length === 0) {
-    //sweet alert
     alertNoFav();
   }
   return (

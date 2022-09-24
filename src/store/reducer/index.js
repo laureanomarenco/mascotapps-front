@@ -15,11 +15,17 @@ import {
   IS_LOGGED,
   GET_PETS,
   GET_PUBLIC_USER_DETAIL,
+  MY_PROFILE_DETAIL,
+  RESET_MY_PROFILE,
+  ADMIN_FETCH_USERS,
+  SORT_BY
 } from "../actions";
 
 const initalState = {
   pets: [],
   pet: {},
+  allPets:[],
+  actualSort:'ASC',
   statusPets: [],
   filterPets: [],
   searchedPets: [],
@@ -27,12 +33,14 @@ const initalState = {
   donations: [],
   cities: [],
   user: {},
-  userPets:[],
+  userPets: [],
   totalUsers: "",
   statusLogin: false,
   isLoading: true,
   notFound: false,
   publicUserDetail: {},
+  myProfile: {},
+  usersInfo: [],
 };
 
 export default function reducer(state = initalState, action) {
@@ -41,6 +49,7 @@ export default function reducer(state = initalState, action) {
       return {
         ...state,
         pets: !action.payload.error ? action.payload : [],
+        allPets: !action.payload.error ? action.payload : [],
         isLoading: false,
         notFound: !action.payload.error ? false : true,
       };
@@ -147,18 +156,39 @@ export default function reducer(state = initalState, action) {
         ...state,
         statusLogin: status,
       };
-
+    case ADMIN_FETCH_USERS:
+      return {
+        ...state,
+        usersInfo: action.payload,
+      };
     case GET_PUBLIC_USER_DETAIL:
       return {
         ...state,
         publicUserDetail: action.payload,
       };
-      case GET_PETS:
-        console.log("kdsjkdsjfksd",action.payload)
-        return{
-          ...state,
-          userPets: action.payload,
-        }
+    case GET_PETS:
+      console.log("kdsjkdsjfksd", action.payload);
+      return {
+        ...state,
+        userPets: action.payload,
+      };
+    case MY_PROFILE_DETAIL:
+      return {
+        ...state,
+        myProfile: action.payload,
+      };
+    case RESET_MY_PROFILE:
+      return {
+        ...state,
+        myProfile: {},
+      };
+    case SORT_BY:
+      return {
+        ...state,
+        pets:action.payload.arr,
+        allPets:action.payload.arr,
+        actualSort: action.payload.filterType,
+      }
 
     default:
       return state;
