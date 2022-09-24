@@ -5,6 +5,7 @@ import Pagination from "../Pagination/Pagination";
 import Card from "../Card/Card";
 import Spinner from "../Spinner/Spinner";
 import Swal from "sweetalert2";
+import SortBy from "../SortBy/SortBy";
 
 export default function CardContainer() {
   const dispatch = useDispatch();
@@ -49,6 +50,7 @@ export default function CardContainer() {
           page={page}
           pagination={pagination}
         />
+        <SortBy/>
     <div
       className={`${
         loading

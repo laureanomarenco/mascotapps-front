@@ -36,6 +36,7 @@ export const IS_LOGGED = "IS_LOGGED";
 export const CREAT_USER = "CREAT_USER";
 export const GET_PETS="GET_PETS"
 export const GET_PUBLIC_USER_DETAIL = "GET_PUBLIC_USER_DETAIL";
+export const SORT_BY = "SORT_BY";
 
 export function fetchPets() {
   return async function (dispatch) {
@@ -284,3 +285,17 @@ export function publicUserDetail(id) {
 }
 
 
+export function sortBy(arr,filterType){
+  return function(dispatch){
+    const newArr = arr.sort((a,b)=> filterType === 'ASC' 
+    ? a?.name.localeCompare(b.name)
+    : b?.name.localeCompare(a.name))
+    dispatch({
+      type: SORT_BY,
+      payload:{
+        filterType:filterType,
+        arr : newArr
+      }
+    })
+  }
+}

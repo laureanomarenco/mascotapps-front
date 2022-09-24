@@ -27,7 +27,7 @@ const Pagination = ({
     // <div className="flex bg-[red] justify-self-center justify-items-centers gap-2">
     <div className="flex w-[300px] mx-auto gap-[10px] my-8 justify-center">
       <button
-        className="bg-transparent border border-1 border-yellow-400 rounded text-[#28B0A2] font-semibold py-1 px-2"
+        className=" border border-1 border-yellow-400 rounded text-[#28B0A2] font-semibold py-1 px-2"
         onClick={page > 1 ? () => pagination(page - 1) : null}
         hidden={page === 1 ? true : false}
       >
@@ -40,7 +40,7 @@ const Pagination = ({
             className={
               page !== n
                 ? "bg-transparent border border-1 border-yellow-400 rounded text-[#28B0A2] font-semibold py-1 px-2"
-                : "bg-yellow-400 border border-1 border-yellow-400 rounded text-gray-50 font-semibold py-1 px-2"
+                : "bg-[yellow-400] border border-1 border-yellow-400 rounded text-gray-50 font-semibold py-1 px-2"
             }
             onClick={() => pagination(n)}
           >
