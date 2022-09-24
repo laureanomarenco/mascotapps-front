@@ -137,8 +137,8 @@ export default function UserProfile() {
 
             <Logout />
           </div>
-          {myPets.length > 0 ? <BadgesPets /> : null}
         </div>
+        {myPets.length > 0 ? <BadgesPets /> : null}
         <Footer />
       </div>
     );
