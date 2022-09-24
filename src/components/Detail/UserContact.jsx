@@ -29,7 +29,11 @@ const UserContact = ({ user, hidden, setHidden }) => {
       <div className="flex items-center p-4">
         <img
           alt="user-img"
-          src={user.image}
+          src={
+            user.image
+              ? user.image
+              : "https://res.cloudinary.com/dfbxjt69z/image/upload/v1663934784/mascotapps/mascotapss_jxt9hl.png"
+          }
           className="object-cover w-12 h-12 rounded-lg"
         />
 
@@ -39,7 +43,7 @@ const UserContact = ({ user, hidden, setHidden }) => {
             <span className="font-semibold capitalize">{user.name}</span>
           </p>
           <p className="max-w-xs text-sm text-gray-500 truncate">
-            Contacto: <span className="font-semibold">{user.contact}</span>
+            Zona: <span className="font-semibold">{user.city}</span>
           </p>
         </div>
         <Link to="/profile" state={{ user: user }}>
