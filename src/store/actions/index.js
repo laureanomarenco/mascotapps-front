@@ -13,6 +13,7 @@ import {
   GET_MY_PETS,
   GET_INFO_FROM_DETAIL,
   MY_PROFILE,
+  UPDATE_MY_PROFILE,
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 
@@ -57,11 +58,9 @@ export function fetchPets() {
   };
 }
 export function getMyPets(user) {
-  console.log(user);
   return async function (dispatch) {
     try {
       const datos = await axios.post(GET_MY_PETS, { id: user?.sub });
-      console.log("MANDO EL POSSSSTTTTTTT,RESPUESTA---->>", datos.data);
       return dispatch({
         type: GET_PETS,
         payload: datos.data,
@@ -299,11 +298,30 @@ export function myProfile(id) {
     }
   };
 }
+export function updateProfile(user) {
+  console.log("LO QUE MANDO DE UPDATE", user);
+  return async function (dispatch) {
+    try {
+      var detail = await axios.put(UPDATE_MY_PROFILE, user);
+      console.log("a ver si pasooo", detail);
+      return dispatch({
+        type: MY_PROFILE_DETAIL,
+        payload: detail.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: MY_PROFILE_DETAIL,
+        payload: { error: error.message },
+      });
+    }
+  };
+}
 
 export function resetMyProfile() {
   return async function (dispatch) {
-  dispatch({
-    type: RESET_MY_PROFILE,
-    payload: {},
-  });
-}; }
+    dispatch({
+      type: RESET_MY_PROFILE,
+      payload: {},
+    });
+  };
+}
