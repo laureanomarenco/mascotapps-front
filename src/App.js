@@ -20,6 +20,7 @@ import FavContainer from "./components/FavContainer";
 import UsersPublicProfile from "./components/UsersPublicProfile/UsersPublicProfile";
 import PostPets from "./components/PostPets/PostPets";
 import BadgesPets from "./components/BadgesPets/BadgesPets";
+import NuevoProfile from "./components/UserProfile/Transactions/NuevoProfile";
 function App() {
   //eslint-disable-next-line
   const dispatch = useDispatch();
@@ -44,7 +45,8 @@ function App() {
           <Route path="/profile" element={<UsersPublicProfile />}></Route>
           <Route path="/postpets" element={<PostPets />}></Route>
           <Route path="/faqs" element={<Faq />}></Route>
-          <Route path="/prueba" element={<BadgesPets/>}></Route>
+          <Route path="/prueba" element={<BadgesPets />}></Route>
+          <Route path="/nuevoprofile" element={<NuevoProfile />}></Route>
         </Routes>
       </BrowserRouter>
     </div>

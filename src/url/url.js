@@ -21,3 +21,4 @@ export const GET_INFO_FROM_DETAIL = URL + "users/contactinfo/";
 export const MY_PROFILE = URL + "users/getMultipleUserInfo";
 export const UPDATE_MY_PROFILE = URL + "users/update";
 export const INIT_TRANSACTION = URL + "transactions/newTransaction";
+export const UPDATE_POST_PET = URL + "pets/update";

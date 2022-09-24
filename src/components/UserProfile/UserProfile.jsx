@@ -1,20 +1,20 @@
 import Footer from "../Footer/Footer";
-import { Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
-import React,{useState} from "react";
+import React, { useEffect, useState } from "react";
+import BadgesPets from "../BadgesPets/BadgesPets";
+import ModalProfile from "./ModalEdit/ModalEdit";
+import Transactions from "./Transactions/Transactions";
 import { Logout } from "../Logout/Logout";
+import { Link } from "react-router-dom";
 //eslint-disable-next-line
+import { useDispatch, useSelector } from "react-redux";
 import { getMyPets, myProfile, resetMyProfile,resetDetail } from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
-import { useDispatch, useSelector } from "react-redux";
-import BadgesPets from "../BadgesPets/BadgesPets";
-import { useEffect } from "react";
 import { BsTelephoneFill } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
-import ModalProfile from "./ModalEdit/ModalEdit";
 
 export default function UserProfile() {
   const { user, isAuthenticated } = useAuth0();
@@ -23,21 +23,23 @@ export default function UserProfile() {
   const myProfileData = useSelector((state) => state.myProfile);
   console.log("🚀 ~ file: UserProfile.jsx ~ line 24 ~ UserProfile ~ myProfileData", myProfileData)
   const { image, name, city, contact } = myProfileData;
+  console.log(image, name, city, contact);
+  console.log(myProfileData);
   const [hidden, setHidden] = useState(true);
 
   //eslint-disable-next-line
   const belloPerfil = {
     id: `${user?.sub}`,
     email: `${user?.email}`,
-    name: name,
-    city: city,
-    contact: contact,
-    image: image,
+    name: myProfileData[0]?.name,
+    city: myProfileData[0]?.city,
+    contact: myProfileData[0]?.contact,
+    image: myProfileData[0]?.image,
   };
   const handleSubmit = () => {
     if (isAuthenticated) {
       dispatch(getMyPets(user));
-      
+
     }
   };
   const handleClick=()=>{
@@ -134,6 +136,9 @@ export default function UserProfile() {
               <p>{myProfileData[0]?.city}</p>
             </div>
           </div>
+          <div className="md:col-span-3 w-3/4 mx-auto ">
+            <Transactions myProfileData={myProfileData} />
+          </div>
           <div className="flex flex-col w-full  max-w-[700px] items-start justify-center gap-6 my-6 px-4  md:flex-row md:justify-center md:col-span-3">
             <Link
               to="/postpets"
@@ -154,8 +159,8 @@ export default function UserProfile() {
           </div>
         </div >
         <div hidden={hidden} className="w-full">
-          {myPets.length > 0 ? 
-          <BadgesPets 
+          {myPets.length > 0 ?
+          <BadgesPets
           user={user}
           hidden={hidden}
           setHidden={setHidden}/> : null}</div>
