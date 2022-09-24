@@ -347,10 +347,10 @@ export function adminFetchUsers() {
 }
 
 export function deletePet(user,petId){
-  console.log(user,petId);
+  console.log("ESTOY EN LAS ACTIONS",user,petId);
   return async function (dispatch) {
     try {
-      var datos= await axios.delete(DELETE+petId,{ petId:petId ,id: user?.sub })
+      var datos= await axios.post(DELETE,{ petId:petId ,id: user?.sub })
       return dispatch({
         type:DELETE_PET,
         payload:datos.data

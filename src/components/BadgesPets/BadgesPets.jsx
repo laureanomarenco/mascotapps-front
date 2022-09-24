@@ -10,10 +10,12 @@ import { deletePet } from "../../store/actions";
 
 const BadgesPets = ({user,hidden, setHidden}) => {
   const dispatch=useDispatch();
-  const handleClick = (petId)=>{
-    console.log(user,petId)
-    dispatch(deletePet(user,petId))
+
+  const handleClick = (petid)=>{
+    console.log(petid)
+    dispatch(deletePet(user,petid))
   }
+
   const myPets = useSelector((state) => state.userPets);
   return (
     <div className="flex flex-col items-center gap-5 grid-rows-1 py-5 px-5 md:grid md:grid-cols-2 xl:grid-cols-3 w-full relative border border-gray-300  rounded-lg my-2 shadow-lg  "
@@ -38,15 +40,15 @@ const BadgesPets = ({user,hidden, setHidden}) => {
       </button>
       {myPets
         ? myPets.map((a) => (
-          <Link key={a.id} to={'/pets/'+a.id}>
-            <div className=" relative border border-gray-300 w-full rounded-lg my-2 shadow-lg ">
+          <div key={a.id} className=" relative border border-gray-300 w-full rounded-lg my-2 shadow-lg ">
               <div className="flex items-center p-4">
+              <Link  to={'/pets/'+a.id}>
                 <img
                   alt="user-img"
                   src={a.image}
                   className="object-cover w-12 h-12 rounded-lg"
                 />
-
+                </Link>
                 <div className="ml-3 overflow-hidden">
                   <p className="font-medium text-gray-900">
                     Nombre:{" "}
@@ -61,13 +63,13 @@ const BadgesPets = ({user,hidden, setHidden}) => {
                     <BsPencilSquare/>
                     </p>
                     <p className="text-2xl "
-                    onClick={handleClick(a.id)}>
+                    onClick={()=>handleClick(a.id)}>
                     <RiChatDeleteFill color="red"/>
                     </p>
                   </div>
               </div>
             </div>
-              </Link>))
+              ))
         : null}
     </div>
   );
