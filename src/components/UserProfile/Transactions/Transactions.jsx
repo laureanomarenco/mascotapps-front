@@ -3,11 +3,12 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Calificar from "./Calificar";
 import { useDispatch } from "react-redux";
 import { BsCheckCircleFill } from "react-icons/bs";
+import { HiLockClosed } from "react-icons/hi";
 import { updateTransactionStatus } from "../../../store/actions/index";
 
 const Transactions = ({ transactions }) => {
   const { user } = useAuth0();
-  console.log('aquiiiiii',transactions);
+  console.log("aquiiiiii", transactions);
   const dispatch = useDispatch();
   const handleClick = (trId, userId) => {
     // console.log(trId);
@@ -110,7 +111,7 @@ const Transactions = ({ transactions }) => {
                           ? transaction.user_offering_check === null
                           : transaction.user_demanding_check === null) && (
                           <button
-                            className="flex gap-3"
+                            className="flex gap-3 hover:text-[#3CCF4E]"
                             onClick={() =>
                               handleClick(transaction.id, { id: user?.sub })
                             }
@@ -137,9 +138,8 @@ const Transactions = ({ transactions }) => {
                           ? transaction.user_offering_check === "calificado"
                           : transaction.user_demanding_check ===
                             "calificado") && (
-                          <div className="flex gap-3">
-                            <BsCheckCircleFill size={22} fill="#3CCF4E" />{" "}
-                            <span>Terminado</span>
+                          <div className="flex gap-3 text-red-400">
+                            <HiLockClosed size={22} /> <span>Finalizado</span>
                           </div>
                         )}
                       </td>
