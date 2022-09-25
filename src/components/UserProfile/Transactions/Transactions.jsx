@@ -1,8 +1,8 @@
 import React from "react";
+import { useAuth0 } from "@auth0/auth0-react";
+import Calificar from "./Calificar";
 import { useDispatch } from "react-redux";
 import { BsCheckCircleFill } from "react-icons/bs";
-import { useAuth0 } from "@auth0/auth0-react";
-import { AiFillStar } from "react-icons/ai";
 import { updateTransactionStatus } from "../../../store/actions/index";
 
 const Transactions = ({ transactions }) => {
@@ -122,12 +122,7 @@ const Transactions = ({ transactions }) => {
                         {(transaction?.user_offering_id === user?.sub
                           ? transaction.user_offering_check === "finalizado"
                           : transaction.user_demanding_check ===
-                            "finalizado") && (
-                          <div className="flex gap-3">
-                            <AiFillStar size={22} fill="#3CCF4E" />{" "}
-                            <span>Calificar</span>
-                          </div>
-                        )}
+                            "finalizado") && <Calificar />}
                         {(transaction?.user_offering_id === user?.sub
                           ? transaction.user_offering_check === "calificado"
                           : transaction.user_demanding_check ===
