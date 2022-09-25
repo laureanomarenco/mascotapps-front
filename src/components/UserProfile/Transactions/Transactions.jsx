@@ -1,6 +1,7 @@
 import React from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { useAuth0 } from "@auth0/auth0-react";
+import{AiFillStar} from "react-icons/ai"
 
 const Transactions = ({ transactions }) => {
   const { user } = useAuth0();
@@ -99,15 +100,17 @@ const Transactions = ({ transactions }) => {
                             )}
                         {transaction?.user_offering_id === user?.sub
                           ? transaction.user_offering_check
-                          : transaction.user_demanding_check === 'finalizado' && (
+                          : transaction.user_demanding_check ===
+                              "finalizado" && (
                               <div className="flex gap-3">
-                                <BsCheckCircleFill size={22} fill="#3CCF4E" />{" "}
+                                <AiFillStar size={22} fill="#3CCF4E" />{" "}
                                 <span>Calificar</span>
                               </div>
                             )}
                         {transaction?.user_offering_id === user?.sub
                           ? transaction.user_offering_check
-                          : transaction.user_demanding_check === 'calificado' && (
+                          : transaction.user_demanding_check ===
+                              "calificado" && (
                               <div className="flex gap-3">
                                 <BsCheckCircleFill size={22} fill="#3CCF4E" />{" "}
                                 <span>Terminado</span>
