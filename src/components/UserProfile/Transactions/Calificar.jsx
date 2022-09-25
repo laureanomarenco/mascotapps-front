@@ -1,9 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { AiFillStar } from "react-icons/ai";
 
 import RatingStar from "../../RatingStar/RatingStar";
 
-const Calificar = ({ tdId, reviewer_id, reviewed_id, setOrder }) => {
+const Calificar = ({
+  tdId,
+  reviewer_id,
+  reviewed_id,
+  setOrder,
+  transactions,
+}) => {
   console.log("🚀 ~ file: Calificar.jsx ~ line 7 ~ Calificar ~ tdId", tdId);
   const [showModal, setShowModal] = React.useState(false);
   const objBello = {
@@ -14,6 +20,8 @@ const Calificar = ({ tdId, reviewer_id, reviewed_id, setOrder }) => {
   const handleClick = () => {
     setShowModal(true);
   };
+
+  useEffect(() => {}, [transactions]);
   return (
     <>
       <button
@@ -43,6 +51,7 @@ const Calificar = ({ tdId, reviewer_id, reviewed_id, setOrder }) => {
                     objBello={objBello}
                     setShowModal={setShowModal}
                     setOrder={setOrder}
+                    transactions={transactions}
                   />
                 </div>
                 {/*footer*/}

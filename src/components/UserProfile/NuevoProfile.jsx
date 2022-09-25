@@ -60,7 +60,7 @@ const NuevoProfile = () => {
       dispatch(resetMyProfile());
       dispatch(resetDetail());
     };
-  }, [order]);
+  }, [order, dispatch]);
   if (!isAuthenticated) {
     Swal.fire({
       title: "No estás logueado",
@@ -177,11 +177,7 @@ const NuevoProfile = () => {
 
             <div hidden={hidden} className="w-full">
               {myPets?.length > 0 ? (
-                <BadgesPets
-                  user={user}
-                  hidden={hidden}
-                  setHidden={setHidden}
-                />
+                <BadgesPets user={user} hidden={hidden} setHidden={setHidden} />
               ) : null}
             </div>
 

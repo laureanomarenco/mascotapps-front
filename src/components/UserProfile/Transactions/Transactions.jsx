@@ -1,13 +1,10 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Calificar from "./Calificar";
 import { useDispatch } from "react-redux";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { HiLockClosed } from "react-icons/hi";
-import {
-  myProfile,
-  updateTransactionStatus,
-} from "../../../store/actions/index";
+import { updateTransactionStatus } from "../../../store/actions/index";
 
 const Transactions = ({ transactions, setOrder }) => {
   const { user } = useAuth0();
@@ -15,9 +12,10 @@ const Transactions = ({ transactions, setOrder }) => {
   const dispatch = useDispatch();
   const handleClick = (trId, userId) => {
     dispatch(updateTransactionStatus(trId, userId));
-    dispatch(myProfile({ id: user?.sub }));
     setOrder("completed");
   };
+
+  useEffect(() => {}, [transactions, setOrder, dispatch]);
 
   return (
     <div className=" rounded-md w-full">
@@ -58,7 +56,7 @@ const Transactions = ({ transactions, setOrder }) => {
 
                           <div className="ml-3 grid">
                             <p className="text-gray-900 whitespace-no-wrap capitalize">
-                              {transaction?.pet_name}
+                              {transaction?.pet_name.toLowerCase()}
                             </p>
                             <p className="text-gray-400 whitespace-no-wrap">
                               {transaction?.email}
@@ -68,12 +66,12 @@ const Transactions = ({ transactions, setOrder }) => {
                       </td>
                       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <p className="text-gray-900 whitespace-no-wrap capitalize">
-                          {transaction?.user_demanding_name}
+                          {transaction?.user_demanding_name.toLowerCase()}
                         </p>
                       </td>
                       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">
-                          {transaction?.user_offering_name}
+                        <p className="text-gray-900 whitespace-no-wrap capitalize">
+                          {transaction?.user_offering_name.toLowerCase()}
                         </p>
                       </td>
                       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
@@ -136,6 +134,7 @@ const Transactions = ({ transactions, setOrder }) => {
                                 : transaction.user_demanding_id
                             }
                             setOrder={setOrder}
+                            transactions={transactions}
                           />
                         )}
                         {(transaction?.user_offering_id === user?.sub
