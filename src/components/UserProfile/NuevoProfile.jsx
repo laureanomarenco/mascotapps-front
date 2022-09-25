@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useLocation } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import BadgesPets from "../BadgesPets/BadgesPets";
 import ModalProfile from "./ModalEdit/ModalEdit";
@@ -19,26 +20,28 @@ import { FaUser } from "react-icons/fa";
 
 const NuevoProfile = () => {
   const { user, isAuthenticated } = useAuth0();
+  const location = useLocation();
   const dispatch = useDispatch();
   const myPets = useSelector((state) => state.userPets);
   const myProfileData = useSelector((state) => state.myProfile);
+  const { profileData } = location.state;
   console.log(
     "🚀 ~ file: UserProfile.jsx ~ line 24 ~ UserProfile ~ myProfileData",
     myProfileData
   );
-  const { image, name, city, contact } = myProfileData;
-  console.log(image, name, city, contact);
-  console.log(myProfileData);
+  // const { image, name, city, contact } = myProfileData;
+
+  // const prueba = myProfileData.userProps;
   const [hidden, setHidden] = useState(true);
 
   //eslint-disable-next-line
   const belloPerfil = {
     id: `${user?.sub}`,
     email: `${user?.email}`,
-    name: name,
-    city: city,
-    contact: contact,
-    image: image,
+    name: profileData["userProps"].name,
+    city: profileData["userProps"].city,
+    contact: profileData["userProps"].contact,
+    image: profileData["userProps"].image,
   };
   const handleSubmit = () => {
     if (isAuthenticated) {
@@ -75,6 +78,9 @@ const NuevoProfile = () => {
       }
     });
   }
+  console.log(belloPerfil);
+  console.log(profileData);
+  // console.log(prueba);
   return (
     <div>
       <Navbar></Navbar>
@@ -83,21 +89,17 @@ const NuevoProfile = () => {
           {/* <!-- Left Side --> */}
           <div className="w-full md:w-3/12 md:mx-2">
             {/* <!-- Profile Card --> */}
-            <ModalProfile belloPerfil={belloPerfil} />
             <div className="bg-white p-3 border-t-4 border-[#FFC700]">
               <div className="image overflow-hidden">
                 <img
                   className="h-auto w-full mx-auto rounded-full"
-                  src={myProfileData[0]?.image}
+                  src={profileData["userProps"].image}
                   alt=""
                 />
               </div>
-              <h1 className="text-gray-900 font-bold text-xl leading-8 my-1">
-                {myProfileData[0]?.name}
+              <h1 className="text-gray-600 font-bold text-xl leading-8 my-1 text-center">
+                {profileData["userProps"].name}
               </h1>
-              <h3 className="text-gray-600 font-lg text-semibold leading-6">
-                Owner at Her Company Inc.
-              </h3>
 
               <ul className=" mt-3 divide-y ">
                 <li className="grid items-center text-center py-3 gap-1">
@@ -119,21 +121,21 @@ const NuevoProfile = () => {
                     <Logout />
                   </div>
                 </li>
-                <div hidden={hidden} className="w-full">
+                {/* <div hidden={hidden} className="w-full">
                   {myPets.length > 0 ? (
                     <BadgesPets
-                      user={user}
+                      user={profileData}
                       hidden={hidden}
                       setHidden={setHidden}
                     />
                   ) : null}
-                </div>
+                </div> */}
               </ul>
             </div>
             {/* <!-- End of profile card --> */}
             <div className="my-4"></div>
             {/* <!-- Friends card --> */}
-            <div className="bg-white p-3 hover:shadow">
+            {/* <div className="bg-white p-3 hover:shadow">
               <div className="flex items-center space-x-3 font-semibold text-gray-900 text-xl leading-8">
                 <span className="text-green-500">
                   <svg
@@ -195,7 +197,7 @@ const NuevoProfile = () => {
                   </a>
                 </div>
               </div>
-            </div>
+            </div> */}
             {/* <!-- End of friends card --> */}
           </div>
           {/* <!-- Right Side --> */}
@@ -205,7 +207,10 @@ const NuevoProfile = () => {
             <div className="bg-white p-3 shadow-sm rounded-sm">
               <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
                 <FaUser />
-                <span className="tracking-wide">Mi perfil de usuario</span>
+                <span className="tracking-wide">Información de perfil</span>
+                <div>
+                  <ModalProfile belloPerfil={belloPerfil} />
+                </div>
               </div>
               <div className="text-gray-700">
                 <div className="grid md:grid-cols-2 text-sm">
@@ -213,19 +218,33 @@ const NuevoProfile = () => {
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Nombre
                     </div>
-                    <div className=" py-2">{myProfileData[0]?.name}</div>
+                    <div className=" py-2 text-gray-400">
+                      {profileData["userProps"].name}
+                    </div>
                   </div>
                   <div className="grid grid-cols-2 ">
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Contacto
                     </div>
-                    <div className=" py-2">{myProfileData[0]?.contact}</div>
+                    <div className=" py-2 text-gray-400">
+                      {profileData["userProps"].contact}
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 ">
+                    <div className=" py-2 font-semibold text-[#28B0A2]">
+                      Email
+                    </div>
+                    <div className=" py-2 text-gray-400">
+                      {belloPerfil.email}
+                    </div>
                   </div>
                   <div className="grid grid-cols-2 ">
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Ciudad
                     </div>
-                    <div className=" py-2">{myProfileData[0]?.city}</div>
+                    <div className=" py-2 text-gray-400">
+                      {profileData["userProps"].city}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -237,6 +256,16 @@ const NuevoProfile = () => {
             {/* <!-- Experience and education --> */}
             <div className="bg-white p-3 shadow-sm rounded-sm"></div>
             {/* <!-- End of profile tab --> */}
+
+            <div hidden={hidden} className="w-full">
+              {myPets.length > 0 ? (
+                <BadgesPets
+                  user={profileData}
+                  hidden={hidden}
+                  setHidden={setHidden}
+                />
+              ) : null}
+            </div>
             <Transactions myProfileData={myProfileData} />
           </div>
         </div>

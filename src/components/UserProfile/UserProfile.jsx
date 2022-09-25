@@ -162,7 +162,7 @@ export default function UserProfile() {
             </button>
 
             <Logout />
-            <Link to="/nuevoprofile">
+            <Link to="/nuevoprofile" state={{ profileData: myProfileData }}>
               <p>NUEVO PROFILE</p>
             </Link>
           </div>

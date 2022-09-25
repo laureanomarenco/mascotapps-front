@@ -132,8 +132,8 @@ export default function ModalProfile({ belloPerfil }) {
         confirmButtonColor: "#3085d6",
       }).then((result) => {
         if (result.isConfirmed) {
-            setShowModal(false);
-            dispatch(myProfile({id: user?.sub}));
+          setShowModal(false);
+          dispatch(myProfile({ id: user?.sub }));
         }
       });
     }
@@ -171,7 +171,7 @@ export default function ModalProfile({ belloPerfil }) {
   return (
     <>
       <button
-        className="absolute right-0 top-0  text-teal-600 font-bold uppercase text-lg px-4 py-3 rounded hover:text-teal-800 focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+        className="  text-teal-600 font-bold uppercase text-lg px-4 py-3 rounded hover:text-teal-800 focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
         type="button"
         onClick={handleClick}
       >
