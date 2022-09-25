@@ -3,11 +3,7 @@ import { AiFillStar } from "react-icons/ai";
 
 import RatingStar from "../../RatingStar/RatingStar";
 
-<<<<<<< HEAD
-const Calificar = ({ tdId, reviewer_id, reviewed_id }) => {
-=======
 const Calificar = ({ tdId, reviewer_id, reviewed_id, setOrder }) => {
->>>>>>> main
   console.log("🚀 ~ file: Calificar.jsx ~ line 7 ~ Calificar ~ tdId", tdId);
   const [showModal, setShowModal] = React.useState(false);
   const objBello = {
@@ -21,20 +17,12 @@ const Calificar = ({ tdId, reviewer_id, reviewed_id, setOrder }) => {
   return (
     <>
       <button
-<<<<<<< HEAD
-        className="  text-yellow-700 flex items-center gap-1 capitalize text-lg px-4 py-3 rounded hover:text-yellow-800 focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
+        className="  text-yellow-500 flex items-center gap-1 capitalize  px-4 py-3 rounded hover:text-yellow-600 focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
         type="button"
         onClick={handleClick}
       >
-        <AiFillStar size={22} /> Calificar
-=======
-        className="  text-teal-800 flex items-center gap-1 capitalize  px-4 py-3 rounded hover:text-teal-800 focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-        type="button"
-        onClick={handleClick}
-      >
-        <AiFillStar />
+        <AiFillStar size={22} />
         <span>Calificar</span>
->>>>>>> main
       </button>
       {showModal ? (
         <>

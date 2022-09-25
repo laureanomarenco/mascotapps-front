@@ -3,12 +3,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Calificar from "./Calificar";
 import { useDispatch } from "react-redux";
 import { BsCheckCircleFill } from "react-icons/bs";
-<<<<<<< HEAD
 import { HiLockClosed } from "react-icons/hi";
-import { updateTransactionStatus } from "../../../store/actions/index";
-=======
-import { myProfile, updateTransactionStatus } from "../../../store/actions/index";
->>>>>>> main
+import {
+  myProfile,
+  updateTransactionStatus,
+} from "../../../store/actions/index";
 
 const Transactions = ({ transactions, setOrder }) => {
   const { user } = useAuth0();
@@ -59,7 +58,7 @@ const Transactions = ({ transactions, setOrder }) => {
 
                           <div className="ml-3 grid">
                             <p className="text-gray-900 whitespace-no-wrap capitalize">
-                              {transaction?.user_demanding_check}
+                              {transaction?.pet_name}
                             </p>
                             <p className="text-gray-400 whitespace-no-wrap">
                               {transaction?.email}
@@ -68,7 +67,7 @@ const Transactions = ({ transactions, setOrder }) => {
                         </div>
                       </td>
                       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">
+                        <p className="text-gray-900 whitespace-no-wrap capitalize">
                           {transaction?.user_demanding_name}
                         </p>
                       </td>
@@ -98,7 +97,7 @@ const Transactions = ({ transactions, setOrder }) => {
                             ? transaction.user_offering_check === "finalizado"
                             : transaction.user_demanding_check ===
                               "finalizado") && (
-                            <span className="relative">
+                            <span className="relative ">
                               Calificación pendiente
                             </span>
                           )}
@@ -143,13 +142,9 @@ const Transactions = ({ transactions, setOrder }) => {
                           ? transaction.user_offering_check === "calificado"
                           : transaction.user_demanding_check ===
                             "calificado") && (
-<<<<<<< HEAD
                           <div className="flex gap-3 text-red-400">
-                            <HiLockClosed size={22} /> <span>Finalizado</span>
-=======
-                          <div className="flex gap-3">
-                            <span>Terminado</span>
->>>>>>> main
+                            <HiLockClosed size={22} />
+                            <span>Finalizado</span>
                           </div>
                         )}
                       </td>

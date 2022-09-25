@@ -19,8 +19,11 @@ import Swal from "sweetalert2";
 import { FaUser } from "react-icons/fa";
 
 const NuevoProfile = () => {
-  const  [order,setOrder]= useState('')
-  console.log("🚀 ~ file: NuevoProfile.jsx ~ line 23 ~ NuevoProfile ~ order", order)
+  const [order, setOrder] = useState("");
+  console.log(
+    "🚀 ~ file: NuevoProfile.jsx ~ line 23 ~ NuevoProfile ~ order",
+    order
+  );
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
   const myPets = useSelector((state) => state.userPets);
