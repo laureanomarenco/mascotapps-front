@@ -6,12 +6,7 @@ import { useDispatch } from "react-redux";
 import { rateUser, myProfile, resetMyProfile } from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 
-export default function RatingStar({
-  objBello,
-  setShowModal,
-  setOrder,
-  transactions,
-}) {
+export default function RatingStar({ objBello, setShowModal, setOrder }) {
   console.log(
     "🚀 ~ file: RatingStar.jsx ~ line 10 ~ RatingStar ~ objBello",
     objBello
@@ -45,7 +40,7 @@ export default function RatingStar({
     setOrder("new");
   };
 
-  React.useEffect(() => {}, [transactions, dispatch]);
+  React.useEffect(() => {}, [dispatch]);
 
   return (
     <div className="flex flex-col text-center">
