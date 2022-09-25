@@ -1,11 +1,19 @@
 import React from "react";
-import { BsCheckCircleFill } from "react-icons/bs";
 import { useAuth0 } from "@auth0/auth0-react";
-import { AiFillStar } from "react-icons/ai";
+import Calificar from "./Calificar";
+import { useDispatch } from "react-redux";
+import { BsCheckCircleFill } from "react-icons/bs";
+import { updateTransactionStatus } from "../../../store/actions/index";
 
 const Transactions = ({ transactions }) => {
   const { user } = useAuth0();
-  console.log(transactions);
+  console.log('aquiiiiii',transactions);
+  const dispatch = useDispatch();
+  const handleClick = (trId, userId) => {
+    // console.log(trId);
+    // console.log(userId);
+    dispatch(updateTransactionStatus(trId, userId));
+  };
 
   return (
     <div className=" rounded-md w-full">
@@ -19,10 +27,10 @@ const Transactions = ({ transactions }) => {
                     Mascota
                   </th>
                   <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                    Usuario
+                    Interesado/a
                   </th>
                   <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                    Usuario
+                    Anunciante
                   </th>
                   <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                     Estado
@@ -101,19 +109,29 @@ const Transactions = ({ transactions }) => {
                         {(transaction?.user_offering_id === user?.sub
                           ? transaction.user_offering_check === null
                           : transaction.user_demanding_check === null) && (
-                          <div className="flex gap-3">
+                          <button
+                            className="flex gap-3"
+                            onClick={() =>
+                              handleClick(transaction.id, { id: user?.sub })
+                            }
+                          >
                             <BsCheckCircleFill size={22} fill="#3CCF4E" />{" "}
                             <span>Finalizar</span>
-                          </div>
+                          </button>
                         )}
                         {(transaction?.user_offering_id === user?.sub
                           ? transaction.user_offering_check === "finalizado"
                           : transaction.user_demanding_check ===
                             "finalizado") && (
-                          <div className="flex gap-3">
-                            <AiFillStar size={22} fill="#3CCF4E" />{" "}
-                            <span>Calificar</span>
-                          </div>
+                          <Calificar
+                            tdId={transaction.id}
+                            reviewer_id={user?.sub}
+                            reviewed_id={
+                              user?.sub === transaction.user_demanding_id
+                                ? transaction.user_offering_id
+                                : transaction.user_demanding_id
+                            }
+                          />
                         )}
                         {(transaction?.user_offering_id === user?.sub
                           ? transaction.user_offering_check === "calificado"

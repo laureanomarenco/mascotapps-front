@@ -2,14 +2,26 @@ import * as React from "react";
 import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import TextField from "@mui/material/TextField";
+import { useDispatch } from "react-redux";
+import { rateUser } from "../../store/actions";
 
-export default function RatingStar() {
+export default function RatingStar({ objBello, setShowModal }) {
+  console.log(
+    "🚀 ~ file: RatingStar.jsx ~ line 10 ~ RatingStar ~ objBello",
+    objBello
+  );
+  const dispatch = useDispatch();
   const [value, setValue] = React.useState(2);
   //eslint-disable-next-line
   const [review, setReview] = React.useState({
+    ...objBello,
     stars: 0,
-    review: "",
+    comments: "",
   });
+  console.log(
+    "🚀 ~ file: RatingStar.jsx ~ line 21 ~ RatingStar ~ review",
+    review
+  );
 
   const handleChange = (event) => {
     setReview({
@@ -20,6 +32,8 @@ export default function RatingStar() {
 
   const handleClick = (event) => {
     event.preventDefault();
+    dispatch(rateUser(review));
+    setShowModal(false);
   };
 
   return (
@@ -43,7 +57,7 @@ export default function RatingStar() {
           id="outlined-multiline-static"
           label="Dejá tu opinión"
           multiline
-          name="review"
+          name="comments"
           rows={4}
           defaultValue=""
           onChange={handleChange}
