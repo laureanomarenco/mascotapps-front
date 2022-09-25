@@ -163,7 +163,8 @@ export default function UserProfile() {
           <BadgesPets
           user={user}
           hidden={hidden}
-          setHidden={setHidden}/> : null}</div>
+          setHidden={setHidden}/> : null}
+        </div>
         <Footer />
       </div>
     );

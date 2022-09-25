@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 // import { HiPlusCircle } from "react-icons/hi";
 import {BsPencilSquare} from "react-icons/bs"
 import {RiChatDeleteFill} from "react-icons/ri"
-import { deletePet } from "../../store/actions";
+import { deletePet, updatePet } from "../../store/actions";
 
 
 
@@ -39,32 +39,32 @@ const BadgesPets = ({user,hidden, setHidden}) => {
         </svg>
       </button>
       {myPets
-        ? myPets.map((a) => (
-          <div key={a.id} className=" relative border border-gray-300 w-full rounded-lg my-2 shadow-lg ">
+        ? myPets.map((pet) => (
+          <div key={pet.id} className=" relative border border-gray-300 w-full rounded-lg my-2 shadow-lg ">
               <div className="flex items-center p-4">
-              <Link  to={'/pets/'+a.id}>
+              <Link  to={'/pets/'+pet.id}>
                 <img
                   alt="user-img"
-                  src={a.image}
+                  src={pet.image}
                   className="object-cover w-12 h-12 rounded-lg"
                 />
                 </Link>
                 <div className="ml-3 overflow-hidden">
                   <p className="font-medium text-gray-900">
                     Nombre:{" "}
-                    <span className="font-semibold capitalize">{a.name}</span>
+                    <span className="font-semibold capitalize">{pet.name}</span>
                   </p>
                   <p className="max-w-xs text-sm text-gray-500 truncate">
-                    Raza: <span className="font-semibold">{a.race}</span>
+                    Raza: <span className="font-semibold">{pet.race}</span>
                   </p>
                 </div>
                   <div className="flex mx-auto gap-10 ">
                     <p className="text-2xl  ">
-                    <BsPencilSquare/>
+                    <BsPencilSquare className="cursor-pointer" onClick={()=>dispatch(updatePet(user,pet))}/>
                     </p>
                     <p className="text-2xl "
-                    onClick={()=>handleClick(a.id)}>
-                    <RiChatDeleteFill color="red"/>
+                    onClick={()=>handleClick(pet.id)}>
+                    <RiChatDeleteFill color="red" className="cursor-pointer"/>
                     </p>
                   </div>
               </div>

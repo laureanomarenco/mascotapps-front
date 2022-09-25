@@ -17,6 +17,7 @@ import {
   UPDATE_MY_PROFILE,
   INIT_TRANSACTION,
   DELETE,
+  UPDATE_POST_PET
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 
@@ -24,6 +25,7 @@ export const FETCH_PETS = "FETCH_PETS";
 export const GET_DETAIL = "GET_DETAIL";
 export const ADD_PET = "ADD_PET";
 export const DELETE_PET = "DELETE_PET";
+export const UPDATE_PET = "UPDATE_PET";
 export const EDIT_PET = "EDIT_PET";
 export const RESET_DETAIL = "RESET_DETAIL";
 export const GET_PETS_BY_STATUS = "GET_PETS_BY_STATUS";
@@ -383,6 +385,20 @@ export function deletePet(user, petId) {
     }
   };
 }
+
+export function updatePet(user, pet_data){
+  return async function(dispatch){
+    try {
+      console.log(dispatch)
+      pet_data.name = 'muerte a satan'
+      let datos = await axios.put(UPDATE_POST_PET,{user:{userId:user?.sub},pet:pet_data})
+      console.log(datos)
+    } catch (error) {
+      console.log(error)
+    }
+  }
+}
+
 export function beginTransaction(petId, idUser) {
   console.log("INICIA LA TRANSACT", petId, idUser);
   return async function (dispatch) {
