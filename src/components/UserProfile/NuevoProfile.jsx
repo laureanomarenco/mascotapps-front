@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useLocation } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import Navbar from "../Navbar/Navbar";
 import BadgesPets from "../BadgesPets/BadgesPets";
 import ModalProfile from "./ModalEdit/ModalEdit";
 import Transactions from "./Transactions/Transactions";
+import Footer from "../Footer/Footer";
 import { Logout } from "../Logout/Logout";
-import { Link } from "react-router-dom";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -92,7 +92,7 @@ const NuevoProfile = () => {
             <div className="bg-white p-3 border-t-4 border-[#FFC700]">
               <div className="image overflow-hidden">
                 <img
-                  className="h-auto w-full mx-auto rounded-full"
+                  className="h-auto w-full  mx-auto rounded-full"
                   src={profileData["userProps"].image}
                   alt=""
                 />
@@ -121,15 +121,6 @@ const NuevoProfile = () => {
                     <Logout />
                   </div>
                 </li>
-                {/* <div hidden={hidden} className="w-full">
-                  {myPets.length > 0 ? (
-                    <BadgesPets
-                      user={profileData}
-                      hidden={hidden}
-                      setHidden={setHidden}
-                    />
-                  ) : null}
-                </div> */}
               </ul>
             </div>
             {/* <!-- End of profile card --> */}
@@ -201,7 +192,7 @@ const NuevoProfile = () => {
             {/* <!-- End of friends card --> */}
           </div>
           {/* <!-- Right Side --> */}
-          <div className="w-full md:w-9/12 mx-2 h-64">
+          <div className="w-full md:w-9/12 mx-2 ">
             {/* <!-- Profile tab -->
                 <!-- About Section --> */}
             <div className="bg-white p-3 shadow-sm rounded-sm">
@@ -249,13 +240,6 @@ const NuevoProfile = () => {
                 </div>
               </div>
             </div>
-            {/* <!-- End of about section --> */}
-
-            <div className="my-4"> </div>
-
-            {/* <!-- Experience and education --> */}
-            <div className="bg-white p-3 shadow-sm rounded-sm"></div>
-            {/* <!-- End of profile tab --> */}
 
             <div hidden={hidden} className="w-full">
               {myPets.length > 0 ? (
@@ -266,9 +250,13 @@ const NuevoProfile = () => {
                 />
               ) : null}
             </div>
+
             <Transactions myProfileData={myProfileData} />
           </div>
         </div>
+      </div>
+      <div>
+        <Footer />
       </div>
     </div>
   );
