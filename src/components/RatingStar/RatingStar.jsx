@@ -3,9 +3,8 @@ import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import TextField from "@mui/material/TextField";
 import { useDispatch } from "react-redux";
-import { rateUser } from "../../store/actions";
-
-
+import { rateUser, myProfile, resetMyProfile } from "../../store/actions";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function RatingStar({ objBello, setShowModal, setOrder }) {
   console.log(
@@ -31,13 +30,17 @@ export default function RatingStar({ objBello, setShowModal, setOrder }) {
       [event.target.name]: event.target.value,
     });
   };
-
+  const { user } = useAuth0();
   const handleClick = (event) => {
     event.preventDefault();
     dispatch(rateUser(review));
+    dispatch(resetMyProfile());
+    dispatch(myProfile({ id: user?.sub }));
     setShowModal(false);
-    setOrder('new')
+    setOrder("new");
   };
+
+  React.useEffect(() => {}, [dispatch]);
 
   return (
     <div className="flex flex-col text-center">
