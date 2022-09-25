@@ -1,8 +1,11 @@
 import React from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
+import { useAuth0 } from "@auth0/auth0-react";
 
 const Transactions = ({ transactions }) => {
+  const { user } = useAuth0();
   console.log(transactions);
+
   return (
     <div className=" rounded-md w-full">
       <div>
@@ -64,27 +67,52 @@ const Transactions = ({ transactions }) => {
                             aria-hidden
                             className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
                           ></span>
-                          {transaction.status === "active" && (
-                            <span className="relative">Activo</span>
-                          )}
-                          {transaction.status === "finalizado" && (
-                            <span className="relative">
-                              Calificación pendiente
-                            </span>
-                          )}
-                          {transaction.status === "reviewed" && (
-                            <span className="relative">Finzalizado</span>
-                          )}
+                          {transaction?.user_offering_id === user?.sub
+                            ? transaction.user_offering_check
+                            : transaction.user_demanding_check === null && (
+                                <span className="relative">Activo</span>
+                              )}
+                          {transaction?.user_offering_id === user?.sub
+                            ? transaction.user_offering_check
+                            : transaction.user_demanding_check ===
+                                "finalizado" && (
+                                <span className="relative">
+                                  Calificación pendiente
+                                </span>
+                              )}
+                          {transaction?.user_offering_id === user?.sub
+                            ? transaction.user_offering_check
+                            : transaction.user_demanding_check ===
+                                "calificado" && (
+                                <span className="relative">Finzalizado</span>
+                              )}
                         </span>
                       </td>
                       <td className=" py-5 border-b border-gray-200 bg-white text-sm">
-                        {transaction.status === "active" && (
-                          <div className="flex gap-3">
-                            <BsCheckCircleFill size={22} fill="#3CCF4E" />{" "}
-                            <span>Finalizar</span>
-                            {/* <GrView size={22} /> */}
-                          </div>
-                        )}
+                        {transaction?.user_offering_id === user?.sub
+                          ? transaction.user_offering_check
+                          : transaction.user_demanding_check === null && (
+                              <div className="flex gap-3">
+                                <BsCheckCircleFill size={22} fill="#3CCF4E" />{" "}
+                                <span>Finalizar</span>
+                              </div>
+                            )}
+                        {transaction?.user_offering_id === user?.sub
+                          ? transaction.user_offering_check
+                          : transaction.user_demanding_check === 'finalizado' && (
+                              <div className="flex gap-3">
+                                <BsCheckCircleFill size={22} fill="#3CCF4E" />{" "}
+                                <span>Calificar</span>
+                              </div>
+                            )}
+                        {transaction?.user_offering_id === user?.sub
+                          ? transaction.user_offering_check
+                          : transaction.user_demanding_check === 'calificado' && (
+                              <div className="flex gap-3">
+                                <BsCheckCircleFill size={22} fill="#3CCF4E" />{" "}
+                                <span>Terminado</span>
+                              </div>
+                            )}
                       </td>
                     </tr>
                   </>
