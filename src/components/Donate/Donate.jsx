@@ -95,17 +95,24 @@ const CheckoutForm = () => {
   };
 
   return (
-    <div className="">
+    <div className="w-full px-3 flex flex-col items-center">
       <Navbar />
       <div className=" py-6 min-h-screen w-screen bg-[url('https://res.cloudinary.com/dax0wf30d/image/upload/v1663115601/shit/bg-5_nbb3sj.png')]">
         {paymentState.state === null && (
-          <>
-            <h1 className="flex flex-col w-2/6 mx-auto py-8 items-center bg-[#28B0A280] text-[#121212] border-solid border-2 rounded font-semibold">
-              Ayudanos a seguir recuperando animales
-            </h1>
+          <div className="max-w-[500px] mx-auto">
+            <div className="flex items-center justify-around ">
+              <h1 className="flex  mx-auto py-8 text-center md:text-left text-[#28B0A2] text-lg md:text-2xl rounded font-semibold">
+                Ayudanos a seguir recuperando animales
+              </h1>
+              <img
+                src="https://res.cloudinary.com/dfbxjt69z/image/upload/v1664142786/mascotapps/Dise%C3%B1o_sin_t%C3%ADtulo_fyvuum.png"
+                alt=""
+                className="w-[150px] h-[150px]"
+              />
+            </div>
             <form
               onSubmit={handleSubmit}
-              className="flex flex-col w-2/6 mx-auto mb-4 items-center"
+              className="flex flex-col w-full mx-auto mb-4 items-center"
             >
               <a
                 href="https://buy.stripe.com/test_dR615Q1v8cbL3Ju3cc"
@@ -136,7 +143,7 @@ const CheckoutForm = () => {
                 Donar
               </button>
             </form>
-          </>
+          </div>
         )}
         {loaded && <Spinner />}
         {paymentState.state === "aproved" && (
