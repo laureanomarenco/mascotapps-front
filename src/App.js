@@ -11,7 +11,7 @@ import LoginAdmin from "./components/AdminPage/LoginAdmin";
 import AdminPage from "./components/AdminPage/AdminPage";
 import Faq from "./components/Faq/Faq";
 import React from "react";
-import UserProfile from "./components/UserProfile/UserProfile";
+
 import { fetchPets } from "./store/actions";
 import { useDispatch } from "react-redux";
 import { useEffect } from "react";
@@ -34,7 +34,7 @@ function App() {
           <Route exact path="/" element={<LandingPage />} />
           <Route path="/home" element={<Home />} />
           <Route path="/register" element={<SignUp />} />
-          <Route path="/account" element={<UserProfile />} />
+          <Route path="/account" element={<NuevoProfile />} />
           <Route path="/pets/:id" element={<Detail />} />
           <Route path="/estado/:status" element={<PetsContainer />} />
           <Route path="/admin" element={<LoginAdmin />} />
@@ -46,7 +46,6 @@ function App() {
           <Route path="/postpets" element={<PostPets />}></Route>
           <Route path="/faqs" element={<Faq />}></Route>
           <Route path="/prueba" element={<BadgesPets />}></Route>
-          <Route path="/nuevoprofile" element={<NuevoProfile />}></Route>
         </Routes>
       </BrowserRouter>
     </div>
