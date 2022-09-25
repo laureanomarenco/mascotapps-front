@@ -1,17 +1,10 @@
 import React, { useEffect, useState } from "react";
-//eslint-disable-next-line
 import { Link } from "react-router-dom";
-//eslint-disable-next-line
 import Navbar from "../Navbar/Navbar";
-//eslint-disable-next-line
 import BadgesPets from "../BadgesPets/BadgesPets";
-//eslint-disable-next-line
 import ModalProfile from "./ModalEdit/ModalEdit";
-//eslint-disable-next-line
 import Transactions from "./Transactions/Transactions";
-//eslint-disable-next-line
 import Footer from "../Footer/Footer";
-//eslint-disable-next-line
 import { Logout } from "../Logout/Logout";
 
 import { useDispatch, useSelector } from "react-redux";
@@ -23,26 +16,20 @@ import {
 } from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
-//eslint-disable-next-line
 import { FaUser } from "react-icons/fa";
 
 const NuevoProfile = () => {
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
-  //eslint-disable-next-line
   const myPets = useSelector((state) => state.userPets);
   const myProfileData = useSelector((state) => state.myProfile);
-  const transactions = myProfileData.transactions;
+  const transactions = myProfileData?.transactions;
   console.log(
     "🚀 ~ file: UserProfile.jsx ~ line 24 ~ UserProfile ~ mymyProfileData",
     myProfileData
   );
-  // const { image, name, city, contact } = mymyProfileData;
-
-  // const prueba = mymyProfileData.userProps;
   const [hidden, setHidden] = useState(true);
 
-  //eslint-disable-next-line
   const belloPerfil = {
     id: `${user?.sub}`,
     email: `${user?.email}`,

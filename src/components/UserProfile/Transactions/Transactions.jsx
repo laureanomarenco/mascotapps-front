@@ -31,55 +31,64 @@ const Transactions = ({ transactions }) => {
                 </tr>
               </thead>
               <tbody>
-                <>
-                  <tr key="key">
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <div className="flex items-center">
-                        <img
-                          className="w-12 h-12 rounded-full"
-                          src="imagen"
-                          alt="user-img"
-                        />
+                {transactions?.map((transaction) => (
+                  <>
+                    <tr key={transaction?.id}>
+                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <div className="flex items-center">
+                          <img
+                            className="w-12 h-12 rounded-full"
+                            src={transaction?.image}
+                            alt="user-img"
+                          />
 
-                        <div className="ml-3 grid">
-                          <p className="text-gray-900 whitespace-no-wrap capitalize">
-                            NOMBRE
-                          </p>
-                          <p className="text-gray-400 whitespace-no-wrap">
-                            EMAIL
-                          </p>
+                          <div className="ml-3 grid">
+                            <p className="text-gray-900 whitespace-no-wrap capitalize">
+                              {transaction?.name}
+                            </p>
+                            <p className="text-gray-400 whitespace-no-wrap">
+                              {transaction?.email}
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    </td>
-                    {/* <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <p className="text-gray-900 whitespace-no-wrap">
-                            {u.createdAt.slice(0, 10)}
-                          </p>
-                        </td> */}
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">CITY</p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">43</p>
-                    </td>
-                    <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
-                        <span
-                          aria-hidden
-                          className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
-                        ></span>
-                        <span className="relative">Activo</span>
-                      </span>
-                    </td>
-                    <td className=" py-5 border-b border-gray-200 bg-white text-sm">
-                      <div className="flex gap-3">
-                        <GrView size={22} />
-                        <MdOutlineEdit size={22} />
-                        <RiDeleteBinLine size={22} />
-                      </div>
-                    </td>
-                  </tr>
-                </>
+                      </td>
+                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <p className="text-gray-900 whitespace-no-wrap">
+                          {transaction?.city}
+                        </p>
+                      </td>
+                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <p className="text-gray-900 whitespace-no-wrap">43</p>
+                      </td>
+                      <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
+                        <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight text-center">
+                          <span
+                            aria-hidden
+                            className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
+                          ></span>
+                          {transaction.status === "active" && (
+                            <span className="relative">Activo</span>
+                          )}
+                          {transaction.status === "finalizado" && (
+                            <span className="relative">
+                              Calificación pendiente
+                            </span>
+                          )}
+                          {transaction.status === "reviewed" && (
+                            <span className="relative">Finzalizado</span>
+                          )}
+                        </span>
+                      </td>
+                      <td className=" py-5 border-b border-gray-200 bg-white text-sm">
+                        <div className="flex gap-3">
+                          <GrView size={22} />
+                          <MdOutlineEdit size={22} />
+                          <RiDeleteBinLine size={22} />
+                        </div>
+                      </td>
+                    </tr>
+                  </>
+                ))}
               </tbody>
             </table>
           </div>
