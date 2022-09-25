@@ -16,6 +16,9 @@ export default function Footer() {
           adoptar y/o dar en adopción mascotas.
         </p>
         <ul className="flex justify-center mt-6 gap-6 md:gap-8">
+          <li className="text-gray-700 transition hover:text-gray-700/75">
+            <Link to="faqs">FAQs</Link>
+          </li>
           <li>
             <Link
               to="/"
