@@ -139,7 +139,7 @@ const NuevoProfile = () => {
               </div>
               <div className="text-gray-700">
                 <div className="grid md:grid-cols-2 text-sm">
-                  <div className="grid md:grid md:grid-cols-1 grid-cols-2 ">
+                  <div className="grid grid-cols-2 ">
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Nombre
                     </div>

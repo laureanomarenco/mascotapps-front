@@ -20,7 +20,7 @@ export default function UserPuserProfsPublicProfile() {
     idPet
   );
   const dispatch = useDispatch();
-  console.log(userProf);
+  console.log(user);
 
   const [contact, setContact] = useState(false);
 
