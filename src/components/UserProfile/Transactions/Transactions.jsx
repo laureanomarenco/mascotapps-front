@@ -3,16 +3,16 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Calificar from "./Calificar";
 import { useDispatch } from "react-redux";
 import { BsCheckCircleFill } from "react-icons/bs";
-import { updateTransactionStatus } from "../../../store/actions/index";
+import { myProfile, updateTransactionStatus } from "../../../store/actions/index";
 
-const Transactions = ({ transactions }) => {
+const Transactions = ({ transactions, setOrder }) => {
   const { user } = useAuth0();
-  console.log('aquiiiiii',transactions);
+  console.log("aquiiiiii", transactions);
   const dispatch = useDispatch();
   const handleClick = (trId, userId) => {
-    // console.log(trId);
-    // console.log(userId);
     dispatch(updateTransactionStatus(trId, userId));
+    dispatch(myProfile({ id: user?.sub }));
+    setOrder("completed");
   };
 
   return (
@@ -101,7 +101,7 @@ const Transactions = ({ transactions }) => {
                             ? transaction.user_offering_check === "calificado"
                             : transaction.user_demanding_check ===
                               "calificado") && (
-                            <span className="relative">Finzalizado</span>
+                            <span className="relative">Finalizado</span>
                           )}
                         </span>
                       </td>
@@ -131,6 +131,7 @@ const Transactions = ({ transactions }) => {
                                 ? transaction.user_offering_id
                                 : transaction.user_demanding_id
                             }
+                            setOrder={setOrder}
                           />
                         )}
                         {(transaction?.user_offering_id === user?.sub
@@ -138,7 +139,6 @@ const Transactions = ({ transactions }) => {
                           : transaction.user_demanding_check ===
                             "calificado") && (
                           <div className="flex gap-3">
-                            <BsCheckCircleFill size={22} fill="#3CCF4E" />{" "}
                             <span>Terminado</span>
                           </div>
                         )}
