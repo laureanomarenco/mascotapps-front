@@ -87,7 +87,7 @@ const NuevoProfile = () => {
             <div className="bg-white p-3 border-t-4 border-[#FFC700]">
               <div className="image overflow-hidden">
                 <img
-                  className="h-auto w-full  mx-auto rounded-full"
+                  className="h-auto w-full  mx-auto rounded-full object-cover"
                   src={myProfileData["userProps"]?.image}
                   alt=""
                 />
