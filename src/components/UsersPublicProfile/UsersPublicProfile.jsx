@@ -10,6 +10,7 @@ import { GrMail } from "react-icons/gr";
 import { useDispatch } from "react-redux";
 import { beginTransaction } from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
+import {BiDonateHeart} from "react-icons/bi"
 
 export default function UserPuserProfsPublicProfile() {
   const { user } = useAuth0();
@@ -17,7 +18,7 @@ export default function UserPuserProfsPublicProfile() {
   const { userProf, idPet } = location.state;
   console.log(
     "🚀 ~ file: UsersPublicProfile.jsx ~ line 18 ~ UsersPublicProfile ~ idPet",
-    idPet
+    userProf
   );
   const dispatch = useDispatch();
   console.log(user);
@@ -51,6 +52,11 @@ export default function UserPuserProfsPublicProfile() {
               </p>
             </div>
             <div className="w-52 h-52 rounded-full overflow-hidden mx-auto">
+              {userProf?.isDonator === "true" && (
+                <div className="absolute transition-all ease-in-out  duration-250	 cursor-pointer text-teal-500 hover:text-amber-400 top-5 right-0 text-4xl">
+                  <BiDonateHeart />
+                </div>
+              )}
               <img
                 className="object-cover w-full h-full object-center"
                 src={userProf?.image}
