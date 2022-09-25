@@ -7,7 +7,7 @@ import { updateTransactionStatus } from "../../../store/actions/index";
 
 const Transactions = ({ transactions }) => {
   const { user } = useAuth0();
-  console.log(transactions);
+  console.log('aquiiiiii',transactions);
   const dispatch = useDispatch();
   const handleClick = (trId, userId) => {
     // console.log(trId);
@@ -122,7 +122,17 @@ const Transactions = ({ transactions }) => {
                         {(transaction?.user_offering_id === user?.sub
                           ? transaction.user_offering_check === "finalizado"
                           : transaction.user_demanding_check ===
-                            "finalizado") && <Calificar />}
+                            "finalizado") && (
+                          <Calificar
+                            tdId={transaction.id}
+                            reviewer_id={user?.sub}
+                            reviewed_id={
+                              user?.sub === transaction.user_demanding_id
+                                ? transaction.user_offering_id
+                                : transaction.user_demanding_id
+                            }
+                          />
+                        )}
                         {(transaction?.user_offering_id === user?.sub
                           ? transaction.user_offering_check === "calificado"
                           : transaction.user_demanding_check ===

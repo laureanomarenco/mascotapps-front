@@ -26,3 +26,5 @@ export const INIT_TRANSACTION = URL + "transactions/newTransaction";
 export const UPDATE_POST_PET = URL + "pets/update";
 export const UPDATE_TRANSACTION_STATUS =
   URL + "transactions/transactionCheck?transactionId=";
+
+  export const RATE_USER = URL + "reviews/newReview ";

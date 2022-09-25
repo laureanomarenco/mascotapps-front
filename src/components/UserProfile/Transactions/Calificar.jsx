@@ -1,9 +1,16 @@
 import React from "react";
 import { AiFillStar } from "react-icons/ai";
-import RatingStar from "../../RatingStar/RatingStar";
-const Calificar = () => {
-  const [showModal, setShowModal] = React.useState(false);
 
+import RatingStar from "../../RatingStar/RatingStar";
+
+const Calificar = ({tdId, reviewer_id, reviewed_id}) => {
+  console.log("🚀 ~ file: Calificar.jsx ~ line 7 ~ Calificar ~ tdId", tdId)
+  const [showModal, setShowModal] = React.useState(false);
+  const objBello = {
+    transaction_id: tdId,
+    reviewer_id: reviewer_id,
+    reviewed_id: reviewed_id,
+  };
   const handleClick = () => {
     setShowModal(true);
   };
@@ -23,7 +30,7 @@ const Calificar = () => {
               {/*content*/}
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col items-center w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
-                <div className="mx-auto text-center justify-center p-5 border-b border-solid border-slate-200 rounded-t text-center items-center">
+                <div className="mx-auto justify-center p-5 border-b border-solid border-slate-200 rounded-t text-center items-center">
                   <h3 className=" text-3xl w-full  font-semibold">
                     Califica al usuario
                   </h3>
@@ -31,7 +38,7 @@ const Calificar = () => {
                 {/*body*/}
 
                 <div className="relative p-6 flex-auto">
-                  <RatingStar />
+                  <RatingStar objBello={objBello} setShowModal={setShowModal} />
                 </div>
                 {/*footer*/}
                 <div className="flex items-center justify-end p-6 border-t border-solid border-slate-200 rounded-b">

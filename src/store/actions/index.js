@@ -18,6 +18,7 @@ import {
   INIT_TRANSACTION,
   DELETE,
   UPDATE_TRANSACTION_STATUS,
+  RATE_USER,
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 
@@ -383,20 +384,15 @@ export function deletePet(user, petId) {
   };
 }
 export function beginTransaction(petId, idUser) {
-  return async function (dispatch) {
+  return async function () {
     try {
       var detail = await axios.post(INIT_TRANSACTION + "?petId=" + petId, {
         id: idUser,
       });
-      return dispatch({
-        type: MY_PROFILE_DETAIL,
-        payload: detail.data,
-      });
+      console.log(detail)
+
     } catch (error) {
-      return dispatch({
-        type: MY_PROFILE_DETAIL,
-        payload: { error: error.message },
-      });
+      console.log(error)
     }
   };
 }
@@ -414,3 +410,14 @@ export function updateTransactionStatus(idTrans, idLogged) {
     }
   };
 }
+export function rateUser(paq) {
+  return async function () {
+    try {
+      var review = await axios.post(RATE_USER , paq);
+      console.log(review);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
+
