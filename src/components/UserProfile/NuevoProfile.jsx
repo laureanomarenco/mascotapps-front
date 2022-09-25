@@ -87,7 +87,7 @@ const NuevoProfile = () => {
       <Navbar></Navbar>
       <div className="container mx-auto my-5 p-5">
         <div className="md:flex no-wrap md:-mx-2 relative">
-          {myProfileData['userProps'].isDonator ==='true' &&(
+          {myProfileData['userProps']?.isDonator ==='true' &&(
             <div className="absolute transition-all ease-in-out  duration-250	 cursor-pointer text-teal-500 hover:text-amber-400 top-5 right-0 text-4xl">
               <BiDonateHeart />
             </div>)
