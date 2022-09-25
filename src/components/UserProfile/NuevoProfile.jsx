@@ -178,7 +178,7 @@ const NuevoProfile = () => {
             <div hidden={hidden} className="w-full">
               {myPets?.length > 0 ? (
                 <BadgesPets
-                  user={myProfileData}
+                  user={user}
                   hidden={hidden}
                   setHidden={setHidden}
                 />
