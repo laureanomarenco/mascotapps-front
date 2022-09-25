@@ -20,7 +20,7 @@ import FavContainer from "./components/FavContainer";
 import UsersPublicProfile from "./components/UsersPublicProfile/UsersPublicProfile";
 import PostPets from "./components/PostPets/PostPets";
 import BadgesPets from "./components/BadgesPets/BadgesPets";
-import NuevoProfile from "./components/UserProfile/Transactions/NuevoProfile";
+import NuevoProfile from "./components/UserProfile/NuevoProfile";
 function App() {
   //eslint-disable-next-line
   const dispatch = useDispatch();
