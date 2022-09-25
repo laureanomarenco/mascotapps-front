@@ -23,9 +23,7 @@ import { MdImageSearch } from "react-icons/md";
 import { CgSearchFound } from "react-icons/cg";
 import { BsEyeFill } from "react-icons/bs";
 import { TbUsers } from "react-icons/tb";
-import { MdImageNotSupported } from "react-icons/md";
 import { FaDonate } from "react-icons/fa";
-import { BsImages } from "react-icons/bs";
 import { TbView360 } from "react-icons/tb";
 import { AiOutlineWoman } from "react-icons/ai";
 import { AiOutlineMan } from "react-icons/ai";
@@ -340,34 +338,8 @@ const AdminPage = () => {
           </div>
         </div>
       </section>
-      <Users users={usersDetails} />
-      <section
-        id="usuarios"
-        className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 mt-28 w-9/12 mx-auto "
-      >
-        <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
-          <BsImages size={50} fill="#28B0A2" />
-          <div className="grid text-gray-800 w-1/2 pl-8">
-            <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">
-              {pets ? pets.length : null}
-            </h1>
-            <h2 className="text-gray-500 lg:text-lg mt-4 leading-8 tracking-wide">
-              Usuarios con publicaciones
-            </h2>
-          </div>
-        </div>
-
-        <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
-          <MdImageNotSupported size={72} fill="#28B0A2" />
-          <div className="grid text-gray-800 w-1/2 pl-8">
-            <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">
-              {pets ? 136 - pets.length : null}
-            </h1>
-            <h2 className="text-gray-500 lg:text-lg mt-4 leading-8 tracking-wide">
-              Usuarios sin publicaciones
-            </h2>
-          </div>
-        </div>
+      <section id="usuarios">
+        <Users users={usersDetails} />
       </section>
 
       <section

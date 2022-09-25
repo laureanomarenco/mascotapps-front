@@ -9,11 +9,10 @@ import { deletePet } from "../../store/actions";
 const BadgesPets = ({ user, hidden, setHidden }) => {
   const dispatch = useDispatch();
 
-  const handleClick = (petid) => {
+  const handleClick = async (petid) => {
     console.log(petid);
     dispatch(deletePet(user, petid));
   };
-
   const myPets = useSelector((state) => state.userPets);
   return (
     <div
