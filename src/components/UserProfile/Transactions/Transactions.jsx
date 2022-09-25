@@ -1,7 +1,5 @@
 import React from "react";
-import { MdOutlineEdit } from "react-icons/md";
-import { GrView } from "react-icons/gr";
-import { RiDeleteBinLine } from "react-icons/ri";
+import { BsCheckCircleFill } from "react-icons/bs";
 
 const Transactions = ({ transactions }) => {
   console.log(transactions);
@@ -14,13 +12,13 @@ const Transactions = ({ transactions }) => {
               <thead>
                 <tr>
                   <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                    Nombre
+                    Mascota
                   </th>
                   <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                    Registro
+                    Usuario
                   </th>
                   <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                    Ciudad
+                    Usuario
                   </th>
                   <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                     Estado
@@ -80,11 +78,13 @@ const Transactions = ({ transactions }) => {
                         </span>
                       </td>
                       <td className=" py-5 border-b border-gray-200 bg-white text-sm">
-                        <div className="flex gap-3">
-                          <GrView size={22} />
-                          <MdOutlineEdit size={22} />
-                          <RiDeleteBinLine size={22} />
-                        </div>
+                        {transaction.status === "active" && (
+                          <div className="flex gap-3">
+                            <BsCheckCircleFill size={22} fill="#3CCF4E" />{" "}
+                            <span>Finalizar</span>
+                            {/* <GrView size={22} /> */}
+                          </div>
+                        )}
                       </td>
                     </tr>
                   </>
