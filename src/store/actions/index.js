@@ -259,7 +259,6 @@ export function CreateUser(input) {
   return async function (dispatch) {
     try {
       var json = await axios.post(CREAT, input);
-      console.log("aca viaja el userrrrrrr", json);
       return dispatch({ type: CREAT_USER, payload: json.data });
     } catch (error) {
       return dispatch({
@@ -274,7 +273,6 @@ export function publicUserDetail(id) {
   return async function (dispatch) {
     try {
       var detail = await axios.get(GET_INFO_FROM_DETAIL + id);
-      console.log("🚀 ~ file: index.js ~ line 272 ~ detail", detail);
       return dispatch({
         type: GET_PUBLIC_USER_DETAIL,
         payload: detail.data,
@@ -305,11 +303,9 @@ export function myProfile(id) {
   };
 }
 export function updateProfile(user) {
-  console.log("LO QUE MANDO DE UPDATE", user);
   return async function (dispatch) {
     try {
       var detail = await axios.put(UPDATE_MY_PROFILE, user);
-      console.log("a ver si pasooo", detail);
       return dispatch({
         type: MY_PROFILE_DETAIL,
         payload: detail.data,
@@ -386,13 +382,11 @@ export function deletePet(user, petId) {
   };
 }
 export function beginTransaction(petId, idUser) {
-  console.log("INICIA LA TRANSACT", petId, idUser);
   return async function (dispatch) {
     try {
       var detail = await axios.post(INIT_TRANSACTION + "?petId=" + petId, {
         id:idUser,
       });
-      console.log("a ver si pasooo", detail);
       return dispatch({
         type: MY_PROFILE_DETAIL,
         payload: detail.data,

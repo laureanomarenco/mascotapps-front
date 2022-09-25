@@ -28,7 +28,6 @@ export default function UserPuserProfsPublicProfile() {
     setContact(true);
     dispatch(beginTransaction(idPet, user?.sub));
   }
-  console.log("lo que mando", idPet, user?.sub);
   if (!userProf?.name) {
     return (
       <>

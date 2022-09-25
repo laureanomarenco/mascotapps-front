@@ -1,7 +1,7 @@
 import React from "react";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { useAuth0 } from "@auth0/auth0-react";
-import{AiFillStar} from "react-icons/ai"
+import { AiFillStar } from "react-icons/ai";
 
 const Transactions = ({ transactions }) => {
   const { user } = useAuth0();
@@ -40,13 +40,13 @@ const Transactions = ({ transactions }) => {
                         <div className="flex items-center">
                           <img
                             className="w-12 h-12 rounded-full"
-                            src={transaction?.image}
+                            src={transaction?.pet_image}
                             alt="user-img"
                           />
 
                           <div className="ml-3 grid">
                             <p className="text-gray-900 whitespace-no-wrap capitalize">
-                              {transaction?.name}
+                              {transaction?.user_demanding_check}
                             </p>
                             <p className="text-gray-400 whitespace-no-wrap">
                               {transaction?.email}
@@ -56,11 +56,11 @@ const Transactions = ({ transactions }) => {
                       </td>
                       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <p className="text-gray-900 whitespace-no-wrap">
-                          {transaction?.city}
+                          {transaction?.user_demanding_name}
                         </p>
                       </td>
                       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">43</p>
+                        <p className="text-gray-900 whitespace-no-wrap">{transaction?.user_offering_name}</p>
                       </td>
                       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight text-center">
@@ -68,8 +68,14 @@ const Transactions = ({ transactions }) => {
                             aria-hidden
                             className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
                           ></span>
+                          {console.log(
+                            "respuesta maldita sea",
+                            transaction?.user_offering_id === user?.sub
+                              ? transaction.user_offering_check === null
+                              : transaction.user_demanding_check === null
+                          )}
                           {transaction?.user_offering_id === user?.sub
-                            ? transaction.user_offering_check
+                            ? transaction.user_offering_check === null
                             : transaction.user_demanding_check === null && (
                                 <span className="relative">Activo</span>
                               )}
