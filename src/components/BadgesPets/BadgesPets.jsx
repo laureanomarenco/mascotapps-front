@@ -5,16 +5,22 @@ import { useDispatch, useSelector } from "react-redux";
 import { BsPencilSquare } from "react-icons/bs";
 import { RiChatDeleteFill } from "react-icons/ri";
 import { deletePet } from "../../store/actions";
+import { useEffect } from "react";
+import { useState } from "react";
 
-const BadgesPets = ({ user, hidden, setHidden }) => {
+
+const BadgesPets = ({ user, hidden, setHidden , setOrder}) => {
   const dispatch = useDispatch();
+  const [states, setStates] = useState(true)
 
   const handleClick = (petid) => {
-    console.log(petid);
     dispatch(deletePet(user, petid));
-  };
+    setStates(!states)
+    setOrder('now')
 
+  };
   const myPets = useSelector((state) => state.userPets);
+  useEffect(()=>{}, [myPets, states, setOrder])
   return (
     <div
       className="flex flex-col items-center gap-5 grid-rows-1 py-5 px-5 md:grid md:grid-cols-2 xl:grid-cols-3 w-full relative border border-gray-300  rounded-lg my-2 shadow-lg  "
@@ -64,9 +70,12 @@ const BadgesPets = ({ user, hidden, setHidden }) => {
                   <p className="text-2xl  ">
                     <BsPencilSquare />
                   </p>
-                  <p className="text-2xl " onClick={() => handleClick(a.id)}>
+                  <button
+                    className="text-2xl "
+                    onClick={() => handleClick(a.id)}
+                  >
                     <RiChatDeleteFill color="red" />
-                  </p>
+                  </button>
                 </div>
               </div>
             </div>

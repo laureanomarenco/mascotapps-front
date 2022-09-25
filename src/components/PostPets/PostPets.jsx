@@ -69,7 +69,7 @@ const PostPets = () => {
     .sort((a, b) => a.provincia - b.provincia)
     .map((l) => `${l.nombre}, ${l.provincia}`);
   //-------------------------------------------------------------------------------------------------------------------
-
+  //eslint-disable-next-line
   const showAlert = () => {
     Swal.fire({
       title: "Gracias!",
@@ -131,18 +131,18 @@ const PostPets = () => {
           name: undefined,
         });
       }
-      if(input.image===""){
+      if (input.image === "") {
         setInput({
           ...input,
-          image:"https://res.cloudinary.com/dfbxjt69z/image/upload/v1663276317/mascotapps/perrito_apwyz0.png"
-        })
+          image:
+            "https://res.cloudinary.com/dfbxjt69z/image/upload/v1663276317/mascotapps/perrito_apwyz0.png",
+        });
       }
       dispatch(postPet(input, user?.sub));
       showAlert();
       setInput({});
     }
   };
-
   useEffect(() => {
     dispatch(fetchCity());
     dispatch(getSpecies());

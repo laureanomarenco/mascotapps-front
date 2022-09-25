@@ -4,20 +4,14 @@ const validate = (input) => {
   if (input.name.search("[0-9]") !== -1) {
     error.name = "El Nombre no puede tener numeros*";
   }
-  // if (input.name.search("[^A-Za-z0-9]") !== -1) {
-  //   error.name = "El Nombre no puede tener simbolos*";
-  // }
   if (!input.specie) {
-    error.specie= "Selecciona una especie*";
+    error.specie = "Selecciona una especie*";
   }
   if (!input.race.trim()) {
     error.race = "raza requrido*";
   }
   if (input.race.search("[0-9]") !== -1) {
     error.race = "La raza no puede tener numeros*";
-  }
-  if (input.race.search("[^A-Za-z0-9]") !== -1) {
-    error.race = "La raza no puede tener simbolos*";
   }
   if (!input.status) {
     error.status = "Selecciona el estado de la mascota*";
@@ -40,9 +34,8 @@ const validate = (input) => {
   if (!input.contact.trim()) {
     error.contact = "Numero de contacto requerido*";
   }
-  // if (!input.city) {
-  //   error.city = "Seleccione un pais*";
-  // }
+  if (isNaN(input.contact)) {
+    error.contact = "El numero de contacto debe ser un numero";    }
   return error;
 };
 export default validate;
