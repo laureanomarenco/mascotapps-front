@@ -21,19 +21,13 @@ import { FaUser } from "react-icons/fa";
 
 const NuevoProfile = () => {
   const [order, setOrder] = useState("");
-  console.log(
-    "🚀 ~ file: NuevoProfile.jsx ~ line 23 ~ NuevoProfile ~ order",
-    order
-  );
+
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
   const myPets = useSelector((state) => state.userPets);
   const myProfileData = useSelector((state) => state.myProfile);
   const transactions = myProfileData?.transactions;
-  console.log(
-    "🚀 ~ file: UserProfile.jsx ~ line 24 ~ UserProfile ~ mymyProfileData",
-    myProfileData
-  );
+
   const [hidden, setHidden] = useState(true);
 
   const belloPerfil = {
@@ -44,6 +38,7 @@ const NuevoProfile = () => {
     contact: myProfileData["userProps"]?.contact,
     image: myProfileData["userProps"]?.image,
   };
+
   const handleSubmit = () => {
     if (isAuthenticated) {
       dispatch(getMyPets(user));
@@ -81,22 +76,21 @@ const NuevoProfile = () => {
     });
   }
   console.log("aqui bello perfil", belloPerfil);
-  // console.log(prueba);
   return (
     <div>
       <Navbar></Navbar>
-      <div className="container mx-auto my-5 p-5">
-        <div className="md:flex no-wrap md:-mx-2 relative">
-          {myProfileData['userProps']?.isDonator ==='true' &&(
+      <div className=" my-5 mx-5 p-3">
+        <div className="md:flex no-wrap relative">
+          {myProfileData["userProps"]?.isDonator === "true" && (
             <div className="absolute transition-all ease-in-out  duration-250	 cursor-pointer text-teal-500 hover:text-amber-400 top-5 right-0 text-4xl">
               <BiDonateHeart />
-            </div>)
-          }
+            </div>
+          )}
           {/* <!-- Left Side --> */}
           <div className="w-full md:w-3/12 md:mx-2">
             {/* <!-- Profile Card --> */}
             <div className="bg-white p-3 border-t-4 border-[#FFC700]">
-              <div className="image overflow-hidden w-[280px] h-[280px] mx-auto">
+              <div className="image overflow-hidden w-[280px] h-[280px] mx-auto md:h-[200px] md:w-[200px]">
                 <img
                   className="h-full w-full  mx-auto rounded-full object-cover"
                   src={myProfileData["userProps"]?.image}
@@ -145,35 +139,35 @@ const NuevoProfile = () => {
               </div>
               <div className="text-gray-700">
                 <div className="grid md:grid-cols-2 text-sm">
-                  <div className="grid grid-cols-2 ">
+                  <div className="grid grid-cols-3 ">
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Nombre
                     </div>
-                    <div className=" py-2 text-gray-400">
+                    <div className=" py-2 text-gray-400 col-span-2">
                       {myProfileData["userProps"]?.name}
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 ">
+                  <div className="grid grid-cols-3 ">
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Contacto
                     </div>
-                    <div className=" py-2 text-gray-400">
+                    <div className=" py-2 text-gray-400 col-span-2">
                       {myProfileData["userProps"]?.contact}
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 ">
+                  <div className="grid grid-cols-3 ">
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Email
                     </div>
-                    <div className=" py-2 text-gray-400">
+                    <div className=" py-2 text-gray-400 col-span-2">
                       {belloPerfil?.email}
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 ">
+                  <div className="grid grid-cols-3 ">
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Ciudad
                     </div>
-                    <div className=" py-2 text-gray-400">
+                    <div className=" py-2 text-gray-400 col-span-2">
                       {myProfileData["userProps"]?.city}
                     </div>
                   </div>

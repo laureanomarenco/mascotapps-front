@@ -17,6 +17,7 @@ import Autocomplete from "@mui/material/Autocomplete";
 import { AiOutlineCamera } from "react-icons/ai";
 
 export default function ModalProfile({ belloPerfil }) {
+  console.log("lo que llega al modal", belloPerfil)
   const [showModal, setShowModal] = React.useState(false);
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
@@ -26,6 +27,10 @@ export default function ModalProfile({ belloPerfil }) {
   const [input, setInput] = useState({
     id: user?.sub,
     email: user?.email,
+    name: belloPerfil.name,
+    city: belloPerfil.city,
+    contact: belloPerfil.contact,
+    image: belloPerfil.image,
   });
 
   useEffect(() => {
@@ -124,6 +129,7 @@ export default function ModalProfile({ belloPerfil }) {
           contact: belloPerfil?.contact,
         });
       }
+      console.log(input)
       dispatch(updateProfile(input));
       Swal.fire({
         title: "Perfil modificado correctamente",
