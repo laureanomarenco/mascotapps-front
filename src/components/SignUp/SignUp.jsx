@@ -75,12 +75,13 @@ const SignUp = () => {
     return errorObj;
   }
   //SUBMIT --------------------------------------------------------------------------------------------------------------
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (errors.name || errors.city || errors.contact) {
       alert("Verifique los campos");
     } else {
-      dispatch(CreateUser(input));
+      var response = await dispatch(CreateUser(input));
+      console.log("🚀 ~ file: SignUp.jsx ~ line 84 ~ handleSubmit ~ response", response)
 
       Swal.fire({
         title: "Usuario creado correctamente",
