@@ -21,6 +21,7 @@ export default function UserPuserProfsPublicProfile() {
   );
   const dispatch = useDispatch();
   console.log(user);
+  console.log(userProf);
 
   const [contact, setContact] = useState(false);
 
@@ -87,8 +88,9 @@ export default function UserPuserProfsPublicProfile() {
                 <button
                   onClick={handleBeginTransaction}
                   className="px-6 py-3 my-4 bg-[#FFC700] rounded-md font-bold hover:bg-[ffd803]/80 transition-all duration-300"
+                  hidden={userProf?.email === user.email ? true : false}
                 >
-                  Adoptar
+                  Contactar anunciante
                 </button>
               )}
             </div>
