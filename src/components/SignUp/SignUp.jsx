@@ -75,14 +75,12 @@ const SignUp = () => {
     return errorObj;
   }
   //SUBMIT --------------------------------------------------------------------------------------------------------------
-  const handleSubmit = async (e) => {
+  const handleSubmit =  (e) => {
     e.preventDefault();
     if (errors.name || errors.city || errors.contact) {
       alert("Verifique los campos");
     } else {
-      var response = await dispatch(CreateUser(input));
-      console.log("🚀 ~ file: SignUp.jsx ~ line 84 ~ handleSubmit ~ response", response)
-
+      dispatch(CreateUser(input));
       Swal.fire({
         title: "Usuario creado correctamente",
         text: "Gracias por registrarte en Mascotapp.",
