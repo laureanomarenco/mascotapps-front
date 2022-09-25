@@ -32,7 +32,7 @@ const NuevoProfile = () => {
   //eslint-disable-next-line
   const myPets = useSelector((state) => state.userPets);
   const myProfileData = useSelector((state) => state.myProfile);
-
+  const transactions = myProfileData.transactions;
   console.log(
     "🚀 ~ file: UserProfile.jsx ~ line 24 ~ UserProfile ~ mymyProfileData",
     myProfileData
@@ -193,7 +193,7 @@ const NuevoProfile = () => {
               ) : null}
             </div>
 
-            <Transactions myProfileData={myProfileData} />
+            <Transactions transactions={transactions} />
           </div>
         </div>
       </div>

@@ -3,8 +3,8 @@ import { MdOutlineEdit } from "react-icons/md";
 import { GrView } from "react-icons/gr";
 import { RiDeleteBinLine } from "react-icons/ri";
 
-const Transactions = ({ myProfileData }) => {
-  console.log(myProfileData);
+const Transactions = ({ transactions }) => {
+  console.log(transactions);
   return (
     <div className=" rounded-md w-full">
       <div>
@@ -32,21 +32,21 @@ const Transactions = ({ myProfileData }) => {
               </thead>
               <tbody>
                 <>
-                  <tr key={myProfileData.name}>
+                  <tr key="key">
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                       <div className="flex items-center">
                         <img
                           className="w-12 h-12 rounded-full"
-                          src={myProfileData.image}
+                          src="imagen"
                           alt="user-img"
                         />
 
                         <div className="ml-3 grid">
                           <p className="text-gray-900 whitespace-no-wrap capitalize">
-                            {myProfileData.name}
+                            NOMBRE
                           </p>
                           <p className="text-gray-400 whitespace-no-wrap">
-                            {myProfileData.email}
+                            EMAIL
                           </p>
                         </div>
                       </div>
@@ -57,9 +57,7 @@ const Transactions = ({ myProfileData }) => {
                           </p>
                         </td> */}
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <p className="text-gray-900 whitespace-no-wrap">
-                        {myProfileData.city}
-                      </p>
+                      <p className="text-gray-900 whitespace-no-wrap">CITY</p>
                     </td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                       <p className="text-gray-900 whitespace-no-wrap">43</p>
