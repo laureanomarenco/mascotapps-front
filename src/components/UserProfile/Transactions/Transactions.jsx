@@ -60,7 +60,9 @@ const Transactions = ({ transactions }) => {
                         </p>
                       </td>
                       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                        <p className="text-gray-900 whitespace-no-wrap">{transaction?.user_offering_name}</p>
+                        <p className="text-gray-900 whitespace-no-wrap">
+                          {transaction?.user_offering_name}
+                        </p>
                       </td>
                       <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                         <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight text-center">
@@ -74,54 +76,54 @@ const Transactions = ({ transactions }) => {
                               ? transaction.user_offering_check === null
                               : transaction.user_demanding_check === null
                           )}
-                          {transaction?.user_offering_id === user?.sub
+                          {(transaction?.user_offering_id === user?.sub
                             ? transaction.user_offering_check === null
-                            : transaction.user_demanding_check === null && (
-                                <span className="relative">Activo</span>
-                              )}
-                          {transaction?.user_offering_id === user?.sub
-                            ? transaction.user_offering_check
+                            : transaction.user_demanding_check === null) && (
+                            <span className="relative">Activo</span>
+                          )}
+                          {(transaction?.user_offering_id === user?.sub
+                            ? transaction.user_offering_check === "finalizado"
                             : transaction.user_demanding_check ===
-                                "finalizado" && (
-                                <span className="relative">
-                                  Calificación pendiente
-                                </span>
-                              )}
-                          {transaction?.user_offering_id === user?.sub
-                            ? transaction.user_offering_check
+                              "finalizado") && (
+                            <span className="relative">
+                              Calificación pendiente
+                            </span>
+                          )}
+                          {(transaction?.user_offering_id === user?.sub
+                            ? transaction.user_offering_check === "calificado"
                             : transaction.user_demanding_check ===
-                                "calificado" && (
-                                <span className="relative">Finzalizado</span>
-                              )}
+                              "calificado") && (
+                            <span className="relative">Finzalizado</span>
+                          )}
                         </span>
                       </td>
                       <td className=" py-5 border-b border-gray-200 bg-white text-sm">
-                        {transaction?.user_offering_id === user?.sub
-                          ? transaction.user_offering_check
-                          : transaction.user_demanding_check === null && (
-                              <div className="flex gap-3">
-                                <BsCheckCircleFill size={22} fill="#3CCF4E" />{" "}
-                                <span>Finalizar</span>
-                              </div>
-                            )}
-                        {transaction?.user_offering_id === user?.sub
-                          ? transaction.user_offering_check
+                        {(transaction?.user_offering_id === user?.sub
+                          ? transaction.user_offering_check === null
+                          : transaction.user_demanding_check === null) && (
+                          <div className="flex gap-3">
+                            <BsCheckCircleFill size={22} fill="#3CCF4E" />{" "}
+                            <span>Finalizar</span>
+                          </div>
+                        )}
+                        {(transaction?.user_offering_id === user?.sub
+                          ? transaction.user_offering_check === "finalizado"
                           : transaction.user_demanding_check ===
-                              "finalizado" && (
-                              <div className="flex gap-3">
-                                <AiFillStar size={22} fill="#3CCF4E" />{" "}
-                                <span>Calificar</span>
-                              </div>
-                            )}
-                        {transaction?.user_offering_id === user?.sub
-                          ? transaction.user_offering_check
+                            "finalizado") && (
+                          <div className="flex gap-3">
+                            <AiFillStar size={22} fill="#3CCF4E" />{" "}
+                            <span>Calificar</span>
+                          </div>
+                        )}
+                        {(transaction?.user_offering_id === user?.sub
+                          ? transaction.user_offering_check === "calificado"
                           : transaction.user_demanding_check ===
-                              "calificado" && (
-                              <div className="flex gap-3">
-                                <BsCheckCircleFill size={22} fill="#3CCF4E" />{" "}
-                                <span>Terminado</span>
-                              </div>
-                            )}
+                            "calificado") && (
+                          <div className="flex gap-3">
+                            <BsCheckCircleFill size={22} fill="#3CCF4E" />{" "}
+                            <span>Terminado</span>
+                          </div>
+                        )}
                       </td>
                     </tr>
                   </>
