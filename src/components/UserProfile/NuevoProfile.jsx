@@ -56,9 +56,17 @@ const NuevoProfile = () => {
 		data && setDataEditDog(data);
 	};
 
-	useEffect(() => {
+
+  useEffect(() => {
+    dispatch(myProfile({ id: user?.sub }));
+		handleSubmit();
 		setOrder(order === "now" ? "nowpAPASITO" : "now");
-	}, [dataEditDog]);
+    return () => {
+      dispatch(resetMyProfile());
+      dispatch(resetDetail());
+    };
+  }, [order, dataEditDog]);
+
 
 	useEffect(() => {
 		dispatch(myProfile({ id: user?.sub }));
@@ -86,7 +94,6 @@ const NuevoProfile = () => {
 			}
 		});
 	}
-	console.log("aqui bello perfil", belloPerfil);
 	return (
 		<div>
 			<Navbar></Navbar>

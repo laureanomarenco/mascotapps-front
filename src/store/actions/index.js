@@ -296,12 +296,11 @@ export function updateProfile(user) {
 }
 
 export function resetMyProfile() {
-	return async function (dispatch) {
-		dispatch({
-			type: RESET_MY_PROFILE,
-			payload: {},
-		});
-	};
+  return async function (dispatch) {
+    dispatch({
+      type: RESET_MY_PROFILE,
+    });
+  };
 }
 
 export function sortBy(arr, filterType) {
