@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import Spinner from "../Spinner/Spinner";
-import Rating from "@mui/material/Rating";
 import Reviews from "../UserProfile/Transactions/Reviews";
 import { useLocation } from "react-router-dom";
 import { FaMapMarkerAlt } from "react-icons/fa";
@@ -110,26 +109,6 @@ export default function UserPuserProfsPublicProfile() {
           <section>
             <div className="px-4 py-8 mx-auto max-w-screen-xl sm:px-6 lg:px-8 flex flex-col items-center md:items-start">
               <Reviews userProf={userProf} />
-              <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12">
-                {userProf?.review ? (
-                  userProf.review?.map((review) => (
-                    <blockquote key={Math.random()}>
-                      <header className="sm:items-center sm:flex">
-                        <div className="flex -ml-1">
-                          {" "}
-                          <Rating name="stars" value={review.stars} />
-                        </div>
-
-                        <p className="mt-2 font-medium sm:ml-4 sm:mt-0">
-                          {review.review}
-                        </p>
-                      </header>
-                    </blockquote>
-                  ))
-                ) : (
-                  <p>Este usuario aun no cuenta con calificaciones</p>
-                )}
-              </div>
             </div>
           </section>
         </div>

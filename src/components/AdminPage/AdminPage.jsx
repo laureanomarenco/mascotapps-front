@@ -4,6 +4,7 @@ import {
   fetchPets,
   getAllUsers,
   adminFetchUsers,
+  totalVisitors,
 } from "../../store/actions/index";
 import SideMenu from "./NavBar";
 // import Stack from '@mui/material/Stack';
@@ -37,16 +38,17 @@ const AdminPage = () => {
   const pets = useSelector((state) => state.pets);
   const users = useSelector((state) => state.totalUsers);
   const donations = useSelector((state) => state.donations);
+  const visitors = useSelector((state) => state.visitors);
   const amounts = donations.map((done) => done.amount);
   const totalDonationsInCents = amounts.reduce((prev, next) => prev + next, 0);
-
+  console.log(visitors);
   useEffect(() => {
     dispatch(fetchPets());
     dispatch(getDonations());
     dispatch(getAllUsers());
     dispatch(adminFetchUsers());
-  }, [dispatch]);
-
+    dispatch(totalVisitors());
+  }, [dispatch, visitors]);
   return (
     <>
       <div className="top-0 sticky z-10">
@@ -110,7 +112,7 @@ const AdminPage = () => {
                 size={100}
               />
               <h6 className="text-4xl font-bold lg:text-5xl xl:text-6xl text-gray-800">
-                7533
+                {visitors}
               </h6>
               <p className="text-sm font-medium tracking-widest text-yellow-600 uppercase lg:text-yellow-600">
                 Visitas
@@ -362,7 +364,7 @@ const AdminPage = () => {
           <BsEyeFill size={72} fill="#28B0A2" />
           <div className="grid text-gray-800 w-1/2 pl-8">
             <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">
-              7533
+              {visitors}
             </h1>
             <h2 className="text-gray-500 lg:text-lg mt-4 leading-8 tracking-wide">
               Visitas

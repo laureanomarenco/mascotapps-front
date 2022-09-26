@@ -18,6 +18,8 @@ import {
   DELETE,
   UPDATE_TRANSACTION_STATUS,
   RATE_USER,
+  NUMBER_OF_VISITORS,
+  VISITORS_COUNTER,
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 
@@ -44,6 +46,7 @@ export const CREAT_USER = "CREAT_USER";
 export const GET_PETS = "GET_PETS";
 export const GET_PUBLIC_USER_DETAIL = "GET_PUBLIC_USER_DETAIL";
 export const SORT_BY = "SORT_BY";
+export const TOTAL_VISITORS = "TOTAL_VISITORS";
 
 export const MY_PROFILE_DETAIL = "MY_PROFILE_DETAIL";
 export const RESET_MY_PROFILE = "RESET_MY_PROFILE";
@@ -383,6 +386,29 @@ export function rateUser(paq) {
     try {
       var review = await axios.post(RATE_USER, paq);
       console.log(review);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
+export function totalVisitors() {
+  return async function (dispatch) {
+    try {
+      var total = await axios.get(NUMBER_OF_VISITORS);
+      return dispatch({
+        type: TOTAL_VISITORS,
+        payload: total.data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
+
+export function visitorsCounter() {
+  return async function () {
+    try {
+      await axios.get(VISITORS_COUNTER);
     } catch (error) {
       console.log(error.message);
     }
