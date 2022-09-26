@@ -9,22 +9,26 @@ import { BsTelephoneFill } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";
 import { useDispatch } from "react-redux";
 import { beginTransaction } from "../../store/actions";
-import{useAuth0} from "@auth0/auth0-react";
-
+import { useAuth0 } from "@auth0/auth0-react";
 
 export default function UserPuserProfsPublicProfile() {
-  const {user}=useAuth0();
+  const { user } = useAuth0();
   const location = useLocation();
   const { userProf, idPet } = location.state;
-  console.log("🚀 ~ file: UsersPublicProfile.jsx ~ line 18 ~ UsersPublicProfile ~ idPet", idPet)
-  const dispatch = useDispatch()
-  console.log(userProf)
+  console.log(
+    "🚀 ~ file: UsersPublicProfile.jsx ~ line 18 ~ UsersPublicProfile ~ idPet",
+    idPet
+  );
+  const dispatch = useDispatch();
+  console.log(userProf);
 
   const [contact, setContact] = useState(false);
+
   function handleBeginTransaction() {
     setContact(true);
-    dispatch(beginTransaction( idPet, user?.sub));
+    dispatch(beginTransaction(idPet, user?.sub));
   }
+  console.log("lo que mando", idPet, user?.sub);
   if (!userProf?.name) {
     return (
       <>

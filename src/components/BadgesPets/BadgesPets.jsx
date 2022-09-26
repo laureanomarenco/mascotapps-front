@@ -1,30 +1,31 @@
 import React from "react";
-import {Link}  from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 // import { HiPlusCircle } from "react-icons/hi";
 import {BsPencilSquare} from "react-icons/bs"
 import {RiChatDeleteFill} from "react-icons/ri"
 import { deletePet, updatePet } from "../../store/actions";
+import { useAuth0 } from "@auth0/auth0-react";
 
+const BadgesPets = ({ user_props, hidden, setHidden }) => {
+  const dispatch = useDispatch();
+  const { user } = useAuth0();
 
-
-const BadgesPets = ({user,hidden, setHidden}) => {
-  const dispatch=useDispatch();
-
-  const handleClick = (petid)=>{
-    console.log(petid)
-    dispatch(deletePet(user,petid))
-  }
+  const handleClick = (petid) => {
+    console.log(petid);
+    dispatch(deletePet(user_props, petid));
+  };
 
   const myPets = useSelector((state) => state.userPets);
   return (
-    <div className="flex flex-col items-center gap-5 grid-rows-1 py-5 px-5 md:grid md:grid-cols-2 xl:grid-cols-3 w-full relative border border-gray-300  rounded-lg my-2 shadow-lg  "
-      hidden={hidden}  
+    <div
+      className="flex flex-col items-center gap-5 grid-rows-1 py-5 px-5 md:grid md:grid-cols-2 xl:grid-cols-3 w-full relative border border-gray-300  rounded-lg my-2 shadow-lg  "
+      hidden={hidden}
     >
-    
-      <button className="absolute p-1 bg-gray-100 border border-gray-300 rounded-full -top-1 -right-1"
-        onClick={() =>  setHidden(hidden === true ? false : true)}
-        >
+      <button
+        className="absolute p-1 bg-gray-100 border border-gray-300 rounded-full -top-1 -right-1"
+        onClick={() => setHidden(hidden === true ? false : true)}
+      >
         <svg
           xmlns="http://www.w3.org/2000/svg"
           className="w-3 h-3"
@@ -69,7 +70,7 @@ const BadgesPets = ({user,hidden, setHidden}) => {
                   </div>
               </div>
             </div>
-              ))
+          ))
         : null}
     </div>
   );

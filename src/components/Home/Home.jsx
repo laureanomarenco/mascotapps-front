@@ -7,6 +7,7 @@ import Navbar from "../Navbar/Navbar";
 import { SiDatadog } from "react-icons/si";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import ModalEditDog from "../UserProfile/ModalEditDog/ModalEditDog";
 
 
 export default function Home() {
@@ -14,7 +15,7 @@ export default function Home() {
   return (
     <>
       <Navbar />
-
+      <ModalEditDog/>
       <div>
         <section className="relative py-40 px-4">
           <div className="z-20 relative  grid mt-40 lg:flex lg:justify-around md:flex md:justify-around sm:flex sm:justify-around md:mt-0 ">

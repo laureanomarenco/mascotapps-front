@@ -49,7 +49,6 @@ export const MY_PROFILE_DETAIL = "MY_PROFILE_DETAIL";
 export const RESET_MY_PROFILE = "RESET_MY_PROFILE";
 export const ADMIN_FETCH_USERS = "ADMIN_FETCH_USERS";
 
-
 export function fetchPets() {
   return async function (dispatch) {
     try {
@@ -335,21 +334,24 @@ export function resetMyProfile() {
   };
 }
 
-export function sortBy(arr,filterType){
-  return function(dispatch){
-    const newArr = arr.sort((a,b)=> filterType === 'ASC' 
-    ? a.name?.localeCompare(b?.name)
-    : b.name?.localeCompare(a?.name)).map(el=>el)
+export function sortBy(arr, filterType) {
+  return function (dispatch) {
+    const newArr = arr
+      .sort((a, b) =>
+        filterType === "ASC"
+          ? a.name?.localeCompare(b?.name)
+          : b.name?.localeCompare(a?.name)
+      )
+      .map((el) => el);
     dispatch({
       type: SORT_BY,
-      payload:{
-        filterType:filterType,
-        arr : newArr
-      }
-    })
-  }
+      payload: {
+        filterType: filterType,
+        arr: newArr,
+      },
+    });
+  };
 }
-
 
 export function adminFetchUsers() {
   return async function (dispatch) {
@@ -390,7 +392,9 @@ export function updatePet(user, pet_data){
   return async function(dispatch){
     try {
       console.log(dispatch)
-      pet_data.name = 'muerte a satan'
+      console.log(user)
+      console.log(pet_data)
+      pet_data.name = pet_data.name === 'Hisoka' ? 'Manteca' : 'Hisoka'
       let datos = await axios.put(UPDATE_POST_PET,{user:{userId:user?.sub},pet:pet_data})
       console.log(datos)
     } catch (error) {
@@ -403,10 +407,9 @@ export function beginTransaction(petId, idUser) {
   console.log("INICIA LA TRANSACT", petId, idUser);
   return async function (dispatch) {
     try {
-      var detail = await axios.post(
-        INIT_TRANSACTION + "?petId=" + petId,
-        idUser
-      );
+      var detail = await axios.post(INIT_TRANSACTION + "?petId=" + petId, {
+        id:idUser,
+      });
       console.log("a ver si pasooo", detail);
       return dispatch({
         type: MY_PROFILE_DETAIL,
