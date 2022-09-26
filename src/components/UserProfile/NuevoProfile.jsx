@@ -87,13 +87,13 @@ const NuevoProfile = () => {
       <Navbar></Navbar>
       <div className="container mx-auto my-5 p-5">
         <div className="md:flex no-wrap md:-mx-2 relative">
-          {myProfileData['userProps']?.isDonator ==='true' &&(
+          {myProfileData["userProps"]?.isDonator === "true" && (
             <div className="absolute transition-all ease-in-out  duration-250	 cursor-pointer text-teal-500 hover:text-amber-400 top-5 right-0 text-4xl">
               <BiDonateHeart />
-            </div>)
-          }
+            </div>
+          )}
           {/* <!-- Left Side --> */}
-          <div className="w-full md:w-3/12 md:mx-2">
+          <div className="w-full md:w-1/2 md:mx-6 lg:w-3/12 lg:mx-8">
             {/* <!-- Profile Card --> */}
             <div className="bg-white p-3 border-t-4 border-[#FFC700]">
               <div className="image overflow-hidden w-[280px] h-[280px] mx-auto">
@@ -132,7 +132,7 @@ const NuevoProfile = () => {
             {/* <!-- End of profile card --> */}
           </div>
           {/* <!-- Right Side --> */}
-          <div className="w-full md:w-9/12 mx-2 ">
+          <div className="w-full lg:w-9/12 lg:mx-8 mx-2 ">
             {/* <!-- Profile tab -->
                 <!-- About Section --> */}
             <div className="bg-white p-3 shadow-sm rounded-sm">
@@ -144,8 +144,8 @@ const NuevoProfile = () => {
                 </div>
               </div>
               <div className="text-gray-700">
-                <div className="grid md:grid-cols-2 text-sm">
-                  <div className="grid grid-cols-2 ">
+                <div className="grid md:grid-cols-1 text-sm">
+                  <div className="grid  md:grid-cols-1 grid-cols-2 lg:grid-cols-2">
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Nombre
                     </div>
@@ -153,7 +153,7 @@ const NuevoProfile = () => {
                       {myProfileData["userProps"]?.name}
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 ">
+                  <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Contacto
                     </div>
@@ -161,7 +161,7 @@ const NuevoProfile = () => {
                       {myProfileData["userProps"]?.contact}
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 ">
+                  <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Email
                     </div>
@@ -169,7 +169,7 @@ const NuevoProfile = () => {
                       {belloPerfil?.email}
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 ">
+                  <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Ciudad
                     </div>
@@ -186,8 +186,9 @@ const NuevoProfile = () => {
                 <BadgesPets user={user} hidden={hidden} setHidden={setHidden} />
               ) : null}
             </div>
-
-            <Transactions transactions={transactions} setOrder={setOrder} />
+            <div>
+              <Transactions transactions={transactions} setOrder={setOrder} />
+            </div>
           </div>
         </div>
       </div>

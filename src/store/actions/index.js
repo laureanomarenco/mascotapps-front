@@ -19,6 +19,7 @@ import {
   DELETE,
   UPDATE_TRANSACTION_STATUS,
   RATE_USER,
+  GET_USER_REVIEWS,
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 
@@ -38,6 +39,7 @@ export const GET_USER_INFO = "GET_USER_INFO";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_DONATIONS = "GET_DONATIONS";
 export const GET_SPECIES = "GET_SPECIES";
+export const USER_REVIEWS = "USER_REVIEWS";
 export const POST_PET = "POST_PET";
 export const IS_LOGGED = "IS_LOGGED";
 export const CREAT_USER = "CREAT_USER";
@@ -389,10 +391,9 @@ export function beginTransaction(petId, idUser) {
       var detail = await axios.post(INIT_TRANSACTION + "?petId=" + petId, {
         id: idUser,
       });
-      console.log(detail)
-
+      console.log(detail);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
   };
 }
@@ -413,7 +414,7 @@ export function updateTransactionStatus(idTrans, idLogged) {
 export function rateUser(paq) {
   return async function () {
     try {
-      var review = await axios.post(RATE_USER , paq);
+      var review = await axios.post(RATE_USER, paq);
       console.log(review);
     } catch (error) {
       console.log(error.message);
@@ -421,3 +422,16 @@ export function rateUser(paq) {
   };
 }
 
+export function getUserReviews(id) {
+  return async function (dispatch) {
+    try {
+      var reviews = await axios.post(GET_USER_REVIEWS, id);
+      return dispatch({
+        type: USER_REVIEWS,
+        payload: reviews.data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}

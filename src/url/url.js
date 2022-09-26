@@ -25,4 +25,5 @@ export const UPDATE_POST_PET = URL + "pets/update";
 export const UPDATE_TRANSACTION_STATUS =
   URL + "transactions/transactionCheck?transactionId=";
 
-  export const RATE_USER = URL + "reviews/newReview ";
+export const RATE_USER = URL + "reviews/newReview ";
+export const GET_USER_REVIEWS = URL + "/reviews/getReviewsToUser";

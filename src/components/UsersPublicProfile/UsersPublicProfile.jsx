@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import Spinner from "../Spinner/Spinner";
@@ -8,21 +8,24 @@ import { useLocation } from "react-router-dom";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { BsTelephoneFill } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";
-import { useDispatch } from "react-redux";
-import { beginTransaction } from "../../store/actions";
+import { useDispatch, useSelector } from "react-redux";
+import { beginTransaction, getUserReviews } from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
-import {BiDonateHeart} from "react-icons/bi"
+import { BiDonateHeart } from "react-icons/bi";
 
 export default function UserPuserProfsPublicProfile() {
   const { user } = useAuth0();
   const location = useLocation();
   const { userProf, idPet } = location.state;
+
+  const reviews = useSelector((state) => state.userReviews);
+  console.log(reviews);
   console.log(
     "🚀 ~ file: UsersPublicProfile.jsx ~ line 18 ~ UsersPublicProfile ~ idPet",
     userProf
   );
   const dispatch = useDispatch();
-  console.log(user);
+  console.log("ESTEEEEE", user);
   console.log(userProf);
 
   const [contact, setContact] = useState(false);
@@ -31,6 +34,11 @@ export default function UserPuserProfsPublicProfile() {
     setContact(true);
     dispatch(beginTransaction(idPet, user?.sub));
   }
+
+  useEffect(() => {
+    dispatch(getUserReviews(userProf?.id));
+  }, []);
+
   if (!userProf?.name) {
     return (
       <>
@@ -105,10 +113,7 @@ export default function UserPuserProfsPublicProfile() {
           {/* opiniones */}
           <section>
             <div className="px-4 py-8 mx-auto max-w-screen-xl sm:px-6 lg:px-8 flex flex-col items-center md:items-start">
-              <h2 className="text-xl font-bold sm:text-2xl text-[#28B0A2]">
-                Opiniones de otros usuarios
-              </h2>
-              <Reviews />
+              <Reviews userProf={userProf} />
               <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12">
                 {userProf?.review ? (
                   userProf.review?.map((review) => (
