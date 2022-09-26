@@ -21,19 +21,13 @@ import { FaUser } from "react-icons/fa";
 
 const NuevoProfile = () => {
   const [order, setOrder] = useState("");
-  console.log(
-    "🚀 ~ file: NuevoProfile.jsx ~ line 23 ~ NuevoProfile ~ order",
-    order
-  );
+
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
   const myPets = useSelector((state) => state.userPets);
   const myProfileData = useSelector((state) => state.myProfile);
   const transactions = myProfileData?.transactions;
-  console.log(
-    "🚀 ~ file: UserProfile.jsx ~ line 24 ~ UserProfile ~ mymyProfileData",
-    myProfileData
-  );
+
   const [hidden, setHidden] = useState(true);
 
   const belloPerfil = {
@@ -44,6 +38,7 @@ const NuevoProfile = () => {
     contact: myProfileData["userProps"]?.contact,
     image: myProfileData["userProps"]?.image,
   };
+
   const handleSubmit = () => {
     if (isAuthenticated) {
       dispatch(getMyPets(user));
@@ -61,7 +56,7 @@ const NuevoProfile = () => {
       dispatch(resetMyProfile());
       dispatch(resetDetail());
     };
-  }, [order, dispatch]);
+  }, [order, dispatch, user]);
   if (!isAuthenticated) {
     Swal.fire({
       title: "No estás logueado",
@@ -81,12 +76,16 @@ const NuevoProfile = () => {
     });
   }
   console.log("aqui bello perfil", belloPerfil);
-  // console.log(prueba);
   return (
     <div>
       <Navbar></Navbar>
+<<<<<<< HEAD
       <div className="container mx-auto my-5 p-5">
         <div className="md:flex no-wrap md:-mx-2 relative">
+=======
+      <div className=" my-5 mx-5 p-3">
+        <div className="md:flex no-wrap relative">
+>>>>>>> main
           {myProfileData["userProps"]?.isDonator === "true" && (
             <div className="absolute transition-all ease-in-out  duration-250	 cursor-pointer text-teal-500 hover:text-amber-400 top-5 right-0 text-4xl">
               <BiDonateHeart />
@@ -96,7 +95,7 @@ const NuevoProfile = () => {
           <div className="w-full md:w-1/2 md:mx-6 lg:w-3/12 lg:mx-8">
             {/* <!-- Profile Card --> */}
             <div className="bg-white p-3 border-t-4 border-[#FFC700]">
-              <div className="image overflow-hidden w-[280px] h-[280px] mx-auto">
+              <div className="image overflow-hidden w-[280px] h-[280px] mx-auto md:h-[200px] md:w-[200px]">
                 <img
                   className="h-full w-full  mx-auto rounded-full object-cover"
                   src={myProfileData["userProps"]?.image}
@@ -144,36 +143,53 @@ const NuevoProfile = () => {
                 </div>
               </div>
               <div className="text-gray-700">
+<<<<<<< HEAD
                 <div className="grid md:grid-cols-1 text-sm">
                   <div className="grid  md:grid-cols-1 grid-cols-2 lg:grid-cols-2">
+=======
+                <div className="grid md:grid-cols-2 text-sm">
+                  <div className="grid grid-cols-3 ">
+>>>>>>> main
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Nombre
                     </div>
-                    <div className=" py-2 text-gray-400">
+                    <div className=" py-2 text-gray-400 col-span-2">
                       {myProfileData["userProps"]?.name}
                     </div>
                   </div>
+<<<<<<< HEAD
                   <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
+=======
+                  <div className="grid grid-cols-3 ">
+>>>>>>> main
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Contacto
                     </div>
-                    <div className=" py-2 text-gray-400">
+                    <div className=" py-2 text-gray-400 col-span-2">
                       {myProfileData["userProps"]?.contact}
                     </div>
                   </div>
+<<<<<<< HEAD
                   <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
+=======
+                  <div className="grid grid-cols-3 ">
+>>>>>>> main
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Email
                     </div>
-                    <div className=" py-2 text-gray-400">
+                    <div className=" py-2 text-gray-400 col-span-2">
                       {belloPerfil?.email}
                     </div>
                   </div>
+<<<<<<< HEAD
                   <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
+=======
+                  <div className="grid grid-cols-3 ">
+>>>>>>> main
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Ciudad
                     </div>
-                    <div className=" py-2 text-gray-400">
+                    <div className=" py-2 text-gray-400 col-span-2">
                       {myProfileData["userProps"]?.city}
                     </div>
                   </div>
@@ -183,7 +199,7 @@ const NuevoProfile = () => {
 
             <div hidden={hidden} className="w-full">
               {myPets?.length > 0 ? (
-                <BadgesPets user={user} hidden={hidden} setHidden={setHidden} />
+                <BadgesPets user={user} hidden={hidden} setHidden={setHidden} setOrder={setOrder} />
               ) : null}
             </div>
             <div>

@@ -6,7 +6,6 @@ import {
   PET_DETAIL,
   SEARCH_BY,
   DONATION,
-  USER_LOGGED,
   TOTAL_USERS,
   PET_SPECIES,
   POST,
@@ -143,13 +142,6 @@ export function resetDetail() {
   };
 }
 
-export const setLoading = (boolean) => (dispatch) => {
-  dispatch({
-    type: SET_LOADING,
-    payload: boolean,
-  });
-};
-
 export function filterPets(value) {
   return { type: FILTER_PETS, payload: value };
 }
@@ -165,25 +157,6 @@ export function searchPets(input) {
     } catch (error) {
       return dispatch({
         type: SEARCH_PETS,
-        payload: { error: error.message },
-      });
-    }
-  };
-}
-
-export function getUserInfo() {
-  return async function (dispatch) {
-    try {
-      const user = await axios.get(USER_LOGGED, { withCredentials: true });
-      console.log("aca esta el usuarioooo", user);
-      console.log(`user.data = ${user.data}`);
-      return dispatch({
-        type: "GET_USER_INFO",
-        payload: user.data,
-      });
-    } catch (error) {
-      return dispatch({
-        type: "GET_USER_INFO",
         payload: { error: error.message },
       });
     }
@@ -241,14 +214,9 @@ export function getSpecies() {
 }
 
 export function postPet(pet, id) {
-  console.log("esto es lo que mando en la action ", {
-    pet: pet,
-    user: { id: id },
-  });
   return async function (dispatch) {
     try {
       var json = await axios.post(POST, { pet: pet, user: { id: id } });
-      console.log("pasooooo el postttttttt", json);
       return dispatch({ type: POST_PET, payload: json.data });
     } catch (error) {
       return dispatch({
@@ -421,6 +389,7 @@ export function rateUser(paq) {
     }
   };
 }
+<<<<<<< HEAD
 
 export function getUserReviews(id) {
   return async function (dispatch) {
@@ -435,3 +404,5 @@ export function getUserReviews(id) {
     }
   };
 }
+=======
+>>>>>>> main

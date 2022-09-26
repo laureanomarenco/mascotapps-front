@@ -39,7 +39,7 @@ export default function CardContainer() {
   };
   return (
     <>
-    <div className="flex flex-row-reverse ">
+    <div className="flex md:flex-row-reverse flex-col ">
       <Pagination
         pets={pets.length}
         searchedPets={
