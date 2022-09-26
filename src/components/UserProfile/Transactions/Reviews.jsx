@@ -21,8 +21,12 @@ const Reviews = ({ userProf }) => {
                   className="flex items-start rounded-xl bg-white p-4 shadow-lg"
                   key={r.id}
                 >
-                  <div className="flex h-12 w-12 items-center align-center justify-center rounded-full border border-blue-100 bg-blue-50">
-                    <img src={r.reviewer_image} alt="img" />
+                  <div className="flex h-12 w-12 items-center align-center justify-center  ">
+                    <img
+                      src={r.reviewer_image}
+                      alt="img"
+                      className="rounded-full"
+                    />
                   </div>
                   <div className="ml-4">
                     <Rating name="read-only" value={r.starts} readOnly />
