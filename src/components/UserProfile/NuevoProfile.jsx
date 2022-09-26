@@ -55,7 +55,7 @@ const NuevoProfile = () => {
       dispatch(resetMyProfile());
       dispatch(resetDetail());
     };
-  }, [order, dispatch, user]);
+  }, [order]);
   if (!isAuthenticated) {
     Swal.fire({
       title: "No estás logueado",

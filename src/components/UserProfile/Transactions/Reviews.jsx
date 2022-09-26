@@ -23,7 +23,11 @@ const Reviews = ({ userProf }) => {
                 >
                   <div className="flex h-12 w-12 items-center align-center justify-center  ">
                     <img
-                      src={r.reviewer_image}
+                      src={
+                        r.reviewer_image
+                          ? r.reviewer_image
+                          : "https://res.cloudinary.com/dfbxjt69z/image/upload/v1663934784/mascotapps/mascotapss_jxt9hl.png"
+                      }
                       alt="img"
                       className="rounded-full"
                     />

@@ -297,7 +297,6 @@ export function resetMyProfile() {
   return async function (dispatch) {
     dispatch({
       type: RESET_MY_PROFILE,
-      payload: {},
     });
   };
 }

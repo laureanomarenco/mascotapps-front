@@ -63,7 +63,11 @@ export default function UserPuserProfsPublicProfile() {
               )}
               <img
                 className="object-cover w-full h-full object-center"
-                src={userProf?.image}
+                src={
+                  userProf?.image
+                    ? userProf?.image
+                    : "https://res.cloudinary.com/dfbxjt69z/image/upload/v1664199194/mascotapps/Dise%C3%B1o_sin_t%C3%ADtulo_1_qqzx4h.png"
+                }
                 alt={userProf?.name}
               />
             </div>
