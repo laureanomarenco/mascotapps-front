@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import {
+<<<<<<< HEAD
 	URL,
 	ALLPETS,
 	PET_DETAIL,
@@ -19,6 +20,27 @@ import {
 	UPDATE_TRANSACTION_STATUS,
 	RATE_USER,
 	UPDATE_POST_PET,
+=======
+  URL,
+  ALLPETS,
+  PET_DETAIL,
+  SEARCH_BY,
+  DONATION,
+  TOTAL_USERS,
+  PET_SPECIES,
+  POST,
+  CREAT,
+  GET_MY_PETS,
+  GET_INFO_FROM_DETAIL,
+  MY_PROFILE,
+  UPDATE_MY_PROFILE,
+  INIT_TRANSACTION,
+  DELETE,
+  UPDATE_TRANSACTION_STATUS,
+  RATE_USER,
+  NUMBER_OF_VISITORS,
+  VISITORS_COUNTER,
+>>>>>>> main
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 
@@ -39,12 +61,14 @@ export const GET_USER_INFO = "GET_USER_INFO";
 export const GET_ALL_USERS = "GET_ALL_USERS";
 export const GET_DONATIONS = "GET_DONATIONS";
 export const GET_SPECIES = "GET_SPECIES";
+export const USER_REVIEWS = "USER_REVIEWS";
 export const POST_PET = "POST_PET";
 export const IS_LOGGED = "IS_LOGGED";
 export const CREAT_USER = "CREAT_USER";
 export const GET_PETS = "GET_PETS";
 export const GET_PUBLIC_USER_DETAIL = "GET_PUBLIC_USER_DETAIL";
 export const SORT_BY = "SORT_BY";
+export const TOTAL_VISITORS = "TOTAL_VISITORS";
 
 export const MY_PROFILE_DETAIL = "MY_PROFILE_DETAIL";
 export const RESET_MY_PROFILE = "RESET_MY_PROFILE";
@@ -413,4 +437,27 @@ export function rateUser(paq) {
 			console.log(error.message);
 		}
 	};
+}
+export function totalVisitors() {
+  return async function (dispatch) {
+    try {
+      var total = await axios.get(NUMBER_OF_VISITORS);
+      return dispatch({
+        type: TOTAL_VISITORS,
+        payload: total.data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
+
+export function visitorsCounter() {
+  return async function () {
+    try {
+      await axios.get(VISITORS_COUNTER);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 }

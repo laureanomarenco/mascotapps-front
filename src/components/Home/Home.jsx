@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Donations from "../Donations/Donations";
 import { FaHands } from "react-icons/fa";
 import CardContainer from "../CardContainer/CardContainer";
@@ -7,11 +7,22 @@ import Navbar from "../Navbar/Navbar";
 import { SiDatadog } from "react-icons/si";
 import { Link } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+<<<<<<< HEAD
 import ModalEditDog from "../UserProfile/ModalEditDog/ModalEditDog";
 
+=======
+import { useDispatch } from "react-redux";
+import { visitorsCounter } from "../../store/actions/index";
+>>>>>>> main
 
 export default function Home() {
   const { isAuthenticated } = useAuth0();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(visitorsCounter());
+  }, [dispatch]);
+
   return (
     <>
       <Navbar />

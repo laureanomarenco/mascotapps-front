@@ -19,6 +19,7 @@ import {
   RESET_MY_PROFILE,
   ADMIN_FETCH_USERS,
   SORT_BY,
+  TOTAL_VISITORS,
 } from "../actions";
 
 const initalState = {
@@ -41,7 +42,8 @@ const initalState = {
   publicUserDetail: {},
   myProfile: {},
   usersInfo: [],
-  newPost:{},
+  newPost: {},
+  visitors: "",
 };
 
 export default function reducer(state = initalState, action) {
@@ -192,7 +194,11 @@ export default function reducer(state = initalState, action) {
         allPets: action.payload.arr,
         actualSort: action.payload.filterType,
       };
-
+    case TOTAL_VISITORS:
+      return {
+        ...state,
+        visitors: action.payload,
+      };
     default:
       return state;
   }

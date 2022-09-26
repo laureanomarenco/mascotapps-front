@@ -3,7 +3,7 @@ import React from "react";
 const Users = ({ users }) => {
   console.log(users);
   return (
-    <div className="bg-white p-8 rounded-md w-full">
+    <div className="bg-transparent p-8 rounded-md w-full">
       <div>
         <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
           <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
@@ -20,10 +20,10 @@ const Users = ({ users }) => {
                     Ciudad
                   </th>
                   <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                    Ciudad
+                    Contacto
                   </th>
                   <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                    Acciones
+                    Estado
                   </th>
                 </tr>
               </thead>
@@ -61,7 +61,9 @@ const Users = ({ users }) => {
                           </p>
                         </td>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <p className="text-gray-900 whitespace-no-wrap">43</p>
+                          <p className="text-gray-900 whitespace-no-wrap">
+                            {u.contact}
+                          </p>
                         </td>
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
@@ -78,7 +80,7 @@ const Users = ({ users }) => {
                 })}
               </tbody>
             </table>
-            <div className="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
+            {/* <div className="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
               <span className="text-xs xs:text-sm text-gray-900">
                 Showing 1 to 4 of 50 Entries
               </span>
@@ -91,7 +93,7 @@ const Users = ({ users }) => {
                   Next
                 </button>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>
