@@ -21,7 +21,6 @@ import { FaUser } from "react-icons/fa";
 
 const NuevoProfile = () => {
   const [order, setOrder] = useState("");
-
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
   const myPets = useSelector((state) => state.userPets);
@@ -56,7 +55,7 @@ const NuevoProfile = () => {
       dispatch(resetMyProfile());
       dispatch(resetDetail());
     };
-  }, [order, dispatch, user]);
+  }, [order]);
   if (!isAuthenticated) {
     Swal.fire({
       title: "No estás logueado",
@@ -75,7 +74,7 @@ const NuevoProfile = () => {
       }
     });
   }
-  console.log("aqui bello perfil", belloPerfil);
+
   return (
     <div>
       <Navbar></Navbar>

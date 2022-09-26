@@ -66,9 +66,9 @@ export default function Detail() {
                 <div className="md:h-96 md:w-96 rounded-lg overflow-hidden mx-auto drop-shadow-md">
                   <img
                     src={
-                      image === null
-                        ? "https://res.cloudinary.com/dfbxjt69z/image/upload/v1663276317/mascotapps/perrito_apwyz0.png"
-                        : image
+                      image
+                      ? image
+                      : "https://res.cloudinary.com/dfbxjt69z/image/upload/v1663276317/mascotapps/perrito_apwyz0.png"
                     }
                     className="w-full h-full object-cover"
                     alt={pet.name}
@@ -78,9 +78,9 @@ export default function Detail() {
                   <div className="brightness-125 rounded-lg overflow-auto drop-shadow-xl">
                     <img
                       src={
-                        image === null
-                          ? "https://res.cloudinary.com/dfbxjt69z/image/upload/v1663276317/mascotapps/perrito_apwyz0.png"
-                          : image
+                        image
+                        ? image
+                        : "https://res.cloudinary.com/dfbxjt69z/image/upload/v1663276317/mascotapps/perrito_apwyz0.png"
                       }
                       className="w-full h-full object-cover "
                       alt={pet.name}
