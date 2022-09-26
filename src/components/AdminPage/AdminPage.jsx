@@ -4,6 +4,7 @@ import {
   fetchPets,
   getAllUsers,
   adminFetchUsers,
+  totalVisitors,
 } from "../../store/actions/index";
 import SideMenu from "./NavBar";
 // import Stack from '@mui/material/Stack';
@@ -23,9 +24,7 @@ import { MdImageSearch } from "react-icons/md";
 import { CgSearchFound } from "react-icons/cg";
 import { BsEyeFill } from "react-icons/bs";
 import { TbUsers } from "react-icons/tb";
-import { MdImageNotSupported } from "react-icons/md";
 import { FaDonate } from "react-icons/fa";
-import { BsImages } from "react-icons/bs";
 import { TbView360 } from "react-icons/tb";
 import { AiOutlineWoman } from "react-icons/ai";
 import { AiOutlineMan } from "react-icons/ai";
@@ -35,20 +34,20 @@ import { getDonations } from "../../store/actions/index";
 const AdminPage = () => {
   const dispatch = useDispatch();
   const usersDetails = useSelector((state) => state.usersInfo);
-
+  console.log(usersDetails);
   const pets = useSelector((state) => state.pets);
   const users = useSelector((state) => state.totalUsers);
   const donations = useSelector((state) => state.donations);
+  const visitors = useSelector((state) => state.visitors);
   const amounts = donations.map((done) => done.amount);
   const totalDonationsInCents = amounts.reduce((prev, next) => prev + next, 0);
-
   useEffect(() => {
     dispatch(fetchPets());
     dispatch(getDonations());
     dispatch(getAllUsers());
     dispatch(adminFetchUsers());
-  }, [dispatch]);
-
+    dispatch(totalVisitors());
+  }, [dispatch, visitors]);
   return (
     <>
       <div className="top-0 sticky z-10">
@@ -112,7 +111,7 @@ const AdminPage = () => {
                 size={100}
               />
               <h6 className="text-4xl font-bold lg:text-5xl xl:text-6xl text-gray-800">
-                7533
+                {visitors}
               </h6>
               <p className="text-sm font-medium tracking-widest text-yellow-600 uppercase lg:text-yellow-600">
                 Visitas
@@ -123,8 +122,8 @@ const AdminPage = () => {
       </div>
       <div id="mascotas"></div>
 
-      <section className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-4 xl:grid-cols-4 gap-4 mt-28 w-9/12 mx-auto ">
-        <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6 ">
+      <section className="bg-white border border-1 border-gray-300 grid sm:grid-cols-2 md:grid-cols-2 lg:grid-4 xl:grid-cols-4 gap-4 mt-28 w-9/12 mx-auto ">
+        <div className="flex justify-center w-full lg:border-r border-yellow-300 py-6 ">
           <div className="grid w-1/2 justify-items-center">
             <FaHands size={50} fill="#28B0A2" />
             <Percents
@@ -149,7 +148,7 @@ const AdminPage = () => {
           </div>
         </div>
 
-        <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
+        <div className="flex justify-center w-full lg:border-r border-yellow-300 py-6">
           <div className="grid w-1/2 justify-items-center">
             <GiDogHouse size={50} fill="#28B0A2" />
             <Percents
@@ -170,7 +169,7 @@ const AdminPage = () => {
             </h2>
           </div>
         </div>
-        <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
+        <div className="flex justify-center w-full lg:border-r border-yellow-300 py-6">
           <div className="grid w-1/2 justify-items-center">
             <MdImageSearch size={50} fill="#28B0A2" />
             <Percents
@@ -219,9 +218,9 @@ const AdminPage = () => {
 
       <section
         id="mascotas"
-        className="grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4 mt-2 w-9/12 mx-auto "
+        className="bg-white  border border-1 border-gray-300 grid sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-4 mt-2 w-9/12 mx-auto "
       >
-        <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
+        <div className="bg-white  flex justify-center w-full lg:border-r border-yellow-300 py-6">
           <div className="grid w-1/2 justify-items-center">
             <GiCat size={50} fill="#28B0A2" />
             <Percents
@@ -243,7 +242,7 @@ const AdminPage = () => {
           </div>
         </div>
 
-        <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
+        <div className="bg-white  flex justify-center w-full lg:border-r border-yellow-300 py-6">
           <div className="grid w-1/2 justify-items-center">
             <GiSittingDog size={50} fill="#28B0A2" />
             <Percents
@@ -265,7 +264,7 @@ const AdminPage = () => {
             </h2>
           </div>
         </div>
-        <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
+        <div className="bg-white  flex justify-center w-full  py-6">
           <div className="grid w-1/2 justify-items-center">
             <GiNestBirds size={50} fill="#28B0A2" />
             <Percents
@@ -293,9 +292,9 @@ const AdminPage = () => {
 
       <section
         id="mascotas"
-        className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 mt-2 w-9/12 mx-auto "
+        className="bg-white border border-1 border-gray-300 grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 mt-2 w-9/12 mx-auto "
       >
-        <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
+        <div className="bg-white  flex justify-center w-full lg:border-r border-yellow-300 py-6">
           <div className="grid w-1/2 justify-items-center">
             <AiOutlineWoman size={50} fill="#28B0A2" />
             <Percents
@@ -318,7 +317,7 @@ const AdminPage = () => {
           </div>
         </div>
 
-        <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
+        <div className="bg-white  flex justify-center w-full lg:border-r border-yellow-300 py-6">
           <div className="grid w-1/2 justify-items-center">
             <AiOutlineMan size={50} fill="#28B0A2" />
             <Percents
@@ -340,41 +339,17 @@ const AdminPage = () => {
           </div>
         </div>
       </section>
-      <Users users={usersDetails} />
-      <section
-        id="usuarios"
-        className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 mt-28 w-9/12 mx-auto "
-      >
-        <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
-          <BsImages size={50} fill="#28B0A2" />
-          <div className="grid text-gray-800 w-1/2 pl-8">
-            <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">
-              {pets ? pets.length : null}
-            </h1>
-            <h2 className="text-gray-500 lg:text-lg mt-4 leading-8 tracking-wide">
-              Usuarios con publicaciones
-            </h2>
-          </div>
-        </div>
-
-        <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
-          <MdImageNotSupported size={72} fill="#28B0A2" />
-          <div className="grid text-gray-800 w-1/2 pl-8">
-            <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">
-              {pets ? 136 - pets.length : null}
-            </h1>
-            <h2 className="text-gray-500 lg:text-lg mt-4 leading-8 tracking-wide">
-              Usuarios sin publicaciones
-            </h2>
-          </div>
-        </div>
-      </section>
+      <div>
+        <section id="usuarios" className="w-9/12 mx-auto">
+          <Users users={usersDetails} />
+        </section>
+      </div>
 
       <section
         id="don-visits"
-        className="grid sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 mt-28 w-9/12 mx-auto "
+        className="grid bg-white sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4 mt-8 w-9/12 mx-auto mb-8  border border-1 border-gray-300"
       >
-        <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
+        <div className="flex justify-center w-full lg:border-r border-yellow-300 py-6">
           <BiDonateHeart size={72} fill="#28B0A2" />
           <div className="grid text-gray-800 w-1/2 pl-8">
             <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">
@@ -386,11 +361,11 @@ const AdminPage = () => {
           </div>
         </div>
 
-        <div className="flex justify-center w-full lg:border-r border-yellow-500 py-6">
+        <div className="flex justify-center w-full py-6">
           <BsEyeFill size={72} fill="#28B0A2" />
           <div className="grid text-gray-800 w-1/2 pl-8">
             <h1 className="font-bold text-2xl lg:text-5xl tracking-1px">
-              7533
+              {visitors}
             </h1>
             <h2 className="text-gray-500 lg:text-lg mt-4 leading-8 tracking-wide">
               Visitas
