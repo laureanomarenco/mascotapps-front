@@ -21,7 +21,6 @@ import { FaUser } from "react-icons/fa";
 
 const NuevoProfile = () => {
   const [order, setOrder] = useState("");
-
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
   const myPets = useSelector((state) => state.userPets);
@@ -75,7 +74,7 @@ const NuevoProfile = () => {
       }
     });
   }
-  console.log("aqui bello perfil", belloPerfil);
+
   return (
     <div>
       <Navbar></Navbar>
@@ -177,7 +176,12 @@ const NuevoProfile = () => {
 
             <div hidden={hidden} className="w-full">
               {myPets?.length > 0 ? (
-                <BadgesPets user={user} hidden={hidden} setHidden={setHidden} setOrder={setOrder} />
+                <BadgesPets
+                  user={user}
+                  hidden={hidden}
+                  setHidden={setHidden}
+                  setOrder={setOrder}
+                />
               ) : null}
             </div>
 

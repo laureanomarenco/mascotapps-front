@@ -40,7 +40,7 @@ const SignUp = () => {
     email: `${user?.email}`,
     city: "",
     contact: "",
-    image: `${user?.picture}`,
+    image: `https://res.cloudinary.com/dfbxjt69z/image/upload/v1663276317/mascotapps/perrito_apwyz0.png`,
   });
   const [errors, setErrors] = useState({});
 

@@ -3,14 +3,10 @@ import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import TextField from "@mui/material/TextField";
 import { useDispatch } from "react-redux";
-import { rateUser, myProfile, resetMyProfile } from "../../store/actions";
-import { useAuth0 } from "@auth0/auth0-react";
+import { rateUser, resetMyProfile } from "../../store/actions";
+
 
 export default function RatingStar({ objBello, setShowModal, setOrder }) {
-  console.log(
-    "🚀 ~ file: RatingStar.jsx ~ line 10 ~ RatingStar ~ objBello",
-    objBello
-  );
   const dispatch = useDispatch();
   const [value, setValue] = React.useState(2);
   //eslint-disable-next-line
@@ -19,10 +15,6 @@ export default function RatingStar({ objBello, setShowModal, setOrder }) {
     stars: 0,
     comments: "",
   });
-  console.log(
-    "🚀 ~ file: RatingStar.jsx ~ line 21 ~ RatingStar ~ review",
-    review
-  );
 
   const handleChange = (event) => {
     setReview({
@@ -30,14 +22,14 @@ export default function RatingStar({ objBello, setShowModal, setOrder }) {
       [event.target.name]: event.target.value,
     });
   };
-  const { user } = useAuth0();
+
+
   const handleClick = (event) => {
     event.preventDefault();
     dispatch(rateUser(review));
     dispatch(resetMyProfile());
-    dispatch(myProfile({ id: user?.sub }));
     setShowModal(false);
-    setOrder("new");
+    setOrder("ne noww");
   };
 
   React.useEffect(() => {}, [dispatch]);

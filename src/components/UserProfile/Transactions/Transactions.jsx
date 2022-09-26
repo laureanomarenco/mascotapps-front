@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Calificar from "./Calificar";
 import { useDispatch } from "react-redux";
@@ -7,15 +7,13 @@ import { HiLockClosed } from "react-icons/hi";
 import { updateTransactionStatus } from "../../../store/actions/index";
 
 const Transactions = ({ transactions, setOrder }) => {
+  //eslint-disable-next-line
   const { user } = useAuth0();
-  console.log("aquiiiiii", transactions);
   const dispatch = useDispatch();
   const handleClick = (trId, userId) => {
     dispatch(updateTransactionStatus(trId, userId));
     setOrder("completed");
   };
-
-  useEffect(() => {}, [transactions, setOrder, dispatch]);
 
   return (
     <div className=" rounded-md w-full">

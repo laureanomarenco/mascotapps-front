@@ -109,7 +109,7 @@ export default function UserPuserProfsPublicProfile() {
               </h2>
 
               <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-x-16 gap-y-12">
-                {userProf?.review ? (
+                {userProf?.review && (
                   userProf.review?.map((review) => (
                     <blockquote key={Math.random()}>
                       <header className="sm:items-center sm:flex">
@@ -131,9 +131,7 @@ export default function UserPuserProfsPublicProfile() {
                       </p>
                     </blockquote>
                   ))
-                ) : (
-                  <p>Este usuario aun no cuenta con calificaciones</p>
-                )}
+                ) }
               </div>
             </div>
           </section>
