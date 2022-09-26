@@ -79,13 +79,8 @@ const NuevoProfile = () => {
   return (
     <div>
       <Navbar></Navbar>
-<<<<<<< HEAD
-      <div className="container mx-auto my-5 p-5">
-        <div className="md:flex no-wrap md:-mx-2 relative">
-=======
       <div className=" my-5 mx-5 p-3">
         <div className="md:flex no-wrap relative">
->>>>>>> main
           {myProfileData["userProps"]?.isDonator === "true" && (
             <div className="absolute transition-all ease-in-out  duration-250	 cursor-pointer text-teal-500 hover:text-amber-400 top-5 right-0 text-4xl">
               <BiDonateHeart />
@@ -143,13 +138,8 @@ const NuevoProfile = () => {
                 </div>
               </div>
               <div className="text-gray-700">
-<<<<<<< HEAD
-                <div className="grid md:grid-cols-1 text-sm">
-                  <div className="grid  md:grid-cols-1 grid-cols-2 lg:grid-cols-2">
-=======
                 <div className="grid md:grid-cols-2 text-sm">
                   <div className="grid grid-cols-3 ">
->>>>>>> main
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Nombre
                     </div>
@@ -157,11 +147,7 @@ const NuevoProfile = () => {
                       {myProfileData["userProps"]?.name}
                     </div>
                   </div>
-<<<<<<< HEAD
-                  <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
-=======
                   <div className="grid grid-cols-3 ">
->>>>>>> main
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Contacto
                     </div>
@@ -169,11 +155,7 @@ const NuevoProfile = () => {
                       {myProfileData["userProps"]?.contact}
                     </div>
                   </div>
-<<<<<<< HEAD
-                  <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
-=======
                   <div className="grid grid-cols-3 ">
->>>>>>> main
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Email
                     </div>
@@ -181,11 +163,7 @@ const NuevoProfile = () => {
                       {belloPerfil?.email}
                     </div>
                   </div>
-<<<<<<< HEAD
-                  <div className="grid grid-cols-2 md:grid-cols-1 lg:grid-cols-2">
-=======
                   <div className="grid grid-cols-3 ">
->>>>>>> main
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Ciudad
                     </div>
@@ -199,7 +177,12 @@ const NuevoProfile = () => {
 
             <div hidden={hidden} className="w-full">
               {myPets?.length > 0 ? (
-                <BadgesPets user={user} hidden={hidden} setHidden={setHidden} setOrder={setOrder} />
+                <BadgesPets
+                  user={user}
+                  hidden={hidden}
+                  setHidden={setHidden}
+                  setOrder={setOrder}
+                />
               ) : null}
             </div>
             <div>
