@@ -138,8 +138,8 @@ const NuevoProfile = () => {
                 </div>
               </div>
               <div className="text-gray-700">
-                <div className="grid md:grid-cols-2 text-sm">
-                  <div className="grid grid-cols-3 ">
+                <div className="grid md:grid-cols-1 text-sm lg:grid-cols-2">
+                  <div className="grid grid-cols-3 md:grid-cols-1 lg:grid-cols-3">
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Nombre
                     </div>
@@ -147,7 +147,7 @@ const NuevoProfile = () => {
                       {myProfileData["userProps"]?.name}
                     </div>
                   </div>
-                  <div className="grid grid-cols-3 ">
+                  <div className="grid grid-cols-3 md:grid-cols-1 lg:grid-cols-3">
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Contacto
                     </div>
@@ -155,7 +155,7 @@ const NuevoProfile = () => {
                       {myProfileData["userProps"]?.contact}
                     </div>
                   </div>
-                  <div className="grid grid-cols-3 ">
+                  <div className="grid grid-cols-3 md:grid-cols-1 lg:grid-cols-3">
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Email
                     </div>
@@ -163,7 +163,7 @@ const NuevoProfile = () => {
                       {belloPerfil?.email}
                     </div>
                   </div>
-                  <div className="grid grid-cols-3 ">
+                  <div className="grid grid-cols-3 md:grid-cols-1 lg:grid-cols-3">
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Ciudad
                     </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Navbar from "../Navbar/Navbar";
 import Footer from "../Footer/Footer";
 import Spinner from "../Spinner/Spinner";
@@ -9,7 +9,7 @@ import { FaMapMarkerAlt } from "react-icons/fa";
 import { BsTelephoneFill } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";
 import { useDispatch, useSelector } from "react-redux";
-import { beginTransaction, getUserReviews } from "../../store/actions";
+import { beginTransaction } from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import { BiDonateHeart } from "react-icons/bi";
 
@@ -34,10 +34,6 @@ export default function UserPuserProfsPublicProfile() {
     setContact(true);
     dispatch(beginTransaction(idPet, user?.sub));
   }
-
-  useEffect(() => {
-    dispatch(getUserReviews(userProf?.id));
-  }, []);
 
   if (!userProf?.name) {
     return (

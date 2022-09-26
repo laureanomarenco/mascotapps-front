@@ -8,25 +8,17 @@ import { deletePet } from "../../store/actions";
 import { useEffect } from "react";
 import { useState } from "react";
 
-
-const BadgesPets = ({ user, hidden, setHidden , setOrder}) => {
+const BadgesPets = ({ user, hidden, setHidden, setOrder }) => {
   const dispatch = useDispatch();
-  const [states, setStates] = useState(true)
+  const [states, setStates] = useState(true);
 
-<<<<<<< HEAD
-  const handleClick = async (petid) => {
-    console.log(petid);
-    dispatch(deletePet(user, petid));
-=======
   const handleClick = (petid) => {
     dispatch(deletePet(user, petid));
-    setStates(!states)
-    setOrder('now')
-
->>>>>>> main
+    setStates(!states);
+    setOrder("now");
   };
   const myPets = useSelector((state) => state.userPets);
-  useEffect(()=>{}, [myPets, states, setOrder])
+  useEffect(() => {}, [myPets, states, setOrder]);
   return (
     <div
       className="flex flex-col items-center gap-5 grid-rows-1 py-5 px-5 md:grid md:grid-cols-2 xl:grid-cols-3 w-full relative border border-gray-300  rounded-lg my-2 shadow-lg  "

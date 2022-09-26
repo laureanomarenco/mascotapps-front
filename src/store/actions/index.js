@@ -18,7 +18,6 @@ import {
   DELETE,
   UPDATE_TRANSACTION_STATUS,
   RATE_USER,
-  GET_USER_REVIEWS,
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 
@@ -389,20 +388,3 @@ export function rateUser(paq) {
     }
   };
 }
-<<<<<<< HEAD
-
-export function getUserReviews(id) {
-  return async function (dispatch) {
-    try {
-      var reviews = await axios.post(GET_USER_REVIEWS, id);
-      return dispatch({
-        type: USER_REVIEWS,
-        payload: reviews.data,
-      });
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-}
-=======
->>>>>>> main
