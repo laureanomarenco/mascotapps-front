@@ -15,6 +15,8 @@ import { BsTelephoneFill } from "react-icons/bs";
 import { GrMail } from "react-icons/gr";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import { FaUser } from "react-icons/fa";
+import ModalEditDog from "./ModalEditDog/ModalEditDog";
+// import ModalEditDog from "./ModalEditDog/ModalEditDog";
 
 export default function UserProfile() {
   const { user, isAuthenticated } = useAuth0();
@@ -46,6 +48,10 @@ export default function UserProfile() {
     setHidden(hidden === true ? false : true);
   }
 
+  const handleEditDog = () => {
+    setActiveModalEditDog(!activeModalEditDog)
+  }
+  const hola = 'hola'
 
   useEffect(() => {
     dispatch(myProfile({ id: user?.sub }));
@@ -165,6 +171,9 @@ export default function UserProfile() {
           hidden={hidden}
           setHidden={setHidden}/> : null}
         </div>
+        {
+          activeModalEditDog && <ModalEditDog/>
+        }
         <Footer />
       </div>
     );

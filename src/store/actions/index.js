@@ -1,7 +1,6 @@
 import axios from "axios";
 
 import {
-<<<<<<< HEAD
 	URL,
 	ALLPETS,
 	PET_DETAIL,
@@ -20,27 +19,8 @@ import {
 	UPDATE_TRANSACTION_STATUS,
 	RATE_USER,
 	UPDATE_POST_PET,
-=======
-  URL,
-  ALLPETS,
-  PET_DETAIL,
-  SEARCH_BY,
-  DONATION,
-  TOTAL_USERS,
-  PET_SPECIES,
-  POST,
-  CREAT,
-  GET_MY_PETS,
-  GET_INFO_FROM_DETAIL,
-  MY_PROFILE,
-  UPDATE_MY_PROFILE,
-  INIT_TRANSACTION,
-  DELETE,
-  UPDATE_TRANSACTION_STATUS,
-  RATE_USER,
-  NUMBER_OF_VISITORS,
-  VISITORS_COUNTER,
->>>>>>> main
+	NUMBER_OF_VISITORS,
+	VISITORS_COUNTER,
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 
@@ -384,15 +364,15 @@ export function deletePet(user, petId) {
 export function updatePet(user, pet_data) {
 	return async function (dispatch) {
 		try {
-			console.log(dispatch);
-			console.log(user);
-			console.log(pet_data);
-			pet_data.name = pet_data.name === "Hisoka" ? "Manteca" : "Hisoka";
-			let datos = await axios.put(UPDATE_POST_PET, {
+			await axios.put(UPDATE_POST_PET, {
 				user: { userId: user?.sub },
 				pet: pet_data,
 			});
-			console.log(datos);
+			dispatch({
+				type: "SOLVED_BRO",
+				user,
+				pet_data,
+			});
 		} catch (error) {
 			console.log(error);
 		}
@@ -439,25 +419,25 @@ export function rateUser(paq) {
 	};
 }
 export function totalVisitors() {
-  return async function (dispatch) {
-    try {
-      var total = await axios.get(NUMBER_OF_VISITORS);
-      return dispatch({
-        type: TOTAL_VISITORS,
-        payload: total.data,
-      });
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+	return async function (dispatch) {
+		try {
+			var total = await axios.get(NUMBER_OF_VISITORS);
+			return dispatch({
+				type: TOTAL_VISITORS,
+				payload: total.data,
+			});
+		} catch (error) {
+			console.log(error.message);
+		}
+	};
 }
 
 export function visitorsCounter() {
-  return async function () {
-    try {
-      await axios.get(VISITORS_COUNTER);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
+	return async function () {
+		try {
+			await axios.get(VISITORS_COUNTER);
+		} catch (error) {
+			console.log(error.message);
+		}
+	};
 }

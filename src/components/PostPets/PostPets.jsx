@@ -363,7 +363,7 @@ const PostPets = () => {
 								className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
 								placeholder="Imagen"
 								onChange={upload}
-							></input>
+							/>
 
 							<span className="absolute inset-y-0 inline-flex items-center right-4">
 								<AiOutlineCamera color="grey" />
