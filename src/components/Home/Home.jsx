@@ -59,7 +59,7 @@ export default function Home() {
 
   function handleClick(index) {
     setSelectedIndex(index);
-    selectNewText(index, texts)
+    selectNewText(index, texts);
   }
 
   useEffect(() => {
@@ -91,12 +91,20 @@ export default function Home() {
               <p className="text-white text-2xl md:text-4xl">
                 {selectedText?.subtitle}
               </p>
-              <Link
-                to={selectedText?.path}
-                className="px-6 py-3 my-3 bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300 w-fit"
-              >
-                {selectedText?.button}
-              </Link>
+              <div className="my-3 flex gap-3 h-">
+                <Link
+                  to={selectedText?.path}
+                  className="px-6 py-3 my-3 bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300 w-fit"
+                >
+                  {selectedText?.button}
+                </Link>
+                <Link
+                  to="/faqs"
+                  className="px-6 py-3 my-3 font-bold backdrop-brightness-50 text-white hover:text-black border-2 border-[#ffd803] text-center hover:bg-[#ffd803] hover:opacity-100  focus:ring-4 focus:outline-none focus:ring-yellow-300 rounded-lg "
+                >
+                  + info
+                </Link>
+              </div>
             </div>
           </div>
           <div className="flex gap-3 w-fit mx-auto absolute inset-x-0 bottom-5 z-50  ">
