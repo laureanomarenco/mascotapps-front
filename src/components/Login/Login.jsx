@@ -18,7 +18,7 @@ export default function Login() {
     try {
       if (isAuthenticated && user) {
         let existe = await axios.post(
-          "https://mascotapps-back-dev-2.up.railway.app/users/exists ",
+          "https://juka-production.up.railway.app/users/exists ",
           {
             id: user?.sub,
           }

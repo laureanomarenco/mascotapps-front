@@ -6,6 +6,7 @@ import ModalProfile from "./ModalEdit/ModalEdit";
 import Transactions from "./Transactions/Transactions";
 import Footer from "../Footer/Footer";
 import { Logout } from "../Logout/Logout";
+import { BiDonateHeart } from "react-icons/bi";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -19,15 +20,14 @@ import Swal from "sweetalert2";
 import { FaUser } from "react-icons/fa";
 
 const NuevoProfile = () => {
+  const [order, setOrder] = useState("");
+
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
   const myPets = useSelector((state) => state.userPets);
   const myProfileData = useSelector((state) => state.myProfile);
   const transactions = myProfileData?.transactions;
-  console.log(
-    "🚀 ~ file: UserProfile.jsx ~ line 24 ~ UserProfile ~ mymyProfileData",
-    myProfileData
-  );
+
   const [hidden, setHidden] = useState(true);
 
   const belloPerfil = {
@@ -38,6 +38,7 @@ const NuevoProfile = () => {
     contact: myProfileData["userProps"]?.contact,
     image: myProfileData["userProps"]?.image,
   };
+
   const handleSubmit = () => {
     if (isAuthenticated) {
       dispatch(getMyPets(user));
@@ -55,7 +56,7 @@ const NuevoProfile = () => {
       dispatch(resetMyProfile());
       dispatch(resetDetail());
     };
-  }, []);
+  }, [order, dispatch, user]);
   if (!isAuthenticated) {
     Swal.fire({
       title: "No estás logueado",
@@ -75,19 +76,23 @@ const NuevoProfile = () => {
     });
   }
   console.log("aqui bello perfil", belloPerfil);
-  // console.log(prueba);
   return (
     <div>
       <Navbar></Navbar>
-      <div className="container mx-auto my-5 p-5">
-        <div className="md:flex no-wrap md:-mx-2 ">
+      <div className=" my-5 mx-5 p-3">
+        <div className="md:flex no-wrap relative">
+          {myProfileData["userProps"]?.isDonator === "true" && (
+            <div className="absolute transition-all ease-in-out  duration-250	 cursor-pointer text-teal-500 hover:text-amber-400 top-5 right-0 text-4xl">
+              <BiDonateHeart />
+            </div>
+          )}
           {/* <!-- Left Side --> */}
           <div className="w-full md:w-3/12 md:mx-2">
             {/* <!-- Profile Card --> */}
             <div className="bg-white p-3 border-t-4 border-[#FFC700]">
-              <div className="image overflow-hidden">
+              <div className="image overflow-hidden w-[280px] h-[280px] mx-auto md:h-[200px] md:w-[200px]">
                 <img
-                  className="h-auto w-full  mx-auto rounded-full"
+                  className="h-full w-full  mx-auto rounded-full object-cover"
                   src={myProfileData["userProps"]?.image}
                   alt=""
                 />
@@ -106,7 +111,7 @@ const NuevoProfile = () => {
                   </Link>
 
                   <button
-                    className="px-6 py-3 bg-[#FFC700] rounded-md font-bold hover:bg-[ffd803]/80 transition-all duration-300"
+                    className="px-6 py-3 bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300"
                     onClick={handleClick}
                   >
                     {" "}
@@ -125,7 +130,7 @@ const NuevoProfile = () => {
             {/* <!-- Profile tab -->
                 <!-- About Section --> */}
             <div className="bg-white p-3 shadow-sm rounded-sm">
-              <div className="flex items-center space-x-2 font-semibold text-gray-900 leading-8">
+              <div className="flex items-center space-x-2 font-semibold text-gray-700 leading-8">
                 <FaUser />
                 <span className="tracking-wide">Información de perfil</span>
                 <div>
@@ -134,35 +139,35 @@ const NuevoProfile = () => {
               </div>
               <div className="text-gray-700">
                 <div className="grid md:grid-cols-2 text-sm">
-                  <div className="grid grid-cols-2 ">
+                  <div className="grid grid-cols-3 ">
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Nombre
                     </div>
-                    <div className=" py-2 text-gray-400">
+                    <div className=" py-2 text-gray-400 col-span-2">
                       {myProfileData["userProps"]?.name}
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 ">
+                  <div className="grid grid-cols-3 ">
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Contacto
                     </div>
-                    <div className=" py-2 text-gray-400">
+                    <div className=" py-2 text-gray-400 col-span-2">
                       {myProfileData["userProps"]?.contact}
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 ">
+                  <div className="grid grid-cols-3 ">
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Email
                     </div>
-                    <div className=" py-2 text-gray-400">
+                    <div className=" py-2 text-gray-400 col-span-2">
                       {belloPerfil?.email}
                     </div>
                   </div>
-                  <div className="grid grid-cols-2 ">
+                  <div className="grid grid-cols-3 ">
                     <div className=" py-2 font-semibold text-[#28B0A2]">
                       Ciudad
                     </div>
-                    <div className=" py-2 text-gray-400">
+                    <div className=" py-2 text-gray-400 col-span-2">
                       {myProfileData["userProps"]?.city}
                     </div>
                   </div>
@@ -172,15 +177,11 @@ const NuevoProfile = () => {
 
             <div hidden={hidden} className="w-full">
               {myPets?.length > 0 ? (
-                <BadgesPets
-                  user={myProfileData}
-                  hidden={hidden}
-                  setHidden={setHidden}
-                />
+                <BadgesPets user={user} hidden={hidden} setHidden={setHidden} setOrder={setOrder} />
               ) : null}
             </div>
 
-            <Transactions transactions={transactions} />
+            <Transactions transactions={transactions} setOrder={setOrder} />
           </div>
         </div>
       </div>

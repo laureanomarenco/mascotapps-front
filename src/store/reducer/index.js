@@ -18,14 +18,14 @@ import {
   MY_PROFILE_DETAIL,
   RESET_MY_PROFILE,
   ADMIN_FETCH_USERS,
-  SORT_BY
+  SORT_BY,
 } from "../actions";
 
 const initalState = {
   pets: [],
   pet: {},
-  allPets:[],
-  actualSort:'ASC',
+  allPets: [],
+  actualSort: "ASC",
   statusPets: [],
   filterPets: [],
   searchedPets: [],
@@ -41,6 +41,7 @@ const initalState = {
   publicUserDetail: {},
   myProfile: {},
   usersInfo: [],
+  newPost:{},
 };
 
 export default function reducer(state = initalState, action) {
@@ -138,6 +139,7 @@ export default function reducer(state = initalState, action) {
     case POST_PET:
       return {
         ...state,
+        newPost: action.payload,
       };
 
     case GET_ALL_USERS:
@@ -186,10 +188,10 @@ export default function reducer(state = initalState, action) {
     case SORT_BY:
       return {
         ...state,
-        pets:action.payload.arr,
-        allPets:action.payload.arr,
+        pets: action.payload.arr,
+        allPets: action.payload.arr,
         actualSort: action.payload.filterType,
-      }
+      };
 
     default:
       return state;

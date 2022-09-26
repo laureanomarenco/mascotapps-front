@@ -69,7 +69,7 @@ const PostPets = () => {
 		.sort((a, b) => a.provincia - b.provincia)
 		.map(l => `${l.nombre}, ${l.provincia}`);
 	//-------------------------------------------------------------------------------------------------------------------
-
+	//eslint-disable-next-line
 	const showAlert = () => {
 		Swal.fire({
 			title: "Gracias!",
@@ -142,7 +142,6 @@ const PostPets = () => {
 			setInput({});
 		}
 	};
-
 	useEffect(() => {
 		dispatch(fetchCity());
 		dispatch(getSpecies());
@@ -171,7 +170,7 @@ const PostPets = () => {
 						<div className="relative">
 							<input
 								onChange={handleChange}
-								type="text"
+								type="tetx"
 								name="name"
 								className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm "
 								placeholder="Nombre"
@@ -462,7 +461,7 @@ const PostPets = () => {
 							<button
 								onClick={() => navigate("/home")}
 								type="submit"
-								className="w-full rounded-md border border-transparent bg-[#ecca08] py-2  text-sm font-medium text-black hover:bg-[#ffd903]  focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
+								className="w-full rounded-md border border-[#ecca08] py-2  text-sm font-medium text-black hover:bg-[#ffd903]  focus:outline-none focus:ring-2 focus:ring-amber-500 focus:ring-offset-2"
 							>
 								Volver al inicio
 							</button>

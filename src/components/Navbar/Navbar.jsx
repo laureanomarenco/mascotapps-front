@@ -457,10 +457,9 @@ export default function Navbar({ setPage }) {
                 </li>
                 <li>
                   <Link
-                    onClick={handleClick}
                     name="encontrado"
                     to="/estado/encontrado"
-                    href="javascript:void(0)"
+                    onClick={handleClick}
                     className="flex items-center justify-between hover:underline text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800"
                   >
                     Encontrados
@@ -489,7 +488,6 @@ export default function Navbar({ setPage }) {
                     onClick={handleClick}
                     name="perdido"
                     to="/estado/perdido"
-                    href="javascript:void(0)"
                     className="flex items-center justify-between hover:underline text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800"
                   >
                     Perdidos
@@ -515,10 +513,9 @@ export default function Navbar({ setPage }) {
                 </li>
                 <li>
                   <Link
-                    onClick={handleClick}
                     name="adopcion"
                     to="/estado/adopcion"
-                    href="javascript:void(0)"
+                    onClick={handleClick}
                     className=" flex items-center justify-between hover:underline text-base text-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-800"
                   >
                     Adopción

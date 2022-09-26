@@ -75,13 +75,12 @@ const SignUp = () => {
     return errorObj;
   }
   //SUBMIT --------------------------------------------------------------------------------------------------------------
-  const handleSubmit = (e) => {
+  const handleSubmit =  (e) => {
     e.preventDefault();
     if (errors.name || errors.city || errors.contact) {
       alert("Verifique los campos");
     } else {
       dispatch(CreateUser(input));
-
       Swal.fire({
         title: "Usuario creado correctamente",
         text: "Gracias por registrarte en Mascotapp.",
