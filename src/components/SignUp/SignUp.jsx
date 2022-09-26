@@ -59,17 +59,24 @@ const SignUp = () => {
 
   //VALIDACIONES------------------------------------------------------------------------------------------------------------------
   function validate(input) {
+    let regexName = /^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚ\s]*$/;
     let errorObj = {};
     if (!input.name.trim()) {
       errorObj.name = "Todos los datos son obligatorios";
     }
-    if (input.name.search("[0-9]") !== -1) {
-      errorObj.name = "El nombre no puede incluir números";
+    if (!input.name.match(regexName)) {
+      errorObj.name = "El nombre puede incluir únicamente letras y espacios.";
     }
-    if (input.name.search("[^A-Za-z0-9]") !== -1) {
-      errorObj.name =
-        "El nombre no puede incluir números, símbolos ni espacios";
+    if (input.name.length > 50) {
+      errorObj.name = "El nombre no puede tener más de 50 caracteres.";
     }
+    // if (input.name.search("[0-9]") !== -1) {
+    //   errorObj.name = "El nombre no puede incluir números";
+    // }
+    // if (input.name.search(regexName) !== -1) {
+    //   errorObj.name =
+    //     "El nombre no puede incluir números, símbolos ni espacios";
+    // }
     if (!input.contact.trim()) {
       errorObj.contact = "Debes incluir un número de contacto válido";
     }
@@ -146,6 +153,8 @@ const SignUp = () => {
                   name="name"
                   className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm "
                   placeholder="Nombre"
+                  minLength={1}
+                  maxLength={50}
                   value={input.name}
                 />
 
@@ -219,6 +228,8 @@ const SignUp = () => {
                   className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                   placeholder="número de contacto"
                   pattern="^\+?\d{0,13}"
+                  minLength={6}
+                  maxLength={20}
                   value={input.contact}
                 />
 
