@@ -31,11 +31,13 @@ const validate = (input) => {
   if (input.comments.search("[0-9]") !== -1) {
     error.comments = "La descripcion no puede tener numeros*";
   }
-  if (!input.contact.trim()) {
-    error.contact = "Numero de contacto requerido*";
+  if(input.contact){
+    if (!input.contact.trim()) {
+      error.contact = "Numero de contacto requerido*";
+    }
+    if (isNaN(input.contact)) {
+      error.contact = "El numero de contacto debe ser un numero";    }
   }
-  if (isNaN(input.contact)) {
-    error.contact = "El numero de contacto debe ser un numero";    }
   return error;
 };
 export default validate;

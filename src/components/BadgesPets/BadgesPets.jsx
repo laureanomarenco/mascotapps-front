@@ -5,10 +5,16 @@ import { useDispatch, useSelector } from "react-redux";
 import { BsPencilSquare } from "react-icons/bs";
 import { RiChatDeleteFill } from "react-icons/ri";
 import { deletePet } from "../../store/actions";
-import { useEffect } from "react";
 import { useState } from "react";
 
-const BadgesPets = ({ user, hidden, setHidden, setOrder }) => {
+const BadgesPets = ({
+  user,
+  hidden,
+  setHidden,
+  setOrder,
+  handleActiveEditDog,
+  setActiveModalEditDog,
+}) => {
   const dispatch = useDispatch();
   const [states, setStates] = useState(true);
 
@@ -18,7 +24,6 @@ const BadgesPets = ({ user, hidden, setHidden, setOrder }) => {
     setOrder("now");
   };
   const myPets = useSelector((state) => state.userPets);
-  useEffect(() => {}, [myPets, states, setOrder]);
   return (
     <div
       className="flex flex-col items-center gap-5 grid-rows-1 py-5 px-5 md:grid md:grid-cols-2 xl:grid-cols-3 w-full relative border border-gray-300  rounded-lg my-2 shadow-lg  "
@@ -65,8 +70,12 @@ const BadgesPets = ({ user, hidden, setHidden, setOrder }) => {
                   </p>
                 </div>
                 <div className="flex mx-auto gap-10 ">
-                  <p className="text-2xl  ">
-                    <BsPencilSquare />
+                  <p className="text-2xl">
+                    <BsPencilSquare
+                      onClick={() => handleActiveEditDog(a)}
+                      className="cursor-pointer"
+                      setActiveModalEditDog={setActiveModalEditDog}
+                    />
                   </p>
                   <button
                     className="text-2xl "

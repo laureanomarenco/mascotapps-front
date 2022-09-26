@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
 import Donations from "../Donations/Donations";
-// import { FaHands } from "react-icons/fa";
 import CardContainer from "../CardContainer/CardContainer";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
-// import { SiDatadog } from "react-icons/si";
-// import { Link } from "react-router-dom";
-// import { useAuth0 } from "@auth0/auth0-react";
 import { useDispatch } from "react-redux";
 import { visitorsCounter } from "../../store/actions/index";
 import { Link } from "react-router-dom";
