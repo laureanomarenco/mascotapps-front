@@ -6,9 +6,10 @@ import { Icons, Links, NavBtn, SearchBar } from "./items";
 import { searchPets, resetDetail } from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoginButton } from "../Login/LoginButton";
+import Push from "../Push/Push";
+
 
 export default function Navbar({ setPage }) {
-  const [subscribed, setSubscribed] = useState(false);
   const { isAuthenticated, user } = useAuth0();
   const [searchInput, setSearchInput] = useState(true);
   const [mdOptionsToggle, setMdOptionsToggle] = useState(true);
@@ -31,10 +32,6 @@ export default function Navbar({ setPage }) {
     dispatch(getPetsByStatus(e.target.name));
     setPage(1);
   };
-
-  function handleSuscripcion() {
-    setSubscribed(!subscribed);
-  }
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -81,14 +78,7 @@ export default function Navbar({ setPage }) {
                     <span className="sr-only"> Account </span>
                   </Link>
 
-                  {subscribed ? (
-                    <NavBtn
-                      icon="unsubscribe"
-                      handleClick={handleSuscripcion}
-                    />
-                  ) : (
-                    <NavBtn icon="subscribe" handleClick={handleSuscripcion} />
-                  )}
+                  <Push />
                 </>
               ) : (
                 <LoginButton text="Iniciar sesión" />
@@ -205,17 +195,7 @@ export default function Navbar({ setPage }) {
                           />
                         </div>
                       </Icons>
-                      {subscribed ? (
-                        <NavBtn
-                          icon="unsubscribe"
-                          handleClick={handleSuscripcion}
-                        />
-                      ) : (
-                        <NavBtn
-                          icon="subscribe"
-                          handleClick={handleSuscripcion}
-                        />
-                      )}
+                      <Push />
                     </>
                   ) : (
                     <LoginButton text="Iniciar sesión" />
@@ -398,17 +378,7 @@ export default function Navbar({ setPage }) {
                       </div>
                     </Link>
                     <div className="flex items-center gap-3">
-                      {subscribed ? (
-                        <NavBtn
-                          icon="unsubscribe"
-                          handleClick={handleSuscripcion}
-                        />
-                      ) : (
-                        <NavBtn
-                          icon="subscribe"
-                          handleClick={handleSuscripcion}
-                        />
-                      )}
+                      <Push />
                       <p className="text-base">Activar notificaciones</p>
                     </div>
                   </>
