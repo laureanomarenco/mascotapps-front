@@ -89,6 +89,7 @@ export default function reducer(state = initalState, action) {
       var genders;
       var ages;
       var races;
+      var cities;
       action.payload.specie !== ""
         ? (especie = state.statusPets.filter(
             (i) => i.specie === action.payload.specie
@@ -103,11 +104,14 @@ export default function reducer(state = initalState, action) {
       action.payload.race !== ""
         ? (races = ages.filter((i) => i.race === action.payload.race))
         : (races = ages);
+      action.payload.city !== ""
+        ? (cities = races.filter((i) => (i.city?.includes(action.payload.city))))
+        : (cities = races);
 
       return {
         ...state,
-        filterPets: races,
-        notFound: races.length === 0 ? true : false,
+        filterPets: cities,
+        notFound: cities.length === 0 ? true : false,
       };
 
     case FETCH_CITY:
