@@ -8,7 +8,12 @@ import { Logout } from "../Logout/Logout";
 import { Link } from "react-router-dom";
 //eslint-disable-next-line
 import { useDispatch, useSelector } from "react-redux";
-import { getMyPets, myProfile, resetMyProfile,resetDetail } from "../../store/actions";
+import {
+  getMyPets,
+  myProfile,
+  resetMyProfile,
+  resetDetail,
+} from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
 import { BsTelephoneFill } from "react-icons/bs";
@@ -23,11 +28,8 @@ export default function UserProfile() {
   const dispatch = useDispatch();
   const myPets = useSelector((state) => state.userPets);
   const myProfileData = useSelector((state) => state.myProfile);
-  console.log("🚀 ~ file: UserProfile.jsx ~ line 24 ~ UserProfile ~ myProfileData", myProfileData)
-  const { image, name, city, contact } = myProfileData;
-  console.log(image, name, city, contact);
-  console.log(myProfileData);
   const [hidden, setHidden] = useState(true);
+  const [activeModalEditDog,setActiveModalEditDog]=useState(false)
 
   //eslint-disable-next-line
   const belloPerfil = {
@@ -41,24 +43,22 @@ export default function UserProfile() {
   const handleSubmit = () => {
     if (isAuthenticated) {
       dispatch(getMyPets(user));
-
     }
   };
-  const handleClick=()=>{
+  const handleClick = () => {
     setHidden(hidden === true ? false : true);
-  }
+  };
 
-  const handleEditDog = () => {
-    setActiveModalEditDog(!activeModalEditDog)
-  }
-  const hola = 'hola'
+  const handleActiveEditDog = () => {
+    setActiveModalEditDog(!activeModalEditDog);
+  };
 
   useEffect(() => {
     dispatch(myProfile({ id: user?.sub }));
-    handleSubmit()
+    handleSubmit();
     return () => {
       dispatch(resetMyProfile());
-      dispatch(resetDetail())
+      dispatch(resetDetail());
     };
   }, []);
   if (!isAuthenticated) {
@@ -163,17 +163,15 @@ export default function UserProfile() {
 
             <Logout />
           </div>
-        </div >
-        <div hidden={hidden} className="w-full">
-          {myPets.length > 0 ?
-          <BadgesPets
-          user={user}
-          hidden={hidden}
-          setHidden={setHidden}/> : null}
         </div>
-        {
-          activeModalEditDog && <ModalEditDog/>
-        }
+        <div hidden={hidden} className="w-full">
+          {myPets.length > 0 ? (
+            <BadgesPets user={user} hidden={hidden} setHidden={setHidden} />
+          ) : null}
+        </div>
+        {activeModalEditDog && (
+          <ModalEditDog handleActiveEditDog={handleActiveEditDog} />
+        )}
         <Footer />
       </div>
     );

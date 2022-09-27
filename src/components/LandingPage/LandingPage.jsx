@@ -28,7 +28,7 @@ export default function LandingPage() {
         : images.length - 1;
       setSelectedImage(images[nextIndex]);
       setSelectedIndex(nextIndex);
-    }, 300);
+    }, 500);
   };
 
   useEffect(() => {

@@ -21,7 +21,7 @@ export default function ModalEditDog({ handleActiveEditDog, dataEditDog }) {
       confirmButtonText: "Ok",
     }).then((result) => {
       if (result.isConfirmed) {
-        handleActiveEditDog();
+        handleActiveEditDog()
       }
     });
   };
@@ -66,7 +66,6 @@ export default function ModalEditDog({ handleActiveEditDog, dataEditDog }) {
       }
       dispatch(updatePet(user, input));
       showAlert();
-
       setInput({});
     }
   };
@@ -110,34 +109,34 @@ export default function ModalEditDog({ handleActiveEditDog, dataEditDog }) {
                   className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm "
                   onChange={handleChange}
                 />
-								{error.name ? <span>{error.name}</span> : <span></span>}
-								<div className="flex">
-                <select
-                  onChange={handleChange}
-                  className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-                  name="specie"
-                  value={input.specie}
-                >
-                  <option hidden>Especie</option>
-                  {PetSpecies?.map((especie) => (
-                    <option
-                      className="capitalize"
-                      key={Math.random()}
-                      value={especie}
-                    >
-                      {especie}
-                    </option>
-                  ))}
-                </select>
-                <input
-                  type="text"
-                  name="race"
-                  placeholder="Raza"
-                  value={input.race}
-                  className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm "
-                  onChange={handleChange}
-								/>
-								</div>
+                {error.name ? <span>{error.name}</span> : <span></span>}
+                <div className="flex">
+                  <select
+                    onChange={handleChange}
+                    className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                    name="specie"
+                    value={input.specie}
+                  >
+                    <option hidden>Especie</option>
+                    {PetSpecies?.map((especie) => (
+                      <option
+                        className="capitalize"
+                        key={Math.random()}
+                        value={especie}
+                      >
+                        {especie}
+                      </option>
+                    ))}
+                  </select>
+                  <input
+                    type="text"
+                    name="race"
+                    placeholder="Raza"
+                    value={input.race}
+                    className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm "
+                    onChange={handleChange}
+                  />
+                </div>
                 <div className="flex">
                   <select
                     onChange={handleChange}
