@@ -36,7 +36,7 @@ export default function Push() {
     console.log("new subscription", subscription);
 
     //enviando peticion
-    let susc = await axios.post("http://localhost:3001/api/subscribe", {
+    let susc = await axios.post("http://localhost:3001/pets/subscribe", {
       id: user?.sub,
       subscription,
     });
