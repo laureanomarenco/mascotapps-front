@@ -1,6 +1,6 @@
 import React from "react";
 import { AiFillStar } from "react-icons/ai";
-
+import { Link } from "react-router-dom";
 import RatingStar from "../../RatingStar/RatingStar";
 
 const Calificar = ({
@@ -40,9 +40,15 @@ const Calificar = ({
               <div className="border-0 rounded-lg shadow-lg relative flex flex-col items-center w-full bg-white outline-none focus:outline-none">
                 {/*header*/}
                 <div className="mx-auto justify-center p-5 border-b border-solid border-slate-200 rounded-t text-center items-center">
-                  <h3 className=" text-3xl w-full  font-semibold">
+                  <h3 className=" text-3xl w-full mb-2 font-semibold">
                     Califica al usuario
                   </h3>
+                  <p>¡Muchas Gracias! Tu feedback es importante para nosotros. <br/> Recuerda que también podes ayudarnos económicamente.</p>
+                  <Link to='/donate'>
+                    <button className="inline-block px-6 py-2 my-3 bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300">
+                      Donar
+                    </button>
+                  </Link>
                 </div>
                 {/*body*/}
 
