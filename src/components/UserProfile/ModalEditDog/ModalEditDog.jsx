@@ -58,12 +58,6 @@ export default function ModalEditDog({ handleActiveEditDog, dataEditDog }) {
     if (Object.values(error).length) {
       showError();
     } else {
-      if (input.name === "") {
-        setInput({
-          ...input,
-          name: undefined,
-        });
-      }
       dispatch(updatePet(user, input));
       showAlert();
       setInput({});

@@ -49,11 +49,14 @@ export const GET_PETS = "GET_PETS";
 export const GET_PUBLIC_USER_DETAIL = "GET_PUBLIC_USER_DETAIL";
 export const SORT_BY = "SORT_BY";
 export const TOTAL_VISITORS = "TOTAL_VISITORS";
-
 export const MY_PROFILE_DETAIL = "MY_PROFILE_DETAIL";
 export const RESET_MY_PROFILE = "RESET_MY_PROFILE";
 export const ADMIN_FETCH_USERS = "ADMIN_FETCH_USERS";
+
+export const SEND_QUERY = "SEND_QUERY";
+
 export const CANCEL_POST = "CANCEL_POST";
+
 
 export function fetchPets() {
 	return async function (dispatch) {
@@ -297,11 +300,11 @@ export function updateProfile(user) {
 }
 
 export function resetMyProfile() {
-  return async function (dispatch) {
-    dispatch({
-      type: RESET_MY_PROFILE,
-    });
-  };
+	return async function (dispatch) {
+		dispatch({
+			type: RESET_MY_PROFILE,
+		});
+	};
 }
 
 export function sortBy(arr, filterType) {
@@ -364,6 +367,7 @@ export function deletePet(user, petId) {
 export function updatePet(user, pet_data) {
 	return async function (dispatch) {
 		try {
+			pet_data.name = pet_data.name ? pet_data.name : 'Sin Nombre'
 			await axios.put(UPDATE_POST_PET, {
 				user: { userId: user?.sub },
 				pet: pet_data,
@@ -442,6 +446,23 @@ export function visitorsCounter() {
 	};
 }
 
+
+
+export function sendConsultation(data) {
+	return async function (dispatch) {
+		try {
+			// código para enviar la consulta
+			console.log(data)
+			dispatch({
+				type: SEND_QUERY,
+				payload: data
+			})
+		} catch (error) {
+			console.log(error.message)
+		}
+	}
+}
+
 export function cancelPost(input){
 	return async function(){
 		try {
@@ -461,3 +482,4 @@ export function finishPost(input){
 		}
 	}
 }
+
