@@ -52,7 +52,11 @@ export const TOTAL_VISITORS = "TOTAL_VISITORS";
 export const MY_PROFILE_DETAIL = "MY_PROFILE_DETAIL";
 export const RESET_MY_PROFILE = "RESET_MY_PROFILE";
 export const ADMIN_FETCH_USERS = "ADMIN_FETCH_USERS";
+
 export const SEND_QUERY = "SEND_QUERY";
+
+export const CANCEL_POST = "CANCEL_POST";
+
 
 export function fetchPets() {
 	return async function (dispatch) {
@@ -443,6 +447,7 @@ export function visitorsCounter() {
 }
 
 
+
 export function sendConsultation(data) {
 	return async function (dispatch) {
 		try {
@@ -457,3 +462,24 @@ export function sendConsultation(data) {
 		}
 	}
 }
+
+export function cancelPost(input){
+	return async function(){
+		try {
+			await axios.post(URL + 'transactions/cancelpost', input)
+		} catch (error) {
+			console.log(error.message);
+		}
+	}
+}
+
+export function finishPost(input){
+	return async function(){
+		try {
+			await axios.post(URL + 'transactions/postsuccess', input)
+		} catch (error) {
+			console.log(error.message);
+		}
+	}
+}
+

@@ -13,9 +13,10 @@ import Footer from "../Footer/Footer";
 import Spinner from "../Spinner/Spinner";
 import { useAuth0 } from "@auth0/auth0-react";
 import UserContact from "./UserContact";
-import Chat from "./Chat/Chat";
 
 import { useDispatch, useSelector } from "react-redux";
+import EndPost from "./EndPost";
+import Chat from "./Chat/Chat"
 
 export default function Detail() {
   const { id } = useParams();
@@ -25,8 +26,10 @@ export default function Detail() {
   const userContact = useSelector((state) => state.publicUserDetail);
   const myProfileData = useSelector((state) => state.myProfile);
   console.log(myProfileData);
-  const { isAuthenticated } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const [hidden, setHidden] = useState(true);
+  const [hiddenEnd, setHiddenEnd] = useState(true);
+
   useEffect(() => {
     dispatch(getDetail(id));
     dispatch(publicUserDetail(id));
@@ -38,6 +41,9 @@ export default function Detail() {
 
   const handleClick = () => {
     setHidden(hidden === true ? false : true);
+  };
+  const handleClickEnd = () => {
+    setHiddenEnd(hiddenEnd === true ? false : true);
   };
 
   const handleBack = () => {
@@ -184,6 +190,16 @@ export default function Detail() {
                             idPet={id}
                           />
                         </div>
+                        {pet.status === "perdido" && (
+                          <div className=" items-center sm:flex sm:gap-12 ">
+                            <p>
+                              ¿Has visto esta mascota?
+                              <br />
+                              Envíale información al vendedor a través del Chat
+                            </p>
+                            <Chat />
+                          </div>
+                        )}
                       </div>
                     </div>
                   </>
@@ -192,6 +208,24 @@ export default function Detail() {
                     Registrate para ver datos de contacto
                   </h1>
                 )}
+                {user?.sub === pet.UserId && (
+                  <div>
+                    <button
+                      onClick={handleClickEnd}
+                      className="text-black bg-[#ffd803] hover:bg-[#ffd803]/80 focus:ring-2 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2 gap-6 "
+                    >
+                      Dar por concretada la publicación
+                    </button>
+                    <div hidden={hiddenEnd} className="w-full">
+                      <EndPost
+                        user={userContact}
+                        hiddenEnd={hiddenEnd}
+                        setHiddenEnd={setHiddenEnd}
+                        idPet={id}
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           ) : (
@@ -199,7 +233,6 @@ export default function Detail() {
           )}
         </div>
       )}
-      {pet.status === "perdido" && <Chat />}
       <Footer />
     </div>
   );
