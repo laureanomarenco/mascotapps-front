@@ -83,36 +83,17 @@ const Transactions = ({ transactions, setOrder }) => {
                       </p>
                     </td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                      <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight text-center">
-                        <span
+                      <span className="capitalize relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight text-center">
+                          <span
                           aria-hidden
-                          className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
-                        ></span>
-                        {console.log(
-                          "respuesta maldita sea",
-                          transaction?.user_offering_id === user?.sub
-                            ? transaction.user_offering_check === null
-                            : transaction.user_demanding_check === null
-                        )}
-                        {(transaction?.user_offering_id === user?.sub
-                          ? transaction.user_offering_check === null
-                          : transaction.user_demanding_check === null) && (
-                          <span className="relative">Activo</span>
-                        )}
-                        {(transaction?.user_offering_id === user?.sub
-                          ? transaction.user_offering_check === "finalizado"
-                          : transaction.user_demanding_check ===
-                            "finalizado") && (
-                          <span className="relative ">
-                            Calificación pendiente
-                          </span>
-                        )}
-                        {(transaction?.user_offering_id === user?.sub
-                          ? transaction.user_offering_check === "calificado"
-                          : transaction.user_demanding_check ===
-                            "calificado") && (
-                          <span className="relative">Finalizado</span>
-                        )}
+
+                          
+                          className={transaction.status === 'cancelado' ? "absolute inset-0 bg-red-200 opacity-50 rounded-full" 
+                          : transaction.status === 'activo' ? "absolute inset-0 bg-green-200 opacity-50 rounded-full"
+                          : "absolute inset-0 bg-yellow-400 opacity-50 rounded-full"
+                        }
+                          ></span>
+                        {transaction.status}
                       </span>
                     </td>
                     <td className=" py-5 border-b border-gray-200 bg-white text-sm">
