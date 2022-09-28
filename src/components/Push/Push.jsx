@@ -1,15 +1,16 @@
 import React, { useState } from "react";
 import { NavBtn } from "../Navbar/items";
 import axios from "axios";
-import { useAuth0 } from "@auth0/auth0-react";
+//import { useAuth0 } from "@auth0/auth0-react";
 import { WEB_PUSH } from "../../url/url";
 
 export default function Push() {
-  const { user } = useAuth0();
+  //const { user } = useAuth0();
   const [subscribed, setSubscribed] = useState(false);
   //eslint-disable-next-line
   const publicVapidKey = "BBdVJOoIKvsEDiJcbrNBuakK2qOotO8f7j4mTfiAk25SH8z0OQcxKlkUb3NJnetnMy5DYk0d0Ns2ffC69zfcGrE";
   function urlBase64ToUint8Array(base64String) {
+    console.log("entre a url64")
     const padding = "=".repeat((4 - (base64String.length % 4)) % 4);
     const base64 = (base64String + padding)
       .replace(/-/g, "+")
@@ -33,12 +34,9 @@ export default function Push() {
       applicationServerKey: urlBase64ToUint8Array(publicVapidKey),
     });
     console.log("new subscription", subscription);
-    let objeto ={
-      id: user?.sub,
-      subscription
-    }
+
     //enviando peticion
-    let susc = await axios.post(WEB_PUSH,JSON.stringify(objeto));
+    let susc = await axios.post(WEB_PUSH,subscription);
     console.log("🚀 ~ file: Push.jsx ~ line 11 ~ subscribeUser ~ susc", susc);
   };
 
