@@ -66,7 +66,7 @@ export default function ConsultasForm() {
 
 	return (
 		<div className="h-screen flex items-center justify-center">
-			<Link to='/home' className='absolute flex items-center gap-2 top-[30px] left-[100px] bg-[#FFD803] text-[#2D334A] font-bold p-3.5 text-center ml-auto w-full md:w-max rounded'>
+			<Link to='/home' className='absolute flex items-center gap-2 top-[10px] left-[25px] md:top-[30px] md:left-[100px] px-6 py-3 my-3 bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300 cursor-pointer'>
 				<BiArrowBack /> Volver
 			</Link>
 			<form
