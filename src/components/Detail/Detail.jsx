@@ -184,6 +184,16 @@ export default function Detail() {
                             idPet={id}
                           />
                         </div>
+                        {pet.status === "perdido" && (
+                          <div className=" items-center sm:flex sm:gap-12 ">
+                            <p>
+                              ¿Has visto esta mascota?
+                              <br />
+                              Envíale información al vendedor a través del Chat
+                            </p>
+                            <Chat />
+                          </div>
+                        )}
                       </div>
                     </div>
                   </>
@@ -199,7 +209,7 @@ export default function Detail() {
           )}
         </div>
       )}
-      {pet.status === "perdido" && <Chat />}
+
       <Footer />
     </div>
   );

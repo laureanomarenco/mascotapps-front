@@ -112,6 +112,17 @@ class SimpleForm extends Component {
     console.log(this.props.pet.city.split(",")[1]);
     return (
       <ChatBot
+        className="relative mx-auto mt-12"
+        headerTitle="Mascochat"
+        botAvatar="https://res.cloudinary.com/dpxrr2uyq/image/upload/v1663764315/logo-145x145_eiahht.png"
+        avatarStyle={{ width: "75px", heigth: "80px" }}
+        bubbleStyle={{ background: "#28B0A2", fontWeight: "bold" }}
+        floating="true"
+        floatingStyle={{
+          background: "#28B0A2",
+          position: "relative",
+        }}
+        submitButtonStyle={{ fill: "#28B0A2" }}
         steps={[
           {
             id: "0",
