@@ -10,10 +10,14 @@ import validate from "./validate";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
+import TabsRender from "./Tabs";
+import TextRender from "./TextRender";
 
 // import Button from "../Button/Button"
 
 const PostPets = () => {
+  //eslint-disable-next-line
+  const [post, setPost] = useState(1);
   const { user } = useAuth0();
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -114,7 +118,6 @@ const PostPets = () => {
     if (
       error.specie ||
       error.race ||
-      error.status ||
       error.gender ||
       error.age ||
       error.vaccinationSchemeStatus ||
@@ -147,20 +150,27 @@ const PostPets = () => {
     dispatch(fetchCity());
     dispatch(getSpecies());
   }, [dispatch]);
-  return (
-    <div className="relative flex flex-wrap lg:h-screen lg:items-center ">
-      <div className="w-full px-4 py-12 lg:w-1/2 sm:px-4 lg:px-4 sm:py-6 lg:py-12 ">
-        <div className="max-w-lg mx-auto text-center ">
-          <h1 className="text-2xl font-bold sm:text-3xl">Postea una mascota</h1>
 
+  return (
+    <div className="relative flex lg:min-h-screen lg:items-center ">
+      <div className="w-full px-4 py-12 md:w-3/5 sm:px-4 lg:px-0 sm:py-6 lg:py-12 ">
+        <div className=" w-full max-w-[500px] md:w-[500px] mx-auto text-center ">
+          <h1 className="text-2xl font-bold sm:text-3xl">Publicá un aviso</h1>
           <p className="mt-4 text-gray-500">
-            Si perdiste, encontraste o queres dar en adopcion a una mascota
-            <br></br>
-            completa el siguente formulario!
+            {" "}
+            Elegí una de las siguientes opciones para publicar
           </p>
         </div>
-
-        <form className="max-w-md mx-auto mt-8 mb-0 space-y-2 p-6 border border-1 border-[#ecca08]">
+        <div className=" w-full md:w-[500px] mx-auto max-w-[500px] my-8 mb-0  flex items-center">
+          <TabsRender
+            setPost={setPost}
+            setInput={setInput}
+            post={post}
+            input={input}
+          />
+        </div>
+        <TextRender post={post} />
+        <form className="w-full md:w-[500px] mx-auto mt-8 mb-0  max-w-[500px] space-y-2 py-6 border border-1 border-[#ecca08]">
           <div>
             <label htmlFor="nombre" className="sr-only">
               Nombre
@@ -177,8 +187,8 @@ const PostPets = () => {
             </div>
             <div className="text-center text-xs mt-1">
               {!error.name ? (
-                <span className="text-black">
-                  Si no sabes el nombre deja el campo vacio*
+                <span className="text-gray-500 italic">
+                  Si no sabes el nombre deja el campo vacío
                 </span>
               ) : (
                 <span className="text-red-500">*{error.name}</span>
@@ -239,17 +249,16 @@ const PostPets = () => {
                 Estado
               </label>
               <div className="relative w-full ">
-                <select
-                  onChange={handleChange}
-                  className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                <div
+                  className="w-full p-4 pr-12 text-sm border-gray-200 bg-white italic text-gray-800 capitalize rounded-lg shadow-sm"
                   name="status"
-                  value={input.status}
                 >
-                  <option hidden>Estado</option>
-                  <option value="perdido">Perdido</option>
-                  <option value="en adopción">Adopcion</option>
-                  <option value="encontrado">Encontrado</option>
-                </select>
+                  {post === 1
+                    ? "encontrado"
+                    : post === 2
+                    ? "perdido"
+                    : "en adopción"}
+                </div>
               </div>
               <div className="text-center text-xs text-red-500 mt-1">
                 {!error.status ? null : <span>*{error.status}</span>}
@@ -441,9 +450,9 @@ const PostPets = () => {
           </div>
         </form>
       </div>
-      <div className="relative  sm:h-96 lg:w-1/2 lg:h-full">
+      <div className="relative mx-auto sm:h-96 md:block lg:w-2/5 lg:h-full">
         <img
-          className="absolute inset-0 object-cover w-full h-full"
+          className="object-center absolute inset-0 object-cover w-full h-full"
           src="https://res.cloudinary.com/dfbxjt69z/image/upload/v1663007100/mascotapps/mascotapss_zihxad.png"
           alt=""
         />
