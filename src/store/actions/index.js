@@ -21,6 +21,7 @@ import {
 	UPDATE_POST_PET,
 	NUMBER_OF_VISITORS,
 	VISITORS_COUNTER,
+	NOTIFY_POST
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 
@@ -49,6 +50,7 @@ export const GET_PETS = "GET_PETS";
 export const GET_PUBLIC_USER_DETAIL = "GET_PUBLIC_USER_DETAIL";
 export const SORT_BY = "SORT_BY";
 export const TOTAL_VISITORS = "TOTAL_VISITORS";
+export const NOTIFY= "NOTIFY"
 
 export const MY_PROFILE_DETAIL = "MY_PROFILE_DETAIL";
 export const RESET_MY_PROFILE = "RESET_MY_PROFILE";
@@ -440,3 +442,18 @@ export function visitorsCounter() {
 		}
 	};
 }
+
+export function sendNotification(payload){
+	return async function(dispatch){
+		try {
+			await axios.post(NOTIFY_POST,payload)
+			return dispatch({
+				type:NOTIFY,
+				payload
+			})
+		} catch (error) {
+			console.log(error)
+		}
+	}
+}
+

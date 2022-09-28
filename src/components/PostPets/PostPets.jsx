@@ -5,7 +5,7 @@ import { AiOutlineWhatsApp } from "react-icons/ai";
 import { AiOutlineCamera } from "react-icons/ai";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import { fetchCity, getSpecies, postPet } from "../../store/actions";
+import { fetchCity, getSpecies, postPet, sendNotification } from "../../store/actions";
 import validate from "./validate";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
@@ -140,6 +140,12 @@ const PostPets = () => {
 			dispatch(postPet(input, user?.sub));
 			showAlert();
 			setInput({});
+			if(input.status == "perdido"){
+				let notification = {
+					text: input.name,
+				}
+				dispatch(sendNotification(notification))
+			}
 		}
 	};
 	useEffect(() => {
