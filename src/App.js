@@ -30,20 +30,20 @@ function App() {
     <div className=".App">
       <BrowserRouter>
         <Routes>
+          <Route path="/pets/:id" element={<Detail />} />
+          <Route path="/estado/:status" element={<PetsContainer />} />
           <Route exact path="/" element={<LandingPage />} />
           <Route path="/home" element={<Home />} />
           <Route path="/register" element={<SignUp />} />
           <Route path="/account" element={<NuevoProfile />} />
-          <Route path="/pets/:id" element={<Detail />} />
-          <Route path="/estado/:status" element={<PetsContainer />} />
           <Route path="/admin" element={<LoginAdmin />} />
           <Route path="/admin/general" element={<AdminPage />} />
           <Route path="/donate" element={<Donate />} />
-          <Route path="*" element={<Error />} />
           <Route path="/favoritos" element={<FavContainer />}></Route>
           <Route path="/profile" element={<UsersPublicProfile />}></Route>
           <Route path="/postpets" element={<PostPets />}></Route>
           <Route path="/faqs" element={<Faq />}></Route>
+          <Route path="*" element={<Error />} />
         </Routes>
       </BrowserRouter>
     </div>
