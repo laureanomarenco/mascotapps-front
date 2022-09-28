@@ -445,7 +445,7 @@ export function visitorsCounter() {
 export function cancelPost(input){
 	return async function(){
 		try {
-			await axios.post(URL + '/transactions/cancelpost', input)
+			await axios.post(URL + 'transactions/cancelpost', input)
 		} catch (error) {
 			console.log(error.message);
 		}
@@ -455,7 +455,7 @@ export function cancelPost(input){
 export function finishPost(input){
 	return async function(){
 		try {
-			await axios.post(URL + '/transactions/postsuccess', input)
+			await axios.post(URL + 'transactions/postsuccess', input)
 		} catch (error) {
 			console.log(error.message);
 		}

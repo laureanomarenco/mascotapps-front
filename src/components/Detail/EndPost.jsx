@@ -10,9 +10,6 @@ const EndPost = ({ hiddenEnd, setHiddenEnd, idPet }) => {
   const myProfileData = useSelector((state) => state.myProfile);
   const transactions = myProfileData?.transactions;
 
-  const transactionsObj = transactions
-  
-    console.log('trasaction obj', transactionsObj)
   let dispatch = useDispatch();
 
   useEffect(() => {
@@ -20,11 +17,12 @@ const EndPost = ({ hiddenEnd, setHiddenEnd, idPet }) => {
   }, [dispatch]);
 
   const [input, setInput] = useState({
+    id: user?.sub,
     statusPost: "",
     id_demanding: "",
     petId: idPet,
   });
-
+  console.log(input)
   function onChange(e) {
     e.preventDefault();
     setInput({
@@ -86,12 +84,14 @@ const EndPost = ({ hiddenEnd, setHiddenEnd, idPet }) => {
                   onChange={onChange}
                 >
                   <option hidden>Usuario con el que finalizó</option>
-                  {transactionsObj?.map((t) => {
+                  {transactions?.map((t) => {
                     if (user.sub !== t.user_demanding_id) {
-                      <option key={Math.random()} value={t?.user_demanding_id}>
-                        {t !== undefined && t?.user_demanding_name}
-                      </option>;
-                      console.log(t.user_demanding_name)
+                      return (
+                        <option key={Math.random()} value={t?.user_demanding_id}>
+                          {t?.user_demanding_name}
+                        </option>
+                      //console.log(t.user_name);
+                      );
                     }
                   })}
                 </select>
