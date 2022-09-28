@@ -119,7 +119,7 @@ class SimpleForm extends Component {
 
     return (
       <ChatBot
-        className="relative mx-auto mt-12"
+        className="relative mx-auto mt-8"
         headerTitle="Mascochat"
         botAvatar="https://res.cloudinary.com/dpxrr2uyq/image/upload/v1664367409/giphy_s_pqbpgn.gif"
         avatarStyle={{
