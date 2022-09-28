@@ -39,7 +39,7 @@ export default function TextRender({ post }) {
   //eslint-disable-next-line
   const render = post === 1 ? found : post === 2 ? lost : adoption;
   return (
-    <div className="w-md md:w-full max-w-[500px] mx-auto mt-4 ">
+    <div className="w-md md:w-full max-w-[600px] mx-auto mt-4 ">
       <p className="mt-4 font-bold mb-5  text-gray-500">{render[0].main}</p>
       <p className="text-gray-500">
         {render[0].text1} {render[0].text2}

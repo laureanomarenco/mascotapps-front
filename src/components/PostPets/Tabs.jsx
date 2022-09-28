@@ -23,7 +23,7 @@ const Tabs = ({ color, setPost, setInput, post, input }) => {
           <button
             onClick={() => handleClick(1)}
             className={
-              "text-xs font-bold uppercase px-2 py-3 rounded-tl-lg rounded-tr-lg block leading-normal h-full w-full" +
+              "text-xs font-bold uppercase px-8 py-3 rounded-tl-lg rounded-tr-lg block leading-normal h-full w-full" +
               (openTab === 1
                 ? "text-white bg-" + color
                 : "text-" + color + "-600 bg-white")
@@ -36,7 +36,7 @@ const Tabs = ({ color, setPost, setInput, post, input }) => {
           <button
             onClick={() => handleClick(2)}
             className={
-              "text-xs font-bold uppercase px-2  py-3 rounded-tl-lg rounded-tr-lg block leading-normal h-full w-full" +
+              "text-xs font-bold uppercase px-8  py-3 rounded-tl-lg rounded-tr-lg block leading-normal h-full w-full" +
               (openTab === 2
                 ? "text-white bg-" + color
                 : "text-" + color + "-600 bg-white")
@@ -49,7 +49,7 @@ const Tabs = ({ color, setPost, setInput, post, input }) => {
           <button
             onClick={() => handleClick(3)}
             className={
-              "text-xs font-bold uppercase px-2  py-3 rounded-tl-lg rounded-tr-lg block leading-normal h-full w-full" +
+              "text-xs font-bold uppercase px-8  py-3 rounded-tl-lg rounded-tr-lg block leading-normal h-full w-full" +
               (openTab === 3
                 ? "text-white bg-" + color
                 : "text-" + color + "-600 bg-white")

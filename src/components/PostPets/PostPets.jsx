@@ -154,14 +154,14 @@ const PostPets = () => {
   return (
     <div className="relative flex lg:min-h-screen lg:items-center ">
       <div className="w-full px-4 py-12 md:w-3/5 sm:px-4 lg:px-0 sm:py-6 lg:py-12 ">
-        <div className=" w-full max-w-[500px] md:w-[500px] mx-auto text-center ">
+        <div className=" w-full max-w-[600px] md:w-[600px] mx-auto text-center ">
           <h1 className="text-2xl font-bold sm:text-3xl">Publicá un aviso</h1>
           <p className="mt-4 text-gray-500">
             {" "}
             Elegí una de las siguientes opciones para publicar
           </p>
         </div>
-        <div className=" w-full md:w-[500px] mx-auto max-w-[500px] my-8 mb-0  flex items-center">
+        <div className=" w-full md:w-[600px] mx-auto max-w-[600px] my-8 mb-0  flex items-center">
           <TabsRender
             setPost={setPost}
             setInput={setInput}
@@ -170,7 +170,7 @@ const PostPets = () => {
           />
         </div>
         <TextRender post={post} />
-        <form className="w-full md:w-[500px] mx-auto mt-8 mb-0  max-w-[500px] space-y-2 py-6 border border-1 border-[#ecca08]">
+        <form className="w-full md:w-[600px] mx-auto mt-8 mb-0 px-3 max-w-[600px] space-y-2 py-6 border border-1 border-[#ecca08]">
           <div>
             <label htmlFor="nombre" className="sr-only">
               Nombre
@@ -276,7 +276,7 @@ const PostPets = () => {
                   name="gender"
                   value={input.gender}
                 >
-                  <option hidden>Genero</option>
+                  <option hidden>Género</option>
                   <option value="macho">Macho</option>
                   <option value="hembra">Hembra</option>
                 </select>
@@ -450,9 +450,9 @@ const PostPets = () => {
           </div>
         </form>
       </div>
-      <div className="relative mx-auto sm:h-96 md:block lg:w-2/5 lg:h-full">
+      <div className="relative sm:h-96 lg:w-2/5 lg:h-full">
         <img
-          className="object-center absolute inset-0 object-cover w-full h-full"
+          className="object-cover w-full h-full"
           src="https://res.cloudinary.com/dfbxjt69z/image/upload/v1663007100/mascotapps/mascotapss_zihxad.png"
           alt=""
         />
