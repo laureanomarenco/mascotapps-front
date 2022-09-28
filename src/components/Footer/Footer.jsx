@@ -1,5 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import {AiOutlineMail} from 'react-icons/ai'
+import Button from '../Button/Button.jsx'
 
 export default function Footer() {
   return (
@@ -123,6 +125,9 @@ export default function Footer() {
                 />
               </svg>
             </Link>
+          </li>
+          <li>
+            <Button path='/query' text={<AiOutlineMail fontSize="24px" cursor={'pointer'}/>}/>
           </li>
         </ul>
       </div>
