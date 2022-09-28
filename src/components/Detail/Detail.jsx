@@ -16,6 +16,7 @@ import UserContact from "./UserContact";
 
 import { useDispatch, useSelector } from "react-redux";
 import EndPost from "./EndPost";
+import Chat from "./Chat/Chat"
 
 export default function Detail() {
   const { id } = useParams();
