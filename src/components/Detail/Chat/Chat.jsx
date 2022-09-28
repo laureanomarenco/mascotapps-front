@@ -22,6 +22,7 @@ class Review extends Component {
 
   componentDidMount() {
     const { steps } = this.props;
+
     console.log(steps);
     const {
       name,
@@ -48,6 +49,7 @@ class Review extends Component {
   }
   render() {
     const { pet } = this.state;
+
     console.log(pet);
     const {
       name,
@@ -114,6 +116,7 @@ Review.defaultProps = {
 class SimpleForm extends Component {
   render() {
     console.log(this.props.pet.city.split(",")[1]);
+
     return (
       <ChatBot
         className="relative mx-auto mt-12"
@@ -417,6 +420,7 @@ class SimpleForm extends Component {
 function mapStateToProps(state) {
   return {
     pet: state.pet,
+    user: state.myProfile,
   };
 }
 
