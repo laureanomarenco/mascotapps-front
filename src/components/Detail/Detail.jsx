@@ -13,6 +13,7 @@ import Footer from "../Footer/Footer";
 import Spinner from "../Spinner/Spinner";
 import { useAuth0 } from "@auth0/auth0-react";
 import UserContact from "./UserContact";
+import Chat from "./Chat/Chat";
 
 import { useDispatch, useSelector } from "react-redux";
 
@@ -67,8 +68,8 @@ export default function Detail() {
                   <img
                     src={
                       image
-                      ? image
-                      : "https://res.cloudinary.com/dfbxjt69z/image/upload/v1663276317/mascotapps/perrito_apwyz0.png"
+                        ? image
+                        : "https://res.cloudinary.com/dfbxjt69z/image/upload/v1663276317/mascotapps/perrito_apwyz0.png"
                     }
                     className="w-full h-full object-cover"
                     alt={pet.name}
@@ -79,8 +80,8 @@ export default function Detail() {
                     <img
                       src={
                         image
-                        ? image
-                        : "https://res.cloudinary.com/dfbxjt69z/image/upload/v1663276317/mascotapps/perrito_apwyz0.png"
+                          ? image
+                          : "https://res.cloudinary.com/dfbxjt69z/image/upload/v1663276317/mascotapps/perrito_apwyz0.png"
                       }
                       className="w-full h-full object-cover "
                       alt={pet.name}
@@ -198,6 +199,7 @@ export default function Detail() {
           )}
         </div>
       )}
+      {pet.status === "perdido" && <Chat />}
       <Footer />
     </div>
   );

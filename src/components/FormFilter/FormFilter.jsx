@@ -4,6 +4,8 @@ import React from "react";
 const FormFilter = ({ handleClearFilter, filter, handleFilter }) => {
   const filtered = useSelector((state) => state.filterPets);
   const pets = useSelector((state) => state.statusPets);
+  //eslint-disable-next-line
+  const prov = ['Buenos Aires', 'Catamarca', 'Chaco', 'Chubut', 'Córdoba', 'Corrientes', 'Formosa', 'Jujuy', 'La Pampa', 'La Rioja', 'Mendoza', 'Misiones', 'Neuquén', 'Río Negro','Salta', 'San Juan', 'San Luis',  'Santa Fe', 'Tierra del Fuego', 'Tucumán'];
 
   const races =
     filtered.length > 0
@@ -41,8 +43,13 @@ const FormFilter = ({ handleClearFilter, filter, handleFilter }) => {
           </option>
         ))}
       </select>
-      <select>
-        <option hidden>Ciudad</option>
+      <select value={filter.city} name="city" onChange={handleFilter}>
+        <option hidden>Provincia</option>
+        {prov.map((keyProv) => (
+          <option key={Math.random()} className="capitalize" value={keyProv}>
+            {keyProv}
+          </option>
+        ))}
       </select>
       <button
         className="bg-[#28B0A2]  text-white py-1 hover:bg-teal-600"
