@@ -60,14 +60,14 @@ class Review extends Component {
       fotos,
     } = this.state;
     console.log({
-      Nombre: name.value,
-      Donde: confirm_where.value,
-      Contacto: contact.value,
-      condicion: condicion.value,
-      fecha: fecha.value,
-      hora: hora.value,
-      lugar: lugar.value,
-      foto: fotos.value,
+      Nombre: name,
+      Donde: confirm_where,
+      Contacto: contact,
+      condicion: condicion,
+      fecha: fecha,
+      hora: hora,
+      lugar: lugar,
+      foto: fotos,
     });
 
     console.log(this.state);
@@ -86,11 +86,15 @@ class Review extends Component {
             </tr>
             <tr>
               <td className="font-semibold">Contacto: </td>
-              <td className="capitalize">{contact.value}</td>
+              <td className="capitalize">
+                {contact ? contact.value : "No ha dejado datos de contacto"}
+              </td>
             </tr>
             <tr>
               <td className="font-semibold">Contacto: </td>
-              <td className="capitalize">{contact.value}</td>
+              <td className="capitalize">
+                {contact ? contact.value : "No ha dejado medio de contacto"}
+              </td>
             </tr>
           </tbody>
         </table>
@@ -114,12 +118,23 @@ class SimpleForm extends Component {
       <ChatBot
         className="relative mx-auto mt-12"
         headerTitle="Mascochat"
-        botAvatar="https://res.cloudinary.com/dpxrr2uyq/image/upload/v1663764315/logo-145x145_eiahht.png"
-        avatarStyle={{ width: "75px", heigth: "80px" }}
-        bubbleStyle={{ background: "#28B0A2", fontWeight: "bold" }}
+        botAvatar="https://res.cloudinary.com/dpxrr2uyq/image/upload/v1664367409/giphy_s_pqbpgn.gif"
+        avatarStyle={{
+          width: "80px",
+          heigth: "180px",
+          background: "transparent",
+        }}
+        bubbleStyle={{ background: "#28B0A2", fontWeight: "semi-bold" }}
         floating="true"
-        floatingStyle={{
+        placeholder="Tu respuesta..."
+        // customStyle={{ background: "#FFC700" }}
+        bubbleOptionStyle={{
           background: "#28B0A2",
+          color: "white",
+          fontWeight: "bold",
+        }}
+        floatingStyle={{
+          background: "#FFC700",
           position: "relative",
         }}
         submitButtonStyle={{ fill: "#28B0A2" }}
