@@ -4,7 +4,8 @@ import Swal from "sweetalert2";
 import { useAuth0 } from "@auth0/auth0-react";
 import { sendConsultation } from "../../store/actions/index.js";
 import { useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { BiArrowBack } from "react-icons/bi";
 
 export default function ConsultasForm() {
 	const { user } = useAuth0();
@@ -65,6 +66,9 @@ export default function ConsultasForm() {
 
 	return (
 		<div className="h-screen flex items-center justify-center">
+			<Link to='/home' className='absolute flex items-center gap-2 top-[30px] left-[100px] bg-[#FFD803] text-[#2D334A] font-bold p-3.5 text-center ml-auto w-full md:w-max rounded'>
+				<BiArrowBack /> Volver
+			</Link>
 			<form
 				onSubmit={e => handleSubmit(e)}
 				className="flex flex-col bg-white w-[350px] p-6 gap-4 rounded bg-slate-100 shadow-md"
