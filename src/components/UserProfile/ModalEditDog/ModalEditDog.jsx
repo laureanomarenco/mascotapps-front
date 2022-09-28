@@ -109,7 +109,7 @@ export default function ModalEditDog({ handleActiveEditDog, dataEditDog }) {
                   className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm "
                   onChange={handleChange}
                 />
-                {error.name ? <span>{error.name}</span> : <span></span>}
+                {error.name && <span>{error.name}</span>}
                 <div className="flex">
                   <select
                     onChange={handleChange}
@@ -133,7 +133,7 @@ export default function ModalEditDog({ handleActiveEditDog, dataEditDog }) {
                     name="race"
                     placeholder="Raza"
                     value={input.race}
-                    className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm "
+                    className={`w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm ${error.race ? "border border-2 border-[red]" : ''}`}
                     onChange={handleChange}
                   />
                 </div>
@@ -204,7 +204,7 @@ export default function ModalEditDog({ handleActiveEditDog, dataEditDog }) {
                 />
                 {!error.comments ? null : (
                   <span className="block text-center text-xs text-red-500">
-                    *{error.comments}
+                    {error.comments}*
                   </span>
                 )}
                 {/* codear antes de esto */}
