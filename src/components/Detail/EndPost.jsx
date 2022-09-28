@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { myProfile, cancelPost, finishPost } from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
+import Swal from "sweetalert2";
 
 const EndPost = ({ hiddenEnd, setHiddenEnd, idPet }) => {
   const { user } = useAuth0();
@@ -37,6 +38,25 @@ const EndPost = ({ hiddenEnd, setHiddenEnd, idPet }) => {
       dispatch(cancelPost(input));
     }
     dispatch(finishPost(input));
+    setHiddenEnd(hiddenEnd = true)
+    Swal.fire({
+      title:
+        "Tu publicación fue finalizada correctamente y ya no figurará entre las mascotas activas.",
+      width: 600,
+      padding: "3em",
+      color: "#716add",
+      background:
+        "#fff url(https://res.cloudinary.com/dax0wf30d/image/upload/v1663115601/shit/bg-5_nbb3sj.png)",
+      backdrop: `
+rgba(0,0,123,0.4)
+url("/images/nyan-cat.gif")
+left top
+no-repeat
+`,
+    }).then(() => {
+      //redireccionar al home
+      window.location.href = "/home";
+    });
   }
 
   return (
@@ -90,7 +110,6 @@ const EndPost = ({ hiddenEnd, setHiddenEnd, idPet }) => {
                         <option key={Math.random()} value={t?.user_demanding_id}>
                           {t?.user_demanding_name}
                         </option>
-                      //console.log(t.user_name);
                       );
                     }
                   })}
