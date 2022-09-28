@@ -12,16 +12,16 @@ export default function Home() {
   const dispatch = useDispatch();
   const texts = [
     {
-      title: "Encontraste una mascota?",
+      title: "¿Encontraste una mascota?",
       subtitle: "Publicá para encontrar a su dueño",
       button: "Publicar",
-      path: "/postpet",
+      path: "/postpets",
     },
     {
-      title: "Perdiste tu mascota?",
+      title: "¿Perdiste tu mascota?",
       subtitle: "Publicá y si alguien la vió podrá ponerse en contacto",
       button: "Publicar",
-      path: "/postpet",
+      path: "/postpets",
     },
     {
       title: "¿Querés adoptar?",
