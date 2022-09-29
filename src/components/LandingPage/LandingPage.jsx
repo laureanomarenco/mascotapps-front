@@ -2,13 +2,18 @@ import Login from "../Login/Login";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
+import { visitorsCounter } from "../../store/actions/index";
+import { useDispatch } from "react-redux";
 
 export default function LandingPage() {
+  const dispatch = useDispatch();
   const images = [
     "https://res.cloudinary.com/dfbxjt69z/image/upload/v1662821915/mascotapps/StockSnap_EJELGQPXN6_dkux6i.jpg",
     "https://res.cloudinary.com/dfbxjt69z/image/upload/v1662831899/mascotapps/StockSnap_LPZFCLQN45_d2wvmc.jpg",
     "https://res.cloudinary.com/dfbxjt69z/image/upload/v1662821916/mascotapps/animals-dogs_3CLDGN47PX_uqeek0.jpg",
   ];
+
+  console.log(images);
   //eslint-disable-next-line
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState(images[0]);
@@ -32,6 +37,7 @@ export default function LandingPage() {
   };
 
   useEffect(() => {
+    dispatch(visitorsCounter());
     const interval = setInterval(() => {
       selectNewImage(selectedIndex, images);
     }, 1800);

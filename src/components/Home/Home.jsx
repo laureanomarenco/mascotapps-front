@@ -4,7 +4,6 @@ import CardContainer from "../CardContainer/CardContainer";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 import { useDispatch } from "react-redux";
-import { visitorsCounter } from "../../store/actions/index";
 import { Link } from "react-router-dom";
 import { BsCircle, BsCircleFill } from "react-icons/bs";
 
@@ -59,7 +58,6 @@ export default function Home() {
   }
 
   useEffect(() => {
-    dispatch(visitorsCounter());
     const interval = setInterval(() => {
       selectNewText(selectedIndex, texts);
     }, 2800);
