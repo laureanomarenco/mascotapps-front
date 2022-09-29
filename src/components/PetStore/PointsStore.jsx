@@ -10,7 +10,7 @@ export default function PointsStore() {
   const { user } = useAuth0();
   var carritoStorage = JSON.parse(localStorage.getItem("carrito")) || [];
   const [carrito, setCarrito] = useState(carritoStorage);
-
+  const userPoints = 250;
   useEffect(() => {
     localStorage.setItem("carrito", JSON.stringify(carrito));
   }, [carrito]);
@@ -18,7 +18,12 @@ export default function PointsStore() {
     <div className="flex flex-col w-full items-center">
       <Navbar />
 
-      <ItemCollection user={user} setCarrito={setCarrito} carrito={carrito} />
+      <ItemCollection
+        user={user}
+        setCarrito={setCarrito}
+        carrito={carrito}
+        userPoints={userPoints}
+      />
 
       <Footer />
     </div>

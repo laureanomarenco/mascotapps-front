@@ -2,7 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import Swal from "sweetalert2";
-import {GiShoppingBag} from "react-icons/gi"
+import { GiShoppingBag } from "react-icons/gi";
 
 export default function Item({
   image,
@@ -11,6 +11,7 @@ export default function Item({
   description,
   setCarrito,
   carrito,
+  userPoints,
 }) {
   const itemCarrito = {
     title: title,
@@ -20,28 +21,48 @@ export default function Item({
 
   const [selected, setSelected] = useState(false);
 
+  const totalPoints = carrito?.reduce(
+    (acc, item) => acc + parseInt(item.points),
+    0
+  );
+  console.log(
+    "🚀 ~ file: Item.jsx ~ line 27 ~ addTocarrito ~ totalPoints",
+    totalPoints
+  );
+
   const addTocarrito = (item) => {
-    if (!selected) {
-      setCarrito([...carrito, item]);
-      setSelected(true);
-      Swal.fire({
-        icon: "success",
-        title: "Agregado al carrito",
-        showConfirmButton: false,
-        timer: 1000,
-      });
+    if (totalPoints + parseInt(item.points) < userPoints + 1) {
+      if (!selected) {
+        setCarrito([...carrito, item]);
+        setSelected(true);
+        Swal.fire({
+          icon: "success",
+          title: "Agregado al carrito",
+          showConfirmButton: false,
+          timer: 1000,
+        });
+      } else {
+        Swal.fire({
+          title: "Eliminado",
+          text: "Eliminado del carrito",
+          icon: "info",
+          showCancelButton: false,
+          showConfirmButton: false,
+          timer: 1000,
+        });
+        const newItem = carrito.filter((fav) => fav.title !== title);
+        setCarrito(newItem);
+        setSelected(false);
+      }
     } else {
       Swal.fire({
-        title: "Eliminado",
-        text: "Eliminado del carrito",
+        title: "Supera el limite de puntos",
+        text: "No podrás agregar más productos",
         icon: "warning",
         showCancelButton: false,
         showConfirmButton: false,
         timer: 1000,
       });
-      const newItem = carrito.filter((fav) => fav.title !== title);
-      setCarrito(newItem);
-      setSelected(false);
     }
   };
   useEffect(() => {
@@ -73,12 +94,14 @@ export default function Item({
             onClick={() => addTocarrito(itemCarrito)}
             className="flex rounded-lg items-center gap-3 justify-center w-full px-8 py-4 mt-4 bg-gray-500 "
           >
-            <span className="text-sm text-white font-medium"> Quitar del carrito</span>
+            <span className="text-sm text-white font-medium">
+              {" "}
+              Quitar del carrito
+            </span>
 
             <p className="text-white">
-
-            <GiShoppingBag/>
-</p>
+              <GiShoppingBag />
+            </p>
           </button>
         ) : (
           <button
@@ -89,7 +112,7 @@ export default function Item({
           >
             <span className="text-sm font-medium"> Agregar al carrito</span>
 
-            <GiShoppingBag/>
+            <GiShoppingBag />
           </button>
         )}
       </div>
