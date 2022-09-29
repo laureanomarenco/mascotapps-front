@@ -27,7 +27,6 @@ const PostPets = () => {
 
   usuario = usuario.userProps;
   const { city } = usuario;
-  console.log(city);
   const Petspecies = useSelector((state) => state.species);
   const [error, setError] = useState({});
   const [input, setInput] = useState({
@@ -152,7 +151,9 @@ const PostPets = () => {
         let notification = {
           name: input.name
         }
+        if(city == input.city){
         dispatch(sendNotification(notification))
+        }
       }
       showAlert();
       setInput({});

@@ -7,12 +7,12 @@ export const ALLPETS = URL + "pets";
 export const PET_DETAIL = URL + "pets/";
 export const SEARCH_BY = URL + "pets/search?input=";
 export const DONATION = URL + "checkout/balance";
-export const CREAT = "https://juka-production.up.railway.app/users/newuser";
+export const CREAT = "https://worker-dev-push.up.railway.app/users/newuser";
 export const GET_MY_PETS =
-  "https://juka-production.up.railway.app/users/getallpetsofuser";
+  "https://worker-dev-push.up.railway.app/users/getallpetsofuser";
 export const PET_SPECIES = URL + "pets/especies";
 // export const URL_POST_PET=URL_ROUTES + "users/postnewpet"
-export const POST = "https://juka-production.up.railway.app/pets/postnewpet";
+export const POST = "https://worker-dev-push.up.railway.app/pets/postnewpet";
 export const DELETE = URL + "users/deletepet";
 export const LOGIN = URL + "auth/google";
 export const LOGIN_LOGGED = URL + "auth/logged_in";
