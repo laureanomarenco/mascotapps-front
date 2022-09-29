@@ -9,7 +9,7 @@ export default function Team() {
       <Navbar />
       <div className="flex flex-col justify-center content-center items-center min-h-screen w-full mx-auto my-12">
         <div className="flex content-center self-center my-4">
-          <h1 className="text-4xl font-bold text-gray-800">Team</h1>
+          <h1 className="text-4xl font-bold text-gray-700">Mascotapps Team</h1>
         </div>
         <div className="grid md:grid-cols-4 gap-5">
           <TeamMember
