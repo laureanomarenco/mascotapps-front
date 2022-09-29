@@ -5,13 +5,14 @@ import { AiOutlineWhatsApp } from "react-icons/ai";
 import { AiOutlineCamera } from "react-icons/ai";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import { fetchCity, getSpecies, postPet } from "../../store/actions";
+import { fetchCity, getSpecies, postPet, sendNotification,} from "../../store/actions";
 import validate from "./validate";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import TabsRender from "./Tabs";
 import TextRender from "./TextRender";
+import { useLocation } from "react-router-dom";
 
 // import Button from "../Button/Button"
 
@@ -21,6 +22,11 @@ const PostPets = () => {
   const { user } = useAuth0();
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const location = useLocation();
+  let { usuario } = location.state;
+
+  usuario = usuario.userProps;
+  const { city } = usuario;
   const Petspecies = useSelector((state) => state.species);
   const [error, setError] = useState({});
   const [input, setInput] = useState({
@@ -39,7 +45,6 @@ const PostPets = () => {
 
   //CLOUDINARY-------------------------------------
   //eslint-disable-next-line
-
   const CLOUD_NAME = "imagenes";
   const UPLOAD_PRESET = "dpxrr2uyq";
 
@@ -142,6 +147,14 @@ const PostPets = () => {
         });
       }
       dispatch(postPet(input, user?.sub));
+      if(input.status == "perdido") {
+        let notification = {
+          name: input.name
+        }
+        if(city == input.city){
+        dispatch(sendNotification(notification))
+        }
+      }
       showAlert();
       setInput({});
     }
