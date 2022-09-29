@@ -41,13 +41,10 @@ function App() {
 					<Route path="/admin/general" element={<AdminPage />} />
 					<Route path="/donate" element={<Donate />} />
 					<Route path="*" element={<Error />} />
-					<Route path="/favoritos" element={<FavContainer />}></Route>
-					<Route
-						path="/profile"
-						element={<UsersPublicProfile />}
-					></Route>
-					<Route path="/postpets" element={<PostPets />}></Route>
-					<Route path="/faqs" element={<Faq />}></Route>
+					<Route path="/favoritos" element={<FavContainer />} />
+					<Route path="/profile" element={<UsersPublicProfile />} />
+					<Route path="/postpets" element={<PostPets />} />
+					<Route path="/faqs" element={<Faq />} />
 					<Route path="/query" element={<ConsultasForm />} />
 				</Routes>
 			</BrowserRouter>
