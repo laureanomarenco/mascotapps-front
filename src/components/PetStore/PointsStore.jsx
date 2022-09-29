@@ -5,27 +5,47 @@ import ItemCollection from "./ItemCollection";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import { useState } from "react";
+import Swal from "sweetalert2";
 
 export default function PointsStore() {
-  const { user } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   var carritoStorage = JSON.parse(localStorage.getItem("carrito")) || [];
   const [carrito, setCarrito] = useState(carritoStorage);
   const userPoints = 250;
   useEffect(() => {
     localStorage.setItem("carrito", JSON.stringify(carrito));
   }, [carrito]);
-  return (
-    <div className="flex flex-col w-full items-center">
-      <Navbar />
+  if (isAuthenticated) {
+    return (
+      <div className="flex flex-col w-full items-center">
+        <Navbar />
 
-      <ItemCollection
-        user={user}
-        setCarrito={setCarrito}
-        carrito={carrito}
-        userPoints={userPoints}
-      />
+        <ItemCollection
+          user={user}
+          setCarrito={setCarrito}
+          carrito={carrito}
+          userPoints={userPoints}
+        />
 
-      <Footer />
-    </div>
-  );
+        <Footer />
+      </div>
+    );
+  } else {
+    Swal.fire({
+      title: "No estás logueado",
+      text: "Debes iniciar sesión para ver tu perfil.",
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonColor: "#28B0A2",
+      cancelButtonColor: "#B0B0B0",
+      cancelButtonText: "Ir a inicio",
+      confirmButtonText: "Iniciar sesión",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = "/";
+      } else {
+        window.location.href = "/home";
+      }
+    });
+  }
 }
