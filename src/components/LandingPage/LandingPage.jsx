@@ -12,6 +12,8 @@ export default function LandingPage() {
     "https://res.cloudinary.com/dfbxjt69z/image/upload/v1662831899/mascotapps/StockSnap_LPZFCLQN45_d2wvmc.jpg",
     "https://res.cloudinary.com/dfbxjt69z/image/upload/v1662821916/mascotapps/animals-dogs_3CLDGN47PX_uqeek0.jpg",
   ];
+
+  console.log(images);
   //eslint-disable-next-line
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState(images[0]);
