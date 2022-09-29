@@ -20,7 +20,6 @@ import {
   ADMIN_FETCH_USERS,
   SORT_BY,
   TOTAL_VISITORS,
-
 } from "../actions";
 
 const initalState = {
@@ -73,6 +72,7 @@ export default function reducer(state = initalState, action) {
         publicUserDetail: {},
         notFound: false,
         userPets: [],
+        newPost:{}
       };
     case GET_PETS_BY_STATUS:
       return {
@@ -106,7 +106,7 @@ export default function reducer(state = initalState, action) {
         ? (races = ages.filter((i) => i.race === action.payload.race))
         : (races = ages);
       action.payload.city !== ""
-        ? (cities = races.filter((i) => (i.city?.includes(action.payload.city))))
+        ? (cities = races.filter((i) => i.city?.includes(action.payload.city)))
         : (cities = races);
 
       return {
