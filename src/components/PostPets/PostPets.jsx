@@ -23,6 +23,11 @@ const PostPets = () => {
   const dispatch = useDispatch();
   const Petspecies = useSelector((state) => state.species);
   const [error, setError] = useState({});
+  const postResult = useSelector((state) => state.newPost);
+  console.log(
+    "🚀 ~ file: PostPets.jsx ~ line 27 ~ PostPets ~ post",
+    postResult
+  );
   const [input, setInput] = useState({
     name: "",
     specie: "",
@@ -142,8 +147,12 @@ const PostPets = () => {
         });
       }
       dispatch(postPet(input, user?.sub));
-      showAlert();
-      setInput({});
+      if (postResult.error) {
+        showError();
+      } else {
+        showAlert();
+        setInput({});
+      }
     }
   };
   useEffect(() => {
@@ -152,7 +161,7 @@ const PostPets = () => {
   }, [dispatch]);
 
   return (
-    <div className="relative flex lg:min-h-screen lg:items-center ">
+    <div className="relative flex justify-center lg:min-h-screen lg:items-center ">
       <div className="w-full px-4 py-12 md:w-3/5 sm:px-4 lg:px-0 sm:py-6 lg:py-12 ">
         <div className=" w-full max-w-[600px] md:w-[600px] mx-auto text-center ">
           <h1 className="text-2xl font-bold sm:text-3xl">Publicá un aviso</h1>
@@ -450,7 +459,7 @@ const PostPets = () => {
           </div>
         </form>
       </div>
-      <div className="relative sm:h-96 lg:w-2/5 lg:h-full">
+      <div className="relative hidden lg:block sm:h-96 lg:w-2/5 lg:h-full">
         <img
           className="object-cover w-full h-full"
           src="https://res.cloudinary.com/dfbxjt69z/image/upload/v1663007100/mascotapps/mascotapss_zihxad.png"

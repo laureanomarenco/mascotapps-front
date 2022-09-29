@@ -24,8 +24,7 @@ export default function UserPuserProfsPublicProfile() {
     userProf
   );
   const dispatch = useDispatch();
-  console.log("ESTEEEEE", user);
-  console.log(userProf);
+
 
   const [contact, setContact] = useState(false);
 
