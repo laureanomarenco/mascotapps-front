@@ -4,8 +4,9 @@ import Rating from "@mui/material/Rating";
 const Reviews = ({ userProf }) => {
   console.log("HOLAAAA", userProf.reviews);
 
+  console.log(userProf["reviews"]);
   let userReviews = userProf.reviews;
-  console.log(userReviews);
+  console.log("Estas son las regviews", userReviews);
   return (
     <div className="flex flex-col">
       <h2 className="mb-4 text-2xl font-bold text-[#28B0A2]">

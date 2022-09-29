@@ -5,7 +5,6 @@ import TextField from "@mui/material/TextField";
 import { useDispatch } from "react-redux";
 import { rateUser, resetMyProfile } from "../../store/actions";
 
-
 export default function RatingStar({ objBello, setShowModal, setOrder }) {
   const dispatch = useDispatch();
   const [value, setValue] = React.useState(2);
@@ -23,6 +22,7 @@ export default function RatingStar({ objBello, setShowModal, setOrder }) {
     });
   };
 
+  console.log(review);
 
   const handleClick = (event) => {
     event.preventDefault();
