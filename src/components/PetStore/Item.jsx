@@ -2,6 +2,7 @@ import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import {GiShoppingBag} from "react-icons/gi"
 
 export default function Item({
   image,
@@ -55,11 +56,11 @@ export default function Item({
       <img alt={title} src={image} className="object-contain w-full h-56 " />
 
       <div className="p-6 h-[306px] lg:h-[242px]">
-        <span className="inline-block px-3 py-1 text-xs font-medium bg-yellow-400">
+        <span className="inline-block px-4 text-md py-1 rounded-lg font-medium bg-yellow-400">
           {points} points
         </span>
 
-        <h5 className="mt-4 text-lg font-bold h-14 lg:h-8">{title}</h5>
+        <h5 className="mt-4 text-lg font-bold h-14 md:h-12">{title}</h5>
 
         <p className="mt-2 text-sm font-medium h-28 md:h-24 text-gray-600 lg:h-18">
           {description}
@@ -70,48 +71,25 @@ export default function Item({
             name="add"
             type="button"
             onClick={() => addTocarrito(itemCarrito)}
-            className="flex items-center justify-center w-full px-8 py-4 mt-4 bg-gray-500 rounded-sm"
+            className="flex rounded-lg items-center gap-3 justify-center w-full px-8 py-4 mt-4 bg-gray-500 "
           >
-            <span className="text-sm font-medium"> Quitar del carrito</span>
+            <span className="text-sm text-white font-medium"> Quitar del carrito</span>
 
-            <svg
-              className="w-5 h-5 ml-1.5"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-              />
-            </svg>
+            <p className="text-white">
+
+            <GiShoppingBag/>
+</p>
           </button>
         ) : (
           <button
             name="add"
             type="button"
             onClick={() => addTocarrito(itemCarrito)}
-            className="flex items-center justify-center w-full px-8 py-4 mt-4 bg-yellow-500 rounded-sm"
+            className="flex rounded-lg items-center gap-3 justify-center w-full px-8 py-4 mt-4 bg-yellow-500 "
           >
             <span className="text-sm font-medium"> Agregar al carrito</span>
 
-            <svg
-              className="w-5 h-5 ml-1.5"
-              xmlns="http://www.w3.org/2000/svg"
-              fill="none"
-              viewBox="0 0 24 24"
-              stroke="currentColor"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth="2"
-                d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-              />
-            </svg>
+            <GiShoppingBag/>
           </button>
         )}
       </div>

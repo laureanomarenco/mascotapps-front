@@ -7,7 +7,7 @@ export default function ItemCollection({ carrito , setCarrito}) {
                  const points = 50;
                  //eslint-disable-next-line
                  return (
-                   <div className=" md:w-10/12  py-12 lg:px-12 bg-white relative">
+                   <div className=" md:w-11/12  py-12 lg:px-12 bg-white relative">
                      <Cart carrito={carrito} />
                      <h2 className="text-3xl text-gray-700 font-bold md:text-6xl">
                        Cambiá tus puntos
@@ -19,7 +19,7 @@ export default function ItemCollection({ carrito , setCarrito}) {
                      <p className=" px-5 py-2 text-white bg-[#28B0A2] font-bold my-5 w-fit rounded-lg">
                        Disponible: {points} Mascopoints
                      </p>
-                     <div className="my-8 sm:grid sm:grid-cols-2 md:grid-cols-3 md:gap-3">
+                     <div className="my-8 sm:grid sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-4 md:gap-3">
                        <Item
                          image="https://res.cloudinary.com/dfbxjt69z/image/upload/v1664477655/mascotapps/424586-captura_0_g_dytdod.png"
                          title="Correa Retractil Flexi "
