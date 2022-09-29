@@ -193,6 +193,7 @@ const NuevoProfile = () => {
                   handleActiveEditDog={handleActiveEditDog}
                   setOrder={setOrder}
                   setActiveModalEditDog={setActiveModalEditDog}
+                  order={order}
                 />
               ) : null}
             </div>
