@@ -23,6 +23,11 @@ const PostPets = () => {
   const dispatch = useDispatch();
   const Petspecies = useSelector((state) => state.species);
   const [error, setError] = useState({});
+  const postResult = useSelector((state) => state.newPost);
+  console.log(
+    "🚀 ~ file: PostPets.jsx ~ line 27 ~ PostPets ~ post",
+    postResult
+  );
   const [input, setInput] = useState({
     name: "",
     specie: "",
@@ -142,8 +147,12 @@ const PostPets = () => {
         });
       }
       dispatch(postPet(input, user?.sub));
-      showAlert();
-      setInput({});
+      if (postResult.error) {
+        showError();
+      } else {
+        showAlert();
+        setInput({});
+      }
     }
   };
   useEffect(() => {

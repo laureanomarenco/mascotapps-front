@@ -2,10 +2,7 @@ import React from "react";
 import Rating from "@mui/material/Rating";
 
 const Reviews = ({ userProf }) => {
-  console.log("HOLAAAA", userProf.reviews);
-
   let userReviews = userProf.reviews;
-  console.log(userReviews);
   return (
     <div className="flex flex-col">
       <h2 className="mb-4 text-2xl font-bold text-[#28B0A2]">
@@ -43,7 +40,9 @@ const Reviews = ({ userProf }) => {
               );
             })
           ) : (
-            <p>Este usuario aun no cuenta con calificaciones</p>
+            <p className=" text-gray-500 italic">
+              Este usuario aun no cuenta con calificaciones
+            </p>
           )}
         </div>
       </div>
