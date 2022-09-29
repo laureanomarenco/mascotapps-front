@@ -58,16 +58,6 @@ const NuevoProfile = () => {
 	};
 
 
-  // useEffect(() => {
-  //   dispatch(myProfile({ id: user?.sub }));
-	// 	handleSubmit();
-  //   return () => {
-  //     dispatch(resetMyProfile());
-  //     dispatch(resetDetail());
-  //   };
-  // }, [order, dataEditDog]);
-
-
 	useEffect(() => {
 		dispatch(myProfile({ id: user?.sub }));
 		handleSubmit();

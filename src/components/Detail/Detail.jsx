@@ -5,7 +5,7 @@ import {
   resetDetail,
   publicUserDetail,
 } from "../../store/actions/index";
-import Fav from "../Fav";
+import Fav from "../FavContainer/Fav";
 import { BiArrowBack } from "react-icons/bi";
 import { MdContactMail } from "react-icons/md";
 import { FaPaw } from "react-icons/fa";
