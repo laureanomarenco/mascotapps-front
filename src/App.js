@@ -21,35 +21,39 @@ import UsersPublicProfile from "./components/UsersPublicProfile/UsersPublicProfi
 import PostPets from "./components/PostPets/PostPets";
 import NuevoProfile from "./components/UserProfile/NuevoProfile";
 import ConsultasForm from "./components/ConsultasForm/ConsultasForm";
+import Team from "./components/Team/Team";
 function App() {
-	//eslint-disable-next-line
-	const dispatch = useDispatch();
-	useEffect(() => {
-		dispatch(fetchPets());
-	}, [dispatch]);
-	return (
-		<div className=".App">
-			<BrowserRouter>
-				<Routes>
-					<Route exact path="/" element={<LandingPage />} />
-					<Route path="/home" element={<Home />} />
-					<Route path="/register" element={<SignUp />} />
-					<Route path="/account" element={<NuevoProfile />} />
-					<Route path="/pets/:id" element={<Detail />} />
-					<Route path="/estado/:status" element={<PetsContainer />} />
-					<Route path="/admin" element={<LoginAdmin />} />
-					<Route path="/admin/general" element={<AdminPage />} />
-					<Route path="/donate" element={<Donate />} />
-					<Route path="*" element={<Error />} />
-					<Route path="/favoritos" element={<FavContainer />} />
-					<Route path="/profile" element={<UsersPublicProfile />} />
-					<Route path="/postpets" element={<PostPets />} />
-					<Route path="/faqs" element={<Faq />} />
-					<Route path="/query" element={<ConsultasForm />} />
-				</Routes>
-			</BrowserRouter>
-		</div>
-	);
+
+  //eslint-disable-next-line
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(fetchPets());
+  }, [dispatch]);
+  return (
+    <div className=".App">
+      <BrowserRouter>
+        <Routes>
+          <Route exact path="/" element={<LandingPage />} />
+          <Route path="/home" element={<Home />} />
+          <Route path="/register" element={<SignUp />} />
+          <Route path="/account" element={<NuevoProfile />} />
+          <Route path="/pets/:id" element={<Detail />} />
+          <Route path="/estado/:status" element={<PetsContainer />} />
+          <Route path="/admin" element={<LoginAdmin />} />
+          <Route path="/admin/general" element={<AdminPage />} />
+          <Route path="/donate" element={<Donate />} />
+          <Route path="*" element={<Error />} />
+          <Route path="/favoritos" element={<FavContainer />}></Route>
+          <Route path="/profile" element={<UsersPublicProfile />}></Route>
+          <Route path="/postpets" element={<PostPets />}></Route>
+          <Route path="/faqs" element={<Faq />}></Route>
+          <Route path="/query" element={<ConsultasForm />} />
+          <Route path="/team" element={<Team />} />
+        </Routes>
+      </BrowserRouter>
+    </div>
+  );
+
 }
 
 export default App;

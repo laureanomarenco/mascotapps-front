@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, { useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Calificar from "./Calificar";
 import { useDispatch } from "react-redux";
@@ -16,7 +16,7 @@ const Transactions = ({ transactions, setOrder }) => {
   };
 
   useEffect(() => {}, [transactions, setOrder, dispatch]);
-  let orderedTrans = transactions?.sort(function (a, b) {
+  let orderedTrans = transactions?.sort(function(a, b) {
     if (a.pet_name > b.pet_name) {
       return 1;
     }
@@ -57,7 +57,7 @@ const Transactions = ({ transactions, setOrder }) => {
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                       <div className="flex items-center">
                         <img
-                          className="w-12 h-12 rounded-full"
+                          className="w-12 h-12 rounded-full object-cover object-center"
                           src={transaction?.pet_image}
                           alt="user-img"
                         />
@@ -84,15 +84,16 @@ const Transactions = ({ transactions, setOrder }) => {
                     </td>
                     <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                       <span className="capitalize relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight text-center">
-                          <span
+                        <span
                           aria-hidden
-
-                          
-                          className={transaction.status === 'cancelado' ? "absolute inset-0 bg-red-200 opacity-50 rounded-full" 
-                          : transaction.status === 'activo' ? "absolute inset-0 bg-green-200 opacity-50 rounded-full"
-                          : "absolute inset-0 bg-yellow-400 opacity-50 rounded-full"
-                        }
-                          ></span>
+                          className={
+                            transaction.status === "cancelado"
+                              ? "absolute inset-0 bg-red-200 opacity-50 rounded-full"
+                              : transaction.status === "activo"
+                              ? "absolute inset-0 bg-green-200 opacity-50 rounded-full"
+                              : "absolute inset-0 bg-yellow-400 opacity-50 rounded-full"
+                          }
+                        ></span>
                         {transaction.status}
                       </span>
                     </td>
