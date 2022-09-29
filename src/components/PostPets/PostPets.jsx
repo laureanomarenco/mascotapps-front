@@ -5,7 +5,12 @@ import { AiOutlineWhatsApp } from "react-icons/ai";
 import { AiOutlineCamera } from "react-icons/ai";
 import Autocomplete from "@mui/material/Autocomplete";
 import TextField from "@mui/material/TextField";
-import { fetchCity, getSpecies, postPet } from "../../store/actions";
+import {
+  fetchCity,
+  getSpecies,
+  postPet,
+  resetDetail,
+} from "../../store/actions";
 import validate from "./validate";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
@@ -147,17 +152,20 @@ const PostPets = () => {
         });
       }
       dispatch(postPet(input, user?.sub));
-      if (postResult.error) {
-        showError();
-      } else {
-        showAlert();
-        setInput({});
-      }
     }
   };
+  if (postResult.error) {
+    showError();
+    dispatch(resetDetail());
+  } else if(postResult.UserId){
+    showAlert();
+    setInput({});
+    dispatch(resetDetail());
+  }
   useEffect(() => {
     dispatch(fetchCity());
     dispatch(getSpecies());
+    dispatch(resetDetail());
   }, [dispatch]);
 
   return (
