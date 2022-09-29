@@ -35,7 +35,7 @@ const Reviews = ({ userProf }) => {
                   <div className="ml-4">
                     <Rating name="read-only" value={r.starts} readOnly />
                     <h2 className="font-semibold capitalize">
-                      {r.reviewer_name.toLowerCase()}
+                      {r.reviewer_name}
                     </h2>
                     <p className="mt-2 text-sm text-gray-500">{r.comments}</p>
                   </div>
