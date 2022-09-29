@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {MdEmail} from 'react-icons/md'
-import { AiOutlineGithub, AiOutlineInstagram, AiOutlineTwitter} from 'react-icons/ai'
+import { MdEmail } from "react-icons/md";
+import {
+  AiOutlineGithub,
 
+} from "react-icons/ai";
 
 export default function Footer() {
   return (
@@ -37,38 +39,15 @@ export default function Footer() {
               to="/"
               rel="noopener noreferrer"
               target="_blank"
-            >
-              <AiOutlineInstagram className='pointer text-[24px] text-gray-700/75  hover:text-gray-700 transition-colors'/>
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              to="/"
-              rel="noopener noreferrer"
-              target="_blank"
-            >
-              <AiOutlineTwitter  className='pointer text-[24px] text-gray-700/75  hover:text-gray-700 transition-colors'/>
-            </Link>
-          </li>
-
-          <li>
-            <Link
-              to="/"
-              rel="noopener noreferrer"
-              target="_blank"
               className="text-gray-700 transition hover:text-gray-700/75"
             >
-              <AiOutlineGithub  className='pointer text-[24px] text-gray-700/75  hover:text-gray-700 transition-colors'/>
+              <AiOutlineGithub className="pointer text-[24px] text-gray-700/75  hover:text-gray-700 transition-colors" />
             </Link>
           </li>
 
           <li>
-            <Link
-              to={'/query'}
-              rel='noopener noreferrer'
-            >
-              <MdEmail className='pointer text-[24px] text-gray-700/75  hover:text-gray-700 transition-colors'/>
+            <Link to={"/query"} rel="noopener noreferrer">
+              <MdEmail className="pointer text-[24px] text-gray-700/75  hover:text-gray-700 transition-colors" />
             </Link>
           </li>
         </ul>
