@@ -1,4 +1,4 @@
-export const URL = "https://juka-production.up.railway.app/";
+export const URL = "https://worker-dev-push.up.railway.app/";
 export const URL_CIUDAD_API =
   "https://apis.datos.gob.ar/georef/api/municipios?max=2500";
 
@@ -23,7 +23,8 @@ export const INIT_TRANSACTION = URL + "transactions/newTransaction";
 export const UPDATE_POST_PET = URL + "pets/update";
 export const UPDATE_TRANSACTION_STATUS =
   URL + "transactions/transactionCheck?transactionId=";
-
+export const WEB_PUSH = URL + "pets/subscribe";
+export const NOTIFY_POST = URL + "pets/notify"
 export const RATE_USER = URL + "reviews/newReview ";
 export const GET_USER_REVIEWS = URL + "/reviews/getReviewsToUser";
 export const NUMBER_OF_VISITORS = URL + "visitor/numberVisitors";

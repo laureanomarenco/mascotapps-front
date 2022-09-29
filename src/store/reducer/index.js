@@ -20,6 +20,7 @@ import {
   ADMIN_FETCH_USERS,
   SORT_BY,
   TOTAL_VISITORS,
+  NOTIFY
 } from "../actions";
 
 const initalState = {
@@ -203,6 +204,10 @@ export default function reducer(state = initalState, action) {
         ...state,
         visitors: action.payload,
       };
+    case NOTIFY:
+        return{
+          ...state
+      }
     default:
       return state;
   }
