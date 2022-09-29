@@ -23,6 +23,7 @@ import NuevoProfile from "./components/UserProfile/NuevoProfile";
 import ConsultasForm from "./components/ConsultasForm/ConsultasForm";
 import Team from "./components/Team/Team";
 function App() {
+
   //eslint-disable-next-line
   const dispatch = useDispatch();
   useEffect(() => {
@@ -52,6 +53,7 @@ function App() {
       </BrowserRouter>
     </div>
   );
+
 }
 
 export default App;

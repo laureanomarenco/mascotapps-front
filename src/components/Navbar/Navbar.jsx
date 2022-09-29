@@ -113,12 +113,12 @@ export default function Navbar({ setPage }) {
           <div className=" bg-[#F4F6F6] px-6 py-4 sticky top-0 ">
             <div className="container mx-auto flex items-center justify-between">
               <h1 className="md:w-2/12 cursor-pointer text-gray-800 ">
-                <a href="/home" className="flex">
+                <Link to='/home' className="flex">
                   <img
                     src="https://res.cloudinary.com/dfbxjt69z/image/upload/v1663276317/mascotapps/perrito_apwyz0.png"
                     className="inline-block w-20 h-20 rounded-lg"
                   ></img>
-                </a>
+                </Link>
               </h1>
               <ul className="hidden w-8/12 md:flex items-center justify-center space-x-8">
                 <li className=" border-b-4 border-transparent ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer">
