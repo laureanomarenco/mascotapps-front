@@ -496,10 +496,10 @@ export function sendNotification(name){
 	}
 }
 
-export function buyItems(compra) {
+export function buyItems(objAux) {
 	return async function (dispatch) {
 		try {
-			var msg = await axios.post(BUY, compra);
+			var msg = await axios.post(BUY, objAux);
 			return dispatch({ type: BUY_ITEMS, payload: msg });
 		} catch (error) {
 			return dispatch({
@@ -509,4 +509,3 @@ export function buyItems(compra) {
 		}
 	};
 }
-

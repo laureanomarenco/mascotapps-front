@@ -22,7 +22,7 @@ export default function Cart({ carrito, setCarrito, setUpdate, update }) {
     userID: user?.sub,
     name: "",
     items: myItems,
-    totalPoints: 0,
+    totalPoints: totalPoints,
     mail: user?.email,
     direccion: "",
   });
