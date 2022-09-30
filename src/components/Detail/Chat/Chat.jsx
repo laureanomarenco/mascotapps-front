@@ -19,6 +19,7 @@ const theme = {
   headerBgColor: "#FFC700",
   headerFontColor: "#fff",
   headerFontSize: "15px",
+  headerFontWeight: "bold",
   botBubbleColor: "#28B0A2",
   botFontColor: "#fff",
   userBubbleColor: "#fff",
@@ -71,20 +72,6 @@ class SimpleForm extends Component {
               id: "name",
               user: true,
               trigger: "3",
-              // validator: (value) => {
-              //   if (
-              //     //eslint-disable-next-line
-              //     /^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*/.test(
-              //       value
-              //     ) &&
-              //     value.length > 1
-              //   ) {
-              //     return true;
-              //   } else if (value.length < 1) {
-              //     return "Este campo es obligatorio";
-              //   }
-              //   return "Introduce un nombre válido";
-              // },
             },
             {
               id: "3",
