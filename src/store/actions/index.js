@@ -23,7 +23,10 @@ import {
   VISITORS_COUNTER,
   NOTIFY_POST,
   BUY,
+
+
   POINTS,
+
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 export const NOTIFY = "NOTIFY";
@@ -59,7 +62,6 @@ export const BUY_ITEMS = "BUY_ITEMS";
 export const USER_POINTS = "USER_POINTS";
 
 export const GET_PET_COMMENTS = "GET_PET_COMMENTS";
-
 
 export const SEND_QUERY = "SEND_QUERY";
 
@@ -486,33 +488,52 @@ export function finishPost(input) {
 }
 
 export function sendNotification(name) {
-  console.log('estoy entrando en la action')
-	return async function(dispatch){
-		try {
-			let responde = await axios.post(NOTIFY_POST, name)
-			console.log("🚀 ~ file: index.js ~ line 491 ~ returnfunction ~ responde", responde)
-			return dispatch({
-				type:NOTIFY,
-			})
-		} catch (error) {
-			console.log(error)
-		}
-	}
+  console.log("estoy entrando en la action");
+  return async function(dispatch) {
+    try {
+      let responde = await axios.post(NOTIFY_POST, name);
+      console.log(
+        "🚀 ~ file: index.js ~ line 491 ~ returnfunction ~ responde",
+        responde
+      );
+      return dispatch({
+        type: NOTIFY,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 
-export function buyItems(objAux) {
-	return async function (dispatch) {
-		try {
-			var msg = await axios.post(BUY, objAux);
-			return dispatch({ type: BUY_ITEMS, payload: msg });
-		} catch (error) {
-			return dispatch({
-				type: BUY_ITEMS,
-				payload: { error: error.message },
-			});
-		}
-	};
+
+export function buyItems(compra) {
+  return async function(dispatch) {
+    try {
+      var msg = await axios.post(BUY, compra);
+      return dispatch({ type: BUY_ITEMS, payload: msg });
+    } catch (error) {
+      return dispatch({
+        type: BUY_ITEMS,
+        payload: { error: error.message },
+      });
+    }
+  };
 }
+
+export function getPetComments(obj) {
+  return async function (dispatch) {
+    try {
+      var json = await axios.post(URL + "comments/getComments/", obj);
+      return dispatch({
+        type: GET_PET_COMMENTS,
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
+
 export function userPoints(id) {
 	return async function (dispatch) {
 		try {
@@ -525,4 +546,5 @@ export function userPoints(id) {
       });
 		}
 	};
+
 }

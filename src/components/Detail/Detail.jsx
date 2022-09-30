@@ -13,6 +13,7 @@ import Footer from "../Footer/Footer";
 import Spinner from "../Spinner/Spinner";
 import { useAuth0 } from "@auth0/auth0-react";
 import UserContact from "./UserContact";
+import PetComments from "./PetComments";
 
 import { useDispatch, useSelector } from "react-redux";
 import EndPost from "./EndPost";
@@ -191,15 +192,20 @@ export default function Detail() {
                           />
                         </div>
                         {pet.status === "perdido" && (
-                          <div className=" items-center grid grid-cols-2  sm:flex sm:gap-12">
-                            <p className="mr-4 sm:mr-0">
-                              ¿Has visto esta mascota?
-                              <br />
-                              Envíale información al vendedor a través de
-                              nuestro Chat
-                            </p>
-                            <Chat />
-                          </div>
+                          <>
+                            <div className=" items-center grid grid-cols-2  sm:grid">
+                              <p className="mr-4 sm:mr-0">
+                                ¿Has visto esta mascota?
+                                <br />
+                                Envíale información al vendedor a través de
+                                nuestro Chat
+                              </p>
+                              <Chat />
+                            </div>
+                            <div>
+                              <PetComments petId={pet.id} />
+                            </div>
+                          </>
                         )}
                       </div>
                     </div>

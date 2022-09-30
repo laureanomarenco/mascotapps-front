@@ -23,6 +23,7 @@ import {
   USER_POINTS,
   //eslint-disable-next-line
   NOTIFY,
+  GET_PET_COMMENTS,
 } from "../actions";
 
 const initalState = {
@@ -46,7 +47,7 @@ const initalState = {
   myProfile: {},
   usersInfo: [],
   newPost: {},
-  petComments: {},
+  petComments: [],
   visitors: "",
   userPoints:0,
 };
@@ -96,7 +97,7 @@ export default function reducer(state = initalState, action) {
       var ages;
       var races;
       var cities;
-      console.log('para filtrar', action.payload)
+      console.log("para filtrar", action.payload);
 
       action.payload.specie !== ""
         ? (especie = state.statusPets.filter(
@@ -211,10 +212,21 @@ export default function reducer(state = initalState, action) {
         ...state,
         visitors: action.payload,
       };
+
+    case NOTIFY:
+      return {
+        ...state,
+      };
+    case GET_PET_COMMENTS:
+      return {
+        ...state,
+        petComments: action.payload,
+      }
     case USER_POINTS:
       return {
         ...state,
         userPoints: action.payload,
+
       };
     default:
       return state;
