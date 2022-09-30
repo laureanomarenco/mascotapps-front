@@ -83,6 +83,7 @@ const NuevoProfile = () => {
       }
     });
   }
+
   return (
     <div>
       <Navbar></Navbar>

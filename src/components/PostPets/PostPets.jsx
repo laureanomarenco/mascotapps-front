@@ -10,6 +10,8 @@ import {
   getSpecies,
   postPet,
   resetDetail,
+  sendNotification,
+  myProfile,
 } from "../../store/actions";
 import validate from "./validate";
 import Swal from "sweetalert2";
@@ -18,21 +20,24 @@ import { useAuth0 } from "@auth0/auth0-react";
 import TabsRender from "./Tabs";
 import TextRender from "./TextRender";
 
+
 // import Button from "../Button/Button"
 
 const PostPets = () => {
   //eslint-disable-next-line
   const [post, setPost] = useState(1);
-  const { user } = useAuth0();
+  const { user, isAuthenticated } = useAuth0();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const Petspecies = useSelector((state) => state.species);
   const [error, setError] = useState({});
   const postResult = useSelector((state) => state.newPost);
-  console.log(
-    "🚀 ~ file: PostPets.jsx ~ line 27 ~ PostPets ~ post",
-    postResult
-  );
+  //eslint-disable-next-line
+  const myProfileData = useSelector((state) => state.myProfile);
+  //eslint-disable-next-line
+  const city = myProfileData["userProps"]?.city;
+
+  console.log("🚀 ~ file: PostPets.jsx ~ line 27 ~ PostPets ~", city);
   const [input, setInput] = useState({
     name: "",
     specie: "",
@@ -151,13 +156,21 @@ const PostPets = () => {
             "https://res.cloudinary.com/dfbxjt69z/image/upload/v1663276317/mascotapps/perrito_apwyz0.png",
         });
       }
+      if (input.status == "perdido") {
+        let notification = {
+          name: input.name,
+        };
+        if (city == input.city) {
+          dispatch(sendNotification(notification));
+        }
+      }
       dispatch(postPet(input, user?.sub));
     }
   };
   if (postResult.error) {
     showError();
     dispatch(resetDetail());
-  } else if(postResult.UserId){
+  } else if (postResult.UserId) {
     showAlert();
     setInput({});
     dispatch(resetDetail());
@@ -166,8 +179,26 @@ const PostPets = () => {
     dispatch(fetchCity());
     dispatch(getSpecies());
     dispatch(resetDetail());
+    dispatch(myProfile({ id: user?.sub }));
   }, [dispatch]);
-
+  if (!isAuthenticated) {
+    Swal.fire({
+      title: "No estás logueado",
+      text: "Debes iniciar sesión para ver tu perfil.",
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonColor: "#28B0A2",
+      cancelButtonColor: "#B0B0B0",
+      cancelButtonText: "Ir a inicio",
+      confirmButtonText: "Iniciar sesión",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        navigate("/");
+      } else {
+        navigate("/home");
+      }
+    });
+  }
   return (
     <div className="relative flex justify-center lg:min-h-screen lg:items-center ">
       <div className="w-full px-4 py-12 md:w-3/5 sm:px-4 lg:px-0 sm:py-6 lg:py-12 ">
