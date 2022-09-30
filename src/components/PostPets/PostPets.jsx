@@ -10,6 +10,7 @@ import {
   getSpecies,
   postPet,
   resetDetail,
+  sendNotification
 } from "../../store/actions";
 import validate from "./validate";
 import Swal from "sweetalert2";
@@ -17,6 +18,8 @@ import { useNavigate } from "react-router-dom";
 import { useAuth0 } from "@auth0/auth0-react";
 import TabsRender from "./Tabs";
 import TextRender from "./TextRender";
+import { useLocation } from "react-router-dom";
+
 
 // import Button from "../Button/Button"
 
@@ -29,6 +32,11 @@ const PostPets = () => {
   const Petspecies = useSelector((state) => state.species);
   const [error, setError] = useState({});
   const postResult = useSelector((state) => state.newPost);
+  const location = useLocation();
+  let { usuario } = location.state;
+
+  usuario = usuario.userProps;
+  const { city } = usuario;
   console.log(
     "🚀 ~ file: PostPets.jsx ~ line 27 ~ PostPets ~ post",
     postResult
@@ -150,6 +158,14 @@ const PostPets = () => {
           image:
             "https://res.cloudinary.com/dfbxjt69z/image/upload/v1663276317/mascotapps/perrito_apwyz0.png",
         });
+      }
+      if(input.status == "perdido") {
+        let notification = {
+          name: input.name
+        }
+        if(city == input.city){
+        dispatch(sendNotification(notification))
+        }
       }
       dispatch(postPet(input, user?.sub));
     }

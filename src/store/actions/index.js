@@ -21,9 +21,10 @@ import {
 	UPDATE_POST_PET,
 	NUMBER_OF_VISITORS,
 	VISITORS_COUNTER,
+	NOTIFY_POST
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
-
+export const NOTIFY = "NOTIFY"
 export const FETCH_PETS = "FETCH_PETS";
 export const GET_DETAIL = "GET_DETAIL";
 export const ADD_PET = "ADD_PET";
@@ -483,3 +484,15 @@ export function finishPost(input){
 	}
 }
 
+export function sendNotification(name){
+	return async function(dispatch){
+		try {
+			await axios.post(NOTIFY_POST, name)
+			return dispatch({
+				type:NOTIFY,
+			})
+		} catch (error) {
+			console.log(error)
+		}
+	}
+}
