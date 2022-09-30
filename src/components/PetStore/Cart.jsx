@@ -12,17 +12,17 @@ export default function Cart({ carrito, setCarrito, setUpdate, update }) {
   const { user } = useAuth0();
   const [showModal, setShowModal] = useState(false);
   const [errors, setErrors] = useState({});
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  const myItems = carrito;
   //eslint-disable-next-line
   const [compra, setCompra] = useState({
     userID: user?.sub,
     name: "",
-    items: carrito,
+    items: myItems,
     totalPoints: 0,
     mail: user?.email,
     direccion: "",
   });
-
 
   function handleChange(e) {
     setCompra({
@@ -55,14 +55,14 @@ export default function Cart({ carrito, setCarrito, setUpdate, update }) {
 
   function handleSubmit(e) {
     e.preventDefault();
-    setCompra({
+    const objAux = {
       ...compra,
-      items: carrito,
-    });
+      items: myItems
+    };
     if (errors.name || errors.contact || errors.direccion) {
       console.log("pone bien los datosssssss");
     } else {
-      console.log("todo bien", compra);
+      console.log("todo bien", objAux);
       Swal.fire({
         title: "Pedido enviado con éxito",
         icon: "success",
@@ -78,7 +78,6 @@ export default function Cart({ carrito, setCarrito, setUpdate, update }) {
           navigate("/account");
         }
       });
-
     }
   }
 
