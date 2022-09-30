@@ -491,3 +491,17 @@ export function sendNotification(name) {
     }
   };
 }
+
+export function getPetComments(obj) {
+  return async function(dispatch) {
+    try {
+      var json = await axios.post(URL + "comments/getComments/", obj);
+      return dispatch({
+        type: GET_PET_COMMENTS,
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}

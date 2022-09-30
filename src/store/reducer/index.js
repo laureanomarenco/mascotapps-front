@@ -21,6 +21,7 @@ import {
   SORT_BY,
   TOTAL_VISITORS,
   NOTIFY,
+  GET_PET_COMMENTS,
 } from "../actions";
 
 const initalState = {
@@ -44,7 +45,7 @@ const initalState = {
   myProfile: {},
   usersInfo: [],
   newPost: {},
-  petComments: {},
+  petComments: [],
   visitors: "",
 };
 
@@ -209,6 +210,11 @@ export default function reducer(state = initalState, action) {
     case NOTIFY:
       return {
         ...state,
+      };
+    case GET_PET_COMMENTS:
+      return {
+        ...state,
+        petComments: action.payload,
       };
     default:
       return state;
