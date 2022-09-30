@@ -483,10 +483,12 @@ export function finishPost(input) {
   };
 }
 
-export function sendNotification(name){
+export function sendNotification(name) {
+  console.log('estoy entrando en la action')
 	return async function(dispatch){
 		try {
-			await axios.post(NOTIFY_POST, name)
+			let responde = await axios.post(NOTIFY_POST, name)
+			console.log("🚀 ~ file: index.js ~ line 491 ~ returnfunction ~ responde", responde)
 			return dispatch({
 				type:NOTIFY,
 			})
