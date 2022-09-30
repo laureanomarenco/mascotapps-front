@@ -160,7 +160,9 @@ const PostPets = () => {
         let notification = {
           name: input.name,
         };
+        console.log("condicion para despachar", city == input.city);
         if (city == input.city) {
+          console.log('estoy por despachar desde postpet')
           dispatch(sendNotification(notification));
         }
       }

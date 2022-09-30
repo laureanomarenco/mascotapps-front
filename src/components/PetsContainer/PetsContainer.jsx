@@ -14,6 +14,7 @@ import { useLocation } from "react-router-dom";
 const PetsContainer = () => {
   const pets = useSelector((state) => state.statusPets);
   const filterPet = useSelector((state) => state.filterPets);
+  console.log("🚀 ~ file: PetsContainer.jsx ~ line 17 ~ PetsContainer ~ filterPet", filterPet)
   const notFound = useSelector((state) => state.notFound);
   const dispatch = useDispatch();
 
@@ -22,6 +23,7 @@ const PetsContainer = () => {
     gender: "",
     age: "",
     race: "",
+    city:""
   });
 
   let location = useLocation();
@@ -58,6 +60,7 @@ const PetsContainer = () => {
       gender: "",
       age: "",
       race: "",
+      city: "",
     });
   };
   useEffect(() => {
@@ -68,6 +71,7 @@ const PetsContainer = () => {
         gender: "",
         age: "",
         race: "",
+        city: "",
       });
     };
   }, [pets]);
