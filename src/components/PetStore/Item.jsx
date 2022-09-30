@@ -25,10 +25,6 @@ export default function Item({
     (acc, item) => acc + parseInt(item.points),
     0
   );
-  console.log(
-    "🚀 ~ file: Item.jsx ~ line 27 ~ addTocarrito ~ totalPoints",
-    totalPoints
-  );
 
   const addTocarrito = (item) => {
     if (!selected) {
@@ -68,7 +64,11 @@ export default function Item({
 
   useEffect(() => {
     //verificar si el item ya esta en el carrito
-    if (carrito.filter((e) => e.title === title).length > 0) {
+    console.log(
+      "condicion",
+      carrito?.filter((e) => e.title === title).length > 0
+    );
+    if (carrito?.filter((e) => e.title === title).length > 0) {
       setSelected(true);
     }
   }, [carrito, title]);
