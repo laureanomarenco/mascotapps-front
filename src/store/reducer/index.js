@@ -205,10 +205,6 @@ export default function reducer(state = initalState, action) {
         ...state,
         visitors: action.payload,
       };
-    case NOTIFY:
-      return{
-        ...state,
-      }
     default:
       return state;
   }

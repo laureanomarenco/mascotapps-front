@@ -21,7 +21,8 @@ import {
 	UPDATE_POST_PET,
 	NUMBER_OF_VISITORS,
 	VISITORS_COUNTER,
-	NOTIFY_POST
+	NOTIFY_POST,
+	BUY
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 export const NOTIFY = "NOTIFY"
@@ -53,6 +54,7 @@ export const TOTAL_VISITORS = "TOTAL_VISITORS";
 export const MY_PROFILE_DETAIL = "MY_PROFILE_DETAIL";
 export const RESET_MY_PROFILE = "RESET_MY_PROFILE";
 export const ADMIN_FETCH_USERS = "ADMIN_FETCH_USERS";
+export const BUY_ITEMS = "BUY_ITEMS";
 
 export const SEND_QUERY = "SEND_QUERY";
 
@@ -495,4 +497,18 @@ export function sendNotification(name){
 			console.log(error)
 		}
 	}
+}
+
+export function buyItems(compra) {
+	return async function (dispatch) {
+		try {
+			var msg = await axios.post(BUY, compra);
+			return dispatch({ type: BUY_ITEMS, payload: msg });
+		} catch (error) {
+			return dispatch({
+				type: BUY_ITEMS,
+				payload: { error: error.message },
+			});
+		}
+	};
 }
