@@ -47,12 +47,12 @@ export default function Cart({ carrito, setCarrito, setUpdate, update }) {
     if (compra.name.search("[^A-Za-z0-9]") !== -1) {
       errorObj.name = "El nombre puede incluir números, símbolos ni espacios";
     }
-    if (!compra.contact.trim()) {
-      errorObj.contact = "Debes incluir un número de contacto";
-    }
-    if (!compra.direccion.trim()) {
-      errorObj.direccion = "Debes incluir una dirección";
-    }
+    // if (!compra.contact.trim()) {
+    //   errorObj.contact = "Debes incluir un número de contacto";
+    // }
+    // if (!compra.direccion.trim()) {
+    //   errorObj.direccion = "Debes incluir una dirección";
+    // }
     return errorObj;
   }
 
