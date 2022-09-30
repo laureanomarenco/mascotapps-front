@@ -521,7 +521,7 @@ export function buyItems(compra) {
 }
 
 export function getPetComments(obj) {
-  return async function(dispatch) {
+  return async function (dispatch) {
     try {
       var json = await axios.post(URL + "comments/getComments/", obj);
       return dispatch({
@@ -532,6 +532,7 @@ export function getPetComments(obj) {
       console.log(error.message);
     }
   };
+}
 
 export function userPoints(id) {
 	return async function (dispatch) {

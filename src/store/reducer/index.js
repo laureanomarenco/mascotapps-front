@@ -221,7 +221,7 @@ export default function reducer(state = initalState, action) {
       return {
         ...state,
         petComments: action.payload,
-
+      }
     case USER_POINTS:
       return {
         ...state,
