@@ -21,12 +21,7 @@ import {
   UPDATE_POST_PET,
   NUMBER_OF_VISITORS,
   VISITORS_COUNTER,
-<<<<<<< HEAD
-  CHATBOT_COMMENTS,
-  GET_COMMENTS,
-=======
   NOTIFY_POST,
->>>>>>> main
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 export const NOTIFY = "NOTIFY";
@@ -484,27 +479,6 @@ export function finishPost(input) {
   };
 }
 
-<<<<<<< HEAD
-export function chatbotComments(obj) {
-  return async function() {
-    try {
-      await axios.post(CHATBOT_COMMENTS, obj);
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-}
-export function getComments(obj) {
-  return async function(dispatch) {
-    try {
-      const comments = await axios.post(GET_COMMENTS, obj);
-      return dispatch({
-        type: GET_PET_COMMENTS,
-        payload: comments,
-      });
-    } catch (error) {
-      console.log(error.message);
-=======
 export function sendNotification(name) {
   return async function(dispatch) {
     try {
@@ -514,7 +488,6 @@ export function sendNotification(name) {
       });
     } catch (error) {
       console.log(error);
->>>>>>> main
     }
   };
 }

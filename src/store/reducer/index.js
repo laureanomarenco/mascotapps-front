@@ -20,11 +20,7 @@ import {
   ADMIN_FETCH_USERS,
   SORT_BY,
   TOTAL_VISITORS,
-<<<<<<< HEAD
-  GET_PET_COMMENTS,
-=======
   NOTIFY,
->>>>>>> main
 } from "../actions";
 
 const initalState = {
@@ -210,18 +206,10 @@ export default function reducer(state = initalState, action) {
         ...state,
         visitors: action.payload,
       };
-<<<<<<< HEAD
-    case GET_PET_COMMENTS:
+    case NOTIFY:
       return {
         ...state,
-        petComments: action.payload,
       };
-=======
-    case NOTIFY:
-      return{
-        ...state,
-      }
->>>>>>> main
     default:
       return state;
   }
