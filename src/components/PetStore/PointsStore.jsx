@@ -11,10 +11,16 @@ export default function PointsStore() {
   const { user, isAuthenticated } = useAuth0();
   var carritoStorage = JSON.parse(localStorage.getItem("carrito")) || [];
   const [carrito, setCarrito] = useState(carritoStorage);
+  console.log(
+    "🚀 ~ file: PointsStore.jsx ~ line 14 ~ PointsStore ~ carrito",
+    carrito
+  );
+  const [update, setUpdate] = useState("");
   const userPoints = 250;
   useEffect(() => {
     localStorage.setItem("carrito", JSON.stringify(carrito));
   }, [carrito]);
+
   if (isAuthenticated) {
     return (
       <div className="flex flex-col w-full items-center">
@@ -25,6 +31,8 @@ export default function PointsStore() {
           setCarrito={setCarrito}
           carrito={carrito}
           userPoints={userPoints}
+          setUpdate={setUpdate}
+          update={update}
         />
 
         <Footer />
