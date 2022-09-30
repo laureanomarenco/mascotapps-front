@@ -1,8 +1,9 @@
 import { Component } from "react";
-import { connect } from "react-redux";
-import { chatbotComments } from "../../../store/actions/index";
+import axios from "axios";
+// import { connect } from "react-redux";
+// import { chatbotComments } from "../../../store/actions/index";
 
-class Post extends Component {
+export default class Post extends Component {
   constructor(props) {
     super(props);
     const { steps, petId } = this.props;
@@ -54,17 +55,28 @@ class Post extends Component {
       condicion: this.state.condicion?.value,
       comentarios: this.state.comentarios?.value,
       contact: this.state.contact?.value,
-      fotos: [],
+      fotos: undefined,
     };
 
-    this.props.chatbotComments(infoPet);
     console.log(infoPet);
+    axios
+      .post(
+        `https://juka-production.up.railway.app/comments/newComment`,
+        infoPet
+      )
+      .then((res) => {
+        console.log(res.status);
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+    // return this.props.chatbotComments(infoPet);
   }
   render() {
     return;
   }
 }
 //eslint-disable-next-line
-export const mapDispatchToProps = { chatbotComments };
+// export const mapDispatchToProps = { chatbotComments };
 
-export default connect(null, mapDispatchToProps)(Post);
+// export default connect(null, mapDispatchToProps)(Post);

@@ -240,7 +240,7 @@ class SimpleForm extends Component {
           {
             id: "confirm-contact",
             options: [
-              { value: "no", label: "No", trigger: "7" },
+              { value: "no", label: "No", trigger: "review" },
               { value: "si", label: "Si", trigger: "text-contact" },
             ],
           },
@@ -252,7 +252,7 @@ class SimpleForm extends Component {
           {
             id: "contact",
             user: true,
-            trigger: "7",
+            trigger: "review",
             validator: (value) => {
               if (isNaN(value)) {
                 return "Introduce un número válido";
@@ -262,32 +262,31 @@ class SimpleForm extends Component {
               return true;
             },
           },
-          {
-            id: "7",
-            message: "Genial! Veamos un resumen de los datos ingresados",
-            trigger: "review",
-          },
+          // {
+          //   id: "7",
+          //   message:
+          //     "Muchas gracias por colaborar en la búsqueda de " +
+          //     this.props.pet.name,
+          //   trigger: "review",
+          // },
           {
             id: "review",
             component: <Post petId={this.props.pet.id} />,
-            asMessage: true,
+            // asMessage: true,
             trigger: "update",
           },
           {
             id: "update",
-            message: "Estos son los datos que se enviarán al anunciante",
-            trigger: "update-question",
-          },
-          {
-            id: "update-question",
-            options: [
-              { value: "si", label: "Confirmar", trigger: "end-message" },
-            ],
+            message: "Eso es todo. Los datos se enviarán al anunciante.",
+            trigger: "end-message",
           },
 
           {
             id: "end-message",
-            message: "Gracias! Tus datos han sido enviados!",
+            message:
+              "Muchas gracias por colaborar en la búsqueda de " +
+              this.props.pet.name +
+              ". Tus datos han sido enviados!",
             end: true,
           },
           {
