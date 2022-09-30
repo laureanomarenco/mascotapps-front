@@ -29,7 +29,9 @@ export const GET_USER_REVIEWS = URL + "/reviews/getReviewsToUser";
 export const NUMBER_OF_VISITORS = URL + "visitor/numberVisitors";
 export const VISITORS_COUNTER = URL + "visitor/addVisitor";
 export const SUCCESS = URL + "pets/success";
-export const WEB_PUSH = URL + "pets/subscribe";
-export const NOTIFY_POST = URL + "pets/notify";
+export const WEB_PUSH = URL + "pets/subscribe"
+export const NOTIFY_POST = URL + "pets/notify"
+export const DESUBSCRIBE = URL + "pets/desubscribe"
 export const BUY = URL + "users/buyProducts";
 export const POINTS = URL + "users/points";
+

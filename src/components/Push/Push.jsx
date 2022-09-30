@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { NavBtn } from "../Navbar/items";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
-import { WEB_PUSH } from "../../url/url";
+import { WEB_PUSH , DESUBSCRIBE } from "../../url/url";
 
 export default function Push() {
   const { user } = useAuth0();
@@ -44,11 +44,23 @@ export default function Push() {
     console.log("🚀 ~ file: Push.jsx ~ line 11 ~ subscribeUser ~ susc", susc);
   };
 
+  function desubscribeUser(){
+    let object = {
+      id: user?.sub
+    }
+    console.log("soy object",object)
+    axios.post(DESUBSCRIBE, object)
+  }
+
   function handleSuscripcion() {
     if (!subscribed) {
        subscribeUser();
+       setSubscribed(true)
     }
-    setSubscribed(!subscribed);
+    if(subscribed){
+      desubscribeUser()
+      setSubscribed(false)
+    }
   }
   return subscribed ? (
     <NavBtn icon="unsubscribe" handleClick={handleSuscripcion} />
