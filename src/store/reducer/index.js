@@ -112,7 +112,7 @@ export default function reducer(state = initalState, action) {
         ? (races = ages.filter((i) => i.race === action.payload.race))
         : (races = ages);
       action.payload.city !== ""
-        ? (cities = ages.filter((i) => i.race === action.payload.race))
+        ? (cities = races.filter((i) => i.city?.includes(action.payload.city)))
         : (cities = races);
       return {
         ...state,
