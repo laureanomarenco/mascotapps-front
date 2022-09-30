@@ -6,7 +6,7 @@ import Item from "./Item";
 export default function ItemCollection({ carrito, setCarrito, userPoints }) {
   //eslint-disable-next-line
   return (
-    <div className=" md:w-11/12  py-12 lg:px-12 bg-white relative">
+    <div className=" md:w-11/12 px-3 py-12 lg:px-12 bg-white relative">
       <Cart carrito={carrito} />
       <h2 className="text-3xl text-gray-700 font-bold md:text-6xl">
         Cambiá tus puntos
