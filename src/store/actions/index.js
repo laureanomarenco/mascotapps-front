@@ -21,6 +21,8 @@ import {
   UPDATE_POST_PET,
   NUMBER_OF_VISITORS,
   VISITORS_COUNTER,
+  CHATBOT_COMMENTS,
+  GET_COMMENTS,
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 
@@ -52,6 +54,7 @@ export const TOTAL_VISITORS = "TOTAL_VISITORS";
 export const MY_PROFILE_DETAIL = "MY_PROFILE_DETAIL";
 export const RESET_MY_PROFILE = "RESET_MY_PROFILE";
 export const ADMIN_FETCH_USERS = "ADMIN_FETCH_USERS";
+export const GET_PET_COMMENTS = "GET_PET_COMMENTS";
 
 export const SEND_QUERY = "SEND_QUERY";
 
@@ -471,6 +474,29 @@ export function finishPost(input) {
   return async function() {
     try {
       await axios.post(URL + "transactions/postsuccess", input);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
+
+export function chatbotComments(obj) {
+  return async function() {
+    try {
+      await axios.post(CHATBOT_COMMENTS, obj);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
+export function getComments(obj) {
+  return async function(dispatch) {
+    try {
+      const comments = await axios.post(GET_COMMENTS, obj);
+      return dispatch({
+        type: GET_PET_COMMENTS,
+        payload: comments,
+      });
     } catch (error) {
       console.log(error.message);
     }

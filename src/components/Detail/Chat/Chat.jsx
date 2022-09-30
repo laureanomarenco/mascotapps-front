@@ -1,122 +1,21 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import PropTypes from "prop-types";
+// import PropTypes from "prop-types";
 import ChatBot from "react-simple-chatbot";
+// import Review from "./Review.jsx";
+import Post from "./Post.jsx";
 
-class Review extends Component {
-  constructor(props) {
-    super(props);
+// Review.propTypes = {
+//   steps: PropTypes.object,
+// };
 
-    this.state = {
-      name: "",
-      confirm_where: "",
-      contact: "",
-      condicion: "",
-      fecha: "",
-      hora: "",
-      lugar: "",
-      where2: "",
-      fotos: "",
-    };
-  }
-
-  componentDidMount() {
-    const { steps } = this.props;
-
-    console.log(steps);
-    const {
-      name,
-      confirm_where,
-      contact,
-      condicion,
-      fecha,
-      hora,
-      lugar,
-      fotos,
-    } = steps;
-    console.log(condicion, fecha, hora, lugar);
-
-    this.setState({
-      name,
-      confirm_where,
-      contact,
-      condicion,
-      fecha,
-      hora,
-      lugar,
-      fotos,
-    });
-  }
-  render() {
-    const { pet } = this.state;
-
-    console.log(pet);
-    const {
-      name,
-      contact,
-      confirm_where,
-      condicion,
-      fecha,
-      hora,
-      lugar,
-      fotos,
-    } = this.state;
-    console.log({
-      Nombre: name,
-      Donde: confirm_where,
-      Contacto: contact,
-      condicion: condicion,
-      fecha: fecha,
-      hora: hora,
-      lugar: lugar,
-      foto: fotos,
-    });
-
-    console.log(this.state);
-    return (
-      <div style={{ width: "100%" }}>
-        <h3>Resumen</h3>
-        <table>
-          <tbody>
-            <tr>
-              <td className="font-semibold">Nombre</td>
-              <td className="capitalize">{name.value}</td>
-            </tr>
-            <tr>
-              <td className="font-semibold">Dónde: </td>
-              <td className="capitalize">{confirm_where.value}</td>
-            </tr>
-            <tr>
-              <td className="font-semibold">Contacto: </td>
-              <td className="capitalize">
-                {contact ? contact.value : "No ha dejado datos de contacto"}
-              </td>
-            </tr>
-            <tr>
-              <td className="font-semibold">Contacto: </td>
-              <td className="capitalize">
-                {contact ? contact.value : "No ha dejado medio de contacto"}
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    );
-  }
-}
-
-Review.propTypes = {
-  steps: PropTypes.object,
-};
-
-Review.defaultProps = {
-  steps: undefined,
-};
+// Review.defaultProps = {
+//   steps: undefined,
+// };
 
 class SimpleForm extends Component {
   render() {
-    console.log(this.props.pet.city.split(",")[1]);
-
+    console.log(this.props.pet);
     return (
       <ChatBot
         className="relative mx-auto mt-8"
@@ -157,6 +56,20 @@ class SimpleForm extends Component {
             id: "name",
             user: true,
             trigger: "3",
+            validator: (value) => {
+              if (
+                //eslint-disable-next-line
+                /^[A-Za-z][A-Za-z\'\-]+([\ A-Za-z][A-Za-z\'\-]+)*/.test(
+                  value
+                ) &&
+                value.length > 1
+              ) {
+                return true;
+              } else if (value.length < 1) {
+                return "Este campo es obligatorio";
+              }
+              return "Introduce un nombre válido";
+            },
           },
           {
             id: "3",
@@ -183,7 +96,7 @@ class SimpleForm extends Component {
             options: [
               { value: "no", label: "No", trigger: "preg-province" },
               {
-                value: "si",
+                value: this.props.pet.city.split(",")[1],
                 label: "Si",
                 trigger: "preg-province-next",
                 metadata: { provincia: this.props.pet.city.split(",")[1] },
@@ -200,6 +113,12 @@ class SimpleForm extends Component {
             id: "province",
             user: true,
             trigger: "preg-city",
+            validator: (value) => {
+              if (isNaN(value) && value.length > 4) {
+                return true;
+              }
+              return "Introduce una provincia válida";
+            },
           },
 
           {
@@ -207,14 +126,14 @@ class SimpleForm extends Component {
             message: `¿Has visto a ${this.props.pet.name} en ${
               this.props.pet.city.split(",")[0]
             }?`,
-            trigger: "where-2",
+            trigger: "where2",
           },
           {
-            id: "where-2",
+            id: "where2",
             options: [
               { value: "no", label: "No", trigger: "preg-city" },
               {
-                value: `si`,
+                value: `${this.props.pet.city.split(",")[0]}`,
                 label: "Si",
                 metadata: { localidad: `${this.props.pet.city.split(",")[0]}` },
                 trigger: "preg-city-next",
@@ -230,6 +149,12 @@ class SimpleForm extends Component {
             id: "city",
             user: true,
             trigger: "preg-city-next",
+            validator: (value) => {
+              if (isNaN(value) && value.length > 3) {
+                return true;
+              }
+              return "Introduce una ciudad válida";
+            },
           },
 
           {
@@ -242,6 +167,12 @@ class SimpleForm extends Component {
             id: "lugar",
             user: true,
             trigger: "preg-dia",
+            validator: (value) => {
+              if (isNaN(value) && value.length > 5) {
+                return true;
+              }
+              return "Introduce un dato válido";
+            },
           },
           {
             id: "preg-dia",
@@ -253,6 +184,12 @@ class SimpleForm extends Component {
             id: "fecha",
             user: true,
             trigger: "preg-hora",
+            validator: (value) => {
+              if (isNaN(value) && value.length > 3) {
+                return true;
+              }
+              return "Introduce una fecha válida";
+            },
           },
           {
             id: "preg-hora",
@@ -273,14 +210,14 @@ class SimpleForm extends Component {
           },
           {
             id: "preg-info",
-            message: `¿Tenés más información para compartir que pueda ayudar a ecnontrar a ${this.props.pet.name}?`,
+            message: `¿Tenés más información para compartir que pueda ayudar a encontrar a ${this.props.pet.name}?`,
             trigger: "confirm-info",
           },
 
           {
             id: "confirm-info",
             options: [
-              { value: "no", label: "No", trigger: "preg-img" },
+              { value: "no", label: "No", trigger: "preg-contact" },
               { value: "si", label: "Si", trigger: "text-comentarios" },
             ],
           },
@@ -292,27 +229,8 @@ class SimpleForm extends Component {
           {
             id: "comentarios",
             user: true,
-            trigger: "preg-img",
-          },
-          {
-            id: "preg-img",
-            message: "¿Tenés fotos para compartir?",
-            trigger: "confirm-preg-img",
-          },
-          {
-            id: "confirm-preg-img",
-            options: [
-              { value: "no", label: "No", trigger: "preg-contact" },
-              { value: "si", label: "Si", trigger: "fotos" },
-            ],
-          },
-          {
-            id: "fotos",
-            user: true,
-            inputAttributes: { type: "file" },
             trigger: "preg-contact",
           },
-
           {
             id: "preg-contact",
             message: `¿Querés dejar alguna información de contacto para que se pueda comunicar con vos? Solo lo podrá ver el dueño de la mascota.`,
@@ -337,9 +255,9 @@ class SimpleForm extends Component {
             trigger: "7",
             validator: (value) => {
               if (isNaN(value)) {
-                return "debe ser un número";
-              } else if (value.length < 10) {
-                return "value must be positive";
+                return "Introduce un número válido";
+              } else if (value.length < 10 || value.length > 11) {
+                return "Introduce un número válido";
               }
               return true;
             },
@@ -351,54 +269,22 @@ class SimpleForm extends Component {
           },
           {
             id: "review",
-            component: <Review />,
+            component: <Post petId={this.props.pet.id} />,
             asMessage: true,
             trigger: "update",
           },
           {
             id: "update",
-            message: "¿Los datos son correctos?",
+            message: "Estos son los datos que se enviarán al anunciante",
             trigger: "update-question",
           },
           {
             id: "update-question",
             options: [
-              { value: "no", label: "No", trigger: "update-yes" },
-              { value: "si", label: "Si", trigger: "end-message" },
+              { value: "si", label: "Confirmar", trigger: "end-message" },
             ],
           },
-          {
-            id: "update-yes",
-            message: "¿Qué datos deseas modificar?",
-            trigger: "update-fields",
-          },
-          {
-            id: "update-fields",
-            options: [
-              { value: "name", label: "name", trigger: "update-name" },
-              { value: "where", label: "where", trigger: "update-where" },
-              {
-                value: "contact",
-                label: "contact",
-                trigger: "update-contact",
-              },
-            ],
-          },
-          {
-            id: "update-name",
-            update: "name",
-            trigger: "7",
-          },
-          {
-            id: "update-where",
-            update: "where",
-            trigger: "7",
-          },
-          {
-            id: "update-contact",
-            update: "contact",
-            trigger: "7",
-          },
+
           {
             id: "end-message",
             message: "Gracias! Tus datos han sido enviados!",

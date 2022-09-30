@@ -29,3 +29,5 @@ export const GET_USER_REVIEWS = URL + "/reviews/getReviewsToUser";
 export const NUMBER_OF_VISITORS = URL + "visitor/numberVisitors";
 export const VISITORS_COUNTER = URL + "visitor/addVisitor";
 export const SUCCESS = URL + "pets/success";
+export const CHATBOT_COMMENTS = URL + "comments/newComment";
+export const GET_COMMENTS = URL + "comments/getComments";
