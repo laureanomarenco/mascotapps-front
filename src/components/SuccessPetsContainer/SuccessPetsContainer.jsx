@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import "./SuccessPetsContainer.css";
 import { Link } from "react-router-dom";
 import Spinner from "../Spinner/Spinner.jsx";
+import Footer from "../Footer/Footer.jsx";
 
 export default function SuccessPetsContainer() {
 	const [firstActive, setFirstActive] = useState("en adopción");
@@ -27,8 +28,7 @@ export default function SuccessPetsContainer() {
 			>
 				Volver
 			</Link>
-			<section className="flex flex-col h-screen items-center justify-center">
-				<h2></h2>
+			<section className="flex flex-col h-[80vh] items-center justify-center">
 				<div className="flex justify-center">
 					<img
 						className="w-auto hidden md:block h-[300px] self-center z-50"
@@ -98,6 +98,7 @@ export default function SuccessPetsContainer() {
 					</div>
 				</div>
 			</section>
+			<Footer />
 		</>
 	);
 }
