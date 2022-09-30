@@ -41,8 +41,6 @@ const NuevoProfile = () => {
     image: myProfileData["userProps"]?.image,
   };
 
-  console.log(myProfileData);
-
   const handleSubmit = () => {
     if (isAuthenticated) {
       dispatch(getMyPets(user));
@@ -116,7 +114,13 @@ const NuevoProfile = () => {
                     to="/postpets"
                     className="px-6 py-3  bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300"
                   >
-                    Postear un aviso!
+                    Postear un aviso
+                  </Link>
+                  <Link
+                    to="/store"
+                    className="px-6 py-3  bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300"
+                  >
+                    Canjear puntos
                   </Link>
 
                   <button
@@ -124,7 +128,7 @@ const NuevoProfile = () => {
                     onClick={handleClick}
                   >
                     {" "}
-                    Ver mis mascotas!
+                    Ver mis mascotas
                   </button>
                   <div className="w-full">
                     <Logout />
@@ -197,6 +201,7 @@ const NuevoProfile = () => {
                 />
               ) : null}
             </div>
+
             <div>
               <Transactions transactions={transactions} setOrder={setOrder} />
             </div>
