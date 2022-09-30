@@ -66,10 +66,6 @@ export default function Item({
 
                  useEffect(() => {
                    //verificar si el item ya esta en el carrito
-                   console.log(
-                     "condicion",
-                     carrito?.filter((e) => e.title === title).length > 0
-                   );
                    if (carrito?.filter((e) => e.title === title).length > 0) {
                      setSelected(true);
                    }

@@ -499,7 +499,6 @@ export function sendNotification(name){
 }
 
 export function buyItems(objAux) {
-  console.log('estoy en la action, ', objAux)
 	return async function (dispatch) {
 		try {
 			var msg = await axios.post(BUY, objAux);
@@ -513,11 +512,9 @@ export function buyItems(objAux) {
 	};
 }
 export function userPoints(id) {
-console.log('entre a la action y envio', id)
 	return async function (dispatch) {
 		try {
 			var msg = await axios.post(POINTS, id);
-			console.log("🚀 ~ file: index.js ~ line 520 ~ msg", msg)
 			return dispatch({ type: USER_POINTS, payload: msg.data });
 		} catch (error) {
 			return dispatch({
