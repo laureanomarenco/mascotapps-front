@@ -1,28 +1,29 @@
 import axios from "axios";
 
 import {
-	URL,
-	ALLPETS,
-	PET_DETAIL,
-	SEARCH_BY,
-	DONATION,
-	TOTAL_USERS,
-	PET_SPECIES,
-	POST,
-	CREAT,
-	GET_MY_PETS,
-	GET_INFO_FROM_DETAIL,
-	MY_PROFILE,
-	UPDATE_MY_PROFILE,
-	INIT_TRANSACTION,
-	DELETE,
-	UPDATE_TRANSACTION_STATUS,
-	RATE_USER,
-	UPDATE_POST_PET,
-	NUMBER_OF_VISITORS,
-	VISITORS_COUNTER,
-	NOTIFY_POST,
-	BUY
+  URL,
+  ALLPETS,
+  PET_DETAIL,
+  SEARCH_BY,
+  DONATION,
+  TOTAL_USERS,
+  PET_SPECIES,
+  POST,
+  CREAT,
+  GET_MY_PETS,
+  GET_INFO_FROM_DETAIL,
+  MY_PROFILE,
+  UPDATE_MY_PROFILE,
+  INIT_TRANSACTION,
+  DELETE,
+  UPDATE_TRANSACTION_STATUS,
+  RATE_USER,
+  UPDATE_POST_PET,
+  NUMBER_OF_VISITORS,
+  VISITORS_COUNTER,
+  NOTIFY_POST,
+  BUY,
+  POINTS,
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 export const NOTIFY = "NOTIFY";
@@ -55,6 +56,7 @@ export const MY_PROFILE_DETAIL = "MY_PROFILE_DETAIL";
 export const RESET_MY_PROFILE = "RESET_MY_PROFILE";
 export const ADMIN_FETCH_USERS = "ADMIN_FETCH_USERS";
 export const BUY_ITEMS = "BUY_ITEMS";
+export const USER_POINTS = "USER_POINTS";
 
 export const GET_PET_COMMENTS = "GET_PET_COMMENTS";
 
@@ -507,6 +509,21 @@ export function buyItems(objAux) {
 				type: BUY_ITEMS,
 				payload: { error: error.message },
 			});
+		}
+	};
+}
+export function userPoints(id) {
+console.log('entre a la action y envio', id)
+	return async function (dispatch) {
+		try {
+			var msg = await axios.post(POINTS, id);
+			console.log("🚀 ~ file: index.js ~ line 520 ~ msg", msg)
+			return dispatch({ type: USER_POINTS, payload: msg.data });
+		} catch (error) {
+			return dispatch({
+        type: USER_POINTS,
+        payload: { error: error.message },
+      });
 		}
 	};
 }
