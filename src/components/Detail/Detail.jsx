@@ -16,7 +16,7 @@ import UserContact from "./UserContact";
 
 import { useDispatch, useSelector } from "react-redux";
 import EndPost from "./EndPost";
-import Chat from "./Chat/Chat"
+import Chat from "./Chat/Chat";
 
 export default function Detail() {
   const { id } = useParams();
@@ -191,11 +191,12 @@ export default function Detail() {
                           />
                         </div>
                         {pet.status === "perdido" && (
-                          <div className=" items-center sm:flex sm:gap-12 ">
-                            <p>
+                          <div className=" items-center grid grid-cols-2  sm:flex sm:gap-12">
+                            <p className="mr-4 sm:mr-0">
                               ¿Has visto esta mascota?
                               <br />
-                              Envíale información al vendedor a través del Chat
+                              Envíale información al vendedor a través de
+                              nuestro Chat
                             </p>
                             <Chat />
                           </div>

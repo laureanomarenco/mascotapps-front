@@ -42,7 +42,7 @@ export default class Post extends Component {
   componentDidMount() {
     const infoPet = {
       petId: this.state.petId,
-      name: this.state.name?.value,
+      name: !this.state.name?.value ? "Anónimo" : this.state.name.value,
       provincia: !this.state.province?.value
         ? this.state.confirm_where?.value
         : this.state.province.value,
