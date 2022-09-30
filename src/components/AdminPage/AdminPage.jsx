@@ -47,7 +47,7 @@ const AdminPage = () => {
     dispatch(getAllUsers());
     dispatch(adminFetchUsers());
     dispatch(totalVisitors());
-  }, [dispatch, visitors]);
+  }, [dispatch, visitors, usersDetails.length, users]);
   return (
     <>
       <div className="top-0 sticky z-10">

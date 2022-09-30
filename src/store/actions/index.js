@@ -23,10 +23,7 @@ import {
   VISITORS_COUNTER,
   NOTIFY_POST,
   BUY,
-
-
   POINTS,
-
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 export const NOTIFY = "NOTIFY";
@@ -505,7 +502,6 @@ export function sendNotification(name) {
   };
 }
 
-
 export function buyItems(compra) {
   return async function(dispatch) {
     try {
@@ -521,7 +517,7 @@ export function buyItems(compra) {
 }
 
 export function getPetComments(obj) {
-  return async function (dispatch) {
+  return async function(dispatch) {
     try {
       var json = await axios.post(URL + "comments/getComments/", obj);
       return dispatch({
@@ -535,16 +531,26 @@ export function getPetComments(obj) {
 }
 
 export function userPoints(id) {
-	return async function (dispatch) {
-		try {
-			var msg = await axios.post(POINTS, id);
-			return dispatch({ type: USER_POINTS, payload: msg.data });
-		} catch (error) {
-			return dispatch({
+  return async function(dispatch) {
+    try {
+      var msg = await axios.post(POINTS, id);
+      return dispatch({ type: USER_POINTS, payload: msg.data });
+    } catch (error) {
+      return dispatch({
         type: USER_POINTS,
         payload: { error: error.message },
       });
-		}
-	};
+    }
+  };
+}
 
+export function deleteUser(obj) {
+  return async function() {
+    try {
+      var json = await axios.post(URL + "admin/deleteUser", obj);
+      console.log(json.data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 }

@@ -1,7 +1,43 @@
-import React from "react";
-
+import React, { useEffect } from "react";
+import { deleteUser } from "../../store/actions/index";
+import { useDispatch } from "react-redux";
+import { FaTrashAlt } from "react-icons/fa";
+import Swal from "sweetalert2";
 const Users = ({ users }) => {
-  console.log(users);
+  // console.log(users);
+  const dispatch = useDispatch();
+  const ultraSecreta = "SoyAdmin";
+
+  const handleClick = (id, email) => {
+    return Swal.fire({
+      title: "¿Eliminar usuario?",
+      text: "Ingresa tu contraseña confirmar",
+      html: `<input type="password" id="password" class="swal2-input" placeholder="Password">`,
+      confirmButtonText: "Eliminar",
+      confirmButtonColor: "#28B0A2",
+      focusConfirm: false,
+      preConfirm: () => {
+        const password = Swal.getPopup().querySelector("#password").value;
+        if (!password) {
+          Swal.showValidationMessage(`Ingresa tu contraseña`);
+        } else if (password !== ultraSecreta) {
+          Swal.showValidationMessage(`Contraseña incorrecta`);
+        }
+        return { password: password };
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(deleteUser({ id: id, email: email, password: ultraSecreta }));
+        Swal.fire({
+          title: "Usuario eliminado correctamente!",
+          icon: "success",
+          confirmButtonColor: "#28B0A2",
+        });
+      }
+    });
+  };
+
+  useEffect(() => {}, [dispatch, users]);
   return (
     <div className="bg-transparent p-8 rounded-md w-full">
       <div>
@@ -65,15 +101,20 @@ const Users = ({ users }) => {
                             {u.contact}
                           </p>
                         </td>
-                        <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                          <span className="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
+                        <button
+                          className="px-5 py-12 border-b border-gray-200 bg-white text-sm"
+                          onClick={() => handleClick(u.id, u.email)}
+                        >
+                          <span className="relative inline-block px-3 py-1 font-semibold text-red-900 leading-tight">
                             <span
                               aria-hidden
-                              className="absolute inset-0 bg-green-200 opacity-50 rounded-full"
+                              className="absolute inset-0 bg-red-600 opacity-50 rounded-full"
                             ></span>
-                            <span className="relative">Activo</span>
+                            <span className="relative flex items-center gap-1">
+                              Eliminar <FaTrashAlt />
+                            </span>
                           </span>
-                        </td>
+                        </button>
                       </tr>
                     </>
                   );
