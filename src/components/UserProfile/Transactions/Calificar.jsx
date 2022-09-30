@@ -21,6 +21,7 @@ const Calificar = ({
     setShowModal(true);
   };
 
+  console.log("OJOO", objBello);
 
   return (
     <>
@@ -43,8 +44,11 @@ const Calificar = ({
                   <h3 className=" text-3xl w-full mb-2 font-semibold">
                     Califica al usuario
                   </h3>
-                  <p>¡Muchas Gracias! Tu feedback es importante para nosotros. <br/> Recuerda que también podes ayudarnos económicamente.</p>
-                  <Link to='/donate'>
+                  <p>
+                    ¡Muchas Gracias! Tu feedback es importante para nosotros.{" "}
+                    <br /> Recuerda que también podes ayudarnos económicamente.
+                  </p>
+                  <Link to="/donate">
                     <button className="inline-block px-6 py-2 my-3 bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300">
                       Donar
                     </button>
