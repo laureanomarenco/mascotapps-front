@@ -32,3 +32,6 @@ export const SUCCESS = URL + "pets/success";
 export const WEB_PUSH = URL + "pets/subscribe"
 export const NOTIFY_POST = URL + "pets/notify"
 export const DESUBSCRIBE = URL + "pets/desubscribe"
+export const BUY = URL + "users/buyProducts";
+export const POINTS = URL + "users/points";
+

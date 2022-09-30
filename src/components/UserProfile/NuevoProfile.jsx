@@ -7,6 +7,8 @@ import Transactions from "./Transactions/Transactions";
 import Footer from "../Footer/Footer";
 import { Logout } from "../Logout/Logout";
 import { BiDonateHeart } from "react-icons/bi";
+import { GiTrophyCup } from "react-icons/gi";
+import { MdPets } from "react-icons/md";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -83,12 +85,22 @@ const NuevoProfile = () => {
       }
     });
   }
-  let userCity = { ...myProfileData };
+
   return (
     <div>
       <Navbar></Navbar>
       <div className=" my-5 mx-5 p-3">
         <div className="md:flex no-wrap relative">
+        {myProfileData["userProps"]?.gaveUpForAdoption > 0 && (
+            <div className="absolute transition-all ease-in-out  duration-250	 cursor-pointer text-teal-500 hover:text-amber-400 top-5 right-0 text-4xl">
+              <MdPets />
+            </div>
+          )}
+        {myProfileData["userProps"]?.foundAPet > 0 && (
+            <div className="absolute transition-all ease-in-out  duration-250	 cursor-pointer text-teal-500 hover:text-amber-400 top-5 right-0 text-4xl">
+              <GiTrophyCup />
+            </div>
+          )}
           {myProfileData["userProps"]?.isDonator === "true" && (
             <div className="absolute transition-all ease-in-out  duration-250	 cursor-pointer text-teal-500 hover:text-amber-400 top-5 right-0 text-4xl">
               <BiDonateHeart />
@@ -114,7 +126,6 @@ const NuevoProfile = () => {
                   <Link
                     to="/postpets"
                     className="px-6 py-3  bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300"
-                    state={{ usuario: userCity }}
                   >
                     Postear un aviso
                   </Link>

@@ -20,7 +20,10 @@ import {
   ADMIN_FETCH_USERS,
   SORT_BY,
   TOTAL_VISITORS,
+  USER_POINTS,
+  //eslint-disable-next-line
   NOTIFY,
+  GET_PET_COMMENTS,
 } from "../actions";
 
 const initalState = {
@@ -44,7 +47,9 @@ const initalState = {
   myProfile: {},
   usersInfo: [],
   newPost: {},
+  petComments: [],
   visitors: "",
+  userPoints:0,
 };
 
 export default function reducer(state = initalState, action) {
@@ -73,7 +78,7 @@ export default function reducer(state = initalState, action) {
         publicUserDetail: {},
         notFound: false,
         userPets: [],
-        newPost:{}
+        newPost: {},
       };
     case GET_PETS_BY_STATUS:
       return {
@@ -92,11 +97,14 @@ export default function reducer(state = initalState, action) {
       var ages;
       var races;
       var cities;
+      console.log("para filtrar", action.payload);
+
       action.payload.specie !== ""
         ? (especie = state.statusPets.filter(
             (i) => i.specie === action.payload.specie
           ))
         : (especie = state.statusPets);
+
       action.payload.gender !== ""
         ? (genders = especie.filter((i) => i.gender === action.payload.gender))
         : (genders = especie);
@@ -109,7 +117,6 @@ export default function reducer(state = initalState, action) {
       action.payload.city !== ""
         ? (cities = races.filter((i) => i.city?.includes(action.payload.city)))
         : (cities = races);
-
       return {
         ...state,
         filterPets: cities,
@@ -205,10 +212,22 @@ export default function reducer(state = initalState, action) {
         ...state,
         visitors: action.payload,
       };
+
     case NOTIFY:
-      return{
+      return {
         ...state,
+      };
+    case GET_PET_COMMENTS:
+      return {
+        ...state,
+        petComments: action.payload,
       }
+    case USER_POINTS:
+      return {
+        ...state,
+        userPoints: action.payload,
+
+      };
     default:
       return state;
   }

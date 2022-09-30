@@ -1,30 +1,35 @@
 import axios from "axios";
 
 import {
-	URL,
-	ALLPETS,
-	PET_DETAIL,
-	SEARCH_BY,
-	DONATION,
-	TOTAL_USERS,
-	PET_SPECIES,
-	POST,
-	CREAT,
-	GET_MY_PETS,
-	GET_INFO_FROM_DETAIL,
-	MY_PROFILE,
-	UPDATE_MY_PROFILE,
-	INIT_TRANSACTION,
-	DELETE,
-	UPDATE_TRANSACTION_STATUS,
-	RATE_USER,
-	UPDATE_POST_PET,
-	NUMBER_OF_VISITORS,
-	VISITORS_COUNTER,
-	NOTIFY_POST
+  URL,
+  ALLPETS,
+  PET_DETAIL,
+  SEARCH_BY,
+  DONATION,
+  TOTAL_USERS,
+  PET_SPECIES,
+  POST,
+  CREAT,
+  GET_MY_PETS,
+  GET_INFO_FROM_DETAIL,
+  MY_PROFILE,
+  UPDATE_MY_PROFILE,
+  INIT_TRANSACTION,
+  DELETE,
+  UPDATE_TRANSACTION_STATUS,
+  RATE_USER,
+  UPDATE_POST_PET,
+  NUMBER_OF_VISITORS,
+  VISITORS_COUNTER,
+  NOTIFY_POST,
+  BUY,
+
+
+  POINTS,
+
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
-export const NOTIFY = "NOTIFY"
+export const NOTIFY = "NOTIFY";
 export const FETCH_PETS = "FETCH_PETS";
 export const GET_DETAIL = "GET_DETAIL";
 export const ADD_PET = "ADD_PET";
@@ -53,446 +58,493 @@ export const TOTAL_VISITORS = "TOTAL_VISITORS";
 export const MY_PROFILE_DETAIL = "MY_PROFILE_DETAIL";
 export const RESET_MY_PROFILE = "RESET_MY_PROFILE";
 export const ADMIN_FETCH_USERS = "ADMIN_FETCH_USERS";
+export const BUY_ITEMS = "BUY_ITEMS";
+export const USER_POINTS = "USER_POINTS";
+
+export const GET_PET_COMMENTS = "GET_PET_COMMENTS";
 
 export const SEND_QUERY = "SEND_QUERY";
 
 export const CANCEL_POST = "CANCEL_POST";
 
-
 export function fetchPets() {
-	return async function (dispatch) {
-		try {
-			const datos = await axios.get(ALLPETS);
-			return dispatch({
-				type: FETCH_PETS,
-				payload: datos.data,
-			});
-		} catch (error) {
-			return dispatch({
-				type: FETCH_PETS,
-				payload: { error: error.message },
-			});
-		}
-	};
+  return async function(dispatch) {
+    try {
+      const datos = await axios.get(ALLPETS);
+      return dispatch({
+        type: FETCH_PETS,
+        payload: datos.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: FETCH_PETS,
+        payload: { error: error.message },
+      });
+    }
+  };
 }
 export function getMyPets(user) {
-	return async function (dispatch) {
-		try {
-			const datos = await axios.post(GET_MY_PETS, { id: user?.sub });
-			return dispatch({
-				type: GET_PETS,
-				payload: datos.data,
-			});
-		} catch (error) {
-			return dispatch({
-				type: GET_PETS,
-				payload: error.data,
-			});
-		}
-	};
+  return async function(dispatch) {
+    try {
+      const datos = await axios.post(GET_MY_PETS, { id: user?.sub });
+      return dispatch({
+        type: GET_PETS,
+        payload: datos.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: GET_PETS,
+        payload: error.data,
+      });
+    }
+  };
 }
 
 export function getDetail(id) {
-	return async function (dispatch) {
-		try {
-			const info = await axios.get(PET_DETAIL + id);
-			return dispatch({
-				type: "GET_DETAIL",
-				payload: info.data,
-			});
-		} catch (error) {
-			return dispatch({
-				type: "GET_DETAIL",
-				payload: { error: error.message },
-			});
-		}
-	};
+  return async function(dispatch) {
+    try {
+      const info = await axios.get(PET_DETAIL + id);
+      return dispatch({
+        type: "GET_DETAIL",
+        payload: info.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: "GET_DETAIL",
+        payload: { error: error.message },
+      });
+    }
+  };
 }
 export function getPetsByStatus(status) {
-	return async function (dispatch) {
-		try {
-			const info = await axios.get(PET_DETAIL + status);
-			return dispatch({
-				type: GET_PETS_BY_STATUS,
-				payload: info.data,
-			});
-		} catch (error) {
-			return dispatch({
-				type: GET_PETS_BY_STATUS,
-				payload: { error: error.message },
-			});
-		}
-	};
+  return async function(dispatch) {
+    try {
+      const info = await axios.get(PET_DETAIL + status);
+      return dispatch({
+        type: GET_PETS_BY_STATUS,
+        payload: info.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: GET_PETS_BY_STATUS,
+        payload: { error: error.message },
+      });
+    }
+  };
 }
 
 export function fetchCity() {
-	return async function (dispatch) {
-		try {
-			const cities = await axios.get(URL_CIUDAD_API);
-			return dispatch({
-				type: FETCH_CITY,
-				payload: cities.data.municipios,
-			});
-		} catch (error) {
-			return dispatch({
-				type: FETCH_CITY,
-				payload: { error: error.message },
-			});
-		}
-	};
+  return async function(dispatch) {
+    try {
+      const cities = await axios.get(URL_CIUDAD_API);
+      return dispatch({
+        type: FETCH_CITY,
+        payload: cities.data.municipios,
+      });
+    } catch (error) {
+      return dispatch({
+        type: FETCH_CITY,
+        payload: { error: error.message },
+      });
+    }
+  };
 }
 
 export function resetDetail() {
-	return async function (dispatch) {
-		dispatch({
-			type: RESET_DETAIL,
-			payload: {},
-		});
-	};
+  return async function(dispatch) {
+    dispatch({
+      type: RESET_DETAIL,
+      payload: {},
+    });
+  };
 }
 
 export function filterPets(value) {
-	return { type: FILTER_PETS, payload: value };
+  return { type: FILTER_PETS, payload: value };
 }
 
 export function searchPets(input) {
-	return async function (dispatch) {
-		try {
-			const pets = await axios.get(SEARCH_BY + `${input}`);
-			return dispatch({
-				type: SEARCH_PETS,
-				payload: pets.data,
-			});
-		} catch (error) {
-			return dispatch({
-				type: SEARCH_PETS,
-				payload: { error: error.message },
-			});
-		}
-	};
+  return async function(dispatch) {
+    try {
+      const pets = await axios.get(SEARCH_BY + `${input}`);
+      return dispatch({
+        type: SEARCH_PETS,
+        payload: pets.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: SEARCH_PETS,
+        payload: { error: error.message },
+      });
+    }
+  };
 }
 
 export function getAllUsers() {
-	return async function (dispatch) {
-		try {
-			const users = await axios.get(TOTAL_USERS);
-			return dispatch({
-				type: GET_ALL_USERS,
-				payload: users.data,
-			});
-		} catch (error) {
-			return dispatch({
-				type: GET_ALL_USERS,
-				payload: { error: error.message },
-			});
-		}
-	};
+  return async function(dispatch) {
+    try {
+      const users = await axios.get(TOTAL_USERS);
+      return dispatch({
+        type: GET_ALL_USERS,
+        payload: users.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: GET_ALL_USERS,
+        payload: { error: error.message },
+      });
+    }
+  };
 }
 
 export function getDonations() {
-	return async function (dispatch) {
-		try {
-			const donations = await axios.get(DONATION);
-			return dispatch({
-				type: GET_DONATIONS,
-				payload: donations.data,
-			});
-		} catch (error) {
-			return dispatch({
-				type: GET_DONATIONS,
-				payload: { error: error.message },
-			});
-		}
-	};
+  return async function(dispatch) {
+    try {
+      const donations = await axios.get(DONATION);
+      return dispatch({
+        type: GET_DONATIONS,
+        payload: donations.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: GET_DONATIONS,
+        payload: { error: error.message },
+      });
+    }
+  };
 }
 export function getSpecies() {
-	return async function (dispatch) {
-		try {
-			const datos = await axios.get(PET_SPECIES);
-			return dispatch({
-				type: GET_SPECIES,
-				payload: datos.data,
-			});
-		} catch (error) {
-			return dispatch({
-				type: GET_SPECIES,
-				payload: { error: error.message },
-			});
-		}
-	};
+  return async function(dispatch) {
+    try {
+      const datos = await axios.get(PET_SPECIES);
+      return dispatch({
+        type: GET_SPECIES,
+        payload: datos.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: GET_SPECIES,
+        payload: { error: error.message },
+      });
+    }
+  };
 }
 
 export function postPet(pet, id) {
-	return async function (dispatch) {
-		try {
-			var json = await axios.post(POST, { pet: pet, user: { id: id } });
-			return dispatch({ type: POST_PET, payload: json.data });
-		} catch (error) {
-			return dispatch({
-				type: POST_PET,
-				payload: { error: error.message },
-			});
-		}
-	};
+  return async function(dispatch) {
+    try {
+      var json = await axios.post(POST, { pet: pet, user: { id: id } });
+      return dispatch({ type: POST_PET, payload: json.data });
+    } catch (error) {
+      return dispatch({
+        type: POST_PET,
+        payload: { error: error.message },
+      });
+    }
+  };
 }
 
 export function CreateUser(input) {
-	return async function (dispatch) {
-		try {
-			var json = await axios.post(CREAT, input);
-			return dispatch({ type: CREAT_USER, payload: json.data });
-		} catch (error) {
-			return dispatch({
-				type: CREAT_USER,
-				payload: { error: error.message },
-			});
-		}
-	};
+  return async function(dispatch) {
+    try {
+      var json = await axios.post(CREAT, input);
+      return dispatch({ type: CREAT_USER, payload: json.data });
+    } catch (error) {
+      return dispatch({
+        type: CREAT_USER,
+        payload: { error: error.message },
+      });
+    }
+  };
 }
 
 export function publicUserDetail(id) {
-	return async function (dispatch) {
-		try {
-			var detail = await axios.get(GET_INFO_FROM_DETAIL + id);
-			return dispatch({
-				type: GET_PUBLIC_USER_DETAIL,
-				payload: detail.data,
-			});
-		} catch (error) {
-			return dispatch({
-				type: GET_PUBLIC_USER_DETAIL,
-				payload: { error: error.message },
-			});
-		}
-	};
+  return async function(dispatch) {
+    try {
+      var detail = await axios.get(GET_INFO_FROM_DETAIL + id);
+      return dispatch({
+        type: GET_PUBLIC_USER_DETAIL,
+        payload: detail.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: GET_PUBLIC_USER_DETAIL,
+        payload: { error: error.message },
+      });
+    }
+  };
 }
 
 export function myProfile(id) {
-	return async function (dispatch) {
-		try {
-			var detail = await axios.post(MY_PROFILE, id);
-			return dispatch({
-				type: MY_PROFILE_DETAIL,
-				payload: detail.data,
-			});
-		} catch (error) {
-			return dispatch({
-				type: MY_PROFILE_DETAIL,
-				payload: { error: error.message },
-			});
-		}
-	};
+  return async function(dispatch) {
+    try {
+      var detail = await axios.post(MY_PROFILE, id);
+      return dispatch({
+        type: MY_PROFILE_DETAIL,
+        payload: detail.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: MY_PROFILE_DETAIL,
+        payload: { error: error.message },
+      });
+    }
+  };
 }
 export function updateProfile(user) {
-	return async function (dispatch) {
-		try {
-			var detail = await axios.put(UPDATE_MY_PROFILE, user);
-			return dispatch({
-				type: MY_PROFILE_DETAIL,
-				payload: detail.data,
-			});
-		} catch (error) {
-			return dispatch({
-				type: MY_PROFILE_DETAIL,
-				payload: { error: error.message },
-			});
-		}
-	};
+  return async function(dispatch) {
+    try {
+      var detail = await axios.put(UPDATE_MY_PROFILE, user);
+      return dispatch({
+        type: MY_PROFILE_DETAIL,
+        payload: detail.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: MY_PROFILE_DETAIL,
+        payload: { error: error.message },
+      });
+    }
+  };
 }
 
 export function resetMyProfile() {
-	return async function (dispatch) {
-		dispatch({
-			type: RESET_MY_PROFILE,
-		});
-	};
+  return async function(dispatch) {
+    dispatch({
+      type: RESET_MY_PROFILE,
+    });
+  };
 }
 
 export function sortBy(arr, filterType) {
-	return function (dispatch) {
-		const newArr = arr
-			.sort((a, b) =>
-				filterType === "ASC"
-					? a.name?.localeCompare(b?.name)
-					: b.name?.localeCompare(a?.name)
-			)
-			.map(el => el);
-		dispatch({
-			type: SORT_BY,
-			payload: {
-				filterType: filterType,
-				arr: newArr,
-			},
-		});
-	};
+  return function(dispatch) {
+    const newArr = arr
+      .sort((a, b) =>
+        filterType === "ASC"
+          ? a.name?.localeCompare(b?.name)
+          : b.name?.localeCompare(a?.name)
+      )
+      .map((el) => el);
+    dispatch({
+      type: SORT_BY,
+      payload: {
+        filterType: filterType,
+        arr: newArr,
+      },
+    });
+  };
 }
 
 export function adminFetchUsers() {
-	return async function (dispatch) {
-		try {
-			const datos = await axios.get(URL + "users/");
-			return dispatch({
-				type: ADMIN_FETCH_USERS,
-				payload: datos.data,
-			});
-		} catch (error) {
-			return dispatch({
-				type: ADMIN_FETCH_USERS,
-				payload: { error: error.message },
-			});
-		}
-	};
+  return async function(dispatch) {
+    try {
+      const datos = await axios.get(URL + "users/");
+      return dispatch({
+        type: ADMIN_FETCH_USERS,
+        payload: datos.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: ADMIN_FETCH_USERS,
+        payload: { error: error.message },
+      });
+    }
+  };
 }
 
 export function deletePet(user, petId) {
-	console.log("ESTOY EN LAS ACTIONS", user, petId);
-	return async function (dispatch) {
-		try {
-			var datos = await axios.post(DELETE, {
-				petId: petId,
-				id: user?.sub,
-			});
-			return dispatch({
-				type: DELETE_PET,
-				payload: datos.data,
-			});
-		} catch (error) {
-			return dispatch({
-				type: DELETE_PET,
-				payload: { error: error.message },
-			});
-		}
-	};
+  console.log("ESTOY EN LAS ACTIONS", user, petId);
+  return async function(dispatch) {
+    try {
+      var datos = await axios.post(DELETE, {
+        petId: petId,
+        id: user?.sub,
+      });
+      return dispatch({
+        type: DELETE_PET,
+        payload: datos.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: DELETE_PET,
+        payload: { error: error.message },
+      });
+    }
+  };
 }
 
 export function updatePet(user, pet_data) {
-	return async function (dispatch) {
-		try {
-			pet_data.name = pet_data.name ? pet_data.name : 'Sin Nombre'
-			await axios.put(UPDATE_POST_PET, {
-				user: { userId: user?.sub },
-				pet: pet_data,
-			});
-			dispatch({
-				type: "SOLVED_BRO",
-				user,
-				pet_data,
-			});
-		} catch (error) {
-			console.log(error);
-		}
-	};
+  return async function(dispatch) {
+    try {
+      pet_data.name = pet_data.name ? pet_data.name : "Sin Nombre";
+      await axios.put(UPDATE_POST_PET, {
+        user: { userId: user?.sub },
+        pet: pet_data,
+      });
+      dispatch({
+        type: "SOLVED_BRO",
+        user,
+        pet_data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 
 export function beginTransaction(petId, idUser) {
-	return async function () {
-		try {
-			var detail = await axios.post(
-				INIT_TRANSACTION + "?petId=" + petId,
-				{
-					id: idUser,
-				}
-			);
-			console.log(detail);
-		} catch (error) {
-			console.log(error);
-		}
-	};
+  return async function() {
+    try {
+      var detail = await axios.post(INIT_TRANSACTION + "?petId=" + petId, {
+        id: idUser,
+      });
+      console.log(detail);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 }
 
 export function updateTransactionStatus(idTrans, idLogged) {
-	return async function () {
-		try {
-			var transaction = await axios.put(
-				UPDATE_TRANSACTION_STATUS + idTrans,
-				idLogged
-			);
-			console.log(transaction);
-		} catch (error) {
-			console.log(error.message);
-		}
-	};
+  return async function() {
+    try {
+      var transaction = await axios.put(
+        UPDATE_TRANSACTION_STATUS + idTrans,
+        idLogged
+      );
+      console.log(transaction);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 }
 export function rateUser(paq) {
-	return async function () {
-		try {
-			var review = await axios.post(RATE_USER, paq);
-			console.log(review);
-		} catch (error) {
-			console.log(error.message);
-		}
-	};
+  return async function() {
+    try {
+      var review = await axios.post(RATE_USER, paq);
+      console.log("ACA ESTOY MANDANDO LA REVIEW", review);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 }
 export function totalVisitors() {
-	return async function (dispatch) {
-		try {
-			var total = await axios.get(NUMBER_OF_VISITORS);
-			return dispatch({
-				type: TOTAL_VISITORS,
-				payload: total.data,
-			});
-		} catch (error) {
-			console.log(error.message);
-		}
-	};
+  return async function(dispatch) {
+    try {
+      var total = await axios.get(NUMBER_OF_VISITORS);
+      return dispatch({
+        type: TOTAL_VISITORS,
+        payload: total.data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 }
 
 export function visitorsCounter() {
-	return async function () {
-		try {
-			await axios.get(VISITORS_COUNTER);
-		} catch (error) {
-			console.log(error.message);
-		}
-	};
+  return async function() {
+    try {
+      await axios.get(VISITORS_COUNTER);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
 }
-
-
 
 export function sendConsultation(data) {
+  return async function(dispatch) {
+    try {
+      // código para enviar la consulta
+      console.log(data);
+      dispatch({
+        type: SEND_QUERY,
+        payload: data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
+
+export function cancelPost(input) {
+  return async function() {
+    try {
+      await axios.post(URL + "transactions/cancelpost", input);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
+
+export function finishPost(input) {
+  return async function() {
+    try {
+      await axios.post(URL + "transactions/postsuccess", input);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
+
+export function sendNotification(name) {
+  console.log("estoy entrando en la action");
+  return async function(dispatch) {
+    try {
+      let responde = await axios.post(NOTIFY_POST, name);
+      console.log(
+        "🚀 ~ file: index.js ~ line 491 ~ returnfunction ~ responde",
+        responde
+      );
+      return dispatch({
+        type: NOTIFY,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+
+
+export function buyItems(compra) {
+  return async function(dispatch) {
+    try {
+      var msg = await axios.post(BUY, compra);
+      return dispatch({ type: BUY_ITEMS, payload: msg });
+    } catch (error) {
+      return dispatch({
+        type: BUY_ITEMS,
+        payload: { error: error.message },
+      });
+    }
+  };
+}
+
+export function getPetComments(obj) {
+  return async function (dispatch) {
+    try {
+      var json = await axios.post(URL + "comments/getComments/", obj);
+      return dispatch({
+        type: GET_PET_COMMENTS,
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
+
+export function userPoints(id) {
 	return async function (dispatch) {
 		try {
-			// código para enviar la consulta
-			console.log(data)
-			dispatch({
-				type: SEND_QUERY,
-				payload: data
-			})
+			var msg = await axios.post(POINTS, id);
+			return dispatch({ type: USER_POINTS, payload: msg.data });
 		} catch (error) {
-			console.log(error.message)
-		}
-	}
-}
-
-export function cancelPost(input){
-	return async function(){
-		try {
-			await axios.post(URL + 'transactions/cancelpost', input)
-		} catch (error) {
-			console.log(error.message);
-		}
-	}
-}
-
-export function finishPost(input){
-	return async function(){
-		try {
-			await axios.post(URL + 'transactions/postsuccess', input)
-		} catch (error) {
-			console.log(error.message);
-		}
-	}
-}
-
-export function sendNotification(name){
-	return async function(dispatch){
-		try {
-			await axios.post(NOTIFY_POST, name)
 			return dispatch({
-				type:NOTIFY,
-			})
-		} catch (error) {
-			console.log(error)
+        type: USER_POINTS,
+        payload: { error: error.message },
+      });
 		}
-	}
+	};
+
 }
