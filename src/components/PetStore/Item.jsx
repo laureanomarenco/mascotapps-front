@@ -31,8 +31,8 @@ export default function Item({
   );
 
   const addTocarrito = (item) => {
-    if (totalPoints + parseInt(item.points) < userPoints + 1) {
-      if (!selected) {
+    if (!selected) {
+      if (totalPoints + parseInt(item.points) < userPoints + 1) {
         setCarrito([...carrito, item]);
         setSelected(true);
         Swal.fire({
@@ -43,28 +43,29 @@ export default function Item({
         });
       } else {
         Swal.fire({
-          title: "Eliminado",
-          text: "Eliminado del carrito",
-          icon: "info",
+          title: "Supera el limite de puntos",
+          text: "No podrás agregar más productos",
+          icon: "warning",
           showCancelButton: false,
           showConfirmButton: false,
           timer: 1000,
         });
-        const newItem = carrito.filter((fav) => fav.title !== title);
-        setCarrito(newItem);
-        setSelected(false);
       }
     } else {
       Swal.fire({
-        title: "Supera el limite de puntos",
-        text: "No podrás agregar más productos",
-        icon: "warning",
+        title: "Eliminado",
+        text: "Eliminado del carrito",
+        icon: "info",
         showCancelButton: false,
         showConfirmButton: false,
         timer: 1000,
       });
+      const newItem = carrito.filter((fav) => fav.title !== title);
+      setCarrito(newItem);
+      setSelected(false);
     }
   };
+
   useEffect(() => {
     //verificar si el item ya esta en el carrito
     if (carrito.filter((e) => e.title === title).length > 0) {
