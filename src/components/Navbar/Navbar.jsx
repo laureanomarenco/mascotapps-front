@@ -9,7 +9,7 @@ import { LoginButton } from "../Login/LoginButton";
 import Push from "../Push/Push";
 
 export default function Navbar({ setPage }) {
-  const { isAuthenticated, user } = useAuth0();
+  const { isAuthenticated, user, isLoading } = useAuth0();
   const [searchInput, setSearchInput] = useState(true);
   const [mdOptionsToggle, setMdOptionsToggle] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
@@ -33,10 +33,10 @@ export default function Navbar({ setPage }) {
   };
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (!isLoading && isAuthenticated) {
       dispatch(myProfile({ id: user?.sub }));
     }
-  }, []);
+  }, [isLoading, isAuthenticated, user, dispatch]);
   return (
     <div className=" z-50 w-full">
       <div>
@@ -57,7 +57,7 @@ export default function Navbar({ setPage }) {
             />
 
             <div className="space-x-6 flex items-center">
-              {isAuthenticated ? (
+              {!isLoading && isAuthenticated ? (
                 <>
                   <Link
                     to="/account"
@@ -177,7 +177,7 @@ export default function Navbar({ setPage }) {
                     linkStyle="text-gray-800 hover:text-[#28B0A2]"
                     icon="favoritos"
                   />
-                  {isAuthenticated ? (
+                  {!isLoading && isAuthenticated ? (
                     <>
                       <Icons
                         ariaLabel="mi cuenta"
@@ -359,7 +359,7 @@ export default function Navbar({ setPage }) {
             </div>
             <div className="h-full flex items-end">
               <ul className="flex flex-col space-y-8 bg-gray-50 w-full py-10 p-4 ">
-                {isAuthenticated ? (
+                {!isLoading && isAuthenticated ? (
                   <>
                     <Link
                       to="/account"

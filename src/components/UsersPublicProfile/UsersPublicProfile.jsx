@@ -16,15 +16,10 @@ export default function UserPuserProfsPublicProfile() {
   const { user } = useAuth0();
   const location = useLocation();
   const { userProf, idPet } = location.state;
-
+//eslint-disable-next-line
   const reviews = useSelector((state) => state.userReviews);
-  console.log(reviews);
-  console.log(
-    "🚀 ~ file: UsersPublicProfile.jsx ~ line 18 ~ UsersPublicProfile ~ idPet",
-    userProf
-  );
-  const dispatch = useDispatch();
 
+  const dispatch = useDispatch();
 
   const [contact, setContact] = useState(false);
 
