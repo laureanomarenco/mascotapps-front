@@ -28,3 +28,4 @@ export const RATE_USER = URL + "reviews/newReview ";
 export const GET_USER_REVIEWS = URL + "/reviews/getReviewsToUser";
 export const NUMBER_OF_VISITORS = URL + "visitor/numberVisitors";
 export const VISITORS_COUNTER = URL + "visitor/addVisitor";
+export const FETCH_SUCCESS = URL + "pets/success";

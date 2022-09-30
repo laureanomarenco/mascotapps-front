@@ -21,6 +21,7 @@ import {
 	UPDATE_POST_PET,
 	NUMBER_OF_VISITORS,
 	VISITORS_COUNTER,
+	FETCH_SUCCESS,
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 
@@ -52,6 +53,8 @@ export const TOTAL_VISITORS = "TOTAL_VISITORS";
 export const MY_PROFILE_DETAIL = "MY_PROFILE_DETAIL";
 export const RESET_MY_PROFILE = "RESET_MY_PROFILE";
 export const ADMIN_FETCH_USERS = "ADMIN_FETCH_USERS";
+export const GET_SUCCESS = "GET_SUCCESS";
+export const CLEAR_SUCCESS = "CLEAR_SUCCESS";
 
 export const SEND_QUERY = "SEND_QUERY";
 
@@ -463,8 +466,8 @@ export function sendConsultation(data) {
 	}
 }
 
-export function cancelPost(input){
-	return async function(){
+export function cancelPost(input) {
+	return async function () {
 		try {
 			await axios.post(URL + 'transactions/cancelpost', input)
 		} catch (error) {
@@ -473,8 +476,8 @@ export function cancelPost(input){
 	}
 }
 
-export function finishPost(input){
-	return async function(){
+export function finishPost(input) {
+	return async function () {
 		try {
 			await axios.post(URL + 'transactions/postsuccess', input)
 		} catch (error) {
@@ -483,3 +486,28 @@ export function finishPost(input){
 	}
 }
 
+
+export function getSuccess() {
+	return async function (dispatch) {
+		try {
+			const req = await axios(FETCH_SUCCESS)
+			console.log(req.data)
+			dispatch({
+				type: GET_SUCCESS,
+				payload: req.data
+			})
+		} catch (error) {
+			console.log(error.message)
+		}
+	}
+}
+
+
+export function clearSuccess() {
+	return function (dispatch) {
+		dispatch({
+			type: CLEAR_SUCCESS,
+			payload: []
+		})
+	}
+}

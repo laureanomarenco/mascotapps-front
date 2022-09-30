@@ -21,6 +21,7 @@ import UsersPublicProfile from "./components/UsersPublicProfile/UsersPublicProfi
 import PostPets from "./components/PostPets/PostPets";
 import NuevoProfile from "./components/UserProfile/NuevoProfile";
 import ConsultasForm from "./components/ConsultasForm/ConsultasForm";
+import SuccessPetsContainer from "./components/SuccessPetsContainer/SuccessPetsContainer";
 function App() {
 	//eslint-disable-next-line
 	const dispatch = useDispatch();
@@ -41,14 +42,15 @@ function App() {
 					<Route path="/admin/general" element={<AdminPage />} />
 					<Route path="/donate" element={<Donate />} />
 					<Route path="*" element={<Error />} />
-					<Route path="/favoritos" element={<FavContainer />}></Route>
+					<Route path="/favoritos" element={<FavContainer />} />
 					<Route
 						path="/profile"
 						element={<UsersPublicProfile />}
-					></Route>
-					<Route path="/postpets" element={<PostPets />}></Route>
-					<Route path="/faqs" element={<Faq />}></Route>
+					/>
+					<Route path="/postpets" element={<PostPets />} />
+					<Route path="/faqs" element={<Faq />} />
 					<Route path="/query" element={<ConsultasForm />} />
+					<Route path='/success' element={<SuccessPetsContainer />} />
 				</Routes>
 			</BrowserRouter>
 		</div>
