@@ -8,22 +8,29 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { userPoints } from "../../store/actions";
+import Spinner from "../Spinner/Spinner";
 
 export default function PointsStore() {
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
   var carritoStorage = JSON.parse(localStorage.getItem("carrito")) || [];
   const [carrito, setCarrito] = useState(carritoStorage);
-  const dispatch= useDispatch()
+  const dispatch = useDispatch();
   const [update, setUpdate] = useState("");
-  const pointsUser = useSelector(state=> state.userPoints);
+  const pointsUser = useSelector((state) => state.userPoints);
   const myPoints = pointsUser?.points;
-
   useEffect(() => {
     localStorage.setItem("carrito", JSON.stringify(carrito));
-    dispatch(userPoints({id:user?.sub}))
-  }, [carrito]);
-
-  if (isAuthenticated) {
+    !isLoading && isAuthenticated && dispatch(userPoints({ id: user?.sub }));
+  }, [carrito, update, dispatch, user, isLoading, isAuthenticated]);
+  if (isLoading) {
+    return (
+      <div className="flex w-screen h-screen justify-center items-center">
+        {" "}
+        <Spinner />
+      </div>
+    );
+  }
+  if (!isLoading && isAuthenticated) {
     return (
       <div className="flex flex-col w-full items-center">
         <Navbar />
@@ -38,7 +45,8 @@ export default function PointsStore() {
         <Footer />
       </div>
     );
-  } else {
+  }
+  if (!isLoading && !isAuthenticated) {
     Swal.fire({
       title: "No estás logueado",
       text: "Debes iniciar sesión para ver tu perfil.",

@@ -11,11 +11,13 @@ import Spinner from "../Spinner/Spinner";
 
 export default function Login() {
   //eslint-disable-next-line
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated, getIdTokenClaims , isLoading} = useAuth0();
 
   const navigate = useNavigate();
   const handleValidation = async (user, isAuthenticated) => {
     try {
+       const claims = await getIdTokenClaims();
+       console.log("🚀 ~ file: Login.jsx ~ line 20 ~ handleValidation ~ claims", claims.__raw)
       if (isAuthenticated && user) {
         let existe = await axios.post(
           "https://juka-production.up.railway.app/users/exists ",
@@ -34,7 +36,7 @@ export default function Login() {
     }
   };
 
-  if (isAuthenticated) {
+  if (!isLoading && isAuthenticated) {
     handleValidation(user, isAuthenticated);
   }
 

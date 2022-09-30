@@ -27,7 +27,7 @@ export default function Detail() {
   const userContact = useSelector((state) => state.publicUserDetail);
   const myProfileData = useSelector((state) => state.myProfile);
   console.log(myProfileData);
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
   const [hidden, setHidden] = useState(true);
   const [hiddenEnd, setHiddenEnd] = useState(true);
 
@@ -37,7 +37,7 @@ export default function Detail() {
     return () => {
       dispatch(resetDetail());
     };
-  }, [id]);
+  }, [id, isAuthenticated]);
   const { image } = pet;
 
   const handleClick = () => {
@@ -164,7 +164,7 @@ export default function Detail() {
                   </p>
                 </div>
 
-                {isAuthenticated && !userContact.error ? (
+                {(!isLoading && isAuthenticated) && !userContact.error ? (
                   <>
                     <p className="capitalize text-xl font-bold text-teal-600">
                       Contacto
