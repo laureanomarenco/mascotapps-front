@@ -44,6 +44,7 @@ const initalState = {
   myProfile: {},
   usersInfo: [],
   newPost: {},
+  petComments: {},
   visitors: "",
 };
 
@@ -73,7 +74,7 @@ export default function reducer(state = initalState, action) {
         publicUserDetail: {},
         notFound: false,
         userPets: [],
-        newPost:{}
+        newPost: {},
       };
     case GET_PETS_BY_STATUS:
       return {
@@ -206,9 +207,9 @@ export default function reducer(state = initalState, action) {
         visitors: action.payload,
       };
     case NOTIFY:
-      return{
+      return {
         ...state,
-      }
+      };
     default:
       return state;
   }
