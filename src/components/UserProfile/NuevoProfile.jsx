@@ -10,10 +10,10 @@ import { BiDonateHeart } from "react-icons/bi";
 
 import { useDispatch, useSelector } from "react-redux";
 import {
-	getMyPets,
-	myProfile,
-	resetMyProfile,
-	resetDetail,
+  getMyPets,
+  myProfile,
+  resetMyProfile,
+  resetDetail,
 } from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
@@ -21,70 +21,69 @@ import { FaUser } from "react-icons/fa";
 import ModalEditDog from "./ModalEditDog/ModalEditDog";
 
 const NuevoProfile = () => {
-	const [order, setOrder] = useState("");
-	const [hidden, setHidden] = useState(true);
-	const [activeModalEditDog, setActiveModalEditDog] = useState(false);
-	const [dataEditDog, setDataEditDog] = useState({});
+  const [order, setOrder] = useState("");
+  const [hidden, setHidden] = useState(true);
+  const [activeModalEditDog, setActiveModalEditDog] = useState(false);
+  const [dataEditDog, setDataEditDog] = useState({});
 
-	const { user, isAuthenticated } = useAuth0();
-	const dispatch = useDispatch();
-	const myPets = useSelector(state => state.userPets);
-	const myProfileData = useSelector(state => state.myProfile);
-	const transactions = myProfileData?.transactions;
+  const { user, isAuthenticated } = useAuth0();
+  const dispatch = useDispatch();
+  const myPets = useSelector((state) => state.userPets);
+  const myProfileData = useSelector((state) => state.myProfile);
+  const transactions = myProfileData?.transactions;
 
-	const belloPerfil = {
-		id: `${user?.sub}`,
-		email: `${user?.email}`,
-		name: myProfileData["userProps"]?.name,
-		city: myProfileData["userProps"]?.city,
-		contact: myProfileData["userProps"]?.contact,
-		image: myProfileData["userProps"]?.image,
-	};
+  const belloPerfil = {
+    id: `${user?.sub}`,
+    email: `${user?.email}`,
+    name: myProfileData["userProps"]?.name,
+    city: myProfileData["userProps"]?.city,
+    contact: myProfileData["userProps"]?.contact,
+    image: myProfileData["userProps"]?.image,
+  };
 
-	const handleSubmit = () => {
-		if (isAuthenticated) {
-			dispatch(getMyPets(user));
-		}
-	};
-	//eslint-disable-next-line
-	const handleClick = () => {
-		setHidden(hidden === true ? false : true);
-	};
+  const handleSubmit = () => {
+    if (isAuthenticated) {
+      dispatch(getMyPets(user));
+    }
+  };
+  //eslint-disable-next-line
+  const handleClick = () => {
+    setHidden(hidden === true ? false : true);
+  };
 
-	const handleActiveEditDog = data => {
-		setActiveModalEditDog(!activeModalEditDog);
-		data && setDataEditDog(data);
-		setOrder(order === "now" ? "nowpAPASITO" : "now");
-	};
+  const handleActiveEditDog = (data) => {
+    setActiveModalEditDog(!activeModalEditDog);
+    data && setDataEditDog(data);
+    setOrder(order === "now" ? "nowpAPASITO" : "now");
+  };
 
-
-	useEffect(() => {
-		dispatch(myProfile({ id: user?.sub }));
-		handleSubmit();
-		return () => {
-			dispatch(resetMyProfile());
-			dispatch(resetDetail());
-		};
-	}, [order, dispatch, user]);
-	if (!isAuthenticated) {
-		Swal.fire({
-			title: "No estás logueado",
-			text: "Debes iniciar sesión para ver tu perfil.",
-			icon: "info",
-			showCancelButton: true,
-			confirmButtonColor: "#28B0A2",
-			cancelButtonColor: "#B0B0B0",
-			cancelButtonText: "Ir a inicio",
-			confirmButtonText: "Iniciar sesión",
-		}).then(result => {
-			if (result.isConfirmed) {
-				window.location.href = "/";
-			} else {
-				window.location.href = "/home";
-			}
-		});
-	}
-	return (
+  useEffect(() => {
+    dispatch(myProfile({ id: user?.sub }));
+    handleSubmit();
+    return () => {
+      dispatch(resetMyProfile());
+      dispatch(resetDetail());
+    };
+  }, [order, dispatch, user]);
+  if (!isAuthenticated) {
+    Swal.fire({
+      title: "No estás logueado",
+      text: "Debes iniciar sesión para ver tu perfil.",
+      icon: "info",
+      showCancelButton: true,
+      confirmButtonColor: "#28B0A2",
+      cancelButtonColor: "#B0B0B0",
+      cancelButtonText: "Ir a inicio",
+      confirmButtonText: "Iniciar sesión",
+    }).then((result) => {
+      if (result.isConfirmed) {
+        window.location.href = "/";
+      } else {
+        window.location.href = "/home";
+      }
+    });
+  }
+  return (
     <div>
       <Navbar></Navbar>
       <div className=" my-5 mx-5 p-3">
@@ -115,7 +114,13 @@ const NuevoProfile = () => {
                     to="/postpets"
                     className="px-6 py-3  bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300"
                   >
-                    Postear un aviso!
+                    Postear un aviso
+                  </Link>
+                  <Link
+                    to="/store"
+                    className="px-6 py-3  bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300"
+                  >
+                    Canjear puntos
                   </Link>
 
                   <button
@@ -123,7 +128,7 @@ const NuevoProfile = () => {
                     onClick={handleClick}
                   >
                     {" "}
-                    Ver mis mascotas!
+                    Ver mis mascotas
                   </button>
                   <div className="w-full">
                     <Logout />
@@ -196,6 +201,7 @@ const NuevoProfile = () => {
                 />
               ) : null}
             </div>
+
             <div>
               <Transactions transactions={transactions} setOrder={setOrder} />
             </div>

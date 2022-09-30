@@ -8,7 +8,6 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { LoginButton } from "../Login/LoginButton";
 import Push from "../Push/Push";
 
-
 export default function Navbar({ setPage }) {
   const { isAuthenticated, user } = useAuth0();
   const [searchInput, setSearchInput] = useState(true);
@@ -113,7 +112,7 @@ export default function Navbar({ setPage }) {
           <div className=" bg-[#F4F6F6] px-6 py-4 sticky top-0 ">
             <div className="container mx-auto flex items-center justify-between">
               <h1 className="md:w-2/12 cursor-pointer text-gray-800 ">
-                <Link to='/home' className="flex">
+                <Link to="/home" className="flex">
                   <img
                     src="https://res.cloudinary.com/dfbxjt69z/image/upload/v1663276317/mascotapps/perrito_apwyz0.png"
                     className="inline-block w-20 h-20 rounded-lg"
@@ -170,6 +169,7 @@ export default function Navbar({ setPage }) {
                     searchInput ? "hidden" : ""
                   } text-sm   text-gray-600 rounded ml-1 border border-transparent focus:outline-none focus:border-gray-400 px-1`}
                 />
+
                 <div className="hidden lg:flex items-center space-x-4 xl:space-x-8">
                   <Icons
                     ariaLabel="view favourites"

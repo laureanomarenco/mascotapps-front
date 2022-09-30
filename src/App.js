@@ -22,8 +22,8 @@ import PostPets from "./components/PostPets/PostPets";
 import NuevoProfile from "./components/UserProfile/NuevoProfile";
 import ConsultasForm from "./components/ConsultasForm/ConsultasForm";
 import Team from "./components/Team/Team";
+import PointsStore from "./components/PetStore/PointsStore";
 function App() {
-
   //eslint-disable-next-line
   const dispatch = useDispatch();
   useEffect(() => {
@@ -49,11 +49,11 @@ function App() {
           <Route path="/faqs" element={<Faq />}></Route>
           <Route path="/query" element={<ConsultasForm />} />
           <Route path="/team" element={<Team />} />
+          <Route path="/store" element={<PointsStore />} />
         </Routes>
       </BrowserRouter>
     </div>
   );
-
 }
 
 export default App;
