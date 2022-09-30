@@ -4,6 +4,7 @@ import React from "react";
 const FormFilter = ({ handleClearFilter, filter, handleFilter }) => {
   const filtered = useSelector((state) => state.filterPets);
   const pets = useSelector((state) => state.statusPets);
+  console.log("🚀 ~ file: FormFilter.jsx ~ line 7 ~ FormFilter ~ pets", pets)
   //eslint-disable-next-line
   const prov = ['Buenos Aires', 'Catamarca', 'Chaco', 'Chubut', 'Córdoba', 'Corrientes', 'Formosa', 'Jujuy', 'La Pampa', 'La Rioja', 'Mendoza', 'Misiones', 'Neuquén', 'Río Negro','Salta', 'San Juan', 'San Luis',  'Santa Fe', 'Tierra del Fuego', 'Tucumán'];
 
