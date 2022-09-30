@@ -23,6 +23,10 @@ import {
   VISITORS_COUNTER,
   NOTIFY_POST,
   BUY,
+
+
+  POINTS,
+
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 export const NOTIFY = "NOTIFY";
@@ -55,6 +59,7 @@ export const MY_PROFILE_DETAIL = "MY_PROFILE_DETAIL";
 export const RESET_MY_PROFILE = "RESET_MY_PROFILE";
 export const ADMIN_FETCH_USERS = "ADMIN_FETCH_USERS";
 export const BUY_ITEMS = "BUY_ITEMS";
+export const USER_POINTS = "USER_POINTS";
 
 export const GET_PET_COMMENTS = "GET_PET_COMMENTS";
 
@@ -500,6 +505,7 @@ export function sendNotification(name) {
   };
 }
 
+
 export function buyItems(compra) {
   return async function(dispatch) {
     try {
@@ -526,4 +532,18 @@ export function getPetComments(obj) {
       console.log(error.message);
     }
   };
+
+export function userPoints(id) {
+	return async function (dispatch) {
+		try {
+			var msg = await axios.post(POINTS, id);
+			return dispatch({ type: USER_POINTS, payload: msg.data });
+		} catch (error) {
+			return dispatch({
+        type: USER_POINTS,
+        payload: { error: error.message },
+      });
+		}
+	};
+
 }

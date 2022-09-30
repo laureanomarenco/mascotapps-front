@@ -6,35 +6,35 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { useEffect } from "react";
 import { useState } from "react";
 import Swal from "sweetalert2";
+import { useDispatch, useSelector } from "react-redux";
+import { userPoints } from "../../store/actions";
 
 export default function PointsStore() {
   const { user, isAuthenticated } = useAuth0();
   var carritoStorage = JSON.parse(localStorage.getItem("carrito")) || [];
   const [carrito, setCarrito] = useState(carritoStorage);
-  console.log(
-    "🚀 ~ file: PointsStore.jsx ~ line 14 ~ PointsStore ~ carrito",
-    carrito
-  );
+  const dispatch= useDispatch()
   const [update, setUpdate] = useState("");
-  const userPoints = 250;
+  const pointsUser = useSelector(state=> state.userPoints);
+  const myPoints = pointsUser?.points;
+
   useEffect(() => {
     localStorage.setItem("carrito", JSON.stringify(carrito));
+    dispatch(userPoints({id:user?.sub}))
   }, [carrito]);
 
   if (isAuthenticated) {
     return (
       <div className="flex flex-col w-full items-center">
         <Navbar />
-
         <ItemCollection
           user={user}
           setCarrito={setCarrito}
           carrito={carrito}
-          userPoints={userPoints}
+          myPoints={myPoints}
           setUpdate={setUpdate}
           update={update}
         />
-
         <Footer />
       </div>
     );

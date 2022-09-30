@@ -20,6 +20,7 @@ import {
   ADMIN_FETCH_USERS,
   SORT_BY,
   TOTAL_VISITORS,
+  USER_POINTS,
   //eslint-disable-next-line
   NOTIFY,
   GET_PET_COMMENTS,
@@ -48,6 +49,7 @@ const initalState = {
   newPost: {},
   petComments: [],
   visitors: "",
+  userPoints:0,
 };
 
 export default function reducer(state = initalState, action) {
@@ -210,6 +212,7 @@ export default function reducer(state = initalState, action) {
         ...state,
         visitors: action.payload,
       };
+
     case NOTIFY:
       return {
         ...state,
@@ -218,6 +221,12 @@ export default function reducer(state = initalState, action) {
       return {
         ...state,
         petComments: action.payload,
+
+    case USER_POINTS:
+      return {
+        ...state,
+        userPoints: action.payload,
+
       };
     default:
       return state;
