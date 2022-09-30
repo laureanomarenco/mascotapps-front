@@ -22,6 +22,7 @@ import {
   NUMBER_OF_VISITORS,
   VISITORS_COUNTER,
   NOTIFY_POST,
+  BUY,
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 export const NOTIFY = "NOTIFY";
@@ -53,6 +54,8 @@ export const TOTAL_VISITORS = "TOTAL_VISITORS";
 export const MY_PROFILE_DETAIL = "MY_PROFILE_DETAIL";
 export const RESET_MY_PROFILE = "RESET_MY_PROFILE";
 export const ADMIN_FETCH_USERS = "ADMIN_FETCH_USERS";
+export const BUY_ITEMS = "BUY_ITEMS";
+
 export const GET_PET_COMMENTS = "GET_PET_COMMENTS";
 
 export const SEND_QUERY = "SEND_QUERY";
@@ -480,14 +483,33 @@ export function finishPost(input) {
 }
 
 export function sendNotification(name) {
+  console.log("estoy entrando en la action");
   return async function(dispatch) {
     try {
-      await axios.post(NOTIFY_POST, name);
+      let responde = await axios.post(NOTIFY_POST, name);
+      console.log(
+        "🚀 ~ file: index.js ~ line 491 ~ returnfunction ~ responde",
+        responde
+      );
       return dispatch({
         type: NOTIFY,
       });
     } catch (error) {
       console.log(error);
+    }
+  };
+}
+
+export function buyItems(compra) {
+  return async function(dispatch) {
+    try {
+      var msg = await axios.post(BUY, compra);
+      return dispatch({ type: BUY_ITEMS, payload: msg });
+    } catch (error) {
+      return dispatch({
+        type: BUY_ITEMS,
+        payload: { error: error.message },
+      });
     }
   };
 }

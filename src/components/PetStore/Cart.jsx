@@ -7,12 +7,15 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { FaMapMarkerAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { buyItems } from "../../store/actions";
 
 export default function Cart({ carrito, setCarrito, setUpdate, update }) {
   const { user } = useAuth0();
   const [showModal, setShowModal] = useState(false);
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const myItems = carrito;
   //eslint-disable-next-line
   const [compra, setCompra] = useState({
@@ -44,12 +47,12 @@ export default function Cart({ carrito, setCarrito, setUpdate, update }) {
     if (compra.name.search("[^A-Za-z0-9]") !== -1) {
       errorObj.name = "El nombre puede incluir números, símbolos ni espacios";
     }
-    if (!compra.contact.trim()) {
-      errorObj.contact = "Debes incluir un número de contacto";
-    }
-    if (!compra.direccion.trim()) {
-      errorObj.direccion = "Debes incluir una dirección";
-    }
+    // if (!compra.contact.trim()) {
+    //   errorObj.contact = "Debes incluir un número de contacto";
+    // }
+    // if (!compra.direccion.trim()) {
+    //   errorObj.direccion = "Debes incluir una dirección";
+    // }
     return errorObj;
   }
 
@@ -63,6 +66,7 @@ export default function Cart({ carrito, setCarrito, setUpdate, update }) {
       console.log("pone bien los datosssssss");
     } else {
       console.log("todo bien", objAux);
+      dispatch(buyItems(objAux))
       Swal.fire({
         title: "Pedido enviado con éxito",
         icon: "success",

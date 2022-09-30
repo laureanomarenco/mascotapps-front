@@ -20,6 +20,7 @@ import {
   ADMIN_FETCH_USERS,
   SORT_BY,
   TOTAL_VISITORS,
+  //eslint-disable-next-line
   NOTIFY,
   GET_PET_COMMENTS,
 } from "../actions";
@@ -94,11 +95,14 @@ export default function reducer(state = initalState, action) {
       var ages;
       var races;
       var cities;
+      console.log("para filtrar", action.payload);
+
       action.payload.specie !== ""
         ? (especie = state.statusPets.filter(
             (i) => i.specie === action.payload.specie
           ))
         : (especie = state.statusPets);
+
       action.payload.gender !== ""
         ? (genders = especie.filter((i) => i.gender === action.payload.gender))
         : (genders = especie);
@@ -111,7 +115,6 @@ export default function reducer(state = initalState, action) {
       action.payload.city !== ""
         ? (cities = races.filter((i) => i.city?.includes(action.payload.city)))
         : (cities = races);
-
       return {
         ...state,
         filterPets: cities,
