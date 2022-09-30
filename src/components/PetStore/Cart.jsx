@@ -22,7 +22,7 @@ export default function Cart({ carrito, setCarrito, setUpdate, update }) {
     userID: user?.sub,
     name: "",
     items: myItems,
-    totalPoints: totalPoints,
+    totalPoints: 0,
     mail: user?.email,
     direccion: "",
   });
@@ -55,18 +55,26 @@ export default function Cart({ carrito, setCarrito, setUpdate, update }) {
     // }
     return errorObj;
   }
-
+  const totalPoints = carrito?.reduce(
+    (acc, item) => acc + parseInt(item.points),
+    0
+  );
   function handleSubmit(e) {
     e.preventDefault();
+    const totalPoints = carrito?.reduce(
+      (acc, item) => acc + parseInt(item.points),
+      0
+    );
     const objAux = {
       ...compra,
-      items: myItems
+      items: myItems,
+      totalPoints: totalPoints,
     };
     if (errors.name || errors.contact || errors.direccion) {
       console.log("pone bien los datosssssss");
     } else {
       console.log("todo bien", objAux);
-      dispatch(buyItems(objAux))
+      dispatch(buyItems(objAux));
       Swal.fire({
         title: "Pedido enviado con éxito",
         icon: "success",
@@ -88,10 +96,7 @@ export default function Cart({ carrito, setCarrito, setUpdate, update }) {
   function toggleModal() {
     setShowModal(!showModal);
   }
-  const totalPoints = carrito?.reduce(
-    (acc, item) => acc + parseInt(item.points),
-    0
-  );
+
   return (
     <div>
       <button

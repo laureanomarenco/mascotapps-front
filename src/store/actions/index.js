@@ -497,6 +497,7 @@ export function sendNotification(name){
 }
 
 export function buyItems(objAux) {
+  console.log('estoy en la action, ', objAux)
 	return async function (dispatch) {
 		try {
 			var msg = await axios.post(BUY, objAux);
