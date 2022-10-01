@@ -5,6 +5,7 @@ import {
   getAllUsers,
   adminFetchUsers,
   totalVisitors,
+  // pointsMultiplier
 } from "../../store/actions/index";
 import SideMenu from "./NavBar";
 // import Stack from '@mui/material/Stack';
@@ -47,7 +48,7 @@ const AdminPage = () => {
     dispatch(getAllUsers());
     dispatch(adminFetchUsers());
     dispatch(totalVisitors());
-  }, [dispatch, visitors, users]);
+  }, [dispatch, visitors, users, usersDetails.length]);
   return (
     <>
       <div className="top-0 sticky z-10">

@@ -33,8 +33,8 @@ const Users = ({ users }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(deleteUser({ id: id, email: email, password: ultraSecreta }));
-        dispatch(deleteUserPosts({ password: ultraSecreta }));
-        dispatch(deletePetsWithNoUserId());
+        dispatch(deleteUserPosts({ password: ultraSecreta, userId: id }));
+        dispatch(deletePetsWithNoUserId({ password: ultraSecreta }));
         Swal.fire({
           title: "Usuario eliminado correctamente!",
           icon: "success",
@@ -46,7 +46,7 @@ const Users = ({ users }) => {
 
   useEffect(() => {
     dispatch(adminFetchUsers());
-  }, [users]);
+  }, [users.length]);
   return (
     <div className="bg-transparent p-8 rounded-md w-full">
       <div>
