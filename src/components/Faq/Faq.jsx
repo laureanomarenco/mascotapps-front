@@ -75,7 +75,13 @@ const Faq = () => {
           tu camino. Ya sea buscando animales o publicándolos. Además a medida
           que interactuas con otros usuarios en la aplicación podés calificarlos
           para contribuir con el control del reporte en los abusos que puedan
-          hacerse de la página. ¡Ah! ¡También podes guardar tus animales
+          hacerse de la página. Si sos usuario registrado podrás sumar puntos
+          al concretar alguna conversación por una mascota con alguna mascota 
+          en particular, ya sea que la hayas adoptado, dado en adopción, encontrado
+          o recuperado. También sumas puntos si haces un aporte económico a través 
+          de nuestro sistema de donaciones. Luego podes canjear tus puntos en 
+          nuestra tienda.
+          ¡Ah! ¡También podes guardar tus animales
           favoritos para verlos todos juntos!
         </p>
       </details>
@@ -103,9 +109,11 @@ const Faq = () => {
         </summary>
 
         <p className="mt-4 leading-relaxed text-gray-700">
-          La página es completamente gratuita, para utilizar la totalidad de
+          La página es completamente gratuita. ¡Para utilizar la totalidad de
           nuestros servicios no tenés más que registrarte! De todos modos si
-          querés colaborar nos ayuda muchísimo la difusión de la página. Además
+          querés colaborar nos ayuda muchísimo y a las personas que quieren
+          encontrar o reencontrase con su mascotas la difusión de la página y las
+          publicaciones que en ella se comparten. Por otro lado,
           tenemos habilitado el apartado de donaciones por si querés darnos una
           mano para ayudar a la comunidad.
         </p>

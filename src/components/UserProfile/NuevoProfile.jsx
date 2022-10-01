@@ -295,7 +295,7 @@ const NuevoProfile = () => {
                 <h1 className="text-gray-600 font-bold text-xl leading-8 my-1 text-center">
                   {myProfileData["userProps"]?.name}
                 </h1>
-
+                <p className="text-gray-600 text-l leading-8 text-center">{myProfileData["userProps"]?.points} puntos</p>
                 <ul className=" mt-3 divide-y ">
                   <li className="grid items-center text-center py-3 gap-1">
                     <Link
