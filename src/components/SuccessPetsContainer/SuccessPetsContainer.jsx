@@ -2,10 +2,11 @@ import React, { useEffect, useState } from "react";
 import { getSuccess } from "../../store/actions";
 import { useDispatch, useSelector } from "react-redux";
 import "./SuccessPetsContainer.css";
-import { Link } from "react-router-dom";
+//import { Link } from "react-router-dom";
 import Spinner from "../Spinner/Spinner.jsx";
 import Footer from "../Footer/Footer.jsx";
-import Carrousel from "./Carrousel/Carrousel";
+//import Carrousel from "./Carrousel/Carrousel";
+import Navbar from "../Navbar/Navbar";
 
 export default function SuccessPetsContainer() {
 	const [firstActive, setFirstActive] = useState("en adopción");
@@ -20,12 +21,16 @@ export default function SuccessPetsContainer() {
 	}, []);
 	return (
 		<>
-			<Link
+		<Navbar></Navbar>
+			{/* <Link
 				to="/home"
 				className="absolute  top-[20px] left-[20px] md:top-[60px] md:left-[100px] bg-[#FFD803] text-[#2D334A] font-bold h-fit p-3.5 text-center ml-auto w-full md:w-max rounded"
 			>
 				Volver
-			</Link>
+			</Link> */}			
+			<h3 className="text-center text-2xl pt-2 font-semibold">
+				¡Estas mascotas están felices en sus hogares!
+			</h3>
 			<section className="flex flex-col h-[100vh] md:h-[80vh] my-3 items-center justify-center">
 				<div className="flex justify-center">
 					<img
@@ -96,7 +101,7 @@ export default function SuccessPetsContainer() {
 					</div>
 				</div>
 			</section>
-			<Carrousel />
+			{/* <Carrousel /> */}
 			<Footer />
 		</>
 	);
