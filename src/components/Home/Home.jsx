@@ -6,6 +6,8 @@ import Navbar from "../Navbar/Navbar";
 import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
 import { BsCircle, BsCircleFill } from "react-icons/bs";
+import SuccessBanner from "../SuccessPetsContainer/SuccessBanner";
+import FlowChart from "../FlowChart/FlowChart";
 
 export default function Home() {
   const dispatch = useDispatch();
@@ -133,6 +135,8 @@ export default function Home() {
           </div>
         </section>
       </div>
+      <FlowChart />
+      <SuccessBanner />
       <CardContainer />
       <Donations />
       <Footer />
