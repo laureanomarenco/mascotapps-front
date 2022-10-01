@@ -22,7 +22,7 @@ import {
   TOTAL_VISITORS,
 
   GET_SUCCESS,
-  CLEAR_SUCCESS
+  CLEAR_SUCCESS,
 
   USER_POINTS,
   //eslint-disable-next-line

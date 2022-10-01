@@ -494,19 +494,6 @@ export function finishPost(input) {
 }
 
 
-export function cancelPost(input) {
-	return async function () {
-		try {
-			await axios.post(URL + 'transactions/cancelpost', input)
-		} catch (error) {
-			console.log(error.message);
-		}
-	}
-}
-
-export function finishPost(input) {
-	return async function () {
-
 export function sendNotification(name) {
   console.log("estoy entrando en la action");
   return async function(dispatch) {
@@ -566,6 +553,7 @@ export function userPoints(id) {
       });
 		}
 	};
+}
 
 
 
@@ -593,6 +581,3 @@ export function clearSuccess() {
 		})
 	}
 }
-
-}
-
