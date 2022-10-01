@@ -26,6 +26,7 @@ import {
   BUY,
   FETCH_SUCCESS,
   POINTS,
+  ADMIN_CONSULT,
 
 
 } from "../../url/url";
@@ -461,7 +462,7 @@ export function visitorsCounter() {
 export function sendConsultation(data) {
   return async function(dispatch) {
     try {
-      // código para enviar la consulta
+      await axios.post(ADMIN_CONSULT, data)
       console.log(data);
       dispatch({
         type: SEND_QUERY,
