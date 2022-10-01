@@ -1,18 +1,17 @@
 export const URL = "https://juka-production.up.railway.app/";
 export const URL_CIUDAD_API =
   "https://apis.datos.gob.ar/georef/api/municipios?max=2500";
-
+export const URL_EXIST = URL + "users/exists";
 export const TOTAL_USERS = URL + "users/numberOfUsersInDB";
 export const ALLPETS = URL + "pets";
 export const PET_DETAIL = URL + "pets/";
 export const SEARCH_BY = URL + "pets/search?input=";
 export const DONATION = URL + "checkout/balance";
-export const CREAT = "https://juka-production.up.railway.app/users/newuser";
-export const GET_MY_PETS =
-  "https://juka-production.up.railway.app/users/getallpetsofuser";
+export const CREAT = URL + "users/newuser";
+export const GET_MY_PETS = URL + "users/getallpetsofuser";
 export const PET_SPECIES = URL + "pets/especies";
 // export const URL_POST_PET=URL_ROUTES + "users/postnewpet"
-export const POST = "https://juka-production.up.railway.app/pets/postnewpet";
+export const POST = URL + "pets/postnewpet";
 export const DELETE = URL + "users/deletepet";
 export const LOGIN = URL + "auth/google";
 export const LOGIN_LOGGED = URL + "auth/logged_in";
@@ -30,11 +29,9 @@ export const NUMBER_OF_VISITORS = URL + "visitor/numberVisitors";
 export const VISITORS_COUNTER = URL + "visitor/addVisitor";
 
 export const FETCH_SUCCESS = URL + "pets/success";
-export const ADMIN_CONSULT = URL + "visitor/mailAdmin"
-export const WEB_PUSH = URL + "pets/subscribe"
-export const NOTIFY_POST = URL + "pets/notify"
-export const DESUBSCRIBE = URL + "pets/desubscribe"
+export const ADMIN_CONSULT = URL + "visitor/mailAdmin";
+export const WEB_PUSH = URL + "pets/subscribe";
+export const NOTIFY_POST = URL + "pets/notify";
+export const DESUBSCRIBE = URL + "pets/desubscribe";
 export const BUY = URL + "users/buyProducts";
 export const POINTS = URL + "users/points";
-
-

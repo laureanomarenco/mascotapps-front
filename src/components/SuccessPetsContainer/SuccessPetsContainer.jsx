@@ -17,19 +17,16 @@ export default function SuccessPetsContainer() {
 	const successPets = useSelector(state => state.successArr);
 	useEffect(() => {
 		!successPets.length && dispatch(getSuccess());
-		// return () => {
-		// 	dispatch(clearSuccess());
-		// };
 	}, []);
 	return (
 		<>
 			<Link
 				to="/home"
-				className="absolute w-fit top-[20px] left-[20px] md:top-[60px] md:left-[100px] bg-[#FFD803] text-[#2D334A] font-bold h-fit p-3.5 text-center ml-auto w-full md:w-max rounded"
+				className="absolute  top-[20px] left-[20px] md:top-[60px] md:left-[100px] bg-[#FFD803] text-[#2D334A] font-bold h-fit p-3.5 text-center ml-auto w-full md:w-max rounded"
 			>
 				Volver
 			</Link>
-			<section className="flex flex-col h-[100vh] md:h-[80vh] items-center justify-center">
+			<section className="flex flex-col h-[100vh] md:h-[80vh] my-3 items-center justify-center">
 				<div className="flex justify-center">
 					<img
 						className="w-auto hidden md:block h-[300px] self-center z-50"

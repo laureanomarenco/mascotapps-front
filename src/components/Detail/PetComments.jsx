@@ -5,8 +5,7 @@ import { getPetComments } from "../../store/actions/index";
 const PetComments = (petId) => {
   const dispatch = useDispatch();
   const petComments = useSelector((state) => state.petComments);
-  console.log("EL PET ID", petId);
-  console.log("EL PET COMMENT", petComments);
+
   useEffect(() => {
     !petComments.length && dispatch(getPetComments(petId));
   }, [dispatch, petComments]);
@@ -28,7 +27,7 @@ const PetComments = (petId) => {
                 Fecha: {pet.createdAt.split("T")[0]}
               </p>
             </div>
-            {/* 
+            {/*
         <div className="flex-shrink-0 hidden ml-3 sm:block">
           <img
             alt="Paul Clapton"

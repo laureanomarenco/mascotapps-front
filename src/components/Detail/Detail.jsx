@@ -14,6 +14,9 @@ import Spinner from "../Spinner/Spinner";
 import { useAuth0 } from "@auth0/auth0-react";
 import UserContact from "./UserContact";
 import PetComments from "./PetComments";
+import { TbVaccine } from "react-icons/tb";
+import { BiMap } from "react-icons/bi";
+import { BsExclamationSquare } from "react-icons/bs";
 
 import { useDispatch, useSelector } from "react-redux";
 import EndPost from "./EndPost";
@@ -56,8 +59,8 @@ export default function Detail() {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="my-4 flex flex-col">
-          <div className="flex content-center self-start">
+        <div className="my-4 flex flex-col px-8 lg:w-10/12">
+          <div className="flex content-center self-start px-8">
             <Link
               to="/home"
               type="button"
@@ -69,9 +72,10 @@ export default function Detail() {
             </Link>
           </div>
           {pet ? (
-            <div className="my-7 grid sm:grid-cols-2 sm:gap-6 sm:justify-center mx-auto sm:content-center font-sans">
-              <div className="w-full  mx-auto">
-                <div className="md:h-96 md:w-96 rounded-lg overflow-hidden mx-auto drop-shadow-md">
+            <div className="my-7 grid sm:grid-cols-2 sm:gap-6 sm:justify-center mx-auto sm:content-center font-sans ">
+              {/* imagenes */}
+              <div className="w-[320px]  lg:w-[500px] mx-auto ">
+                <div className="h-[280px] md:h-96 md:w-96 rounded-lg overflow-hidden mx-auto drop-shadow-md">
                   <img
                     src={
                       image
@@ -82,7 +86,7 @@ export default function Detail() {
                     alt={pet.name}
                   />
                 </div>
-                <div className=" grid w-full  grid-cols-3 gap-1 md:w-96 h-32 mx-auto my-3">
+                <div className=" grid w-full grid-cols-3 gap-2 md:w-96 h-32 mx-auto my-3">
                   <div className="brightness-125 rounded-lg overflow-auto drop-shadow-xl">
                     <img
                       src={
@@ -118,57 +122,66 @@ export default function Detail() {
                   </div>
                 </div>
               </div>
-              <div className="text-justify flex flex-col  w-full h-full gap-5 px-10 py-3 ">
-                <h1 className="text-5xl  text-teal-600 uppercase flex gap-3 items-center">
+              {/* datos */}
+              <div className="text-justify flex flex-col  w-full h-full gap-2 px-10 py-3 mt-3 ">
+                <h1 className="text-5xl mb-5 text-teal-600 capitalize font-bold flex gap-3 items-center">
                   <FaPaw />
                   {pet.name}
                 </h1>
                 <div className="relative">
-                  <div className="absolute flex items-center text-teal-600 right-1 top-1">
+                  <div className="absolute flex items-center text-md text-teal-600 right-1 top-1">
                     <Fav pet={pet} />{" "}
                   </div>
-                  <p className="text-xl flex font-bold items-center gap-2 text-teal-800 ">
-                    {" "}
-                    Estado
-                  </p>
-                  <p className="capitalize text-teal-900">{pet.status}</p>
+                  <div className="flex gap-3">
+                    <p className="text-xl font-bold items-center  text-teal-700 ">
+                      <BsExclamationSquare />
+                    </p>
+                    <p className="capitalize text-gray-600">{pet.status}</p>
+                  </div>
                 </div>
 
                 <div>
-                  <p className="text-xl font-bold text-teal-800">Resumen</p>
-                  <p className=" text-teal-900 break-words">{pet.comments}</p>
+                  <p className="text-xl font-bold text-teal-700">Resumen</p>
+                  <p className=" text-gray-600 break-words">{pet.comments}</p>
                 </div>
                 {/* linea */}
                 <div className="h-px bg-teal-800 "></div>
 
                 <div className="grid grid-cols-3 gap-8">
                   <div>
-                    <p className="text-xl font-bold text-teal-800">Sexo</p>
-                    <p className="capitalize text-teal-900">{pet.gender}</p>
+                    <p className="text-xl font-bold text-teal-700">Sexo</p>
+                    <p className="capitalize text-gray-600">{pet.gender}</p>
                   </div>
                   <div>
-                    <p className="text-xl font-bold  text-teal-800">Especie</p>
-                    <p className="capitalize text-teal-900">{pet.specie}</p>
+                    <p className="text-xl font-bold  text-teal-700">Especie</p>
+                    <p className="capitalize text-gray-600">{pet.specie}</p>
                   </div>
                   <div>
-                    <p className="text-xl font-bold text-teal-800">Raza</p>
-                    <p className="capitalize text-teal-900">{pet.race}</p>
+                    <p className="text-xl font-bold text-teal-700">Raza</p>
+                    <p className="capitalize text-gray-600">{pet.race}</p>
                   </div>
                 </div>
                 {/* linea */}
                 <div className="h-px bg-teal-800"></div>
-                <div>
-                  <p className="text-xl font-bold text-teal-800">Vacunación</p>
-                  <p className="capitalize  text-teal-900">
+                <div className="flex gap-3">
+                  <p className="text-xl font-bold text-teal-700">
+                    <TbVaccine />
+                  </p>
+                  <p className="capitalize  text-gray-600">
                     {pet.vaccinationSchemeStatus}
                   </p>
                 </div>
+                <div className="flex gap-3">
+                  <p className="text-xl font-bold text-teal-700">
+                    <BiMap />
+                  </p>
+                  <p className="capitalize  text-gray-600">
+                    {pet.city ? pet.city : "No especificado"}
+                  </p>
+                </div>
 
-                {(!isLoading && isAuthenticated) && !userContact.error ? (
+                {!isLoading && isAuthenticated && !userContact.error ? (
                   <>
-                    <p className="capitalize text-xl font-bold text-teal-600">
-                      Contacto
-                    </p>
                     <div>
                       <button
                         onClick={handleClick}
@@ -183,7 +196,7 @@ export default function Detail() {
                         </span>
                       </button>
                       <div>
-                        <div hidden={hidden} className="w-full">
+                        <div hidden={hidden} className="w-fit">
                           <UserContact
                             user={userContact}
                             hidden={hidden}
