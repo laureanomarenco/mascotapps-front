@@ -1,7 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Card = ({ data: { name, id, image, gender, age, specie, race } }) => {
+
+const Card = ({ data: { name, id, image, status, age, specie, race } }) => {
 	return (
 		<Link
 			to={"/pets/" + id}
@@ -21,7 +22,7 @@ const Card = ({ data: { name, id, image, gender, age, specie, race } }) => {
 				className="bg-white h-[213px] w-full object-cover"
 			/>
 			<span className="absolute top-14 right-2 bg-[#FFC700] p-1 rounded-lg text-[#121212] font-medium capitalize">
-				{gender}
+				{status}
 			</span>
 			<ul className="flex p-2 justify-evenly items-start divide-x divide-[#fff]">
 				<li className="w-full block text-center capitalize">

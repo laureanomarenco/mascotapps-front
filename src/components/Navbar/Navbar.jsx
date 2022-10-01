@@ -8,9 +8,8 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { LoginButton } from "../Login/LoginButton";
 import Push from "../Push/Push";
 
-
 export default function Navbar({ setPage }) {
-  const { isAuthenticated, user } = useAuth0();
+  const { isAuthenticated, user, isLoading } = useAuth0();
   const [searchInput, setSearchInput] = useState(true);
   const [mdOptionsToggle, setMdOptionsToggle] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
@@ -34,10 +33,10 @@ export default function Navbar({ setPage }) {
   };
 
   useEffect(() => {
-    if (isAuthenticated) {
+    if (!isLoading && isAuthenticated) {
       dispatch(myProfile({ id: user?.sub }));
     }
-  }, []);
+  }, [isLoading, isAuthenticated, user, dispatch]);
   return (
     <div className=" z-50 w-full">
       <div>
@@ -58,7 +57,7 @@ export default function Navbar({ setPage }) {
             />
 
             <div className="space-x-6 flex items-center">
-              {isAuthenticated ? (
+              {!isLoading && isAuthenticated ? (
                 <>
                   <Link
                     to="/account"
@@ -113,12 +112,12 @@ export default function Navbar({ setPage }) {
           <div className=" bg-[#F4F6F6] px-6 py-4 sticky top-0 ">
             <div className="container mx-auto flex items-center justify-between">
               <h1 className="md:w-2/12 cursor-pointer text-gray-800 ">
-                <a href="/home" className="flex">
+                <Link to="/home" className="flex">
                   <img
                     src="https://res.cloudinary.com/dfbxjt69z/image/upload/v1663276317/mascotapps/perrito_apwyz0.png"
                     className="inline-block w-20 h-20 rounded-lg"
                   ></img>
-                </a>
+                </Link>
               </h1>
               <ul className="hidden w-8/12 md:flex items-center justify-center space-x-8">
                 <li className=" border-b-4 border-transparent ease-in-out duration-300 hover:text-[#28B0A2] hover:border-current hover:cursor-pointer">
@@ -170,6 +169,7 @@ export default function Navbar({ setPage }) {
                     searchInput ? "hidden" : ""
                   } text-sm   text-gray-600 rounded ml-1 border border-transparent focus:outline-none focus:border-gray-400 px-1`}
                 />
+
                 <div className="hidden lg:flex items-center space-x-4 xl:space-x-8">
                   <Icons
                     ariaLabel="view favourites"
@@ -177,7 +177,7 @@ export default function Navbar({ setPage }) {
                     linkStyle="text-gray-800 hover:text-[#28B0A2]"
                     icon="favoritos"
                   />
-                  {isAuthenticated ? (
+                  {!isLoading && isAuthenticated ? (
                     <>
                       <Icons
                         ariaLabel="mi cuenta"
@@ -359,7 +359,7 @@ export default function Navbar({ setPage }) {
             </div>
             <div className="h-full flex items-end">
               <ul className="flex flex-col space-y-8 bg-gray-50 w-full py-10 p-4 ">
-                {isAuthenticated ? (
+                {!isLoading && isAuthenticated ? (
                   <>
                     <Link
                       to="/account"

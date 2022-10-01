@@ -5,7 +5,7 @@ import {
   resetDetail,
   publicUserDetail,
 } from "../../store/actions/index";
-import Fav from "../Fav";
+import Fav from "../FavContainer/Fav";
 import { BiArrowBack } from "react-icons/bi";
 import { MdContactMail } from "react-icons/md";
 import { FaPaw } from "react-icons/fa";
@@ -13,10 +13,11 @@ import Footer from "../Footer/Footer";
 import Spinner from "../Spinner/Spinner";
 import { useAuth0 } from "@auth0/auth0-react";
 import UserContact from "./UserContact";
+import PetComments from "./PetComments";
 
 import { useDispatch, useSelector } from "react-redux";
 import EndPost from "./EndPost";
-import Chat from "./Chat/Chat"
+import Chat from "./Chat/Chat";
 
 export default function Detail() {
   const { id } = useParams();
@@ -26,7 +27,7 @@ export default function Detail() {
   const userContact = useSelector((state) => state.publicUserDetail);
   const myProfileData = useSelector((state) => state.myProfile);
   console.log(myProfileData);
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
   const [hidden, setHidden] = useState(true);
   const [hiddenEnd, setHiddenEnd] = useState(true);
 
@@ -36,7 +37,7 @@ export default function Detail() {
     return () => {
       dispatch(resetDetail());
     };
-  }, [id]);
+  }, [id, isAuthenticated]);
   const { image } = pet;
 
   const handleClick = () => {
@@ -163,7 +164,7 @@ export default function Detail() {
                   </p>
                 </div>
 
-                {isAuthenticated && !userContact.error ? (
+                {(!isLoading && isAuthenticated) && !userContact.error ? (
                   <>
                     <p className="capitalize text-xl font-bold text-teal-600">
                       Contacto
@@ -191,14 +192,20 @@ export default function Detail() {
                           />
                         </div>
                         {pet.status === "perdido" && (
-                          <div className=" items-center sm:flex sm:gap-12 ">
-                            <p>
-                              ¿Has visto esta mascota?
-                              <br />
-                              Envíale información al vendedor a través del Chat
-                            </p>
-                            <Chat />
-                          </div>
+                          <>
+                            <div className=" items-center grid grid-cols-2  sm:grid">
+                              <p className="mr-4 sm:mr-0">
+                                ¿Has visto esta mascota?
+                                <br />
+                                Envíale información al vendedor a través de
+                                nuestro Chat
+                              </p>
+                              <Chat />
+                            </div>
+                            <div>
+                              <PetComments petId={pet.id} />
+                            </div>
+                          </>
                         )}
                       </div>
                     </div>
