@@ -11,7 +11,7 @@ export default function SuccessBanner() {
         </p>
         <p>Conocé y mirá todos los casos.</p>
         <Link
-          to="/donate"
+          to="/success"
           className="px-6 py-2 text-black bg-white hover:bg-white/70 w-fit font-bold rounded-md my-5"
         >
           Ver casos
