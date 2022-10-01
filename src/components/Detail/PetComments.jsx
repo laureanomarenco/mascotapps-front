@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPetComments } from "../../store/actions/index";
 
-const PetComments = ({ petId }) => {
+const PetComments = ( petId ) => {
   const dispatch = useDispatch();
   const petComments = useSelector((state) => state.petComments);
 
@@ -15,7 +15,7 @@ const PetComments = ({ petId }) => {
       {petComments.map((pet) => (
         <div
           key={pet.id}
-          className="relative p-8 overflow-hidden border border-gray-100 rounded-lg bg-white md:w-[250px]"
+          className="relative p-8 m-1 overflow-hidden border border-gray-100 rounded-lg md:w-[250px]"
         >
           <span className="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-transparent via-yellow-200 to-yellow-400"></span>
 

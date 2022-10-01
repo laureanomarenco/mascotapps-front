@@ -224,9 +224,7 @@ export default function Detail() {
                       </div>
                     </div>
                   </>
-                ) : (
-                  null
-                )}
+                ) : null}
                 {/* finalizar publicacion */}
                 {user?.sub === pet.UserId && (
                   <div>
@@ -250,13 +248,13 @@ export default function Detail() {
               {/* chat etc */}
               <div className="text-justify flex flex-col sm:col-span-2 w-full h-full gap-2 px-8 py-3 mt-3">
                 {pet.status === "perdido" && (
-                  <div className="text-justify flex flex-col ">
+                  <div className="text-justify flex flex-col  bg-white">
                     <div className="my-8 bg-white p-3 border-t-4 border-[#FFC700] relative">
                       <p className="text-xl font-bold text-gray-700 ">
                         Comentarios sobre {pet.name}
                       </p>
                     </div>
-                    <div className="w-full grid md:grid-cols-2 lg:grid-cols-3">
+                    <div className="w-full grid md:grid-cols-2 lg:grid-cols-3 ">
                       <PetComments petId={pet.id} />
                     </div>
                   </div>
