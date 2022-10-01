@@ -28,7 +28,6 @@ const theme = {
 
 class SimpleForm extends Component {
   render() {
-    console.log(this.props.pet);
     return (
       <ThemeProvider theme={theme}>
         <ChatBot

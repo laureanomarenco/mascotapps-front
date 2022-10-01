@@ -59,7 +59,7 @@ export default function Detail() {
       {loading ? (
         <Spinner />
       ) : (
-        <div className="my-4 flex flex-col px-8 lg:w-10/12">
+        <div className="my-4 flex flex-col px-3 w-full lg:w-10/12">
           <div className="flex content-center self-start px-8">
             <Link
               to="/home"
@@ -180,9 +180,12 @@ export default function Detail() {
                   </p>
                 </div>
 
-                {!isLoading && isAuthenticated && !userContact.error ? (
+                {!isLoading &&
+                isAuthenticated &&
+                !userContact.error &&
+                user?.sub !== pet.UserId ? (
                   <>
-                    <div>
+                    <div className="my-3">
                       <button
                         onClick={handleClick}
                         className="text-black bg-[#ffd803] hover:bg-[#ffd803]/80 focus:ring-2 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2 gap-6 "
@@ -204,30 +207,27 @@ export default function Detail() {
                             idPet={id}
                           />
                         </div>
-                        {pet.status === "perdido" && (
-                          <>
-                            <div className=" items-center grid grid-cols-2  sm:grid">
-                              <p className="mr-4 sm:mr-0">
-                                ¿Has visto esta mascota?
-                                <br />
-                                Envíale información al vendedor a través de
-                                nuestro Chat
-                              </p>
-                              <Chat />
-                            </div>
-                            <div>
-                              <PetComments petId={pet.id} />
-                            </div>
-                          </>
-                        )}
+                      </div>
+                      <div className=" flex gap-5 mt-4 w-full max-w-[500px] justify-between">
+                        <div>
+                          <p className="mr-8 sm:mr-0 text-sm text-gray-500 w-3/4">
+                            ¿Has visto esta mascota?
+                          </p>
+                          <p className="mr-8 sm:mr-0 text-sm text-gray-500 w-3/4">
+                            Envíale información al vendedor a través de nuestro
+                            Chat
+                          </p>
+                        </div>
+                        <div className="">
+                          <Chat />
+                        </div>
                       </div>
                     </div>
                   </>
                 ) : (
-                  <h1 className="text-teal-700 ">
-                    Registrate para ver datos de contacto
-                  </h1>
+                  null
                 )}
+                {/* finalizar publicacion */}
                 {user?.sub === pet.UserId && (
                   <div>
                     <button
@@ -243,6 +243,21 @@ export default function Detail() {
                         setHiddenEnd={setHiddenEnd}
                         idPet={id}
                       />
+                    </div>
+                  </div>
+                )}
+              </div>
+              {/* chat etc */}
+              <div className="text-justify flex flex-col sm:col-span-2 w-full h-full gap-2 px-8 py-3 mt-3">
+                {pet.status === "perdido" && (
+                  <div className="text-justify flex flex-col ">
+                    <div className="my-8 bg-white p-3 border-t-4 border-[#FFC700] relative">
+                      <p className="text-xl font-bold text-gray-700 ">
+                        Comentarios sobre {pet.name}
+                      </p>
+                    </div>
+                    <div className="w-full grid md:grid-cols-2 lg:grid-cols-3">
+                      <PetComments petId={pet.id} />
                     </div>
                   </div>
                 )}
