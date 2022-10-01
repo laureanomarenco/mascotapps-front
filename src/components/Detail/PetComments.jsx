@@ -2,11 +2,10 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPetComments } from "../../store/actions/index";
 
-const PetComments = (petId) => {
+const PetComments = ( petId ) => {
   const dispatch = useDispatch();
   const petComments = useSelector((state) => state.petComments);
-  console.log("EL PET ID", petId);
-  console.log("EL PET COMMENT", petComments);
+
   useEffect(() => {
     !petComments.length && dispatch(getPetComments(petId));
   }, [dispatch, petComments]);
@@ -16,7 +15,7 @@ const PetComments = (petId) => {
       {petComments.map((pet) => (
         <div
           key={pet.id}
-          className="relative block p-8 overflow-hidden border border-gray-100 rounded-lg"
+          className="relative p-8 m-1 overflow-hidden border border-gray-100 rounded-lg md:w-[250px]"
         >
           <span className="absolute inset-x-0 bottom-0 h-2 bg-gradient-to-r from-transparent via-yellow-200 to-yellow-400"></span>
 
@@ -28,7 +27,7 @@ const PetComments = (petId) => {
                 Fecha: {pet.createdAt.split("T")[0]}
               </p>
             </div>
-            {/* 
+            {/*
         <div className="flex-shrink-0 hidden ml-3 sm:block">
           <img
             alt="Paul Clapton"
@@ -41,32 +40,32 @@ const PetComments = (petId) => {
           <dl className="flex mt-2">
             <div className="flex flex-col-reverse">
               <dd className="text-xs text-gray-500">{pet.fecha}</dd>
-              <dt className="text-sm font-medium text-gray-800">Avistada</dt>
+              <dt className="text-sm text-gray-700 font-semibold">Avistada</dt>
             </div>
 
             <div className="flex flex-col-reverse ml-3 sm:ml-6">
               <dd className="text-xs text-gray-500">{pet.hora}</dd>
-              <dt className="text-sm font-medium text-gray-800">Horario</dt>
+              <dt className="text-sm text-gray-700 font-semibold">Horario</dt>
             </div>
           </dl>
           <dl className="flex mt-2">
             <div className="flex flex-col-reverse">
               <dd className="text-xs text-gray-500">{pet.localidad}</dd>
-              <dt className="text-sm font-medium text-gray-800">Localidad</dt>
+              <dt className="text-sm text-gray-700 font-semibold">Localidad</dt>
             </div>
 
             <div className="flex flex-col-reverse ml-3 sm:ml-6">
               <dd className="text-xs text-gray-500">{pet.provincia}</dd>
-              <dt className="text-sm font-medium text-gray-800">Provincia</dt>
+              <dt className="text-sm text-gray-700 font-semibold">Provincia</dt>
             </div>
           </dl>
 
           <div className="mt-4 sm:pr-8">
-            <dt className="text-sm font-medium text-gray-800">Condición</dt>
+            <dt className="text-sm text-gray-700 font-semibold">Condición</dt>
             <dd className="text-xs text-gray-500">{pet.condicion}</dd>
           </div>
           <div className="mt-4 sm:pr-8">
-            <dt className="text-sm font-medium text-gray-800">Comentarios</dt>
+            <dt className="text-sm text-gray-700 font-semibold">Comentarios</dt>
             <dd className="text-xs text-gray-500">{pet.comentarios}</dd>
           </div>
         </div>

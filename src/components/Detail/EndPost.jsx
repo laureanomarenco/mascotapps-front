@@ -23,7 +23,6 @@ const EndPost = ({ hiddenEnd, setHiddenEnd, idPet }) => {
     id_demanding: "",
     petId: idPet,
   });
-  console.log(input)
   function onChange(e) {
     e.preventDefault();
     setInput({

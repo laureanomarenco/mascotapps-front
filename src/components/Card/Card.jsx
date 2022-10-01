@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+
 const Card = ({ data: { name, id, image, status, age, specie, race } }) => {
 	return (
 		<Link

@@ -28,7 +28,6 @@ const theme = {
 
 class SimpleForm extends Component {
   render() {
-    console.log(this.props.pet);
     return (
       <ThemeProvider theme={theme}>
         <ChatBot
@@ -89,7 +88,7 @@ class SimpleForm extends Component {
             {
               id: "where",
               message: `¿Has visto a ${this.props.pet.name} en ${
-                this.props.pet.city.split(",")[1]
+                this.props.pet?.city?.split(",")[1]
               }?`,
               trigger: "confirm_where",
             },
@@ -98,10 +97,10 @@ class SimpleForm extends Component {
               options: [
                 { value: "no", label: "No", trigger: "preg-province" },
                 {
-                  value: this.props.pet.city.split(",")[1],
+                  value: this.props.pet?.city?.split(",")[1],
                   label: "Si",
                   trigger: "preg-province-next",
-                  metadata: { provincia: this.props.pet.city.split(",")[1] },
+                  metadata: { provincia: this.props.pet?.city?.split(",")[1] },
                 },
               ],
             },
@@ -126,7 +125,7 @@ class SimpleForm extends Component {
             {
               id: "preg-province-next",
               message: `¿Has visto a ${this.props.pet.name} en ${
-                this.props.pet.city.split(",")[0]
+                this.props.pet?.city?.split(",")[0]
               }?`,
               trigger: "where2",
             },
@@ -135,10 +134,10 @@ class SimpleForm extends Component {
               options: [
                 { value: "no", label: "No", trigger: "preg-city" },
                 {
-                  value: `${this.props.pet.city.split(",")[0]}`,
+                  value: `${this.props.pet?.city?.split(",")[0]}`,
                   label: "Si",
                   metadata: {
-                    localidad: `${this.props.pet.city.split(",")[0]}`,
+                    localidad: `${this.props.pet?.city?.split(",")[0]}`,
                   },
                   trigger: "preg-city-next",
                 },

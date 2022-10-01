@@ -20,10 +20,15 @@ import {
   ADMIN_FETCH_USERS,
   SORT_BY,
   TOTAL_VISITORS,
+
+  GET_SUCCESS,
+  CLEAR_SUCCESS,
+
   USER_POINTS,
   //eslint-disable-next-line
   NOTIFY,
   GET_PET_COMMENTS,
+
 } from "../actions";
 
 const initalState = {
@@ -31,6 +36,7 @@ const initalState = {
   pet: {},
   allPets: [],
   actualSort: "ASC",
+  successArr: [],
   statusPets: [],
   filterPets: [],
   searchedPets: [],
@@ -101,8 +107,8 @@ export default function reducer(state = initalState, action) {
 
       action.payload.specie !== ""
         ? (especie = state.statusPets.filter(
-            (i) => i.specie === action.payload.specie
-          ))
+          (i) => i.specie === action.payload.specie
+        ))
         : (especie = state.statusPets);
 
       action.payload.gender !== ""
@@ -213,6 +219,18 @@ export default function reducer(state = initalState, action) {
         visitors: action.payload,
       };
 
+
+    case GET_SUCCESS:
+      return {
+        ...state,
+        successArr: action.payload
+      }
+    case CLEAR_SUCCESS:
+      return {
+        ...state,
+        successArr: action.payload
+      }
+
     case NOTIFY:
       return {
         ...state,
@@ -228,6 +246,7 @@ export default function reducer(state = initalState, action) {
         userPoints: action.payload,
 
       };
+
     default:
       return state;
   }

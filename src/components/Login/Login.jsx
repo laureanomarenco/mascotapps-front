@@ -8,21 +8,28 @@ import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoginButton } from "./LoginButton";
 import Spinner from "../Spinner/Spinner";
+import { URL_EXIST } from "../../url/url";
 
 export default function Login() {
   //eslint-disable-next-line
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { user, isAuthenticated, getIdTokenClaims, isLoading } = useAuth0();
 
   const navigate = useNavigate();
   const handleValidation = async (user, isAuthenticated) => {
     try {
+      const claims = await getIdTokenClaims();
+      console.log(
+        "🚀 ~ file: Login.jsx ~ line 20 ~ handleValidation ~ claims",
+        claims.__raw
+      );
       if (isAuthenticated && user) {
         let existe = await axios.post(
-          "https://juka-production.up.railway.app/users/exists ",
+          URL_EXIST,
           {
             id: user?.sub,
           }
         );
+        console.log("🚀 ~ file: Login.jsx ~ line 32 ~ handleValidation ~ existe", existe)
         if (existe.data.msg) {
           navigate("/home");
         } else {
@@ -34,7 +41,7 @@ export default function Login() {
     }
   };
 
-  if (isAuthenticated) {
+  if (!isLoading && isAuthenticated) {
     handleValidation(user, isAuthenticated);
   }
 

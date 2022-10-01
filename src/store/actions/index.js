@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import {
+
   URL,
   ALLPETS,
   PET_DETAIL,
@@ -23,7 +24,15 @@ import {
   VISITORS_COUNTER,
   NOTIFY_POST,
   BUY,
+<<<<<<< HEAD
   POINTS,
+=======
+  FETCH_SUCCESS,
+  POINTS,
+  ADMIN_CONSULT,
+
+
+>>>>>>> 4f414e2f3781310d431175dcc2e8ada74c010e60
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 export const NOTIFY = "NOTIFY";
@@ -55,10 +64,15 @@ export const TOTAL_VISITORS = "TOTAL_VISITORS";
 export const MY_PROFILE_DETAIL = "MY_PROFILE_DETAIL";
 export const RESET_MY_PROFILE = "RESET_MY_PROFILE";
 export const ADMIN_FETCH_USERS = "ADMIN_FETCH_USERS";
+
+export const GET_SUCCESS = "GET_SUCCESS";
+export const CLEAR_SUCCESS = "CLEAR_SUCCESS";
+
 export const BUY_ITEMS = "BUY_ITEMS";
 export const USER_POINTS = "USER_POINTS";
 
 export const GET_PET_COMMENTS = "GET_PET_COMMENTS";
+
 
 export const SEND_QUERY = "SEND_QUERY";
 
@@ -452,7 +466,7 @@ export function visitorsCounter() {
 export function sendConsultation(data) {
   return async function(dispatch) {
     try {
-      // código para enviar la consulta
+      await axios.post(ADMIN_CONSULT, data)
       console.log(data);
       dispatch({
         type: SEND_QUERY,
@@ -483,6 +497,7 @@ export function finishPost(input) {
     }
   };
 }
+
 
 export function sendNotification(name) {
   console.log("estoy entrando en la action");
@@ -540,8 +555,40 @@ export function userPoints(id) {
         type: USER_POINTS,
         payload: { error: error.message },
       });
+<<<<<<< HEAD
     }
   };
+=======
+		}
+	};
+}
+
+
+
+export function getSuccess() {
+	return async function (dispatch) {
+		try {
+			const req = await axios(FETCH_SUCCESS)
+			console.log(req.data)
+			dispatch({
+				type: GET_SUCCESS,
+				payload: req.data
+			})
+		} catch (error) {
+			console.log(error.message)
+		}
+	}
+}
+
+
+export function clearSuccess() {
+	return function (dispatch) {
+		dispatch({
+			type: CLEAR_SUCCESS,
+			payload: []
+		})
+	}
+>>>>>>> 4f414e2f3781310d431175dcc2e8ada74c010e60
 }
 
 export function deleteUser(obj) {
