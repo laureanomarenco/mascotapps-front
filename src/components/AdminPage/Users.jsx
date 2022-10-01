@@ -1,5 +1,10 @@
 import React, { useEffect } from "react";
-import { deleteUser } from "../../store/actions/index";
+import {
+  deleteUser,
+  adminFetchUsers,
+  deletePetsWithNoUserId,
+  deleteUserPosts,
+} from "../../store/actions/index";
 import { useDispatch } from "react-redux";
 import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
@@ -7,7 +12,7 @@ const Users = ({ users }) => {
   // console.log(users);
   const dispatch = useDispatch();
   const ultraSecreta = "SoyAdmin";
-
+  // const users = useSelector((state) => state.usersInfo);
   const handleClick = (id, email) => {
     return Swal.fire({
       title: "¿Eliminar usuario?",
@@ -28,6 +33,8 @@ const Users = ({ users }) => {
     }).then((result) => {
       if (result.isConfirmed) {
         dispatch(deleteUser({ id: id, email: email, password: ultraSecreta }));
+        dispatch(deleteUserPosts({ password: ultraSecreta }));
+        dispatch(deletePetsWithNoUserId());
         Swal.fire({
           title: "Usuario eliminado correctamente!",
           icon: "success",
@@ -37,7 +44,9 @@ const Users = ({ users }) => {
     });
   };
 
-  useEffect(() => {}, [dispatch, users]);
+  useEffect(() => {
+    dispatch(adminFetchUsers());
+  }, [users]);
   return (
     <div className="bg-transparent p-8 rounded-md w-full">
       <div>

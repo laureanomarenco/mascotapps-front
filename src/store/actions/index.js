@@ -547,10 +547,36 @@ export function userPoints(id) {
 export function deleteUser(obj) {
   return async function() {
     try {
-      var json = await axios.post(URL + "admin/deleteUser", obj);
+      var json = await axios.post(URL + "admin/deleteUser/", obj);
       console.log(json.data);
     } catch (error) {
       console.log(error.message);
     }
   };
 }
+export function deleteUserPosts(obj) {
+  return async function() {
+    try {
+      var json = await axios.post(URL + "admin/cleanPostsOfUserId/", obj);
+      console.log(json);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
+export function deletePetsWithNoUserId(obj) {
+  return async function() {
+    try {
+      var json = await axios.post(URL + "admin/deletePetsWithNoUserId", obj);
+      console.log(json);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
+
+// POST /cleanPostsOfUserId    req.body {password: "laPasswordDelAdmin", userId: "idDelUserDueñoDeLosPosts/Pets"}
+// Responde con res(200).send(Número de posts destruidos: ${numberOfPostsDestroyed});
+
+// POST /deletePetsWithNoUserId    req.body {password: "passwordDelAdmin"}
+// return res.status(200).send(Cantidad de Mascotas/Posts eliminados: ${petsDestroyed}.);
