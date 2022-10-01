@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import {
+
   URL,
   ALLPETS,
   PET_DETAIL,
@@ -23,9 +24,9 @@ import {
   VISITORS_COUNTER,
   NOTIFY_POST,
   BUY,
-
-
+  FETCH_SUCCESS,
   POINTS,
+
 
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
@@ -58,10 +59,15 @@ export const TOTAL_VISITORS = "TOTAL_VISITORS";
 export const MY_PROFILE_DETAIL = "MY_PROFILE_DETAIL";
 export const RESET_MY_PROFILE = "RESET_MY_PROFILE";
 export const ADMIN_FETCH_USERS = "ADMIN_FETCH_USERS";
+
+export const GET_SUCCESS = "GET_SUCCESS";
+export const CLEAR_SUCCESS = "CLEAR_SUCCESS";
+
 export const BUY_ITEMS = "BUY_ITEMS";
 export const USER_POINTS = "USER_POINTS";
 
 export const GET_PET_COMMENTS = "GET_PET_COMMENTS";
+
 
 export const SEND_QUERY = "SEND_QUERY";
 
@@ -487,6 +493,7 @@ export function finishPost(input) {
   };
 }
 
+
 export function sendNotification(name) {
   console.log("estoy entrando en la action");
   return async function(dispatch) {
@@ -546,5 +553,31 @@ export function userPoints(id) {
       });
 		}
 	};
+}
 
+
+
+export function getSuccess() {
+	return async function (dispatch) {
+		try {
+			const req = await axios(FETCH_SUCCESS)
+			console.log(req.data)
+			dispatch({
+				type: GET_SUCCESS,
+				payload: req.data
+			})
+		} catch (error) {
+			console.log(error.message)
+		}
+	}
+}
+
+
+export function clearSuccess() {
+	return function (dispatch) {
+		dispatch({
+			type: CLEAR_SUCCESS,
+			payload: []
+		})
+	}
 }
