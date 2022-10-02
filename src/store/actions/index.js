@@ -26,7 +26,9 @@ import {
   POINTS,
   FETCH_SUCCESS,
   ADMIN_CONSULT,
+  DONATE_POINTS,
   POINTS_SALE,
+
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 export const NOTIFY = "NOTIFY";
@@ -58,19 +60,17 @@ export const TOTAL_VISITORS = "TOTAL_VISITORS";
 export const MY_PROFILE_DETAIL = "MY_PROFILE_DETAIL";
 export const RESET_MY_PROFILE = "RESET_MY_PROFILE";
 export const ADMIN_FETCH_USERS = "ADMIN_FETCH_USERS";
-export const POINTS_MULTIPLIER = "POINTS_MULTIPLIER";
 
+export const POINTS_MULTIPLIER = "POINTS_MULTIPLIER";
 export const GET_SUCCESS = "GET_SUCCESS";
 export const CLEAR_SUCCESS = "CLEAR_SUCCESS";
-
 export const BUY_ITEMS = "BUY_ITEMS";
 export const USER_POINTS = "USER_POINTS";
-
 export const GET_PET_COMMENTS = "GET_PET_COMMENTS";
 
 export const SEND_QUERY = "SEND_QUERY";
-
 export const CANCEL_POST = "CANCEL_POST";
+export const POINTS_DONATION = "POINTS_DONATION";
 
 export function fetchPets() {
   return async function(dispatch) {
@@ -576,6 +576,21 @@ export function clearSuccess() {
   };
 }
 
+
+export function donatePoints(body) {
+  return async function(dispatch) {
+    try {
+      var msg = await axios.post(DONATE_POINTS, body);
+      return dispatch({ type: POINTS_DONATION, payload: msg });
+    } catch (error) {
+      return dispatch({
+        type: POINTS_DONATION,
+        payload: { error: error.message },
+      });
+    }
+  };
+}
+
 export function deleteUser(obj) {
   return async function() {
     try {
@@ -622,3 +637,4 @@ export function pointsMultiplier(obj) {
 
 // POST /deletePetsWithNoUserId    req.body {password: "passwordDelAdmin"}
 // return res.status(200).send(Cantidad de Mascotas/Posts eliminados: ${petsDestroyed}.);
+
