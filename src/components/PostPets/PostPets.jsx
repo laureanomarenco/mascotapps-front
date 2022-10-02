@@ -160,12 +160,10 @@ const PostPets = () => {
       if (input.status == "perdido") {
         let notification = {
           name: input.name,
+          city:input.city
         };
         console.log("condicion para despachar", city == input.city);
-        if (city == input.city) {
-          console.log('estoy por despachar desde postpet')
-          dispatch(sendNotification(notification));
-        }
+        dispatch(sendNotification(notification))
       }
       dispatch(postPet(input, user?.sub));
     }
