@@ -4,9 +4,30 @@ import React from "react";
 const FormFilter = ({ handleClearFilter, filter, handleFilter }) => {
   const filtered = useSelector((state) => state.filterPets);
   const pets = useSelector((state) => state.statusPets);
-  console.log("🚀 ~ file: FormFilter.jsx ~ line 7 ~ FormFilter ~ pets", pets)
+  console.log("🚀 ~ file: FormFilter.jsx ~ line 7 ~ FormFilter ~ pets", pets);
   //eslint-disable-next-line
-  const prov = ['Buenos Aires', 'Catamarca', 'Chaco', 'Chubut', 'Córdoba', 'Corrientes', 'Formosa', 'Jujuy', 'La Pampa', 'La Rioja', 'Mendoza', 'Misiones', 'Neuquén', 'Río Negro','Salta', 'San Juan', 'San Luis',  'Santa Fe', 'Tierra del Fuego', 'Tucumán'];
+  const prov = [
+    "Buenos Aires",
+    "Catamarca",
+    "Chaco",
+    "Chubut",
+    "Córdoba",
+    "Corrientes",
+    "Formosa",
+    "Jujuy",
+    "La Pampa",
+    "La Rioja",
+    "Mendoza",
+    "Misiones",
+    "Neuquén",
+    "Río Negro",
+    "Salta",
+    "San Juan",
+    "San Luis",
+    "Santa Fe",
+    "Tierra del Fuego",
+    "Tucumán",
+  ];
 
   const races =
     filtered.length > 0
@@ -17,7 +38,7 @@ const FormFilter = ({ handleClearFilter, filter, handleFilter }) => {
   const result = Array.from(resulted);
 
   return (
-    <div className="grid gap-1 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 max-w-3xl mx-auto border-0 cursor-pointer rounded-full drop-shadow-md  w-70  duration-300 my-3 ">
+    <div className="grid gap-1 grid-cols-1 md:grid-cols-2 xl:grid-cols-3 max-w-4xl mx-auto border-0 cursor-pointer rounded-full drop-shadow-md  w-70  duration-300 my-3 ">
       <select value={filter.specie} name="specie" onChange={handleFilter}>
         <option hidden>Especie</option>
         <option value="perro">Perro</option>
