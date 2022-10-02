@@ -25,7 +25,7 @@ export default function FlowChart() {
         />
         <Step
           title="Lleva tu mascota a casa"
-          subtitle="Lleva tu mascota a casa y calificá al usuario con el que interactuaste."
+          subtitle="Reúnete y lleva tu mascota a casa. Califica al usuario con el que interactuaste."
           image="https://res.cloudinary.com/dpxrr2uyq/image/upload/v1664679821/pethome_xhqbu9.png"
         />
         <Step
