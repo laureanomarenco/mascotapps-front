@@ -651,3 +651,20 @@ export function usersAdoptionsRank() {
     }
   };
 }
+export function rutaRoby(token) {
+  return async function() {
+    try {
+      const response = await axios.get(
+        "https://juka-production.up.railway.app/testauth",
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      console.log("RESPUESTA DE ROBYYYYYY", response);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
