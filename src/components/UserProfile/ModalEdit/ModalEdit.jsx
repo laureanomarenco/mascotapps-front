@@ -15,9 +15,9 @@ import { AiOutlineWhatsApp } from "react-icons/ai";
 import { MdAlternateEmail } from "react-icons/md";
 import Autocomplete from "@mui/material/Autocomplete";
 import { AiOutlineCamera } from "react-icons/ai";
+import { GiReceiveMoney } from "react-icons/gi";
 
 export default function ModalProfile({ belloPerfil }) {
-  console.log("lo que llega al modal", belloPerfil);
   const [showModal, setShowModal] = React.useState(false);
   const { user, isAuthenticated } = useAuth0();
   const dispatch = useDispatch();
@@ -31,6 +31,7 @@ export default function ModalProfile({ belloPerfil }) {
     city: belloPerfil.city,
     contact: belloPerfil.contact,
     image: belloPerfil.image,
+    linkToDonate: belloPerfil.linkToDonate,
   });
 
   useEffect(() => {
@@ -194,20 +195,12 @@ export default function ModalProfile({ belloPerfil }) {
                   <h3 className="text-3xl font-semibold">
                     Acá podés editar tus datos
                   </h3>
-                  <button
-                    className="p-1 ml-auto bg-transparent border-0 text-black opacity-5 float-right text-3xl leading-none font-semibold outline-none focus:outline-none"
-                    onClick={() => setShowModal(false)}
-                  >
-                    <span className="bg-transparent text-black opacity-5 h-6 w-6 text-2xl block outline-none focus:outline-none">
-                      ×
-                    </span>
-                  </button>
                 </div>
                 {/*body*/}
-                <div className="relative p-6 flex-auto">
+                <div className="relative px-6 flex-auto">
                   <form
                     onSubmit={handleSubmit}
-                    className="max-w-md mx-auto mt-8 mb-0 space-y-2"
+                    className="max-w-md mx-auto mt-4 mb-0 space-y-2"
                   >
                     <div>
                       <label htmlFor="nombre" className="sr-only">
@@ -323,6 +316,30 @@ export default function ModalProfile({ belloPerfil }) {
                         {!errors.contact ? null : (
                           <span>*{errors.contact}</span>
                         )}
+                      </div>
+                    </div>
+                    <div>
+                      <label htmlFor="link" className="sr-only">
+                        Link de pago opcional
+                      </label>
+
+                      <div className="relative">
+                        <input
+                          onChange={handleChange}
+                          type="text"
+                          name="linkToDonate"
+                          className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                          placeholder="Link de MercadoPago para recibir donaciones"
+                          value={input.linkToDonate}
+                        />
+
+                        <span className="absolute inset-y-0 inline-flex items-center right-4">
+                          <GiReceiveMoney color="grey" />
+                        </span>
+                      </div>
+
+                      <div className=" text-xs italic text-gray-500 mt-1">
+                        *opcional
                       </div>
                     </div>
 

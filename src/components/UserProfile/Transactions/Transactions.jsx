@@ -38,7 +38,7 @@ const Transactions = ({ transactions, setOrder }) => {
     }
     return 0;
   });
-  console.log("esto es la prueba", orderedTrans);
+
   return (
     <div className=" bg-white rounded-md w-full  ">
       <div className="  overflow-x-auto">
