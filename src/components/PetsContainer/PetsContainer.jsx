@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from "react-redux";
 import FormFilter from "../FormFilter/FormFilter";
 import { resetDetail, filterPets, getPetsByStatus } from "../../store/actions";
 import { useLocation } from "react-router-dom";
+import RenderText from "./RenderText";
 
 const PetsContainer = () => {
   const pets = useSelector((state) => state.statusPets);
@@ -30,6 +31,7 @@ const PetsContainer = () => {
   });
 
   let location = useLocation();
+  let statusText = location.pathname.split("/")[2];
 
   useEffect(() => {
     dispatch(getPetsByStatus(location.pathname.split("/")[2]));
@@ -93,6 +95,7 @@ const PetsContainer = () => {
   return (
     <div>
       <Navbar setPage={setPage} />
+      <RenderText statusText={statusText} />
       <FormFilter
         handleClearFilter={handleClearFilter}
         filter={filter}
