@@ -28,7 +28,6 @@ import {
   ADMIN_CONSULT,
   DONATE_POINTS,
   POINTS_SALE,
-
 } from "../../url/url";
 import { URL_CIUDAD_API } from "../../url/url";
 export const NOTIFY = "NOTIFY";
@@ -88,10 +87,10 @@ export function fetchPets() {
     }
   };
 }
-export function getMyPets(user) {
+export function getMyPets() {
   return async function(dispatch) {
     try {
-      const datos = await axios.post(GET_MY_PETS, { id: user?.sub });
+      const datos = await axios.get(GET_MY_PETS, { withCredentials: true });
       return dispatch({
         type: GET_PETS,
         payload: datos.data,
@@ -576,7 +575,6 @@ export function clearSuccess() {
   };
 }
 
-
 export function donatePoints(body) {
   return async function(dispatch) {
     try {
@@ -637,4 +635,3 @@ export function pointsMultiplier(obj) {
 
 // POST /deletePetsWithNoUserId    req.body {password: "passwordDelAdmin"}
 // return res.status(200).send(Cantidad de Mascotas/Posts eliminados: ${petsDestroyed}.);
-
