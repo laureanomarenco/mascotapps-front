@@ -326,13 +326,10 @@ export default function ModalProfile({ belloPerfil }) {
                       <div className="relative">
                         <input
                           onChange={handleChange}
-                          type="tel"
+                          type="text"
                           name="linkToDonate"
                           className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
                           placeholder="Link de MercadoPago para recibir donaciones"
-                          pattern="^\+?\d{0,13}"
-                          minLength={6}
-                          maxLength={20}
                           value={input.linkToDonate}
                         />
 
