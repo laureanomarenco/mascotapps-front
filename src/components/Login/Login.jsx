@@ -18,6 +18,7 @@ export default function Login() {
   const handleValidation = async (user, isAuthenticated) => {
     try {
       const claims = await getAccessTokenSilently();
+      localStorage.setItem("token", claims);
       console.log(
         "🚀 ~ file: Login.jsx ~ line 20 ~ handleValidation ~ claims",
         claims
