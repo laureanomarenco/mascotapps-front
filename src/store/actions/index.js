@@ -87,10 +87,10 @@ export function fetchPets() {
     }
   };
 }
-export function getMyPets() {
+export function getMyPets(id) {
   return async function(dispatch) {
     try {
-      const datos = await axios.get(GET_MY_PETS, { withCredentials: true });
+      const datos = await axios.post(GET_MY_PETS, { userId: id });
       return dispatch({
         type: GET_PETS,
         payload: datos.data,
