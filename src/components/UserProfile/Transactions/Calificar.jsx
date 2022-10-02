@@ -1,7 +1,10 @@
 import React from "react";
 import { AiFillStar } from "react-icons/ai";
-import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { donatePoints } from "../../../store/actions";
+//import { Link } from "react-router-dom";
 import RatingStar from "../../RatingStar/RatingStar";
+import Swal from "sweetalert2";
 
 const Calificar = ({
   tdId,
@@ -11,6 +14,9 @@ const Calificar = ({
   transactions,
 }) => {
   const [showModal, setShowModal] = React.useState(false);
+  const [pointsToDonate, setPointsToDonate] = React.useState(0);
+
+  const dispatch = useDispatch();
 
   const objBello = {
     transaction_id: tdId,
@@ -20,6 +26,19 @@ const Calificar = ({
   const handleClick = () => {
     setShowModal(true);
   };
+
+  const onSubmit = () => {
+    const body = {
+      pointsToDonate,
+      id: reviewer_id,
+      idToDonate: reviewed_id
+    }
+    console.log("el body que va a donar!", body)
+    dispatch(donatePoints(body))
+    Swal.fire({
+      title: "Puntos enviados",
+    })
+  }
 
   console.log("OJOO", objBello);
 
@@ -44,15 +63,20 @@ const Calificar = ({
                   <h3 className=" text-3xl w-full mb-2 font-semibold">
                     Califica al usuario
                   </h3>
-                  <p>
-                    ¡Muchas Gracias! Tu feedback es importante para nosotros.{" "}
-                    <br /> Recuerda que también podes ayudarnos económicamente.
-                  </p>
-                  <Link to="/donate">
-                    <button className="inline-block px-6 py-2 my-3 bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300">
+                  <p >
+                    ¡Gracias! Tu feedback es importante para nosotros.<br/>
+                    Recuerda que podés <a href="https://mascotapps.vercel.app/donate" className="font-bold text-amber-400">donar</a> a Mascotapp y{" "}
+                    {/* <Link to="/donate">
+                    <button className="flex inline-block justify-center px-6 py-2 my-3 bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300">
                       Donar
                     </button>
-                  </Link>
+                  </Link> */}
+                    <br /> también podés transferirle puntos a este usuario.
+                  </p>
+                  <input type='number' name='pointsToDonate' onChange={(e) => setPointsToDonate(e.target.value)} className="p-2 pr-12 text-sm border-gray-200 rounded-lg shadow-xl"></input>
+                  <button onClick={onSubmit} placeholder="Cantidad de puntos..." className="inline-block px-6 py-2 my-3 bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300">
+                    Enviar puntos
+                  </button>
                 </div>
                 {/*body*/}
 
@@ -80,6 +104,7 @@ const Calificar = ({
           <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
         </>
       ) : null}
+      
     </>
   );
 };
