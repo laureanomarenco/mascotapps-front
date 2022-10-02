@@ -6,6 +6,7 @@ import { BsPencilSquare } from "react-icons/bs";
 import { RiChatDeleteFill } from "react-icons/ri";
 import { deletePet } from "../../store/actions";
 import { useState } from "react";
+import { useEffect } from "react";
 
 const BadgesPets = ({
   user,
@@ -26,6 +27,7 @@ const BadgesPets = ({
   };
   const myPets = useSelector((state) => state.userPets);
   console.log("🚀 ~ file: BadgesPets.jsx ~ line 27 ~ myPets", myPets);
+  useEffect(() => {}, [states]);
   return (
     <div
       className="flex flex-col items-center gap-5 grid-rows-1 py-5 px-5 md:grid md:grid-cols-2 xl:grid-cols-3 w-full relative border border-gray-300  rounded-lg my-2 shadow-lg  "
