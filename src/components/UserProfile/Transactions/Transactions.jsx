@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 import Calificar from "./Calificar";
 import { useDispatch } from "react-redux";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { HiLockClosed } from "react-icons/hi";
 import { updateTransactionStatus } from "../../../store/actions/index";
+import TransactionsPagination from "./Pagination/TransasctionsPagination";
 
 const Transactions = ({ transactions, setOrder }) => {
   //eslint-disable-next-line
@@ -16,7 +17,19 @@ const Transactions = ({ transactions, setOrder }) => {
   };
 
   useEffect(() => {}, [transactions, setOrder, dispatch]);
-  let orderedTrans = transactions?.sort(function(a, b) {
+
+  //------------------//PAGINACION//------------------------//
+  const [page, setPage] = useState(1);
+  const showPerPage = 4;
+  const lastOnPage = page * showPerPage;
+  const firstOnPage = lastOnPage - showPerPage;
+  const showTransactions = transactions?.slice(firstOnPage, lastOnPage);
+
+  function pagination(pageNumber) {
+    setPage(pageNumber);
+  }
+  //------------------//PAGINACION//------------------------//
+  let orderedTrans = showTransactions?.sort(function(a, b) {
     if (a.pet_name > b.pet_name) {
       return 1;
     }
@@ -27,8 +40,8 @@ const Transactions = ({ transactions, setOrder }) => {
   });
   console.log("esto es la prueba", orderedTrans);
   return (
-    <div className=" rounded-md w-full  ">
-      <div className="    py-4 overflow-x-auto">
+    <div className=" bg-white rounded-md w-full  ">
+      <div className="  overflow-x-auto">
         <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
           <table className="min-w-full leading-normal">
             <thead>
@@ -142,6 +155,12 @@ const Transactions = ({ transactions, setOrder }) => {
               ))}
             </tbody>
           </table>
+          <TransactionsPagination
+            transactions={transactions?.length}
+            showPerPage={showPerPage}
+            page={page}
+            pagination={pagination}
+          />
         </div>
       </div>
     </div>

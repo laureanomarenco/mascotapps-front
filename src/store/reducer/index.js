@@ -20,15 +20,14 @@ import {
   ADMIN_FETCH_USERS,
   SORT_BY,
   TOTAL_VISITORS,
-
   GET_SUCCESS,
   CLEAR_SUCCESS,
-
   USER_POINTS,
   //eslint-disable-next-line
   NOTIFY,
   GET_PET_COMMENTS,
-
+  USERS_POINTS_RANK,
+  USERS_ADOPTIONS_RANK,
 } from "../actions";
 
 const initalState = {
@@ -55,7 +54,9 @@ const initalState = {
   newPost: {},
   petComments: [],
   visitors: "",
-  userPoints:0,
+  userPoints: 0,
+  pointsRank: [],
+  adoptionsRank: [],
 };
 
 export default function reducer(state = initalState, action) {
@@ -107,8 +108,8 @@ export default function reducer(state = initalState, action) {
 
       action.payload.specie !== ""
         ? (especie = state.statusPets.filter(
-          (i) => i.specie === action.payload.specie
-        ))
+            (i) => i.specie === action.payload.specie
+          ))
         : (especie = state.statusPets);
 
       action.payload.gender !== ""
@@ -219,17 +220,16 @@ export default function reducer(state = initalState, action) {
         visitors: action.payload,
       };
 
-
     case GET_SUCCESS:
       return {
         ...state,
-        successArr: action.payload
-      }
+        successArr: action.payload,
+      };
     case CLEAR_SUCCESS:
       return {
         ...state,
-        successArr: action.payload
-      }
+        successArr: action.payload,
+      };
 
     case NOTIFY:
       return {
@@ -239,12 +239,21 @@ export default function reducer(state = initalState, action) {
       return {
         ...state,
         petComments: action.payload,
-      }
+      };
     case USER_POINTS:
       return {
         ...state,
         userPoints: action.payload,
-
+      };
+    case USERS_POINTS_RANK:
+      return {
+        ...state,
+        pointsRank: action.payload,
+      };
+    case USERS_ADOPTIONS_RANK:
+      return {
+        ...state,
+        adoptionsRank: action.payload,
       };
 
     default:

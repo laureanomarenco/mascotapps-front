@@ -35,7 +35,6 @@ import { getDonations } from "../../store/actions/index";
 const AdminPage = () => {
   const dispatch = useDispatch();
   const usersDetails = useSelector((state) => state.usersInfo);
-  console.log(usersDetails);
   const pets = useSelector((state) => state.pets);
   const users = useSelector((state) => state.totalUsers);
   const donations = useSelector((state) => state.donations);
@@ -48,7 +47,8 @@ const AdminPage = () => {
     dispatch(getAllUsers());
     dispatch(adminFetchUsers());
     dispatch(totalVisitors());
-  }, [dispatch, visitors, users, usersDetails.length]);
+  }, [dispatch, visitors, users]);
+  console.log(usersDetails);
   return (
     <>
       <div className="top-0 sticky z-10">
