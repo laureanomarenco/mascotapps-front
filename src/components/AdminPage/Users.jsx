@@ -1,10 +1,11 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import {
   deleteUser,
   adminFetchUsers,
   deletePetsWithNoUserId,
   deleteUserPosts,
 } from "../../store/actions/index";
+import UsersPagination from "./UsersPagination/UsersPagination";
 import { useDispatch } from "react-redux";
 import { FaTrashAlt } from "react-icons/fa";
 import Swal from "sweetalert2";
@@ -13,6 +14,15 @@ const Users = ({ users }) => {
   const dispatch = useDispatch();
   const ultraSecreta = "SoyAdmin";
   // const users = useSelector((state) => state.usersInfo);
+  const [page, setPage] = useState(1);
+  const showPerPage = 4;
+  const lastOnPage = page * showPerPage;
+  const firstOnPage = lastOnPage - showPerPage;
+  const showUsers = users.slice(firstOnPage, lastOnPage);
+
+  function pagination(pageNumber) {
+    setPage(pageNumber);
+  }
   const handleClick = (id, email) => {
     return Swal.fire({
       title: "¿Eliminar usuario?",
@@ -48,7 +58,7 @@ const Users = ({ users }) => {
     dispatch(adminFetchUsers());
   }, [users.length]);
   return (
-    <div className="bg-transparent p-8 rounded-md w-full">
+    <div className="bg-transparent  rounded-md w-full">
       <div>
         <div className="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
           <div className="inline-block min-w-full shadow rounded-lg overflow-hidden">
@@ -73,10 +83,10 @@ const Users = ({ users }) => {
                 </tr>
               </thead>
               <tbody>
-                {users?.map((u) => {
+                {showUsers?.map((u) => {
                   return (
                     <>
-                      <tr key={u.id}>
+                      <tr key={u.id} className="bg-white">
                         <td className="px-5 py-5 border-b border-gray-200 bg-white text-sm">
                           <div className="flex items-center">
                             <img
@@ -130,20 +140,13 @@ const Users = ({ users }) => {
                 })}
               </tbody>
             </table>
-            {/* <div className="px-5 py-5 bg-white border-t flex flex-col xs:flex-row items-center xs:justify-between          ">
-              <span className="text-xs xs:text-sm text-gray-900">
-                Showing 1 to 4 of 50 Entries
-              </span>
-              <div className="inline-flex mt-2 xs:mt-0">
-                <button className="text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-indigo-600 font-semibold py-2 px-4 rounded-l">
-                  Prev
-                </button>
-                &nbsp; &nbsp;
-                <button className="text-sm text-indigo-50 transition duration-150 hover:bg-indigo-500 bg-indigo-600 font-semibold py-2 px-4 rounded-r">
-                  Next
-                </button>
-              </div>
-            </div> */}
+
+            <UsersPagination
+              users={users.length}
+              showPerPage={showPerPage}
+              page={page}
+              pagination={pagination}
+            />
           </div>
         </div>
       </div>
