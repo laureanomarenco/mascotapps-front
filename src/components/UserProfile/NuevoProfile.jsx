@@ -31,8 +31,9 @@ const NuevoProfile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const dispatch = useDispatch();
   const myPets = useSelector((state) => state.userPets);
-  console.log("🚀 ~ file: NuevoProfile.jsx ~ line 34 ~ NuevoProfile ~ myPets", myPets)
+
   const myProfileData = useSelector((state) => state.myProfile);
+  console.log("🚀 ~ file: NuevoProfile.jsx ~ line 36 ~ NuevoProfile ~ myProfileData", myProfileData)
   const transactions = myProfileData?.transactions;
 
   const [activeDonateModal, setActiveDonateModal] = useState(false);
@@ -46,6 +47,7 @@ const NuevoProfile = () => {
     city: myProfileData["userProps"]?.city,
     contact: myProfileData["userProps"]?.contact,
     image: myProfileData["userProps"]?.image,
+    linkToDonate: myProfileData["userProps"]?.linkToDonate
   };
 
   const handleSubmit = () => {
@@ -234,13 +236,13 @@ const NuevoProfile = () => {
                     </>
                   ) : null}
                   {myProfileData["userProps"]?.isDonator === "true" && (
-                  <button
-                    type="button"
-                    onClick={() => setActiveDonateModal(true)}
-                    className=" transition-all ease-in-out  duration-250	 cursor-pointer text-teal-500 hover:text-amber-400 top-5 right-0 text-2xl sm:text-3xl sm:mx-3"
-                  >
-                    <BiDonateHeart />
-                  </button>
+                    <button
+                      type="button"
+                      onClick={() => setActiveDonateModal(true)}
+                      className=" transition-all ease-in-out  duration-250	 cursor-pointer text-teal-500 hover:text-amber-400 top-5 right-0 text-2xl sm:text-3xl sm:mx-3"
+                    >
+                      <BiDonateHeart />
+                    </button>
                   )}
                   {activeDonateModal ? (
                     <>
@@ -296,7 +298,9 @@ const NuevoProfile = () => {
                 <h1 className="text-gray-600 font-bold text-xl leading-8 my-1 text-center">
                   {myProfileData["userProps"]?.name}
                 </h1>
-                <p className="text-gray-600 text-l leading-8 text-center">{myProfileData["userProps"]?.points} puntos</p>
+                <p className="text-gray-600 text-l leading-8 text-center">
+                  {myProfileData["userProps"]?.points} puntos
+                </p>
                 <ul className=" mt-3 divide-y ">
                   <li className="grid items-center text-center py-3 gap-1">
                     <Link
@@ -373,6 +377,16 @@ const NuevoProfile = () => {
                         {myProfileData["userProps"]?.city}
                       </div>
                     </div>
+                    {myProfileData["userProps"]?.linkToDonate && (
+                      <div className="grid grid-cols-3 md:grid-cols-1 lg:grid-cols-3">
+                        <div className=" py-2 font-semibold text-[#28B0A2]">
+                          Link de pago
+                        </div>
+                        <div className=" py-2 text-gray-400 col-span-2">
+                          {myProfileData["userProps"]?.linkToDonate}
+                        </div>
+                      </div>
+                    )}
                   </div>
                 </div>
               </div>

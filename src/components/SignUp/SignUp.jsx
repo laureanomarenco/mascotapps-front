@@ -10,9 +10,10 @@ import { CreateUser } from "../../store/actions/index";
 import Swal from "sweetalert2";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import { useAuth0 } from "@auth0/auth0-react";
+import { GiReceiveMoney } from "react-icons/gi";
 
 const SignUp = () => {
-  const { user, isAuthenticated } = useAuth0();
+  const { user, isAuthenticated, isLoading } = useAuth0();
   //CIUDADES ARG--------------------------------------------------------------------------
   const dispatch = useDispatch();
   const cities = useSelector((state) => state.cities);
@@ -41,6 +42,7 @@ const SignUp = () => {
     city: "",
     contact: "",
     image: `https://res.cloudinary.com/dfbxjt69z/image/upload/v1664199194/mascotapps/Dise%C3%B1o_sin_t%C3%ADtulo_1_qqzx4h.png`,
+    linkToDonate: "",
   });
   const [errors, setErrors] = useState({});
 
@@ -70,13 +72,7 @@ const SignUp = () => {
     if (input.name.length > 50) {
       errorObj.name = "El nombre no puede tener más de 50 caracteres.";
     }
-    // if (input.name.search("[0-9]") !== -1) {
-    //   errorObj.name = "El nombre no puede incluir números";
-    // }
-    // if (input.name.search(regexName) !== -1) {
-    //   errorObj.name =
-    //     "El nombre no puede incluir números, símbolos ni espacios";
-    // }
+
     if (!input.contact.trim()) {
       errorObj.contact = "Debes incluir un número de contacto válido";
     }
@@ -103,7 +99,7 @@ const SignUp = () => {
       });
     }
   };
-  if (!isAuthenticated) {
+  if (!isLoading && !isAuthenticated) {
     Swal.fire({
       title: "No estás logueado",
       text: "Debes iniciar sesión para ver tu perfil.",
@@ -122,7 +118,7 @@ const SignUp = () => {
     });
   }
 
-  if (isAuthenticated) {
+  if (!isLoading && isAuthenticated) {
     return (
       <section className="relative flex flex-wrap lg:h-screen lg:items-center">
         <div className="w-full px-4 py-12 lg:w-1/2 sm:px-6 lg:px-8 sm:py-6 lg:py-12">
@@ -226,7 +222,7 @@ const SignUp = () => {
                   type="tel"
                   name="contact"
                   className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-                  placeholder="número de contacto"
+                  placeholder="Número de contacto"
                   pattern="^\+?\d{0,13}"
                   minLength={6}
                   maxLength={20}
@@ -240,6 +236,33 @@ const SignUp = () => {
 
               <div className="text-center text-xs text-red-500 mt-1">
                 {!errors.contact ? null : <span>*{errors.contact}</span>}
+              </div>
+            </div>
+            <div>
+              <label htmlFor="link" className="sr-only">
+                Link de pago opcional
+              </label>
+
+              <div className="relative">
+                <input
+                  onChange={handleChange}
+                  type="tel"
+                  name="linkToDonate"
+                  className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
+                  placeholder="Link de MercadoPago para recibir donaciones"
+                  pattern="^\+?\d{0,13}"
+                  minLength={6}
+                  maxLength={20}
+                  value={input.linkToDonate}
+                />
+
+                <span className="absolute inset-y-0 inline-flex items-center right-4">
+                  <GiReceiveMoney color="grey" />
+                </span>
+              </div>
+
+              <div className=" text-xs italic text-gray-500 mt-1">
+                *opcional
               </div>
             </div>
 
