@@ -664,10 +664,11 @@ export function getMyPets(token) {
     }
   };
 }
+
 export function postPet(pet, token) {
   return async function(dispatch) {
     try {
-      var json = await axios.post(POST, { pet: pet}, {
+      var json = await axios.post(POST, {pet: pet}, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
