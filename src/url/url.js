@@ -36,3 +36,4 @@ export const DESUBSCRIBE = URL + "pets/desubscribe";
 export const BUY = URL + "users/buyProducts";
 export const POINTS = URL + "users/points";
 export const DONATE_POINTS = URL + "users/donatePoints";
+export const POINTS_SALE = URL + "admin/changeMultiplier/";

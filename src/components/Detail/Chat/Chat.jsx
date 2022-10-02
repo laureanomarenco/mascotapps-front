@@ -74,9 +74,7 @@ class SimpleForm extends Component {
             },
             {
               id: "3",
-              message: `Hola ${
-                this.previousValue ? this.previousValue : ""
-              }! ¿Crees haber visto a ${this.props.pet.name}?`,
+              message: `Hola {previousValue}! ¿Crees haber visto a ${this.props.pet.name}?`,
               trigger: "confirm",
             },
             {
