@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 
 import Card from "../Card/Card";
-// import Footer from "../Footer/Footer";
+import Footer from "../Footer/Footer";
 
 import Navbar from "../Navbar/Navbar";
 import Pagination from "../Pagination/Pagination";
@@ -14,7 +14,10 @@ import { useLocation } from "react-router-dom";
 const PetsContainer = () => {
   const pets = useSelector((state) => state.statusPets);
   const filterPet = useSelector((state) => state.filterPets);
-  console.log("🚀 ~ file: PetsContainer.jsx ~ line 17 ~ PetsContainer ~ filterPet", filterPet)
+  console.log(
+    "🚀 ~ file: PetsContainer.jsx ~ line 17 ~ PetsContainer ~ filterPet",
+    filterPet
+  );
   const notFound = useSelector((state) => state.notFound);
   const dispatch = useDispatch();
 
@@ -23,7 +26,7 @@ const PetsContainer = () => {
     gender: "",
     age: "",
     race: "",
-    city:""
+    city: "",
   });
 
   let location = useLocation();
@@ -112,7 +115,7 @@ const PetsContainer = () => {
           : !notFound &&
             showByStatus?.map((pet) => <Card key={pet.id} data={pet} />)}
       </div>
-      {/* <Footer/> */}
+      <Footer />
     </div>
   );
 };
