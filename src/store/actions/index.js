@@ -91,6 +91,7 @@ export function getMyPets() {
   return async function(dispatch) {
     try {
       const datos = await axios.get(GET_MY_PETS, { withCredentials: true });
+      console.log("🚀 ~ file: index.js ~ line 94 ~ returnfunction ~ datos", datos)
       return dispatch({
         type: GET_PETS,
         payload: datos.data,

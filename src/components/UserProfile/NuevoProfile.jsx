@@ -31,6 +31,7 @@ const NuevoProfile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const dispatch = useDispatch();
   const myPets = useSelector((state) => state.userPets);
+  console.log("🚀 ~ file: NuevoProfile.jsx ~ line 34 ~ NuevoProfile ~ myPets", myPets)
   const myProfileData = useSelector((state) => state.myProfile);
   const transactions = myProfileData?.transactions;
 

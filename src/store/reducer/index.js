@@ -191,7 +191,6 @@ export default function reducer(state = initalState, action) {
         publicUserDetail: action.payload,
       };
     case GET_PETS:
-      console.log("kdsjkdsjfksd", action.payload);
       return {
         ...state,
         userPets: action.payload,

@@ -25,7 +25,7 @@ const Transactions = ({ transactions, setOrder }) => {
     }
     return 0;
   });
-  console.log("esto es la prueba", orderedTrans);
+
   return (
     <div className=" rounded-md w-full  ">
       <div className="    py-4 overflow-x-auto">

@@ -33,14 +33,13 @@ const Calificar = ({
       id: reviewer_id,
       idToDonate: reviewed_id
     }
-    console.log("el body que va a donar!", body)
+
     dispatch(donatePoints(body))
     Swal.fire({
       title: "Puntos enviados",
     })
   }
 
-  console.log("OJOO", objBello);
 
   return (
     <>
@@ -104,7 +103,7 @@ const Calificar = ({
           <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
         </>
       ) : null}
-      
+
     </>
   );
 };
