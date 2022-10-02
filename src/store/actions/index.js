@@ -59,6 +59,7 @@ export const TOTAL_VISITORS = "TOTAL_VISITORS";
 export const MY_PROFILE_DETAIL = "MY_PROFILE_DETAIL";
 export const RESET_MY_PROFILE = "RESET_MY_PROFILE";
 export const ADMIN_FETCH_USERS = "ADMIN_FETCH_USERS";
+export const USERS_ADOPTIONS_RANK = "USERS_ADOPTIONS_RANK";
 
 export const POINTS_MULTIPLIER = "POINTS_MULTIPLIER";
 export const GET_SUCCESS = "GET_SUCCESS";
@@ -70,7 +71,7 @@ export const GET_PET_COMMENTS = "GET_PET_COMMENTS";
 export const SEND_QUERY = "SEND_QUERY";
 export const CANCEL_POST = "CANCEL_POST";
 export const POINTS_DONATION = "POINTS_DONATION";
-
+export const USERS_POINTS_RANK = "USERS_POINTS_RANK";
 export function fetchPets() {
   return async function(dispatch) {
     try {
@@ -630,8 +631,23 @@ export function pointsMultiplier(obj) {
   };
 }
 
-// POST /cleanPostsOfUserId    req.body {password: "laPasswordDelAdmin", userId: "idDelUserDueñoDeLosPosts/Pets"}
-// Responde con res(200).send(Número de posts destruidos: ${numberOfPostsDestroyed});
-
-// POST /deletePetsWithNoUserId    req.body {password: "passwordDelAdmin"}
-// return res.status(200).send(Cantidad de Mascotas/Posts eliminados: ${petsDestroyed}.);
+export function usersPointsRank() {
+  return async function(dispatch) {
+    try {
+      var json = await axios.get(URL + "users/ranking");
+      return dispatch({ type: USERS_POINTS_RANK, payload: json.dataw });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+export function usersAdoptionsRank() {
+  return async function(dispatch) {
+    try {
+      var json = await axios.get(URL + "users/ranking");
+      return dispatch({ type: USERS_ADOPTIONS_RANK, payload: json.data });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
