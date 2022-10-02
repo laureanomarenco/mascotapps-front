@@ -72,6 +72,7 @@ export const SEND_QUERY = "SEND_QUERY";
 export const CANCEL_POST = "CANCEL_POST";
 export const POINTS_DONATION = "POINTS_DONATION";
 export const USERS_POINTS_RANK = "USERS_POINTS_RANK";
+
 export function fetchPets() {
   return async function(dispatch) {
     try {
@@ -88,22 +89,8 @@ export function fetchPets() {
     }
   };
 }
-export function getMyPets(user) {
-  return async function(dispatch) {
-    try {
-      const datos = await axios.post(GET_MY_PETS, { userId: user?.sub });
-      return dispatch({
-        type: GET_PETS,
-        payload: datos.data,
-      });
-    } catch (error) {
-      return dispatch({
-        type: GET_PETS,
-        payload: error.data,
-      });
-    }
-  };
-}
+
+
 
 export function getDetail(id) {
   return async function(dispatch) {
@@ -235,19 +222,7 @@ export function getSpecies() {
   };
 }
 
-export function postPet(pet, id) {
-  return async function(dispatch) {
-    try {
-      var json = await axios.post(POST, { pet: pet, user: { id: id } });
-      return dispatch({ type: POST_PET, payload: json.data });
-    } catch (error) {
-      return dispatch({
-        type: POST_PET,
-        payload: { error: error.message },
-      });
-    }
-  };
-}
+
 
 export function CreateUser(input) {
   return async function(dispatch) {
@@ -665,6 +640,45 @@ export function rutaRoby(token) {
       console.log("RESPUESTA DE ROBYYYYYY", response);
     } catch (error) {
       console.log(error);
+    }
+  };
+}
+
+export function getMyPets(token) {
+  return async function(dispatch) {
+    try {
+      const datos = await axios.get(GET_MY_PETS, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return dispatch({
+        type: GET_PETS,
+        payload: datos.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: GET_PETS,
+        payload: error.data,
+      });
+    }
+  };
+}
+
+export function postPet(pet, token) {
+  return async function(dispatch) {
+    try {
+      var json = await axios.post(POST, {pet: pet}, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      return dispatch({ type: POST_PET, payload: json.data });
+    } catch (error) {
+      return dispatch({
+        type: POST_PET,
+        payload: { error: error.message },
+      });
     }
   };
 }
