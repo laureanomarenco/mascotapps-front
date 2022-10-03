@@ -11,8 +11,10 @@ const Transactions = ({ transactions, setOrder }) => {
   //eslint-disable-next-line
   const { user } = useAuth0();
   const dispatch = useDispatch();
-  const handleClick = (trId, userId) => {
-    dispatch(updateTransactionStatus(trId, userId));
+  const tokenAccess = localStorage.getItem("token");
+
+  const handleClick = (trId, tokenAccess) => {
+    dispatch(updateTransactionStatus(trId, tokenAccess));
     setOrder("completed");
   };
 
@@ -117,7 +119,7 @@ const Transactions = ({ transactions, setOrder }) => {
                         <button
                           className="flex gap-3 hover:text-[#3CCF4E]"
                           onClick={() =>
-                            handleClick(transaction.id, { id: user?.sub })
+                            handleClick(transaction.id, tokenAccess)
                           }
                         >
                           <BsCheckCircleFill size={22} fill="#3CCF4E" />{" "}

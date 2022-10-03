@@ -20,7 +20,7 @@ export default function UserPuserProfsPublicProfile() {
   const { userProf, idPet } = location.state;
   //eslint-disable-next-line
   const reviews = useSelector((state) => state.userReviews);
-
+  const tokenAccess = localStorage.getItem("token");
   //eslint-disable-next-line
   const [activeDonateModal, setActiveDonateModal] = useState(false);
   //eslint-disable-next-line
@@ -34,7 +34,7 @@ export default function UserPuserProfsPublicProfile() {
 
   function handleBeginTransaction() {
     setContact(true);
-    dispatch(beginTransaction(idPet, user?.sub));
+    dispatch(beginTransaction(idPet, tokenAccess));
   }
 
   if (!userProf?.name) {
