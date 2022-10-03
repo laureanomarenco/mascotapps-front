@@ -13,82 +13,83 @@ import { useLocation } from "react-router-dom";
 import RenderText from "./RenderText";
 
 const PetsContainer = () => {
-	const pets = useSelector(state => state.statusPets);
-	const filterPet = useSelector(state => state.filterPets);
-	const notFound = useSelector(state => state.notFound);
-	const dispatch = useDispatch();
+  const pets = useSelector((state) => state.statusPets);
+  const filterPet = useSelector((state) => state.filterPets);
+  const notFound = useSelector((state) => state.notFound);
+  const dispatch = useDispatch();
 
-	const [filter, setFilter] = useState({
-		specie: "",
-		gender: "",
-		age: "",
-		race: "",
-		city: "",
-	});
+  const [filter, setFilter] = useState({
+    specie: "",
+    gender: "",
+    age: "",
+    race: "",
+    city: "",
+  });
 
-	let location = useLocation();
-	let statusText = location.pathname.split("/")[2];
+  let location = useLocation();
+  let statusText = location.pathname.split("/")[2];
 
-	useEffect(() => {
-		dispatch(getPetsByStatus(location.pathname.split("/")[2]));
-	}, []);
+  useEffect(() => {
+    dispatch(getPetsByStatus(location.pathname.split("/")[2]));
+  }, []);
 
-	const handleFilter = e => {
-		setFilter({
-			...filter,
-			[e.target.name]: e.target.value,
-		});
-		const obj = {
-			...filter,
-			[e.target.name]: e.target.value,
-		};
+  const handleFilter = (e) => {
+    setFilter({
+      ...filter,
+      [e.target.name]: e.target.value,
+    });
+    const obj = {
+      ...filter,
+      [e.target.name]: e.target.value,
+    };
 		dispatch(filterPets(obj));
-	};
+		setPage(1);
+  };
 
-	const showAlert = () => {
-		Swal.fire({
-			title: "Error!",
-			text: "No pudimos encontrar una mascota con esas características",
-			icon: "error",
-			confirmButtonText: "Ok",
-		}).then(() => handleClearFilter());
-	};
+  const showAlert = () => {
+    Swal.fire({
+      title: "Error!",
+      text: "No pudimos encontrar una mascota con esas características",
+      icon: "error",
+      confirmButtonText: "Ok",
+    }).then(() => handleClearFilter());
+  };
 
-	const handleClearFilter = () => {
-		dispatch(resetDetail());
-		setFilter({
-			specie: "",
-			gender: "",
-			age: "",
-			race: "",
-			city: "",
-		});
-	};
-	useEffect(() => {
-		return () => {
-			dispatch(resetDetail());
-			setFilter({
-				specie: "",
-				gender: "",
-				age: "",
-				race: "",
-				city: "",
-			});
-		};
-	}, [pets]);
+  const handleClearFilter = () => {
+    dispatch(resetDetail());
+    setFilter({
+      specie: "",
+      gender: "",
+      age: "",
+      race: "",
+      city: "",
+    });
+  };
+  useEffect(() => {
+    return () => {
+      dispatch(resetDetail());
+      setFilter({
+        specie: "",
+        gender: "",
+        age: "",
+        race: "",
+        city: "",
+      });
+    };
+  }, [pets]);
 
-	const [page, setPage] = useState(1);
-	const showPerPage = 6;
-	const lastOnPage = page * showPerPage;
-	const firstOnPage = lastOnPage - showPerPage;
-	const showPets = filterPet?.slice(firstOnPage, lastOnPage);
-	const showByStatus = pets?.slice(firstOnPage, lastOnPage);
+  const [page, setPage] = useState(1);
+  const showPerPage = 6;
+  const lastOnPage = page * showPerPage;
+  const firstOnPage = lastOnPage - showPerPage;
+  const showPets = filterPet?.slice(firstOnPage, lastOnPage);
+  const showByStatus = pets?.slice(firstOnPage, lastOnPage);
 
-	function pagination(pageNumber) {
-		setPage(pageNumber);
-	}
+  function pagination(pageNumber) {
+    setPage(pageNumber);
+  }
 
-	return (
+  return (
     <div>
       <Navbar setPage={setPage} />
       <RenderText statusText={statusText} />
@@ -98,6 +99,7 @@ const PetsContainer = () => {
         handleFilter={handleFilter}
         filterPets={filterPet}
         pets={pets}
+        setPage={setPage}
       />
       {notFound && showAlert()}
       <Pagination
