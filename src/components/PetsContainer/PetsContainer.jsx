@@ -15,7 +15,6 @@ import RenderText from "./RenderText";
 const PetsContainer = () => {
 	const pets = useSelector(state => state.statusPets);
 	const filterPet = useSelector(state => state.filterPets);
-
 	const notFound = useSelector(state => state.notFound);
 	const dispatch = useDispatch();
 
@@ -90,32 +89,32 @@ const PetsContainer = () => {
 	}
 
 	return (
-		<div>
-			<Navbar setPage={setPage} />
-			<RenderText statusText={statusText} />
-			<FormFilter
-				handleClearFilter={handleClearFilter}
-				filter={filter}
-				handleFilter={handleFilter}
-				filterPet={filterPet}
-				pets={pets}
-			/>
-			{notFound && showAlert()}
-			<Pagination
-				pets={pets.length}
-				showPerPage={showPerPage}
-				page={page}
-				pagination={pagination}
-			/>
-			<div className="grid gap-1 grid-rows-1 md:grid-cols-2 xl:grid-cols-3 justify-self-center">
-				{showPets.length > 0 && !notFound
-					? showPets.map(fPet => <Card key={fPet.id} data={fPet} />)
-					: !notFound &&
-					showByStatus?.map(pet => (<Card key={pet.id} data={pet} />))}
-			</div>
-			<Footer />
-		</div>
-	);
+    <div>
+      <Navbar setPage={setPage} />
+      <RenderText statusText={statusText} />
+      <FormFilter
+        handleClearFilter={handleClearFilter}
+        filter={filter}
+        handleFilter={handleFilter}
+        filterPets={filterPet}
+        pets={pets}
+      />
+      {notFound && showAlert()}
+      <Pagination
+        pets={filterPet.length > 0 ? filterPet.length : pets.length}
+        showPerPage={showPerPage}
+        page={page}
+        pagination={pagination}
+      />
+      <div className="grid gap-1 grid-rows-1 md:grid-cols-2 xl:grid-cols-3 justify-self-center">
+        {showPets.length > 0 && !notFound
+          ? showPets.map((fPet) => <Card key={fPet.id} data={fPet} />)
+          : !notFound &&
+            showByStatus?.map((pet) => <Card key={pet.id} data={pet} />)}
+      </div>
+      <Footer />
+    </div>
+  );
 };
 
 export default PetsContainer;
