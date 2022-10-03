@@ -16,7 +16,6 @@ const Users = ({ users }) => {
   // const ultraSecreta = process.env.ULTRA_SECRETA;
   const ultraSecreta = "SoyAdmin";
 
-  // console.log(users);
   const dispatch = useDispatch();
   // const users = useSelector((state) => state.usersInfo);
   const [page, setPage] = useState(1);
@@ -50,7 +49,8 @@ const Users = ({ users }) => {
       if (result.isConfirmed) {
         dispatch(
           deleteUser(
-            { id: id, email: email, password: ultraSecreta }, tokenAccess
+            { id: id, email: email, password: ultraSecreta },
+            tokenAccess
           )
         );
         dispatch(
