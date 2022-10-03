@@ -15,7 +15,7 @@ const TransactionsPagination = ({
 
   return (
     // <div className="flex bg-[red] justify-self-center justify-items-centers gap-2">
-    <div className="flex w-[300px] bg-white mx-auto gap-[10px] my-2 justify-center">
+    <div className="flex w-[300px] bg-white mx-auto gap-[10px] my-2 justify-center items-center">
       <button
         className="bg-transparent border border-1 border-teal-400 rounded text-black font-bold py-1 px-2"
         onClick={page > 1 ? () => pagination(page - 1) : null}
@@ -23,6 +23,7 @@ const TransactionsPagination = ({
       >
         &lt;
       </button>
+
       {pageNumbers &&
         pageNumbers.map((n) => (
           <button
@@ -32,6 +33,7 @@ const TransactionsPagination = ({
                 ? "bg-transparent border border-1 border-teal-400 rounded text-black font-bold py-1 px-2"
                 : "bg-teal-400 border border-1 border-teal-400 rounded text-gray-50 font-bold py-1 px-2"
             }
+            hidden={n >= page + 2 || n <= page - 2 ? true : false}
             onClick={() => pagination(n)}
           >
             {n}
@@ -44,6 +46,7 @@ const TransactionsPagination = ({
       >
         &gt;
       </button>
+      <span className="font-medium text-gray-400 ">{`${page} / ${total}`}</span>
     </div>
   );
 };

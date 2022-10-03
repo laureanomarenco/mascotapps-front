@@ -27,6 +27,7 @@ const UsersPagination = ({ pagination, users, page, showPerPage }) => {
                 ? "bg-transparent border border-1 border-teal-400 rounded text-black font-bold py-1 px-2"
                 : "bg-teal-400 border border-1 border-teal-400 rounded text-gray-50 font-bold py-1 px-2"
             }
+            hidden={n > page + 1 || n < page - 1 ? true : false}
             onClick={() => pagination(n)}
           >
             {n}
