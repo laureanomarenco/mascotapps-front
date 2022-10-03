@@ -220,15 +220,17 @@ function deletePet(petId, token) {
   };
 }
 
-function updatePet( pet_data, token) {
+function updatePet(pet_data, token) {
+  console.log("🚀 ~ file: index.js ~ line 224 ~ updatePet ~ pet_data", pet_data)
   return async function(dispatch) {
     try {
       pet_data.name = pet_data.name ? pet_data.name : "Sin Nombre";
-      await axios.put(UPDATE_POST_PET, {
+      await axios.put(UPDATE_POST_PET, pet_data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+
       dispatch({
         type: "SOLVED_BRO",
         pet_data,
