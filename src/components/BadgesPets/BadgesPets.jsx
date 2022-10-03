@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-// import { HiPlusCircle } from "react-icons/hi";
 import { BsPencilSquare } from "react-icons/bs";
 import { RiChatDeleteFill } from "react-icons/ri";
 import { deletePet } from "../../store/actions";
@@ -9,8 +8,6 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 const BadgesPets = ({
-
-  user,
   hidden,
   setHidden,
   setOrder,
@@ -20,14 +17,13 @@ const BadgesPets = ({
 }) => {
   const dispatch = useDispatch();
   const [states, setStates] = useState(true);
-
-  const handleClick = (petid) => {
-    dispatch(deletePet(user, petid));
+  const tokenAccess = localStorage.getItem("token");
+  const handleClick = (petid, tokenAccess) => {
+    dispatch(deletePet(petid, tokenAccess));
     setStates(!states);
     setOrder(order === "now" ? "newNow" : "now");
   };
   const myPets = useSelector((state) => state.userPets);
-  console.log("🚀 ~ file: BadgesPets.jsx ~ line 27 ~ myPets", myPets);
   useEffect(() => {}, [states]);
   return (
     <div
@@ -84,7 +80,7 @@ const BadgesPets = ({
                   </p>
                   <button
                     className="text-2xl "
-                    onClick={() => handleClick(a.id)}
+                    onClick={() => handleClick(a.id, tokenAccess)}
                   >
                     <RiChatDeleteFill color="red" />
                   </button>

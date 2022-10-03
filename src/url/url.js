@@ -10,7 +10,6 @@ export const DONATION = URL + "checkout/balance";
 export const CREAT = URL + "users/newuser";
 export const GET_MY_PETS = URL + "users/getallpetsofuser";
 export const PET_SPECIES = URL + "pets/especies";
-// export const URL_POST_PET=URL_ROUTES + "users/postnewpet"
 export const POST = URL + "pets/postnewpet";
 export const DELETE = URL + "users/deletepet";
 export const LOGIN = URL + "auth/google";
@@ -22,12 +21,10 @@ export const INIT_TRANSACTION = URL + "transactions/newTransaction";
 export const UPDATE_POST_PET = URL + "pets/update";
 export const UPDATE_TRANSACTION_STATUS =
   URL + "transactions/transactionCheck?transactionId=";
-
 export const RATE_USER = URL + "reviews/newReview ";
 export const GET_USER_REVIEWS = URL + "/reviews/getReviewsToUser";
 export const NUMBER_OF_VISITORS = URL + "visitor/numberVisitors";
 export const VISITORS_COUNTER = URL + "visitor/addVisitor";
-
 export const FETCH_SUCCESS = URL + "pets/success";
 export const ADMIN_CONSULT = URL + "visitor/mailAdmin";
 export const WEB_PUSH = URL + "pets/subscribe";

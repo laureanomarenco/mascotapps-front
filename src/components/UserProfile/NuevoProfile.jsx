@@ -35,10 +35,7 @@ const NuevoProfile = () => {
   } = useAuth0();
   const dispatch = useDispatch();
   const myPets = useSelector((state) => state.userPets);
-  console.log(
-    "🚀 ~ file: NuevoProfile.jsx ~ line 34 ~ NuevoProfile ~ myPets",
-    myPets
-  );
+
   const myProfileData = useSelector((state) => state.myProfile);
   const transactions = myProfileData?.transactions;
   const tokenAccess = localStorage.getItem("token");
@@ -74,8 +71,10 @@ const NuevoProfile = () => {
   };
 
   useEffect(() => {
-    dispatch(myProfile({ id: user?.sub }));
-    handleSubmit();
+    if (tokenAccess !== "") {
+      dispatch(myProfile(tokenAccess));
+      handleSubmit()
+    }
     return () => {
       dispatch(resetMyProfile());
       dispatch(resetDetail());

@@ -18,9 +18,10 @@ export default function PointsStore() {
   const [update, setUpdate] = useState("");
   const pointsUser = useSelector((state) => state.userPoints);
   const myPoints = pointsUser?.points;
+   const tokenAccess = localStorage.getItem("token");
   useEffect(() => {
     localStorage.setItem("carrito", JSON.stringify(carrito));
-    !isLoading && isAuthenticated && dispatch(userPoints({ id: user?.sub }));
+    !isLoading && isAuthenticated && dispatch(userPoints(tokenAccess));
   }, [carrito, update, dispatch, user, isLoading, isAuthenticated]);
   if (isLoading) {
     return (

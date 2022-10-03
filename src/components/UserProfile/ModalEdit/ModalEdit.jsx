@@ -23,9 +23,8 @@ export default function ModalProfile({ belloPerfil }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const cities = useSelector((state) => state.cities);
-  //eslint-disable-next-line
+  const tokenAccess = localStorage.getItem("token");
   const [input, setInput] = useState({
-    id: user?.sub,
     email: user?.email,
     name: belloPerfil.name,
     city: belloPerfil.city,
@@ -130,8 +129,7 @@ export default function ModalProfile({ belloPerfil }) {
           contact: belloPerfil?.contact,
         });
       }
-      console.log(input);
-      dispatch(updateProfile(input));
+      dispatch(updateProfile(input, tokenAccess));
       Swal.fire({
         title: "Perfil modificado correctamente",
         icon: "success",

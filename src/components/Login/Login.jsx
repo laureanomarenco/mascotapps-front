@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-//eslint-disable-next-line
-import { Logout } from "../Logout/Logout";
-//eslint-disable-next-line
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoginButton } from "./LoginButton";
@@ -11,26 +8,27 @@ import Spinner from "../Spinner/Spinner";
 import { URL_EXIST } from "../../url/url";
 
 export default function Login() {
-  //eslint-disable-next-line
-  const { user, isAuthenticated, getAccessTokenSilently, isLoading } = useAuth0();
+  const {
+    user,
+    isAuthenticated,
+    getAccessTokenSilently,
+    isLoading,
+  } = useAuth0();
 
   const navigate = useNavigate();
+
   const handleValidation = async (user, isAuthenticated) => {
     try {
       const claims = await getAccessTokenSilently();
       localStorage.setItem("token", claims);
-      console.log(
-        "🚀 ~ file: Login.jsx ~ line 20 ~ handleValidation ~ claims",
-        claims
-      );
+
       if (isAuthenticated && user) {
-        let existe = await axios.post(
-          URL_EXIST,
-          {
-            id: user?.sub,
-          }
-        );
-        console.log("🚀 ~ file: Login.jsx ~ line 32 ~ handleValidation ~ existe", existe)
+        let existe = await axios.get(URL_EXIST, {
+          headers: {
+            Authorization: `Bearer ${claims}`,
+          },
+        });
+
         if (existe.data.msg) {
           navigate("/home");
         } else {

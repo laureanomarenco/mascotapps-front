@@ -15,7 +15,7 @@ const Calificar = ({
 }) => {
   const [showModal, setShowModal] = React.useState(false);
   const [pointsToDonate, setPointsToDonate] = React.useState(0);
-
+const tokenAccess = localStorage.getItem("token");
   const dispatch = useDispatch();
 
   const objBello = {
@@ -30,11 +30,10 @@ const Calificar = ({
   const onSubmit = () => {
     const body = {
       pointsToDonate,
-      id: reviewer_id,
       idToDonate: reviewed_id
     }
 
-    dispatch(donatePoints(body))
+    dispatch(donatePoints(body, tokenAccess));
     Swal.fire({
       title: "Puntos enviados",
     })

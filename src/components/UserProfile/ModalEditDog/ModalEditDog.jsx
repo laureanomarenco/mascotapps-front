@@ -3,16 +3,15 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCity, getSpecies, updatePet } from "../../../store/actions";
 import Swal from "sweetalert2";
-import { useAuth0 } from "@auth0/auth0-react";
-// import { Navigate } from "react-router-dom";
 import validate from "../../PostPets/validate";
 
 export default function ModalEditDog({ handleActiveEditDog, dataEditDog }) {
   const dispatch = useDispatch();
   const PetSpecies = useSelector((state) => state.species);
-  const { user } = useAuth0();
   const [error, setError] = useState({});
   const [input, setInput] = useState({ ...dataEditDog });
+    const tokenAccess = localStorage.getItem("token");
+
   const showAlert = () => {
     Swal.fire({
       title: "Gracias!",
@@ -58,7 +57,7 @@ export default function ModalEditDog({ handleActiveEditDog, dataEditDog }) {
     if (Object.values(error).length) {
       showError();
     } else {
-      dispatch(updatePet(user, input));
+      dispatch(updatePet(input, tokenAccess));
       showAlert();
       setInput({});
     }
