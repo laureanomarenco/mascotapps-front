@@ -21,7 +21,6 @@ import {
   USER_POINTS,
 } from "../types";
 
-
 function myProfile(token) {
   return async function(dispatch) {
     try {
@@ -51,7 +50,7 @@ function resetMyProfile() {
   };
 }
 
-function updateProfile(user,token) {
+function updateProfile(user, token) {
   return async function(dispatch) {
     try {
       var detail = await axios.put(UPDATE_MY_PROFILE, user, {
@@ -130,12 +129,15 @@ function publicUserDetail(id) {
 function beginTransaction(petId, token) {
   return async function() {
     try {
-      var detail = await axios.post(INIT_TRANSACTION + "?petId=" + petId, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      console.log(detail);
+      await axios.post(
+        INIT_TRANSACTION + "?petId=" + petId,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
     } catch (error) {
       console.log(error);
     }
@@ -146,27 +148,29 @@ function updateTransactionStatus(idTrans, token) {
   return async function() {
     try {
       //eslint-disable-next-line
-      var transaction = await axios.put(UPDATE_TRANSACTION_STATUS + idTrans, {}, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      var transaction = await axios.put(
+        UPDATE_TRANSACTION_STATUS + idTrans,
+        {},
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
     } catch (error) {
       console.log(error.message);
     }
   };
 }
 
-function rateUser(paq,token) {
+function rateUser(paq, token) {
   return async function() {
     try {
-      //eslint-disable-next-line
-      var review = await axios.post(RATE_USER, paq, {
+      await axios.post(RATE_USER, paq, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
-      console.log("🚀 ~ file: index.js ~ line 169 ~ returnfunction ~ review", review)
     } catch (error) {
       console.log(error.message);
     }
@@ -204,7 +208,7 @@ function buyItems(compra, token) {
     }
   };
 }
-function cancelPost(input,token) {
+function cancelPost(input, token) {
   return async function() {
     try {
       await axios.post(URL + "transactions/cancelpost", input, {
@@ -218,7 +222,7 @@ function cancelPost(input,token) {
   };
 }
 
-function finishPost(input,token) {
+function finishPost(input, token) {
   return async function() {
     try {
       await axios.post(URL + "transactions/postsuccess", input, {
@@ -238,7 +242,7 @@ function donatePoints(body, token) {
       await axios.post(DONATE_POINTS, body, {
         headers: {
           Authorization: `Bearer ${token}`,
-        }
+        },
       });
     } catch (error) {
       console.log(error.message);

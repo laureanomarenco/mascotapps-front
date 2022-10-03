@@ -7,8 +7,8 @@ const PetComments = (petId) => {
   const petComments = useSelector((state) => state.petComments);
 
   useEffect(() => {
-    !petComments?.length && dispatch(getPetComments(petId));
-  }, [dispatch, petComments]);
+    dispatch(getPetComments(petId));
+  }, []);
 
   return (
     <>

@@ -15,6 +15,7 @@ import {
   DELETE_PET,
 } from "../types";
 import {
+  URL,
   PET_DETAIL,
   ALLPETS,
   SEARCH_BY,
@@ -179,7 +180,6 @@ function getSuccess() {
   return async function(dispatch) {
     try {
       const req = await axios(FETCH_SUCCESS);
-      console.log(req.data);
       dispatch({
         type: GET_SUCCESS,
         payload: req.data,
@@ -221,7 +221,6 @@ function deletePet(petId, token) {
 }
 
 function updatePet(pet_data, token) {
-  console.log("🚀 ~ file: index.js ~ line 224 ~ updatePet ~ pet_data", pet_data)
   return async function(dispatch) {
     try {
       pet_data.name = pet_data.name ? pet_data.name : "Sin Nombre";
