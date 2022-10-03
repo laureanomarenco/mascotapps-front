@@ -11,9 +11,9 @@ const EndPost = ({ hiddenEnd, setHiddenEnd, idPet }) => {
   const myProfileData = useSelector((state) => state.myProfile);
   const transactions = myProfileData?.transactions;
 
-  const filteredByPet = transactions.filter((t) => t.pet_id === idPet)
-  const userToConcrete = filteredByPet?.map((t) => t?.user_demanding_name)
-  const setUsers = new Set(userToConcrete)
+  const filteredByPet = transactions?.filter((t) => t.pet_id === idPet)
+  //const userToConcrete = filteredByPet?.map((t) => t?.user_demanding_name)
+  const setUsers = new Set(filteredByPet)
   const arrayUser = Array.from(setUsers)
 
   let dispatch = useDispatch();
@@ -29,7 +29,7 @@ const EndPost = ({ hiddenEnd, setHiddenEnd, idPet }) => {
     id_demanding: "",
     petId: idPet,
   });
-
+  console.log(input)
   function onChange(e) {
     e.preventDefault();
     setInput({
@@ -119,9 +119,9 @@ no-repeat
                       return (
                         <option
                           key={Math.random()}
-                          value={t}
+                          value={t.user_demanding_id}
                         >
-                          {t}
+                          {t.user_demanding_name}
                         </option>
                       );
                     }
