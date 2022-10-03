@@ -7,12 +7,12 @@ const PetComments = (petId) => {
   const petComments = useSelector((state) => state.petComments);
 
   useEffect(() => {
-    !petComments.length && dispatch(getPetComments(petId));
+    !petComments?.length && dispatch(getPetComments(petId));
   }, [dispatch, petComments]);
 
   return (
     <>
-      {petComments.map((pet) => (
+      {petComments?.map((pet) => (
         <div
           key={pet.id}
           className="relative p-8 m-1 overflow-hidden border border-gray-100 rounded-lg md:w-[250px]"
