@@ -13,7 +13,7 @@ const EndPost = ({ hiddenEnd, setHiddenEnd, idPet }) => {
 
   const userToConcrete = transactions?.map((t) => t?.user_demanding_name)
   const setUsers = new Set(userToConcrete)
-
+  const arrayUser = Array.from(setUsers)
   let dispatch = useDispatch();
 
   useEffect(() => {
@@ -106,11 +106,11 @@ no-repeat
                   onChange={onChange}
                 >
                   <option hidden>Usuario con el que finalizó</option>
-                  {transactions?.map((t) => {
+                  {arrayUser.map((t) => {
                     if (user.sub !== t.user_demanding_id) {
                       return (
-                        <option key={Math.random()} value={t?.user_demanding_id}>
-                          {t?.user_demanding_name}
+                        <option key={Math.random()} value={t}>
+                          {t}
                         </option>
                       );
                     }
