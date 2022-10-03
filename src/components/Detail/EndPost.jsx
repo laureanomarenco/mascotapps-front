@@ -10,15 +10,26 @@ const EndPost = ({ hiddenEnd, setHiddenEnd, idPet }) => {
   const { user } = useAuth0();
   const myProfileData = useSelector((state) => state.myProfile);
   const transactions = myProfileData?.transactions;
-  const dispatch = useDispatch();
+
+  const filteredByPet = transactions?.filter((t) => t.pet_id === idPet)
+  //const userToConcrete = filteredByPet?.map((t) => t?.user_demanding_name)
+  const setUsers = new Set(filteredByPet)
+  const arrayUser = Array.from(setUsers)
+
+  let dispatch = useDispatch();
+
   const tokenAccess = localStorage.getItem("token");
+
+  useEffect(() => {
+    dispatch(myProfile(tokenAccess));
+  }, [dispatch]);
 
   const [input, setInput] = useState({
     statusPost: "",
     id_demanding: "",
     petId: idPet,
   });
-
+  console.log(input)
   function onChange(e) {
     e.preventDefault();
     setInput({
@@ -103,14 +114,14 @@ no-repeat
                   onChange={onChange}
                 >
                   <option hidden>Usuario con el que finalizó</option>
-                  {transactions?.map((t) => {
+                  {arrayUser.map((t) => {
                     if (user.sub !== t.user_demanding_id) {
                       return (
                         <option
                           key={Math.random()}
-                          value={t?.user_demanding_id}
+                          value={t.user_demanding_id}
                         >
-                          {t?.user_demanding_name}
+                          {t.user_demanding_name}
                         </option>
                       );
                     }
