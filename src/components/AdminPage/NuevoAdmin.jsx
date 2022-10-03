@@ -69,7 +69,7 @@ const NuevoAdmin = () => {
   //--------PARA EL MAPA---------------//
 
   const usersPosts = (arr) => {
-    let withPosts = arr.filter(
+    let withPosts = arr?.filter(
       (u) =>
         u.foundAPet !== 0 || u.gaveUpForAdoption !== 0 || u.gotAPetBack !== 0
     ).length;

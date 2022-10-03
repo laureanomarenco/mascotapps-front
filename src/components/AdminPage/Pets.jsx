@@ -33,11 +33,11 @@ const Pets = () => {
           </div>
           <div>
             <span className="block flex gap-2 text-2xl font-bold">
-              {pets && pets.filter((p) => p.status === "en adopción").length}
+              {pets && pets?.filter((p) => p.status === "en adopción").length}
               <Percents
                 value={
                   (
-                    (pets.filter((p) => p.status === "en adopción").length *
+                    (pets?.filter((p) => p.status === "en adopción").length *
                       100) /
                     pets.length
                   ).toFixed(2) + "%"
@@ -54,11 +54,14 @@ const Pets = () => {
           </div>
           <div>
             <span className="block flex gap-2 text-2xl font-bold">
-              {pets ? pets.filter((p) => p.status === "adoptado").length : null}
+              {pets
+                ? pets?.filter((p) => p.status === "adoptado").length
+                : null}
               <Percents
                 value={
                   (
-                    (pets.filter((p) => p.status === "adoptado").length * 100) /
+                    (pets?.filter((p) => p.status === "adoptado").length *
+                      100) /
                     pets.length
                   ).toFixed(2) + "%"
                 }
@@ -76,11 +79,11 @@ const Pets = () => {
           </div>
           <div>
             <span className="block flex gap-2 text-2xl font-bold">
-              {pets ? pets.filter((p) => p.status === "perdido").length : null}
+              {pets ? pets?.filter((p) => p.status === "perdido").length : null}
               <Percents
                 value={
                   (
-                    (pets.filter((p) => p.status === "perdido").length * 100) /
+                    (pets?.filter((p) => p.status === "perdido").length * 100) /
                     pets.length
                   ).toFixed(2) + "%"
                 }
@@ -100,12 +103,12 @@ const Pets = () => {
           <div>
             <span className="block flex gap-2 text-2xl font-bold">
               {pets
-                ? pets.filter((p) => p.status === "encontrado").length
+                ? pets?.filter((p) => p.status === "encontrado").length
                 : null}
               <Percents
                 value={
                   (
-                    (pets.filter((p) => p.status === "encontrado").length *
+                    (pets?.filter((p) => p.status === "encontrado").length *
                       100) /
                     pets.length
                   ).toFixed(2) + "%"
@@ -124,11 +127,11 @@ const Pets = () => {
           </div>
           <div>
             <span className="block flex gap-2 text-2xl font-bold">
-              {pets ? pets.filter((p) => p.specie === "gato").length : null}
+              {pets ? pets?.filter((p) => p.specie === "gato").length : null}
               <Percents
                 value={
                   (
-                    (pets.filter((p) => p.specie === "gato").length * 100) /
+                    (pets?.filter((p) => p.specie === "gato").length * 100) /
                     pets.length
                   ).toFixed(2) + "%"
                 }
@@ -143,11 +146,11 @@ const Pets = () => {
           </div>
           <div>
             <span className="block flex gap-2 text-2xl font-bold">
-              {pets ? pets.filter((p) => p.specie === "perro").length : null}
+              {pets ? pets?.filter((p) => p.specie === "perro").length : null}
               <Percents
                 value={
                   (
-                    (pets.filter((p) => p.specie === "perro").length * 100) /
+                    (pets?.filter((p) => p.specie === "perro").length * 100) /
                     pets.length
                   ).toFixed(2) + "%"
                 }
@@ -163,12 +166,12 @@ const Pets = () => {
           <div>
             <span className="inline-block flex gap-2 text-2xl font-bold">
               {pets
-                ? pets.filter((p) => p.specie === "otra especie").length
+                ? pets?.filter((p) => p.specie === "otra especie").length
                 : null}
               <Percents
                 value={
                   (
-                    (pets.filter((p) => p.specie === "otra especie").length *
+                    (pets?.filter((p) => p.specie === "otra especie").length *
                       100) /
                     pets.length
                   ).toFixed(2) + "%"
@@ -188,13 +191,15 @@ const Pets = () => {
           <div className="flex gap-4">
             <div>
               <span className="block text-2xl font-bold text-pink-500">
-                {pets ? pets.filter((p) => p.gender === "hembra").length : null}
+                {pets
+                  ? pets?.filter((p) => p.gender === "hembra").length
+                  : null}
               </span>
               <span className="block text-gray-500">Hembras</span>
             </div>
             <div>
               <span className="block text-2xl font-bold text-blue-500">
-                {pets ? pets.filter((p) => p.gender === "macho").length : null}
+                {pets ? pets?.filter((p) => p.gender === "macho").length : null}
               </span>
               <span className="block text-gray-500">Machos</span>
             </div>
@@ -215,7 +220,7 @@ export default Pets;
 //         <Percents
 //           value={
 //             (
-//               (pets.filter((p) => p.gender === "macho").length * 100) /
+//               (pets?.filter((p) => p.gender === "macho").length * 100) /
 //               pets.length
 //             ).toFixed(2) + "%"
 //           }
