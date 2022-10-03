@@ -1,5 +1,6 @@
 import React from "react";
-
+import Maps from "./Maps/Maps";
+import Percents from "./Percents";
 import { FaHands } from "react-icons/fa";
 import { GiDogHouse } from "react-icons/gi";
 import { GiCat } from "react-icons/gi";
@@ -7,14 +8,15 @@ import { GiNestBirds } from "react-icons/gi";
 import { GiSittingDog } from "react-icons/gi";
 import { MdImageSearch } from "react-icons/md";
 import { CgSearchFound } from "react-icons/cg";
-// import { AiOutlineWoman } from "react-icons/ai";
-// import { AiOutlineMan } from "react-icons/ai";
 import { BsGenderAmbiguous } from "react-icons/bs";
-import Percents from "./Percents";
 import { useSelector } from "react-redux";
+import { useLocation } from "react-router-dom";
 
 const Pets = () => {
+  const location = useLocation();
   const pets = useSelector((state) => state.pets);
+  // const petsForMaps = [...pets];
+  const { cities } = location.state;
   return (
     <main className="p-6 sm:p-10 space-y-6">
       <div className="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between">
@@ -198,6 +200,9 @@ const Pets = () => {
             </div>
           </div>
         </div>
+      </section>
+      <section>
+        <Maps cities={cities} />
       </section>
     </main>
   );

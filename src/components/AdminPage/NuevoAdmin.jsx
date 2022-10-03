@@ -8,6 +8,7 @@ import {
   getDonations,
   usersPointsRank,
   usersAdoptionsRank,
+  fetchCity,
   // pointsMultiplier
 } from "../../store/actions/index";
 import { FaDonate } from "react-icons/fa";
@@ -28,6 +29,8 @@ const NuevoAdmin = () => {
   const pets = useSelector((state) => state.pets);
   const users = useSelector((state) => state.totalUsers);
   const donations = useSelector((state) => state.donations);
+  const cities = useSelector((state) => state.cities);
+
   // const pointsRank = useSelector((state) => state.adoptionsRank);
   const adoptionsRank = useSelector((state) => state.adoptionsRank);
   const orderAdoptions = adoptionsRank?.sort(
@@ -36,12 +39,33 @@ const NuevoAdmin = () => {
   const visitors = useSelector((state) => state.visitors);
   const amounts = donations.map((done) => done.amount);
   const totalDonationsInCents = amounts.reduce((prev, next) => prev + next, 0);
-  // foundAPet: 0
 
-  // gaveUpForAdoption: 0
+  //--------PARA EL MAPA---------------//
+  const petsForMap = pets && { ...pets };
+  // const citiesForMap = cities && { ...cities };
 
-  // gotAPetBack: 0
-  console.log(usersDetails);
+  let localidades = cities?.map((loc) => {
+    return {
+      geo: loc.centroide,
+      nombre: loc.nombre,
+      provincia: loc.provincia.nombre,
+    };
+  });
+
+  const match = pets?.map((p) => {
+    var prov = localidades.find(
+      (l) =>
+        l.nombre === p.city.split(", ")[0] &&
+        l.provincia === p.city.split(", ")[1]
+    );
+    return {
+      ...p,
+      ...prov,
+    };
+  });
+  console.log("MAAAAATCH", match);
+
+  //--------PARA EL MAPA---------------//
 
   const usersPosts = (arr) => {
     let withPosts = arr.filter(
@@ -64,6 +88,7 @@ const NuevoAdmin = () => {
     dispatch(totalVisitors());
     dispatch(usersPointsRank());
     dispatch(usersAdoptionsRank());
+    dispatch(fetchCity());
   }, [dispatch, visitors, users]);
 
   //------------//CERRAR SESION//------------------//
@@ -150,6 +175,7 @@ const NuevoAdmin = () => {
               <Link
                 to="/admin/general/pets"
                 className="inline-flex items-center justify-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg"
+                state={{ pets: petsForMap, cities: match }}
               >
                 <span className="sr-only">Mascotas</span>
                 <MdPets />
