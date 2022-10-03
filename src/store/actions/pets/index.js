@@ -1,4 +1,5 @@
 import axios from "axios";
+import { header } from "../../../constants/token";
 import {
   GET_PETS_BY_STATUS,
   FETCH_PETS,
@@ -15,7 +16,7 @@ import {
   DELETE_PET,
 } from "../types";
 import {
-  URL,
+  GET_COMMENTS,
   PET_DETAIL,
   ALLPETS,
   SEARCH_BY,
@@ -24,7 +25,7 @@ import {
   PET_SPECIES,
   DELETE,
   UPDATE_POST_PET,
-} from "../../../url/url";
+} from "../../../constants/url";
 
 function fetchPets() {
   return async function(dispatch) {
@@ -143,15 +144,7 @@ function resetDetail() {
 function postPet(pet, token) {
   return async function(dispatch) {
     try {
-      var json = await axios.post(
-        POST,
-        { pet: pet },
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      var json = await axios.post(POST, { pet: pet }, header(token));
       return dispatch({ type: POST_PET, payload: json.data });
     } catch (error) {
       return dispatch({
@@ -165,7 +158,7 @@ function postPet(pet, token) {
 function getPetComments(obj) {
   return async function(dispatch) {
     try {
-      var json = await axios.get(URL + "comments/getComments?petId="+ obj.petId);
+      var json = await axios.get(GET_COMMENTS + obj.petId);
       return dispatch({
         type: GET_PET_COMMENTS,
         payload: json.data,
@@ -202,11 +195,7 @@ function clearSuccess() {
 function deletePet(petId, token) {
   return async function(dispatch) {
     try {
-      var datos = await axios.delete(DELETE + "?petId="+ petId, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      var datos = await axios.delete(DELETE + "?petId=" + petId, header(token));
       return dispatch({
         type: DELETE_PET,
         payload: datos.data,
@@ -224,12 +213,7 @@ function updatePet(pet_data, token) {
   return async function(dispatch) {
     try {
       pet_data.name = pet_data.name ? pet_data.name : "Sin Nombre";
-      await axios.put(UPDATE_POST_PET, pet_data, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
+      await axios.put(UPDATE_POST_PET, pet_data, header(token));
       dispatch({
         type: "SOLVED_BRO",
         pet_data,

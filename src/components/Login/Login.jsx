@@ -5,7 +5,7 @@ import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoginButton } from "./LoginButton";
 import Spinner from "../Spinner/Spinner";
-import { URL_EXIST } from "../../url/url";
+import { URL_EXIST } from "../../constants/url";
 
 export default function Login() {
   const {

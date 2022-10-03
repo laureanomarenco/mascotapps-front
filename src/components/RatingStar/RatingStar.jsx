@@ -4,11 +4,11 @@ import Rating from "@mui/material/Rating";
 import TextField from "@mui/material/TextField";
 import { useDispatch } from "react-redux";
 import { rateUser, resetMyProfile } from "../../store/actions";
+import { tokenAccess } from "../../constants/token";
 
 export default function RatingStar({ objBello, setShowModal, setOrder }) {
   const dispatch = useDispatch();
   const [value, setValue] = React.useState(2);
-  const tokenAccess = localStorage.getItem("token");
 
   const [review, setReview] = React.useState({
     ...objBello,
