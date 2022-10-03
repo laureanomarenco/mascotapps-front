@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getPetComments } from "../../store/actions/index";
 
-const PetComments = ( petId ) => {
+const PetComments = (petId) => {
   const dispatch = useDispatch();
   const petComments = useSelector((state) => state.petComments);
 
@@ -27,14 +27,6 @@ const PetComments = ( petId ) => {
                 Fecha: {pet.createdAt.split("T")[0]}
               </p>
             </div>
-            {/*
-        <div className="flex-shrink-0 hidden ml-3 sm:block">
-          <img
-            alt="Paul Clapton"
-            src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1180&q=80"
-            className="object-cover w-16 h-16 rounded-lg shadow-sm"
-          />
-        </div> */}
           </div>
 
           <dl className="flex mt-2">

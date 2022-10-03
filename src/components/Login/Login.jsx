@@ -12,25 +12,24 @@ import { URL_EXIST } from "../../url/url";
 
 export default function Login() {
   //eslint-disable-next-line
-  const { user, isAuthenticated, getAccessTokenSilently, isLoading } = useAuth0();
+  const {
+    user,
+    isAuthenticated,
+    getAccessTokenSilently,
+    isLoading,
+  } = useAuth0();
 
   const navigate = useNavigate();
   const handleValidation = async (user, isAuthenticated) => {
     try {
       const claims = await getAccessTokenSilently();
       localStorage.setItem("token", claims);
-      console.log(
-        "🚀 ~ file: Login.jsx ~ line 20 ~ handleValidation ~ claims",
-        claims
-      );
+
       if (isAuthenticated && user) {
-        let existe = await axios.post(
-          URL_EXIST,
-          {
-            id: user?.sub,
-          }
-        );
-        console.log("🚀 ~ file: Login.jsx ~ line 32 ~ handleValidation ~ existe", existe)
+        let existe = await axios.post(URL_EXIST, {
+          id: user?.sub,
+        });
+
         if (existe.data.msg) {
           navigate("/home");
         } else {

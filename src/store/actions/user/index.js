@@ -21,10 +21,15 @@ import {
   USER_POINTS,
 } from "../types";
 
-function myProfile(id) {
+//cambie de post a get
+function myProfile(token) {
   return async function(dispatch) {
     try {
-      var detail = await axios.post(MY_PROFILE, id);
+      var detail = await axios.get(MY_PROFILE, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       return dispatch({
         type: MY_PROFILE_DETAIL,
         payload: detail.data,
@@ -112,11 +117,14 @@ function publicUserDetail(id) {
     }
   };
 }
-function beginTransaction(petId, idUser) {
+
+function beginTransaction(petId, token) {
   return async function() {
     try {
       var detail = await axios.post(INIT_TRANSACTION + "?petId=" + petId, {
-        id: idUser,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       console.log(detail);
     } catch (error) {
@@ -125,14 +133,15 @@ function beginTransaction(petId, idUser) {
   };
 }
 
-function updateTransactionStatus(idTrans, idLogged) {
+function updateTransactionStatus(idTrans, token) {
   return async function() {
     try {
       //eslint-disable-next-line
-      var transaction = await axios.put(
-        UPDATE_TRANSACTION_STATUS + idTrans,
-        idLogged
-      );
+      var transaction = await axios.put(UPDATE_TRANSACTION_STATUS + idTrans, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
     } catch (error) {
       console.log(error.message);
     }
@@ -150,10 +159,14 @@ function rateUser(paq) {
   };
 }
 
-function userPoints(id) {
+function userPoints(token) {
   return async function(dispatch) {
     try {
-      var msg = await axios.post(POINTS, id);
+      var msg = await axios.get(POINTS, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       return dispatch({ type: USER_POINTS, payload: msg.data });
     } catch (error) {
       return dispatch({

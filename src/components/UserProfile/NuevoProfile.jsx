@@ -74,7 +74,7 @@ const NuevoProfile = () => {
   };
 
   useEffect(() => {
-    dispatch(myProfile({ id: user?.sub }));
+    dispatch(myProfile(tokenAccess));
     handleSubmit();
     return () => {
       dispatch(resetMyProfile());

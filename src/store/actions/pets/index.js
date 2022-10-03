@@ -158,10 +158,11 @@ function postPet(pet, token) {
     }
   };
 }
+
 function getPetComments(obj) {
   return async function(dispatch) {
     try {
-      var json = await axios.post(URL + "comments/getComments/", obj);
+      var json = await axios.get(URL + "comments/getComments?petId="+ obj.petId);
       return dispatch({
         type: GET_PET_COMMENTS,
         payload: json.data,
@@ -195,13 +196,13 @@ function clearSuccess() {
     });
   };
 }
-function deletePet(user, petId) {
-  console.log("ESTOY EN LAS ACTIONS", user, petId);
+function deletePet(petId, token) {
   return async function(dispatch) {
     try {
-      var datos = await axios.post(DELETE, {
-        petId: petId,
-        id: user?.sub,
+      var datos = await axios.delete(DELETE + "?petId="+ petId, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       return dispatch({
         type: DELETE_PET,
@@ -216,17 +217,17 @@ function deletePet(user, petId) {
   };
 }
 
-function updatePet(user, pet_data) {
+function updatePet( pet_data, token) {
   return async function(dispatch) {
     try {
       pet_data.name = pet_data.name ? pet_data.name : "Sin Nombre";
       await axios.put(UPDATE_POST_PET, {
-        user: { userId: user?.sub },
-        pet: pet_data,
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       dispatch({
         type: "SOLVED_BRO",
-        user,
         pet_data,
       });
     } catch (error) {
