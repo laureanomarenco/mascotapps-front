@@ -1,5 +1,6 @@
 import axios from "axios";
 import {
+  URL,
   MY_PROFILE,
   UPDATE_MY_PROFILE,
   GET_MY_PETS,
@@ -209,6 +210,7 @@ function buyItems(compra, token) {
   };
 }
 function cancelPost(input, token) {
+  console.log("🚀 ~ file: index.js ~ line 213 ~ cancelPost ~ input", input)
   return async function() {
     try {
       let respo=await axios.post(URL + "transactions/cancelpost", input, {
@@ -224,6 +226,7 @@ function cancelPost(input, token) {
 }
 
 function finishPost(input, token) {
+  console.log("🚀 ~ file: index.js ~ line 229 ~ finishPost ~ input", input)
   return async function() {
     try {
       let response=await axios.post(URL + "transactions/postsuccess", input, {

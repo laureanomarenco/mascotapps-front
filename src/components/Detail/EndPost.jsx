@@ -10,8 +10,8 @@ const EndPost = ({ hiddenEnd, setHiddenEnd, idPet }) => {
   const { user } = useAuth0();
   const myProfileData = useSelector((state) => state.myProfile);
   const transactions = myProfileData?.transactions;
-  const  dispatch = useDispatch();
- const tokenAccess = localStorage.getItem("token");
+  const dispatch = useDispatch();
+  const tokenAccess = localStorage.getItem("token");
 
   const [input, setInput] = useState({
     statusPost: "",
@@ -31,8 +31,9 @@ const EndPost = ({ hiddenEnd, setHiddenEnd, idPet }) => {
     e.preventDefault();
     if (input.statusPost === "cancelado") {
       dispatch(cancelPost(input, tokenAccess));
+    } else {
+      dispatch(finishPost(input, tokenAccess));
     }
-    dispatch(finishPost(input, tokenAccess));
     setHiddenEnd((hiddenEnd = true));
     Swal.fire({
       title:
