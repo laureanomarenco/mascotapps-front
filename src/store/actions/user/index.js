@@ -177,10 +177,14 @@ function userPoints(token) {
   };
 }
 
-function buyItems(compra) {
+function buyItems(compra, token) {
   return async function() {
     try {
-      await axios.post(BUY, compra);
+      await axios.post(BUY, compra, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
     } catch (error) {
       console.log(error);
     }
@@ -205,10 +209,15 @@ function finishPost(input) {
     }
   };
 }
-function donatePoints(body) {
+
+function donatePoints(body, token) {
   return async function() {
     try {
-      await axios.post(DONATE_POINTS, body);
+      await axios.post(DONATE_POINTS, body, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        }
+      });
     } catch (error) {
       console.log(error.message);
     }

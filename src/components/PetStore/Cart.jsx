@@ -17,9 +17,9 @@ export default function Cart({ carrito, setCarrito, setUpdate, update }) {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const myItems = carrito;
-  //eslint-disable-next-line
+  const tokenAccess = localStorage.getItem("token");
+
   const [compra, setCompra] = useState({
-    userID: user?.sub,
     name: "",
     items: myItems,
     totalPoints: 0,
@@ -47,12 +47,7 @@ export default function Cart({ carrito, setCarrito, setUpdate, update }) {
     if (compra.name.search("[^A-Za-z0-9]") !== -1) {
       errorObj.name = "El nombre puede incluir números, símbolos ni espacios";
     }
-    // if (!compra.contact.trim()) {
-    //   errorObj.contact = "Debes incluir un número de contacto";
-    // }
-    // if (!compra.direccion.trim()) {
-    //   errorObj.direccion = "Debes incluir una dirección";
-    // }
+
     return errorObj;
   }
   const totalPoints = carrito?.reduce(
@@ -73,8 +68,7 @@ export default function Cart({ carrito, setCarrito, setUpdate, update }) {
     if (errors.name || errors.contact || errors.direccion) {
       console.log("pone bien los datosssssss");
     } else {
-      console.log("todo bien", objAux);
-      dispatch(buyItems(objAux));
+      dispatch(buyItems(objAux, tokenAccess));
       Swal.fire({
         title: "Pedido enviado con éxito",
         icon: "success",
