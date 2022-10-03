@@ -1,0 +1,252 @@
+import axios from "axios";
+import {
+  GET_PETS_BY_STATUS,
+  FETCH_PETS,
+  FILTER_PETS,
+  SEARCH_PETS,
+  SORT_BY,
+  GET_DETAIL,
+  RESET_DETAIL,
+  POST_PET,
+  GET_SUCCESS,
+  CLEAR_SUCCESS,
+  GET_PET_COMMENTS,
+  GET_SPECIES,
+  DELETE_PET,
+} from "../types";
+import {
+  PET_DETAIL,
+  ALLPETS,
+  SEARCH_BY,
+  POST,
+  FETCH_SUCCESS,
+  PET_SPECIES,
+  DELETE,
+  UPDATE_POST_PET,
+} from "../../../url/url";
+
+function fetchPets() {
+  return async function(dispatch) {
+    try {
+      const datos = await axios.get(ALLPETS);
+      return dispatch({
+        type: FETCH_PETS,
+        payload: datos.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: FETCH_PETS,
+        payload: { error: error.message },
+      });
+    }
+  };
+}
+function getSpecies() {
+  return async function(dispatch) {
+    try {
+      const datos = await axios.get(PET_SPECIES);
+      return dispatch({
+        type: GET_SPECIES,
+        payload: datos.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: GET_SPECIES,
+        payload: { error: error.message },
+      });
+    }
+  };
+}
+function getPetsByStatus(status) {
+  return async function(dispatch) {
+    try {
+      const info = await axios.get(PET_DETAIL + status);
+      return dispatch({
+        type: GET_PETS_BY_STATUS,
+        payload: info.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: GET_PETS_BY_STATUS,
+        payload: { error: error.message },
+      });
+    }
+  };
+}
+function filterPets(value) {
+  return { type: FILTER_PETS, payload: value };
+}
+
+function searchPets(input) {
+  return async function(dispatch) {
+    try {
+      const pets = await axios.get(SEARCH_BY + `${input}`);
+      return dispatch({
+        type: SEARCH_PETS,
+        payload: pets.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: SEARCH_PETS,
+        payload: { error: error.message },
+      });
+    }
+  };
+}
+
+function sortBy(arr, filterType) {
+  return function(dispatch) {
+    const newArr = arr
+      .sort((a, b) =>
+        filterType === "ASC"
+          ? a.name?.localeCompare(b?.name)
+          : b.name?.localeCompare(a?.name)
+      )
+      .map((el) => el);
+    dispatch({
+      type: SORT_BY,
+      payload: {
+        filterType: filterType,
+        arr: newArr,
+      },
+    });
+  };
+}
+function getDetail(id) {
+  return async function(dispatch) {
+    try {
+      const info = await axios.get(PET_DETAIL + id);
+      return dispatch({
+        type: GET_DETAIL,
+        payload: info.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: GET_DETAIL,
+        payload: { error: error.message },
+      });
+    }
+  };
+}
+
+function resetDetail() {
+  return async function(dispatch) {
+    dispatch({
+      type: RESET_DETAIL,
+      payload: {},
+    });
+  };
+}
+function postPet(pet, token) {
+  return async function(dispatch) {
+    try {
+      var json = await axios.post(
+        POST,
+        { pet: pet },
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      return dispatch({ type: POST_PET, payload: json.data });
+    } catch (error) {
+      return dispatch({
+        type: POST_PET,
+        payload: { error: error.message },
+      });
+    }
+  };
+}
+function getPetComments(obj) {
+  return async function(dispatch) {
+    try {
+      var json = await axios.post(URL + "comments/getComments/", obj);
+      return dispatch({
+        type: GET_PET_COMMENTS,
+        payload: json.data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
+
+function getSuccess() {
+  return async function(dispatch) {
+    try {
+      const req = await axios(FETCH_SUCCESS);
+      console.log(req.data);
+      dispatch({
+        type: GET_SUCCESS,
+        payload: req.data,
+      });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
+
+function clearSuccess() {
+  return function(dispatch) {
+    dispatch({
+      type: CLEAR_SUCCESS,
+      payload: [],
+    });
+  };
+}
+function deletePet(user, petId) {
+  console.log("ESTOY EN LAS ACTIONS", user, petId);
+  return async function(dispatch) {
+    try {
+      var datos = await axios.post(DELETE, {
+        petId: petId,
+        id: user?.sub,
+      });
+      return dispatch({
+        type: DELETE_PET,
+        payload: datos.data,
+      });
+    } catch (error) {
+      return dispatch({
+        type: DELETE_PET,
+        payload: { error: error.message },
+      });
+    }
+  };
+}
+
+function updatePet(user, pet_data) {
+  return async function(dispatch) {
+    try {
+      pet_data.name = pet_data.name ? pet_data.name : "Sin Nombre";
+      await axios.put(UPDATE_POST_PET, {
+        user: { userId: user?.sub },
+        pet: pet_data,
+      });
+      dispatch({
+        type: "SOLVED_BRO",
+        user,
+        pet_data,
+      });
+    } catch (error) {
+      console.log(error);
+    }
+  };
+}
+export {
+  fetchPets,
+  getPetsByStatus,
+  filterPets,
+  searchPets,
+  sortBy,
+  getDetail,
+  resetDetail,
+  postPet,
+  getPetComments,
+  getSuccess,
+  clearSuccess,
+  getSpecies,
+  deletePet,
+  updatePet,
+};

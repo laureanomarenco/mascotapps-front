@@ -1,34 +1,31 @@
+import {   NOTIFY } from "../actions";
 import {
-  FETCH_PETS,
-  GET_DETAIL,
-  RESET_DETAIL,
-  GET_PETS_BY_STATUS,
   SET_LOADING,
-  FILTER_PETS,
-  FETCH_CITY,
-  SEARCH_PETS,
-  GET_USER_INFO,
-  GET_DONATIONS,
-  GET_SPECIES,
-  POST_PET,
-  GET_ALL_USERS,
-  IS_LOGGED,
-  GET_PETS,
-  GET_PUBLIC_USER_DETAIL,
-  MY_PROFILE_DETAIL,
-  RESET_MY_PROFILE,
-  ADMIN_FETCH_USERS,
-  SORT_BY,
   TOTAL_VISITORS,
+  GET_PUBLIC_USER_DETAIL,
+  GET_SPECIES,
   GET_SUCCESS,
   CLEAR_SUCCESS,
-  USER_POINTS,
-  //eslint-disable-next-line
-  NOTIFY,
   GET_PET_COMMENTS,
   USERS_POINTS_RANK,
+  ADMIN_FETCH_USERS,
   USERS_ADOPTIONS_RANK,
-} from "../actions";
+  SORT_BY,
+  GET_DONATIONS,
+  GET_ALL_USERS,
+  USER_POINTS,
+  MY_PROFILE_DETAIL,
+  POST_PET,
+  GET_PETS,
+  RESET_MY_PROFILE,
+  FETCH_CITY,
+  FETCH_PETS,
+  GET_PETS_BY_STATUS,
+  GET_DETAIL,
+  RESET_DETAIL,
+  FILTER_PETS,
+  SEARCH_PETS,
+} from "../actions/types";
 
 const initalState = {
   pets: [],
@@ -141,11 +138,6 @@ export default function reducer(state = initalState, action) {
         ...state,
         searchedPets: action.payload,
       };
-    case GET_USER_INFO:
-      return {
-        ...state,
-        user: action.payload,
-      };
 
     case GET_DONATIONS:
       return {
@@ -170,17 +162,6 @@ export default function reducer(state = initalState, action) {
         totalUsers: action.payload,
       };
 
-    case IS_LOGGED:
-      var status;
-      if (action.payload.isLogged) {
-        status = true;
-      } else {
-        status = false;
-      }
-      return {
-        ...state,
-        statusLogin: status,
-      };
     case ADMIN_FETCH_USERS:
       return {
         ...state,
