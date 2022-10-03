@@ -138,7 +138,7 @@ export default function ModalProfile({ belloPerfil }) {
       }).then((result) => {
         if (result.isConfirmed) {
           setShowModal(false);
-          dispatch(myProfile({ id: user?.sub }));
+          dispatch(myProfile(tokenAccess));
         }
       });
     }

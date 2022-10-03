@@ -1,10 +1,6 @@
 import React from "react";
 
 export default function RenderText({ statusText }) {
-  console.log(
-    "🚀 ~ file: RenderText.jsx ~ line 4 ~ RenderText ~ statusText",
-    statusText
-  );
   const text = [
     {
       title: "Mascotas encontradas",
@@ -30,7 +26,9 @@ export default function RenderText({ statusText }) {
       : text[2];
   return (
     <div className="px-5 my-5 md:mx-12 flex flex-col gap-5  py-5  ">
-      <p className="text-3xl md:text-5xl text-gray-700 font-bold ">{renderText.title}</p>
+      <p className="text-3xl md:text-5xl text-gray-700 font-bold ">
+        {renderText.title}
+      </p>
       <p className="md:text-xl py-2 text-gray-500 border-t-4 border-[#FFC700]">
         {renderText.subtitle}
       </p>

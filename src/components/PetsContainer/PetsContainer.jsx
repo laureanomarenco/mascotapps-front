@@ -15,10 +15,7 @@ import RenderText from "./RenderText";
 const PetsContainer = () => {
   const pets = useSelector((state) => state.statusPets);
   const filterPet = useSelector((state) => state.filterPets);
-  console.log(
-    "🚀 ~ file: PetsContainer.jsx ~ line 17 ~ PetsContainer ~ filterPet",
-    filterPet
-  );
+
   const notFound = useSelector((state) => state.notFound);
   const dispatch = useDispatch();
 
