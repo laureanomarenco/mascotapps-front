@@ -22,7 +22,7 @@ const Users = ({ users }) => {
   const showPerPage = 4;
   const lastOnPage = page * showPerPage;
   const firstOnPage = lastOnPage - showPerPage;
-  const showUsers = users.slice(firstOnPage, lastOnPage);
+  const showUsers = users?.slice(firstOnPage, lastOnPage);
   const tokenAccess = localStorage.getItem("token");
 
   function pagination(pageNumber) {
@@ -59,7 +59,7 @@ const Users = ({ users }) => {
         dispatch(
           deletePetsWithNoUserId({ password: ultraSecreta }, tokenAccess)
         );
-        dispatch(adminFetchUsers());
+        dispatch(adminFetchUsers(tokenAccess));
         Swal.fire({
           title: "Usuario eliminado correctamente!",
           icon: "success",
@@ -70,7 +70,7 @@ const Users = ({ users }) => {
   };
 
   useEffect(() => {
-    dispatch(adminFetchUsers());
+    dispatch(adminFetchUsers(tokenAccess));
   }, [dispatch]);
   return (
     <section className="bg-blueGray-50">

@@ -10,6 +10,7 @@ export default function ModalEditDog({ handleActiveEditDog, dataEditDog }) {
   const PetSpecies = useSelector((state) => state.species);
   const [error, setError] = useState({});
   const [input, setInput] = useState({ ...dataEditDog });
+    console.log("🚀 ~ file: ModalEditDog.jsx ~ line 13 ~ ModalEditDog ~ input", input)
     const tokenAccess = localStorage.getItem("token");
 
   const showAlert = () => {
@@ -57,6 +58,7 @@ export default function ModalEditDog({ handleActiveEditDog, dataEditDog }) {
     if (Object.values(error).length) {
       showError();
     } else {
+      console.log('aca lo que mando', input)
       dispatch(updatePet(input, tokenAccess));
       showAlert();
       setInput({});

@@ -17,7 +17,6 @@ import PetComments from "./PetComments";
 import { TbVaccine } from "react-icons/tb";
 import { BiMap } from "react-icons/bi";
 import { BsExclamationSquare } from "react-icons/bs";
-
 import { useDispatch, useSelector } from "react-redux";
 import EndPost from "./EndPost";
 import Chat from "./Chat/Chat";

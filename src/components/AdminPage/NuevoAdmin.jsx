@@ -31,6 +31,7 @@ const NuevoAdmin = () => {
   const donations = useSelector((state) => state.donations);
   const cities = useSelector((state) => state.cities);
 
+  const tokenAccess = localStorage.getItem("token");
   // const pointsRank = useSelector((state) => state.adoptionsRank);
   const adoptionsRank = useSelector((state) => state.adoptionsRank);
   const orderAdoptions = adoptionsRank?.sort(
@@ -39,6 +40,8 @@ const NuevoAdmin = () => {
   const visitors = useSelector((state) => state.visitors);
   const amounts = donations.map((done) => done.amount);
   const totalDonationsInCents = amounts.reduce((prev, next) => prev + next, 0);
+  const usersss = usersDetails;
+  // foundAPet: 0
 
   //--------PARA EL MAPA---------------//
   const petsForMap = pets && { ...pets };
@@ -78,18 +81,31 @@ const NuevoAdmin = () => {
         u.foundAPet === 0 && u.gaveUpForAdoption === 0 && u.gotAPetBack === 0
     ).length;
     return [withPosts, noPosts];
+    // if (arr.length > 0) {
+    //   let withPosts = arr?.filter(
+    //     (u) =>
+    //       u.foundAPet !== 0 || u.gaveUpForAdoption !== 0 || u.gotAPetBack !== 0
+    //   ).length;
+    //   let noPosts = arr?.filter(
+    //     (u) =>
+    //       u.foundAPet === 0 && u.gaveUpForAdoption === 0 && u.gotAPetBack === 0
+    //   ).length;
+    //   return [withPosts, noPosts];
+    // }
   };
-  let usersPostsOrNo = usersPosts(usersDetails);
+
+  let usersPostsOrNo = usersPosts(usersss);
 
   useEffect(() => {
     dispatch(fetchPets());
     dispatch(getDonations());
     dispatch(getAllUsers());
-    dispatch(adminFetchUsers());
+    dispatch(adminFetchUsers(tokenAccess));
     dispatch(totalVisitors());
     dispatch(usersPointsRank());
     dispatch(usersAdoptionsRank());
     dispatch(fetchCity());
+    usersPostsOrNo = usersPosts(usersss);
   }, [dispatch, visitors, users]);
 
   //------------//CERRAR SESION//------------------//
@@ -367,7 +383,7 @@ const NuevoAdmin = () => {
                 </div>
                 <div className="p-4 ">
                   <div className=" w-full bg-gray-100 border-2 border-gray-200 border-dashed rounded-md">
-                    <Users users={usersDetails} />
+                    <Users users={usersss} />
                   </div>
                 </div>
               </div>
@@ -380,7 +396,7 @@ const NuevoAdmin = () => {
                 </div>
                 <div>
                   <span className="block text-2xl font-bold">
-                    {usersPostsOrNo[0]}
+                    {usersPostsOrNo && usersPostsOrNo[0]}
                   </span>
                   <span className="block text-gray-500">
                     Usuarios con publicaciones
@@ -396,7 +412,7 @@ const NuevoAdmin = () => {
                 </div>
                 <div>
                   <span className="block text-2xl font-bold">
-                    {usersPostsOrNo[1]}
+                    {usersPostsOrNo && usersPostsOrNo[1]}
                   </span>
                   <span className="block text-gray-500">
                     Usuarios sin publicaciones
