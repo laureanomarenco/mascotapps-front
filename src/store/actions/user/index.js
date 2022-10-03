@@ -51,10 +51,14 @@ function resetMyProfile() {
   };
 }
 
-function updateProfile(user) {
+function updateProfile(user,token) {
   return async function(dispatch) {
     try {
-      var detail = await axios.put(UPDATE_MY_PROFILE, user);
+      var detail = await axios.put(UPDATE_MY_PROFILE, user, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       return dispatch({
         type: MY_PROFILE_DETAIL,
         payload: detail.data,
