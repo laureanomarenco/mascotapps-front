@@ -146,7 +146,7 @@ function updateTransactionStatus(idTrans, token) {
   return async function() {
     try {
       //eslint-disable-next-line
-      var transaction = await axios.put(UPDATE_TRANSACTION_STATUS + idTrans, {
+      var transaction = await axios.put(UPDATE_TRANSACTION_STATUS + idTrans, {}, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
@@ -166,6 +166,7 @@ function rateUser(paq,token) {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log("🚀 ~ file: index.js ~ line 169 ~ returnfunction ~ review", review)
     } catch (error) {
       console.log(error.message);
     }
