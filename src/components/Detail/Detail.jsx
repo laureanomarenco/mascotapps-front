@@ -206,20 +206,22 @@ export default function Detail() {
                           />
                         </div>
                       </div>
-                      <div className=" flex gap-5 mt-4 w-full max-w-[500px] justify-between">
-                        <div>
-                          <p className="mr-8 sm:mr-0 text-sm text-gray-500 w-3/4">
-                            ¿Has visto esta mascota?
-                          </p>
-                          <p className="mr-8 sm:mr-0 text-sm text-gray-500 w-3/4">
-                            Envíale información al vendedor a través de nuestro
-                            Chat
-                          </p>
+                      {pet.status === "perdido" && (
+                        <div className=" flex gap-5 mt-4 w-full max-w-[500px] justify-between">
+                          <div>
+                            <p className="mr-8 sm:mr-0 text-sm text-gray-500 w-3/4">
+                              ¿Has visto esta mascota?
+                            </p>
+                            <p className="mr-8 sm:mr-0 text-sm text-gray-500 w-3/4">
+                              Envíale información al anunciante a través de
+                              nuestro Chat
+                            </p>
+                          </div>
+                          <div className="">
+                            <Chat pet={pet} />
+                          </div>
                         </div>
-                        <div className="">
-                          <Chat pet={pet} />
-                        </div>
-                      </div>
+                      )}
                     </div>
                   </>
                 ) : null}
