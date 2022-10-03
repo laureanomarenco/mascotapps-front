@@ -228,6 +228,8 @@ export default function Detail() {
                 {/* finalizar publicacion */}
                 {user?.sub === pet.UserId && (
                   //agregar condicion para que no renderice el boton si el status de la mascota es 'cancelado' o 'concretado'
+                  pet.statusPost === 'activo' ?
+                  (
                   <div>
                     <button
                       onClick={handleClickEnd}
@@ -244,6 +246,8 @@ export default function Detail() {
                       />
                     </div>
                   </div>
+                ) : pet.statusPost === 'cancelado' ? <p className="text-xl font-bold text-red-700">Has cancelado esta publicación</p>
+                  : <p className="text-xl font-bold text-teal-700">Has concretado esta publicación</p> 
                 )}
               </div>
               {/* chat etc */}
