@@ -61,8 +61,7 @@ const NuevoAdmin = () => {
     );
     return {
       ...p,
-      lon: Number(prov?.lon.toFixed(3)),
-      lat: Number(prov?.lat.toFixed(3)),
+      position: [Number(prov?.lat), Number(prov?.lon)],
     };
   });
   console.log("MAAAAATCH", match);
