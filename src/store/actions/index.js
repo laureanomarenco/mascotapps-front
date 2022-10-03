@@ -1,9 +1,6 @@
 import axios from "axios";
-
-import { NOTIFY_POST } from "../../url/url";
-
+import { NOTIFY_POST } from "../../constants/url";
 export const NOTIFY = "NOTIFY";
-
 export function sendNotification(name) {
   console.log("estoy entrando en la action");
   return async function(dispatch) {
@@ -72,6 +69,4 @@ export {
   pointsMultiplier,
 } from "./admin";
 
-// CAMBIAADASSSSSSSSSSSSSSSSSSS
-//getMypets
-//postPet
+

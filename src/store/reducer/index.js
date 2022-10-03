@@ -1,4 +1,4 @@
-import {   NOTIFY } from "../actions";
+import { NOTIFY } from "../actions";
 import {
   SET_LOADING,
   TOTAL_VISITORS,
@@ -101,14 +101,11 @@ export default function reducer(state = initalState, action) {
       var ages;
       var races;
       var cities;
-      console.log("para filtrar", action.payload);
-
       action.payload.specie !== ""
         ? (especie = state.statusPets.filter(
             (i) => i.specie === action.payload.specie
           ))
         : (especie = state.statusPets);
-
       action.payload.gender !== ""
         ? (genders = especie.filter((i) => i.gender === action.payload.gender))
         : (genders = especie);

@@ -5,20 +5,18 @@ import { useDispatch, useSelector } from "react-redux";
 import { myProfile, cancelPost, finishPost } from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
+import { tokenAccess } from "../../constants/token";
 
 const EndPost = ({ hiddenEnd, setHiddenEnd, idPet }) => {
   const { user } = useAuth0();
   const myProfileData = useSelector((state) => state.myProfile);
   const transactions = myProfileData?.transactions;
-
   const filteredByPet = transactions?.filter((t) => t.pet_id === idPet)
   //const userToConcrete = filteredByPet?.map((t) => t?.user_demanding_name)
   const setUsers = new Set(filteredByPet)
   const arrayUser = Array.from(setUsers)
+  const  dispatch = useDispatch();
 
-  let dispatch = useDispatch();
-
-  const tokenAccess = localStorage.getItem("token");
 
   useEffect(() => {
     dispatch(myProfile(tokenAccess));

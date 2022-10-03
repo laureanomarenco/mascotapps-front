@@ -18,6 +18,19 @@ function Pagination({
       ? Math.ceil(statusPets / showPerPage)
       : filterPets && Math.ceil(filterPets / showPerPage);
 
+<<<<<<< HEAD
+=======
+
+  // const handleValidation = num => {
+  // 	pagination(parseInt(num));
+  // 	setTimeout(() => {
+  // 		if (page < 1 || page > total || isNaN(num)) {
+  // 			pagination(1);
+  // 		}
+  // 	}, 2000);
+  // };
+
+>>>>>>> e2a4d63723c0f223a869bb2321a6043831309012
   return (
     <div className="flex w-[285px] mx-auto gap-[10px] my-8 justify-center items-center font-semibold">
       <span

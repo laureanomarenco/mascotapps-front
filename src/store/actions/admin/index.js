@@ -1,13 +1,19 @@
 import axios from "axios";
+import { header } from "../../../constants/token";
 import {
   TOTAL_USERS,
   DONATION,
-  URL,
+  ADOPTION_RANK,
   NUMBER_OF_VISITORS,
   VISITORS_COUNTER,
   ADMIN_CONSULT,
   POINTS_SALE,
-} from "../../../url/url";
+  GET_USERS,
+  POINTS_RANK,
+  DELETE_USER,
+  DELETE_POST_OF_USER,
+  DELETE_PET_WITH_NO_OWNER,
+} from "../../../constants/url";
 import {
   GET_ALL_USERS,
   GET_DONATIONS,
@@ -55,22 +61,18 @@ export function getDonations() {
 export function usersAdoptionsRank() {
   return async function(dispatch) {
     try {
-      var json = await axios.get(URL + "users/ranking");
+      var json = await axios.get(ADOPTION_RANK);
       return dispatch({ type: USERS_ADOPTIONS_RANK, payload: json.data });
     } catch (error) {
       console.log(error);
     }
   };
 }
+
 export function adminFetchUsers(token) {
   return async function(dispatch) {
     try {
-      const datos = await axios.get(URL + "users", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      console.log("🚀 ~ file: index.js ~ line 73 ~ returnfunction ~ datos", datos)
+      const datos = await axios.get(GET_USERS, header(token));
       return dispatch({
         type: ADMIN_FETCH_USERS,
         payload: datos.data,
@@ -83,10 +85,11 @@ export function adminFetchUsers(token) {
     }
   };
 }
+
 export function usersPointsRank() {
   return async function(dispatch) {
     try {
-      var json = await axios.get(URL + "users/ranking");
+      var json = await axios.get(POINTS_RANK);
       return dispatch({ type: USERS_POINTS_RANK, payload: json.dataw });
     } catch (error) {
       console.log(error);
@@ -133,14 +136,10 @@ export function sendConsultation(data) {
   };
 }
 
-export function deleteUser(obj,token) {
+export function deleteUser(obj, token) {
   return async function() {
     try {
-      var json = await axios.post(URL + "admin/deleteUser/", obj, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      var json = await axios.post(DELETE_USER, obj, header(token));
       console.log(json.data);
     } catch (error) {
       console.log(error.message);
@@ -148,14 +147,10 @@ export function deleteUser(obj,token) {
   };
 }
 
-export function deleteUserPosts(obj,token) {
+export function deleteUserPosts(obj, token) {
   return async function() {
     try {
-      var json = await axios.post(URL + "admin/cleanPostsOfUserId/", obj, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      var json = await axios.post(DELETE_POST_OF_USER, obj, header(token));
       console.log(json);
     } catch (error) {
       console.log(error.message);
@@ -163,14 +158,10 @@ export function deleteUserPosts(obj,token) {
   };
 }
 
-export function deletePetsWithNoUserId(obj,token) {
+export function deletePetsWithNoUserId(obj, token) {
   return async function() {
     try {
-      var json = await axios.post(URL + "admin/deletePetsWithNoUserId", obj, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      var json = await axios.post(DELETE_PET_WITH_NO_OWNER, obj, header(token));
       console.log(json);
     } catch (error) {
       console.log(error.message);
@@ -180,11 +171,7 @@ export function deletePetsWithNoUserId(obj,token) {
 export function pointsMultiplier(obj, token) {
   return async function() {
     try {
-      var multiply = await axios.post(POINTS_SALE, obj, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      var multiply = await axios.post(POINTS_SALE, obj, header(token));
       console.log(multiply);
     } catch (error) {
       console.log(error.message);

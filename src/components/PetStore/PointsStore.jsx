@@ -9,6 +9,7 @@ import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { userPoints } from "../../store/actions";
 import Spinner from "../Spinner/Spinner";
+import { tokenAccess } from "../../constants/token";
 
 export default function PointsStore() {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -18,7 +19,7 @@ export default function PointsStore() {
   const [update, setUpdate] = useState("");
   const pointsUser = useSelector((state) => state.userPoints);
   const myPoints = pointsUser?.points;
-   const tokenAccess = localStorage.getItem("token");
+
   useEffect(() => {
     localStorage.setItem("carrito", JSON.stringify(carrito));
     !isLoading && isAuthenticated && dispatch(userPoints(tokenAccess));
