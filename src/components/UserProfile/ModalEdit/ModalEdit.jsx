@@ -109,7 +109,14 @@ export default function ModalProfile({ belloPerfil }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (errors.name || errors.city || errors.contact) {
-      alert("Verifique los campos");
+      //alert("Verifique los campos");
+      Swal.fire({
+        title: "Verifique los campos",
+        icon: "error",
+        showCancelButton: false,
+        confirmButtonColor: "#3085d6",
+      });
+
     } else {
       if (e.target.name === "city" && e.target.value.length === "") {
         setInput({
