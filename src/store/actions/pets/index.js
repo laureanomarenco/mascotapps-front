@@ -112,6 +112,7 @@ function sortBy(arr, filterType) {
     });
   };
 }
+
 function getDetail(id) {
   return async function(dispatch) {
     try {
@@ -137,6 +138,7 @@ function resetDetail() {
     });
   };
 }
+
 function postPet(pet, token) {
   return async function(dispatch) {
     try {
@@ -196,6 +198,7 @@ function clearSuccess() {
     });
   };
 }
+
 function deletePet(petId, token) {
   return async function(dispatch) {
     try {

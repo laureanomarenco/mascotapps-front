@@ -1,7 +1,6 @@
 import { Component } from "react";
 import axios from "axios";
-// import { connect } from "react-redux";
-// import { chatbotComments } from "../../../store/actions/index";
+
 
 export default class Post extends Component {
   constructor(props) {
@@ -58,7 +57,6 @@ export default class Post extends Component {
       fotos: undefined,
     };
 
-    console.log("ACAAAAA", infoPet);
     axios
       .post(
         `https://juka-production.up.railway.app/comments/newComment`,

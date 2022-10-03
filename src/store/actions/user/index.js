@@ -157,11 +157,15 @@ function updateTransactionStatus(idTrans, token) {
   };
 }
 
-function rateUser(paq) {
+function rateUser(paq,token) {
   return async function() {
     try {
       //eslint-disable-next-line
-      var review = await axios.post(RATE_USER, paq);
+      var review = await axios.post(RATE_USER, paq, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
     } catch (error) {
       console.log(error.message);
     }
