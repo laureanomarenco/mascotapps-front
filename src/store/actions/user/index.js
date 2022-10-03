@@ -92,10 +92,14 @@ function getMyPets(token) {
     }
   };
 }
-function CreateUser(input) {
+function CreateUser(input, token) {
   return async function(dispatch) {
     try {
-      var json = await axios.post(CREAT, input);
+      var json = await axios.post(CREAT, input, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
       return dispatch({ type: CREAT_USER, payload: json.data });
     } catch (error) {
       return dispatch({

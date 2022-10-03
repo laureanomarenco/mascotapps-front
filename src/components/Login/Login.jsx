@@ -23,8 +23,10 @@ export default function Login() {
       localStorage.setItem("token", claims);
 
       if (isAuthenticated && user) {
-        let existe = await axios.post(URL_EXIST, {
-          id: user?.sub,
+        let existe = await axios.get(URL_EXIST, {
+          headers: {
+            Authorization: `Bearer ${claims}`,
+          },
         });
 
         if (existe.data.msg) {
