@@ -71,8 +71,10 @@ const NuevoProfile = () => {
   };
 
   useEffect(() => {
-    dispatch(myProfile(tokenAccess));
-    handleSubmit();
+    if (tokenAccess !== "") {
+      dispatch(myProfile(tokenAccess));
+      handleSubmit()
+    }
     return () => {
       dispatch(resetMyProfile());
       dispatch(resetDetail());

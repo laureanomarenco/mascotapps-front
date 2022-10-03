@@ -18,6 +18,8 @@ const SignUp = () => {
   const dispatch = useDispatch();
   const cities = useSelector((state) => state.cities);
   const navigate = useNavigate();
+  const tokenAccess = localStorage.getItem("token");
+
   useEffect(() => {
     dispatch(fetchCity());
   }, [dispatch]);
@@ -36,7 +38,6 @@ const SignUp = () => {
   //ESTADOS ---------------------------------------------------------------------------------------------------------
 
   const [input, setInput] = useState({
-    id: `${user?.sub}`,
     name: "",
     email: `${user?.email}`,
     city: "",
@@ -84,7 +85,7 @@ const SignUp = () => {
     if (errors.name || errors.city || errors.contact) {
       alert("Verifique los campos");
     } else {
-      dispatch(CreateUser(input));
+      dispatch(CreateUser(input, tokenAccess));
       Swal.fire({
         title: "Usuario creado correctamente",
         text: "Gracias por registrarte en Mascotapp.",

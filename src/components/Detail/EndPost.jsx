@@ -11,21 +11,25 @@ const EndPost = ({ hiddenEnd, setHiddenEnd, idPet }) => {
   const myProfileData = useSelector((state) => state.myProfile);
   const transactions = myProfileData?.transactions;
 
-  const userToConcrete = transactions?.map((t) => t?.user_demanding_name)
+  const filteredByPet = transactions.filter((t) => t.pet_id === idPet)
+  const userToConcrete = filteredByPet?.map((t) => t?.user_demanding_name)
   const setUsers = new Set(userToConcrete)
   const arrayUser = Array.from(setUsers)
+
   let dispatch = useDispatch();
 
+  const tokenAccess = localStorage.getItem("token");
+
   useEffect(() => {
-    dispatch(myProfile({ id: user?.sub }));
+    dispatch(myProfile(tokenAccess));
   }, [dispatch]);
 
   const [input, setInput] = useState({
-    id: user?.sub,
     statusPost: "",
     id_demanding: "",
     petId: idPet,
   });
+
   function onChange(e) {
     e.preventDefault();
     setInput({
@@ -37,10 +41,11 @@ const EndPost = ({ hiddenEnd, setHiddenEnd, idPet }) => {
   function onSubmit(e) {
     e.preventDefault();
     if (input.statusPost === "cancelado") {
-      dispatch(cancelPost(input));
+      dispatch(cancelPost(input, tokenAccess));
+    } else {
+      dispatch(finishPost(input, tokenAccess));
     }
-    dispatch(finishPost(input));
-    setHiddenEnd(hiddenEnd = true)
+    setHiddenEnd((hiddenEnd = true));
     Swal.fire({
       title:
         "Tu publicación fue finalizada correctamente y ya no figurará entre las mascotas activas.",
@@ -60,6 +65,9 @@ no-repeat
       window.location.href = "/home";
     });
   }
+  useEffect(() => {
+    dispatch(myProfile(tokenAccess));
+  }, [dispatch]);
 
   return (
     <div
@@ -109,7 +117,10 @@ no-repeat
                   {arrayUser.map((t) => {
                     if (user.sub !== t.user_demanding_id) {
                       return (
-                        <option key={Math.random()} value={t}>
+                        <option
+                          key={Math.random()}
+                          value={t}
+                        >
                           {t}
                         </option>
                       );

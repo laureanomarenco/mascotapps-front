@@ -8,7 +8,8 @@ import { rateUser, resetMyProfile } from "../../store/actions";
 export default function RatingStar({ objBello, setShowModal, setOrder }) {
   const dispatch = useDispatch();
   const [value, setValue] = React.useState(2);
-  //eslint-disable-next-line
+  const tokenAccess = localStorage.getItem("token");
+
   const [review, setReview] = React.useState({
     ...objBello,
     stars: 0,
@@ -22,11 +23,9 @@ export default function RatingStar({ objBello, setShowModal, setOrder }) {
     });
   };
 
-  console.log(review);
-
   const handleClick = (event) => {
     event.preventDefault();
-    dispatch(rateUser(review));
+    dispatch(rateUser(review, tokenAccess));
     dispatch(resetMyProfile());
     setShowModal(false);
     setOrder("ne noww");

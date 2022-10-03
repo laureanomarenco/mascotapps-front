@@ -17,7 +17,6 @@ import PetComments from "./PetComments";
 import { TbVaccine } from "react-icons/tb";
 import { BiMap } from "react-icons/bi";
 import { BsExclamationSquare } from "react-icons/bs";
-
 import { useDispatch, useSelector } from "react-redux";
 import EndPost from "./EndPost";
 import Chat from "./Chat/Chat";
@@ -226,6 +225,7 @@ export default function Detail() {
                 ) : null}
                 {/* finalizar publicacion */}
                 {user?.sub === pet.UserId && (
+                  //agregar condicion para que no renderice el boton si el status de la mascota es 'cancelado' o 'concretado'
                   <div>
                     <button
                       onClick={handleClickEnd}

@@ -15,6 +15,7 @@ import {
   DELETE_PET,
 } from "../types";
 import {
+  URL,
   PET_DETAIL,
   ALLPETS,
   SEARCH_BY,
@@ -112,6 +113,7 @@ function sortBy(arr, filterType) {
     });
   };
 }
+
 function getDetail(id) {
   return async function(dispatch) {
     try {
@@ -137,6 +139,7 @@ function resetDetail() {
     });
   };
 }
+
 function postPet(pet, token) {
   return async function(dispatch) {
     try {
@@ -177,7 +180,6 @@ function getSuccess() {
   return async function(dispatch) {
     try {
       const req = await axios(FETCH_SUCCESS);
-      console.log(req.data);
       dispatch({
         type: GET_SUCCESS,
         payload: req.data,
@@ -196,6 +198,7 @@ function clearSuccess() {
     });
   };
 }
+
 function deletePet(petId, token) {
   return async function(dispatch) {
     try {
@@ -217,15 +220,16 @@ function deletePet(petId, token) {
   };
 }
 
-function updatePet( pet_data, token) {
+function updatePet(pet_data, token) {
   return async function(dispatch) {
     try {
       pet_data.name = pet_data.name ? pet_data.name : "Sin Nombre";
-      await axios.put(UPDATE_POST_PET, {
+      await axios.put(UPDATE_POST_PET, pet_data, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+
       dispatch({
         type: "SOLVED_BRO",
         pet_data,
