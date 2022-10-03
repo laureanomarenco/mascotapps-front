@@ -4,14 +4,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchCity, getSpecies, updatePet } from "../../../store/actions";
 import Swal from "sweetalert2";
 import validate from "../../PostPets/validate";
+import { tokenAccess } from "../../../constants/token";
 
 export default function ModalEditDog({ handleActiveEditDog, dataEditDog }) {
   const dispatch = useDispatch();
   const PetSpecies = useSelector((state) => state.species);
   const [error, setError] = useState({});
   const [input, setInput] = useState({ ...dataEditDog });
-    console.log("🚀 ~ file: ModalEditDog.jsx ~ line 13 ~ ModalEditDog ~ input", input)
-    const tokenAccess = localStorage.getItem("token");
+
 
   const showAlert = () => {
     Swal.fire({

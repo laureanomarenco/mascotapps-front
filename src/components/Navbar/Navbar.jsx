@@ -7,6 +7,7 @@ import { searchPets, resetDetail } from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoginButton } from "../Login/LoginButton";
 import Push from "../Push/Push";
+import { tokenAccess } from "../../constants/token";
 
 export default function Navbar({ setPage }) {
   const { isAuthenticated, user, isLoading } = useAuth0();
@@ -15,8 +16,8 @@ export default function Navbar({ setPage }) {
   const [showMenu, setShowMenu] = useState(false);
   const [input, setInput] = useState("");
   const myProfileData = useSelector((state) => state.myProfile);
-  let dispatch = useDispatch();
-const tokenAccess = localStorage.getItem("token");
+  const dispatch = useDispatch();
+
   function handleChange(e) {
     e.preventDefault();
     if (e.target.value !== "") {

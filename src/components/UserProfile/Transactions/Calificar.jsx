@@ -2,7 +2,7 @@ import React from "react";
 import { AiFillStar } from "react-icons/ai";
 import { useDispatch } from "react-redux";
 import { donatePoints } from "../../../store/actions";
-//import { Link } from "react-router-dom";
+import { tokenAccess } from "../../../constants/token";
 import RatingStar from "../../RatingStar/RatingStar";
 import Swal from "sweetalert2";
 
@@ -15,7 +15,6 @@ const Calificar = ({
 }) => {
   const [showModal, setShowModal] = React.useState(false);
   const [pointsToDonate, setPointsToDonate] = React.useState(0);
-const tokenAccess = localStorage.getItem("token");
   const dispatch = useDispatch();
 
   const objBello = {

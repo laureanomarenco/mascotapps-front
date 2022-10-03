@@ -6,7 +6,7 @@ import { RiChatDeleteFill } from "react-icons/ri";
 import { deletePet } from "../../store/actions";
 import { useState } from "react";
 import { useEffect } from "react";
-
+import { tokenAccess } from "../../constants/token";
 const BadgesPets = ({
   hidden,
   setHidden,
@@ -17,7 +17,6 @@ const BadgesPets = ({
 }) => {
   const dispatch = useDispatch();
   const [states, setStates] = useState(true);
-  const tokenAccess = localStorage.getItem("token");
   const handleClick = (petid, tokenAccess) => {
     dispatch(deletePet(petid, tokenAccess));
     setStates(!states);

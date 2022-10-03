@@ -1,6 +1,6 @@
 import axios from "axios";
+import { header } from "../../../constants/token";
 import {
-  URL,
   MY_PROFILE,
   UPDATE_MY_PROFILE,
   GET_MY_PETS,
@@ -12,7 +12,9 @@ import {
   POINTS,
   BUY,
   DONATE_POINTS,
-} from "../../../url/url";
+  CANCEL_POST,
+  FINISH_POST,
+} from "../../../constants/url";
 import {
   MY_PROFILE_DETAIL,
   RESET_MY_PROFILE,
@@ -25,11 +27,7 @@ import {
 function myProfile(token) {
   return async function(dispatch) {
     try {
-      var detail = await axios.get(MY_PROFILE, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      var detail = await axios.get(MY_PROFILE, header(token));
       return dispatch({
         type: MY_PROFILE_DETAIL,
         payload: detail.data,
@@ -54,11 +52,7 @@ function resetMyProfile() {
 function updateProfile(user, token) {
   return async function(dispatch) {
     try {
-      var detail = await axios.put(UPDATE_MY_PROFILE, user, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      var detail = await axios.put(UPDATE_MY_PROFILE, user, header(token));
       return dispatch({
         type: MY_PROFILE_DETAIL,
         payload: detail.data,
@@ -75,11 +69,7 @@ function updateProfile(user, token) {
 function getMyPets(token) {
   return async function(dispatch) {
     try {
-      const datos = await axios.get(GET_MY_PETS, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const datos = await axios.get(GET_MY_PETS, header(token));
       return dispatch({
         type: GET_PETS,
         payload: datos.data,
@@ -96,11 +86,7 @@ function getMyPets(token) {
 function CreateUser(input, token) {
   return async function(dispatch) {
     try {
-      var json = await axios.post(CREAT, input, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      var json = await axios.post(CREAT, input, header(token));
       return dispatch({ type: CREAT_USER, payload: json.data });
     } catch (error) {
       return dispatch({
@@ -130,15 +116,7 @@ function publicUserDetail(id) {
 function beginTransaction(petId, token) {
   return async function() {
     try {
-      await axios.post(
-        INIT_TRANSACTION + "?petId=" + petId,
-        {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
+      await axios.post(INIT_TRANSACTION + "?petId=" + petId, {}, header(token));
     } catch (error) {
       console.log(error);
     }
@@ -152,11 +130,7 @@ function updateTransactionStatus(idTrans, token) {
       var transaction = await axios.put(
         UPDATE_TRANSACTION_STATUS + idTrans,
         {},
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        header(token)
       );
     } catch (error) {
       console.log(error.message);
@@ -167,11 +141,7 @@ function updateTransactionStatus(idTrans, token) {
 function rateUser(paq, token) {
   return async function() {
     try {
-      await axios.post(RATE_USER, paq, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.post(RATE_USER, paq, header(token));
     } catch (error) {
       console.log(error.message);
     }
@@ -181,11 +151,7 @@ function rateUser(paq, token) {
 function userPoints(token) {
   return async function(dispatch) {
     try {
-      var msg = await axios.get(POINTS, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      var msg = await axios.get(POINTS, header(token));
       return dispatch({ type: USER_POINTS, payload: msg.data });
     } catch (error) {
       return dispatch({
@@ -199,26 +165,16 @@ function userPoints(token) {
 function buyItems(compra, token) {
   return async function() {
     try {
-      await axios.post(BUY, compra, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.post(BUY, compra, header(token));
     } catch (error) {
       console.log(error);
     }
   };
 }
 function cancelPost(input, token) {
-  console.log("🚀 ~ file: index.js ~ line 213 ~ cancelPost ~ input", input)
   return async function() {
     try {
-      let respo=await axios.post(URL + "transactions/cancelpost", input, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      console.log("🚀 ~ file: index.js ~ line 219 ~ returnfunction ~ respo", respo)
+      await axios.post(CANCEL_POST, input, header(token));
     } catch (error) {
       console.log(error.message);
     }
@@ -226,15 +182,14 @@ function cancelPost(input, token) {
 }
 
 function finishPost(input, token) {
-  console.log("🚀 ~ file: index.js ~ line 229 ~ finishPost ~ input", input)
+  console.log("🚀 ~ file: index.js ~ line 229 ~ finishPost ~ input", input);
   return async function() {
     try {
-      let response=await axios.post(URL + "transactions/postsuccess", input, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
-      console.log("🚀 ~ file: index.js ~ line 233 ~ returnfunction ~ response", response)
+      let response = await axios.post(FINISH_POST, input, header(token));
+      console.log(
+        "🚀 ~ file: index.js ~ line 233 ~ returnfunction ~ response",
+        response
+      );
     } catch (error) {
       console.log(error.message);
     }
@@ -244,16 +199,14 @@ function finishPost(input, token) {
 function donatePoints(body, token) {
   return async function() {
     try {
-      await axios.post(DONATE_POINTS, body, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      await axios.post(DONATE_POINTS, body, header(token));
     } catch (error) {
       console.log(error.message);
     }
   };
 }
+
+
 export {
   myProfile,
   resetMyProfile,

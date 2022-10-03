@@ -21,6 +21,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
 import { FaUser } from "react-icons/fa";
 import ModalEditDog from "./ModalEditDog/ModalEditDog";
+import { tokenAccess } from "../../constants/token";
 
 const NuevoProfile = () => {
   const [order, setOrder] = useState("");
@@ -38,7 +39,7 @@ const NuevoProfile = () => {
 
   const myProfileData = useSelector((state) => state.myProfile);
   const transactions = myProfileData?.transactions;
-  const tokenAccess = localStorage.getItem("token");
+
 
   const [activeDonateModal, setActiveDonateModal] = useState(false);
   const [activeAdopterModal, setActiveAdopterModal] = useState(false);

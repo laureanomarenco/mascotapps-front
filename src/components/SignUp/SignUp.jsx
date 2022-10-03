@@ -11,6 +11,7 @@ import Swal from "sweetalert2";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import { useAuth0 } from "@auth0/auth0-react";
 import { GiReceiveMoney } from "react-icons/gi";
+import { tokenAccess } from "../../constants/token";
 
 const SignUp = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -18,7 +19,6 @@ const SignUp = () => {
   const dispatch = useDispatch();
   const cities = useSelector((state) => state.cities);
   const navigate = useNavigate();
-  const tokenAccess = localStorage.getItem("token");
 
   useEffect(() => {
     dispatch(fetchCity());

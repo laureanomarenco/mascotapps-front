@@ -1,6 +1,6 @@
 import axios from "axios";
 import { FETCH_CITY } from "../types";
-import { URL_CIUDAD_API } from "../../../url/url";
+import { URL_CIUDAD_API } from "../../../constants/url";
 
 export function fetchCity() {
   return async function(dispatch) {
