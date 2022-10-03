@@ -74,7 +74,7 @@ class SimpleForm extends Component {
             },
             {
               id: "3",
-              message: `Hola {previousValue}! ¿Crees haber visto a ${this.props.pet.name}?`,
+              message: `Hola {previousValue}! ¿Crees haber visto a ${this.props.pet?.name}?`,
               trigger: "confirm",
             },
             {
@@ -87,7 +87,7 @@ class SimpleForm extends Component {
 
             {
               id: "where",
-              message: `¿Has visto a ${this.props.pet.name} en ${
+              message: `¿Has visto a ${this.props.pet?.name} en ${
                 this.props.pet?.city?.split(",")[1]
               }?`,
               trigger: "confirm_where",
@@ -124,7 +124,7 @@ class SimpleForm extends Component {
 
             {
               id: "preg-province-next",
-              message: `¿Has visto a ${this.props.pet.name} en ${
+              message: `¿Has visto a ${this.props.pet?.name} en ${
                 this.props.pet?.city?.split(",")[0]
               }?`,
               trigger: "where2",
@@ -214,7 +214,7 @@ class SimpleForm extends Component {
             },
             {
               id: "preg-info",
-              message: `¿Tenés más información para compartir que pueda ayudar a encontrar a ${this.props.pet.name}?`,
+              message: `¿Tenés más información para compartir que pueda ayudar a encontrar a ${this.props.pet?.name}?`,
               trigger: "confirm-info",
             },
 
@@ -275,7 +275,7 @@ class SimpleForm extends Component {
             // },
             {
               id: "review",
-              component: <Post petId={this.props.pet.id} />,
+              component: <Post petId={this.props.pet?.id} />,
               // asMessage: true,
               trigger: "update",
             },
