@@ -211,11 +211,12 @@ function buyItems(compra, token) {
 function cancelPost(input, token) {
   return async function() {
     try {
-      await axios.post(URL + "transactions/cancelpost", input, {
+      let respo=await axios.post(URL + "transactions/cancelpost", input, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log("🚀 ~ file: index.js ~ line 219 ~ returnfunction ~ respo", respo)
     } catch (error) {
       console.log(error.message);
     }
@@ -225,11 +226,12 @@ function cancelPost(input, token) {
 function finishPost(input, token) {
   return async function() {
     try {
-      await axios.post(URL + "transactions/postsuccess", input, {
+      let response=await axios.post(URL + "transactions/postsuccess", input, {
         headers: {
           Authorization: `Bearer ${token}`,
         },
       });
+      console.log("🚀 ~ file: index.js ~ line 233 ~ returnfunction ~ response", response)
     } catch (error) {
       console.log(error.message);
     }
