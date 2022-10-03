@@ -27,7 +27,7 @@ import Spinner from "../Spinner/Spinner";
 const PostPets = () => {
   //eslint-disable-next-line
   const [post, setPost] = useState(1);
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const {  isAuthenticated, isLoading } = useAuth0();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const Petspecies = useSelector((state) => state.species);
@@ -178,11 +178,12 @@ const PostPets = () => {
     dispatch(resetDetail());
   }
   useEffect(() => {
+    const tokenAccess = localStorage.getItem("token");
     dispatch(fetchCity());
     dispatch(getSpecies());
     dispatch(resetDetail());
-    dispatch(myProfile({ id: user?.sub }));
-  }, [dispatch, isLoading, isAuthenticated, user?.sub]);
+    dispatch(myProfile(tokenAccess));
+  }, [dispatch, isLoading, isAuthenticated]);
   if(isLoading) return <div><Spinner/></div>
   if (!isLoading && !isAuthenticated) {
     Swal.fire({
