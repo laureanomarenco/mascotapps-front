@@ -1,9 +1,6 @@
 import { Link } from "react-router-dom";
 import React from "react";
 import { useNavigate } from "react-router-dom";
-//eslint-disable-next-line
-import { Logout } from "../Logout/Logout";
-//eslint-disable-next-line
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoginButton } from "./LoginButton";
@@ -11,7 +8,6 @@ import Spinner from "../Spinner/Spinner";
 import { URL_EXIST } from "../../url/url";
 
 export default function Login() {
-  //eslint-disable-next-line
   const {
     user,
     isAuthenticated,
@@ -20,6 +16,7 @@ export default function Login() {
   } = useAuth0();
 
   const navigate = useNavigate();
+
   const handleValidation = async (user, isAuthenticated) => {
     try {
       const claims = await getAccessTokenSilently();

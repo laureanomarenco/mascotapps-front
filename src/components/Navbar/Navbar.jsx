@@ -27,7 +27,6 @@ export default function Navbar({ setPage }) {
   }
 
   const handleClick = (e) => {
-    console.log(e.target.name);
     dispatch(getPetsByStatus(e.target.name));
     setPage(1);
   };

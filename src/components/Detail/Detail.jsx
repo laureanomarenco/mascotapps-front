@@ -28,8 +28,7 @@ export default function Detail() {
   const pet = useSelector((state) => state.pet);
   const loading = useSelector((state) => state.isLoading);
   const userContact = useSelector((state) => state.publicUserDetail);
-  const myProfileData = useSelector((state) => state.myProfile);
-  console.log(myProfileData);
+
   const { user, isAuthenticated, isLoading } = useAuth0();
   const [hidden, setHidden] = useState(true);
   const [hiddenEnd, setHiddenEnd] = useState(true);
