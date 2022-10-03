@@ -130,7 +130,6 @@ export default function ModalProfile({ belloPerfil }) {
           contact: belloPerfil?.contact,
         });
       }
-      console.log(input);
       dispatch(updateProfile(input));
       Swal.fire({
         title: "Perfil modificado correctamente",
