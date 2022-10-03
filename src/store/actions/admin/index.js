@@ -62,10 +62,15 @@ export function usersAdoptionsRank() {
     }
   };
 }
-export function adminFetchUsers() {
+export function adminFetchUsers(token) {
   return async function(dispatch) {
     try {
-      const datos = await axios.get(URL + "users/");
+      const datos = await axios.get(URL + "users", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+      console.log("🚀 ~ file: index.js ~ line 73 ~ returnfunction ~ datos", datos)
       return dispatch({
         type: ADMIN_FETCH_USERS,
         payload: datos.data,
