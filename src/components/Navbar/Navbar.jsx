@@ -16,7 +16,7 @@ export default function Navbar({ setPage }) {
   const [input, setInput] = useState("");
   const myProfileData = useSelector((state) => state.myProfile);
   let dispatch = useDispatch();
-
+const tokenAccess = localStorage.getItem("token");
   function handleChange(e) {
     e.preventDefault();
     if (e.target.value !== "") {
@@ -33,7 +33,7 @@ export default function Navbar({ setPage }) {
 
   useEffect(() => {
     if (!isLoading && isAuthenticated) {
-      dispatch(myProfile({ id: user?.sub }));
+      dispatch(myProfile(tokenAccess));
     }
   }, [isLoading, isAuthenticated, user, dispatch]);
   return (
