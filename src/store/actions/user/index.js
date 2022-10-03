@@ -21,7 +21,7 @@ import {
   USER_POINTS,
 } from "../types";
 
-//cambie de post a get
+
 function myProfile(token) {
   return async function(dispatch) {
     try {
