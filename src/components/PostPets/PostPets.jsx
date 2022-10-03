@@ -165,7 +165,8 @@ const PostPets = () => {
         console.log("condicion para despachar", city == input.city);
         dispatch(sendNotification(notification))
       }
-      dispatch(postPet(input, user?.sub));
+      const tokenAccess = localStorage.getItem("token");
+      dispatch(postPet(input, tokenAccess));
     }
   };
   if (postResult.error) {

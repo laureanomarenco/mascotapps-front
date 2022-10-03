@@ -28,13 +28,20 @@ const NuevoProfile = () => {
   const [activeModalEditDog, setActiveModalEditDog] = useState(false);
   const [dataEditDog, setDataEditDog] = useState({});
 
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const {
+    user,
+    isAuthenticated,
+    isLoading,
+  } = useAuth0();
   const dispatch = useDispatch();
   const myPets = useSelector((state) => state.userPets);
-
+  console.log(
+    "🚀 ~ file: NuevoProfile.jsx ~ line 34 ~ NuevoProfile ~ myPets",
+    myPets
+  );
   const myProfileData = useSelector((state) => state.myProfile);
-  console.log("🚀 ~ file: NuevoProfile.jsx ~ line 36 ~ NuevoProfile ~ myProfileData", myProfileData)
   const transactions = myProfileData?.transactions;
+  const tokenAccess = localStorage.getItem("token");
 
   const [activeDonateModal, setActiveDonateModal] = useState(false);
   const [activeAdopterModal, setActiveAdopterModal] = useState(false);
@@ -47,12 +54,12 @@ const NuevoProfile = () => {
     city: myProfileData["userProps"]?.city,
     contact: myProfileData["userProps"]?.contact,
     image: myProfileData["userProps"]?.image,
-    linkToDonate: myProfileData["userProps"]?.linkToDonate
+    linkToDonate: myProfileData["userProps"]?.linkToDonate,
   };
 
   const handleSubmit = () => {
     if (isAuthenticated) {
-      dispatch(getMyPets(user));
+      dispatch(getMyPets(tokenAccess));
     }
   };
   //eslint-disable-next-line
@@ -394,6 +401,7 @@ const NuevoProfile = () => {
               <div hidden={hidden} className="w-full">
                 {myPets?.length > 0 ? (
                   <BadgesPets
+                    tokenAccess={tokenAccess}
                     user={user}
                     hidden={hidden}
                     setHidden={setHidden}

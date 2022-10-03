@@ -9,6 +9,7 @@ import { useState } from "react";
 import { useEffect } from "react";
 
 const BadgesPets = ({
+
   user,
   hidden,
   setHidden,

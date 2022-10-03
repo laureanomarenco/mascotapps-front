@@ -1,8 +1,12 @@
 import React from "react";
+
 import { Link } from "react-router-dom";
 import Button from "../Button/Button";
 
+
 const Faq = () => {
+
+
   return (
     <div className="md:w-3/4 md:mx-auto">
       <div className="flex align-center">
@@ -16,7 +20,7 @@ const Faq = () => {
           className="sm:ml-22 lg:ml-40 sm:w-[250px] w-[175px]"
         />
       </div>
-      <details className="p-6 border-l-4 border-[#FFC700] bg-gray-100 group drop-shadow-lg overflow-hidden bg-no-repeat bg-cover transition duration-300 ease-in-out hover:bg-gradient-to-r from-transparent via-yellow-200-100 to-[#FFC700] hover:opacity-70 mt-0 mb-4 transition-all">
+      <details className="p-6 border-l-4 border-[#FFC700] bg-gray-100 group drop-shadow-lg overflow-hidden bg-no-repeat bg-cover  duration-300 ease-in-out hover:bg-gradient-to-r from-transparent via-yellow-200-100 to-[#FFC700] hover:opacity-70 mt-0 mb-4 transition-all">
         <summary className="flex items-center justify-between cursor-pointer">
           <h5 className="text-lg font-semibold text-gray-900">
             ¿Qué es Mascotapp?
@@ -75,13 +79,12 @@ const Faq = () => {
           tu camino. Ya sea buscando animales o publicándolos. Además a medida
           que interactuas con otros usuarios en la aplicación podés calificarlos
           para contribuir con el control del reporte en los abusos que puedan
-          hacerse de la página. Si sos usuario registrado podrás sumar puntos
-          al concretar alguna conversación por una mascota con alguna mascota 
-          en particular, ya sea que la hayas adoptado, dado en adopción, encontrado
-          o recuperado. También sumas puntos si haces un aporte económico a través 
-          de nuestro sistema de donaciones. Luego podes canjear tus puntos en 
-          nuestra tienda.
-          ¡Ah! ¡También podes guardar tus animales
+          hacerse de la página. Si sos usuario registrado podrás sumar puntos al
+          concretar alguna conversación por una mascota con alguna mascota en
+          particular, ya sea que la hayas adoptado, dado en adopción, encontrado
+          o recuperado. También sumas puntos si haces un aporte económico a
+          través de nuestro sistema de donaciones. Luego podes canjear tus
+          puntos en nuestra tienda. ¡Ah! ¡También podes guardar tus animales
           favoritos para verlos todos juntos!
         </p>
       </details>
@@ -112,10 +115,10 @@ const Faq = () => {
           La página es completamente gratuita. ¡Para utilizar la totalidad de
           nuestros servicios no tenés más que registrarte! De todos modos si
           querés colaborar nos ayuda muchísimo y a las personas que quieren
-          encontrar o reencontrase con su mascotas la difusión de la página y las
-          publicaciones que en ella se comparten. Por otro lado,
-          tenemos habilitado el apartado de donaciones por si querés darnos una
-          mano para ayudar a la comunidad.
+          encontrar o reencontrase con su mascotas la difusión de la página y
+          las publicaciones que en ella se comparten. Por otro lado, tenemos
+          habilitado el apartado de donaciones por si querés darnos una mano
+          para ayudar a la comunidad.
         </p>
       </details>
 
