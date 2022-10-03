@@ -11,6 +11,9 @@ const EndPost = ({ hiddenEnd, setHiddenEnd, idPet }) => {
   const myProfileData = useSelector((state) => state.myProfile);
   const transactions = myProfileData?.transactions;
 
+  const userToConcrete = transactions?.map((t) => t?.user_demanding_name)
+  const setUsers = new Set(userToConcrete)
+
   let dispatch = useDispatch();
 
   useEffect(() => {
