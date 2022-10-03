@@ -5,16 +5,15 @@ import {
   getAllUsers,
   adminFetchUsers,
   totalVisitors,
-  // pointsMultiplier
+  // pointsMultiplier (pasale el token gonza)
 } from "../../store/actions/index";
 import SideMenu from "./NavBar";
-// import Stack from '@mui/material/Stack';
 // import CircularProgressWithLabel from "@mui/material/CircularProgress";
 import Percents from "./Percents";
 import Users from "./Users";
 // import Alert from './Alert';
 //icons
-
+//gonza el admin
 import { MdPets } from "react-icons/md";
 import { FaHands } from "react-icons/fa";
 import { GiDogHouse } from "react-icons/gi";
@@ -33,6 +32,7 @@ import { BiDonateHeart } from "react-icons/bi";
 import { getDonations } from "../../store/actions/index";
 
 const AdminPage = () => {
+
   const dispatch = useDispatch();
   const usersDetails = useSelector((state) => state.usersInfo);
   const pets = useSelector((state) => state.pets);

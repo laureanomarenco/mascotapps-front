@@ -24,6 +24,7 @@ const Users = ({ users }) => {
   const lastOnPage = page * showPerPage;
   const firstOnPage = lastOnPage - showPerPage;
   const showUsers = users.slice(firstOnPage, lastOnPage);
+  const tokenAccess = localStorage.getItem("token");
 
   function pagination(pageNumber) {
     setPage(pageNumber);
@@ -47,9 +48,17 @@ const Users = ({ users }) => {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(deleteUser({ id: id, email: email, password: ultraSecreta }));
-        dispatch(deleteUserPosts({ password: ultraSecreta, userId: id }));
-        dispatch(deletePetsWithNoUserId({ password: ultraSecreta }));
+        dispatch(
+          deleteUser(
+            { id: id, email: email, password: ultraSecreta }, tokenAccess
+          )
+        );
+        dispatch(
+          deleteUserPosts({ password: ultraSecreta, userId: id }, tokenAccess)
+        );
+        dispatch(
+          deletePetsWithNoUserId({ password: ultraSecreta }, tokenAccess)
+        );
         dispatch(adminFetchUsers());
         Swal.fire({
           title: "Usuario eliminado correctamente!",
