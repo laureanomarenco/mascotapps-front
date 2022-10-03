@@ -11,7 +11,7 @@ import { CgSearchFound } from "react-icons/cg";
 import { BsGenderAmbiguous } from "react-icons/bs";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
-
+// const Maps = React.lazy(() => import("./Maps/Maps"));
 const Pets = () => {
   const location = useLocation();
   const pets = useSelector((state) => state.pets);
@@ -202,7 +202,9 @@ const Pets = () => {
         </div>
       </section>
       <section>
+        {/* <Suspense fallback={<div>Loading...</div>}> */}
         <Maps cities={cities} />
+        {/* </Suspense> */}
       </section>
     </main>
   );

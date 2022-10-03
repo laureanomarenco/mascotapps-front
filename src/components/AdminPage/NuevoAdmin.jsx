@@ -46,7 +46,8 @@ const NuevoAdmin = () => {
 
   let localidades = cities?.map((loc) => {
     return {
-      geo: loc.centroide,
+      lon: loc.centroide.lon,
+      lat: loc.centroide.lat,
       nombre: loc.nombre,
       provincia: loc.provincia.nombre,
     };
@@ -60,7 +61,8 @@ const NuevoAdmin = () => {
     );
     return {
       ...p,
-      ...prov,
+      lon: Number(prov?.lon.toFixed(3)),
+      lat: Number(prov?.lat.toFixed(3)),
     };
   });
   console.log("MAAAAATCH", match);
