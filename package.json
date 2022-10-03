@@ -25,7 +25,7 @@
     "react-simple-chatbot": "^0.6.1",
     "redux": "^4.2.0",
     "redux-thunk": "^2.4.1",
-    "styled-components": "^5.3.6",
+    "styled-components": "^4.4.1",
     "sweetalert2": "^11.4.33",
     "web-vitals": "^2.1.4"
   },
