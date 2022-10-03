@@ -1,23 +1,11 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
+
 import { Link } from "react-router-dom";
 import Button from "../Button/Button";
-import { useAuth0 } from "@auth0/auth0-react";
-import { rutaRoby } from "../../store/actions";
+
 
 const Faq = () => {
-  const dispatch = useDispatch();
-  const { isLoading, getAccessTokenSilently,user } = useAuth0();
-console.log(user?.sub)
-  async function okok() {
-    const getToken = await getAccessTokenSilently();
-    dispatch(rutaRoby(getToken));
-  }
-  useEffect(() => {
-    if (!isLoading) {
-      okok();
-    }
-  }, [isLoading]);
+
 
   return (
     <div className="md:w-3/4 md:mx-auto">
@@ -32,7 +20,7 @@ console.log(user?.sub)
           className="sm:ml-22 lg:ml-40 sm:w-[250px] w-[175px]"
         />
       </div>
-      <details className="p-6 border-l-4 border-[#FFC700] bg-gray-100 group drop-shadow-lg overflow-hidden bg-no-repeat bg-cover transition duration-300 ease-in-out hover:bg-gradient-to-r from-transparent via-yellow-200-100 to-[#FFC700] hover:opacity-70 mt-0 mb-4 transition-all">
+      <details className="p-6 border-l-4 border-[#FFC700] bg-gray-100 group drop-shadow-lg overflow-hidden bg-no-repeat bg-cover  duration-300 ease-in-out hover:bg-gradient-to-r from-transparent via-yellow-200-100 to-[#FFC700] hover:opacity-70 mt-0 mb-4 transition-all">
         <summary className="flex items-center justify-between cursor-pointer">
           <h5 className="text-lg font-semibold text-gray-900">
             ¿Qué es Mascotapp?
