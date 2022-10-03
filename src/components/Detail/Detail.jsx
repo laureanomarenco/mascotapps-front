@@ -217,7 +217,7 @@ export default function Detail() {
                           </p>
                         </div>
                         <div className="">
-                          <Chat />
+                          <Chat pet={pet} />
                         </div>
                       </div>
                     </div>

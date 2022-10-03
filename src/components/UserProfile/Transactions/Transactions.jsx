@@ -6,12 +6,12 @@ import { BsCheckCircleFill } from "react-icons/bs";
 import { HiLockClosed } from "react-icons/hi";
 import { updateTransactionStatus } from "../../../store/actions/index";
 import TransactionsPagination from "./Pagination/TransasctionsPagination";
+import { tokenAccess } from "../../../constants/token";
 
 const Transactions = ({ transactions, setOrder }) => {
   //eslint-disable-next-line
   const { user } = useAuth0();
   const dispatch = useDispatch();
-  const tokenAccess = localStorage.getItem("token");
 
   const handleClick = (trId, tokenAccess) => {
     dispatch(updateTransactionStatus(trId, tokenAccess));
