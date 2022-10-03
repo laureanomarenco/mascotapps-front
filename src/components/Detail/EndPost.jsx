@@ -54,7 +54,7 @@ no-repeat
     });
   }
   useEffect(() => {
-    dispatch(myProfile({ id: user?.sub }));
+    dispatch(myProfile(tokenAccess));
   }, [dispatch]);
 
   return (
