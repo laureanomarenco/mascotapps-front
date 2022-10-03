@@ -92,6 +92,7 @@ function getMyPets(token) {
     }
   };
 }
+
 function CreateUser(input, token) {
   return async function(dispatch) {
     try {
@@ -198,20 +199,28 @@ function buyItems(compra, token) {
     }
   };
 }
-function cancelPost(input) {
+function cancelPost(input,token) {
   return async function() {
     try {
-      await axios.post(URL + "transactions/cancelpost", input);
+      await axios.post(URL + "transactions/cancelpost", input, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
     } catch (error) {
       console.log(error.message);
     }
   };
 }
 
-function finishPost(input) {
+function finishPost(input,token) {
   return async function() {
     try {
-      await axios.post(URL + "transactions/postsuccess", input);
+      await axios.post(URL + "transactions/postsuccess", input, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
     } catch (error) {
       console.log(error.message);
     }

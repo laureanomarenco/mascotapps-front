@@ -10,19 +10,15 @@ const EndPost = ({ hiddenEnd, setHiddenEnd, idPet }) => {
   const { user } = useAuth0();
   const myProfileData = useSelector((state) => state.myProfile);
   const transactions = myProfileData?.transactions;
-
-  let dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(myProfile({ id: user?.sub }));
-  }, [dispatch]);
+  const  dispatch = useDispatch();
+ const tokenAccess = localStorage.getItem("token");
 
   const [input, setInput] = useState({
-    id: user?.sub,
     statusPost: "",
     id_demanding: "",
     petId: idPet,
   });
+
   function onChange(e) {
     e.preventDefault();
     setInput({
@@ -34,10 +30,10 @@ const EndPost = ({ hiddenEnd, setHiddenEnd, idPet }) => {
   function onSubmit(e) {
     e.preventDefault();
     if (input.statusPost === "cancelado") {
-      dispatch(cancelPost(input));
+      dispatch(cancelPost(input, tokenAccess));
     }
-    dispatch(finishPost(input));
-    setHiddenEnd(hiddenEnd = true)
+    dispatch(finishPost(input, tokenAccess));
+    setHiddenEnd((hiddenEnd = true));
     Swal.fire({
       title:
         "Tu publicación fue finalizada correctamente y ya no figurará entre las mascotas activas.",
@@ -57,6 +53,9 @@ no-repeat
       window.location.href = "/home";
     });
   }
+  useEffect(() => {
+    dispatch(myProfile({ id: user?.sub }));
+  }, [dispatch]);
 
   return (
     <div
@@ -106,7 +105,10 @@ no-repeat
                   {transactions?.map((t) => {
                     if (user.sub !== t.user_demanding_id) {
                       return (
-                        <option key={Math.random()} value={t?.user_demanding_id}>
+                        <option
+                          key={Math.random()}
+                          value={t?.user_demanding_id}
+                        >
                           {t?.user_demanding_name}
                         </option>
                       );
