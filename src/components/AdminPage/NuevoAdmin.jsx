@@ -94,7 +94,7 @@ const NuevoAdmin = () => {
     dispatch(usersAdoptionsRank());
     dispatch(fetchCity());
     usersPostsOrNo = usersPosts(usersss);
-  }, [dispatch, visitors, users, pets.length]);
+  }, [dispatch, visitors, users]);
 
   //------------//CERRAR SESION//------------------//
   const handleClick = () => {
@@ -325,7 +325,7 @@ const NuevoAdmin = () => {
             <section className="grid md:grid-cols-2 xl:grid-cols-4 xl:grid-rows-3 xl:grid-flow-col gap-6">
               <div className="flex flex-col md:col-span-2 md:row-span-2 bg-white shadow rounded-lg">
                 <div className="px-6 py-5 font-semibold border-b border-gray-100">
-                  The number of applied and left students per month
+                  Listado de usuarios registrados en tu aplicación
                 </div>
                 <div className="p-4 ">
                   <div className=" w-full bg-gray-100 border-2 border-gray-200 border-dashed rounded-md">

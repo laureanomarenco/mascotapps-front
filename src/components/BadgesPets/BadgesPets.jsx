@@ -1,39 +1,36 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch} from "react-redux";
-import { BsPencilSquare } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { BsPencilSquare, BsCheck2Square } from "react-icons/bs";
 import { RiChatDeleteFill } from "react-icons/ri";
-import {BsCheck2Square} from "react-icons/bs"
-import { deletePet, publicUserDetail,getMyPets} from "../../store/actions";
-import { useState } from "react";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { deletePet, publicUserDetail, getMyPets } from "../../store/actions";
 import EndPost from "../Detail/EndPost";
 import { tokenAccess } from "../../constants/token";
+
+
 const BadgesPets = ({
   hidden,
   setHidden,
   setOrder,
   handleActiveEditDog,
   order,
-  myPets
+  myPets,
 }) => {
   const dispatch = useDispatch();
-  const [hiddenEnd,setHiddenEnd]=useState(true)
-  const handleClick = (petid,tokenAccess) => {
+  const [hiddenEnd, setHiddenEnd] = useState(true);
+  const handleClick = (petid, tokenAccess) => {
     dispatch(deletePet(petid, tokenAccess));
     dispatch(getMyPets(tokenAccess));
-    setOrder(order === "nowpAPASITO" ? "now" : "nowpAPASITO");
+    setOrder(order === "nowpAPTO" ? "now" : "nowpAPTO");
   };
   const userContact = useSelector((state) => state.publicUserDetail);
   useEffect(() => {}, [myPets]);
 
-  const handleHidden = (id)=>{
-
-    setHiddenEnd(hiddenEnd === true? false : true);
-    console.log("IDDDDDD ",id)
-    dispatch(publicUserDetail(id))
-  }
+  const handleHidden = (id) => {
+    setHiddenEnd(hiddenEnd === true ? false : true);
+    console.log("IDDDDDD ", id);
+    dispatch(publicUserDetail(id));
+  };
   return (
     <div
       className="flex flex-col items-center gap-5 grid-rows-1 py-5 px-5 md:grid md:grid-cols-2 xl:grid-cols-3 w-full relative border border-gray-300  rounded-lg my-2 shadow-lg  "
@@ -79,8 +76,8 @@ const BadgesPets = ({
                     Raza: <span className="font-semibold">{a.race}</span>
                   </p>
                 </div>
-                <div className="flex mx-auto gap-10 ">
-                  <p className="text-2xl">
+                <div className="flex mx-auto gap-3 items-center">
+                  <p className="text-xl">
                     <BsPencilSquare
                       onClick={() => handleActiveEditDog(a)}
                       className="cursor-pointer"
@@ -92,18 +89,22 @@ const BadgesPets = ({
                   >
                     <RiChatDeleteFill color="red" />
                   </button>
-                  <p  className={`text-2xl ${a.postStatus==="concretado"||a.postStatus==="cancelado"?"hidden":""}`}>
+
+                  <p  className={`text-xl ${a.postStatus==="concretado"||a.postStatus==="cancelado"?"hidden":""}`}>
                   <BsCheck2Square onClick={handleHidden} color="green"/>
                   </p>
                 </div>
               </div>
                   <div className="w-full mty-2" hidden={hiddenEnd}>
                   <EndPost 
+
                     user={userContact}
                     hiddenEnd={hiddenEnd}
                     setHiddenEnd={setHiddenEnd}
-                    idPet={a.id}/>
-                  </div>
+                    idPet={a.id}
+                  />
+                </div>
+              </div>
             </div>
           ))
         : null}
