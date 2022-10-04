@@ -333,13 +333,13 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
                 })}
               </tbody>
             </table>
-            <PetsPagination
-              pets={pets.length}
-              showPerPage={showPerPage}
-              page={page}
-              pagination={pagination}
-            />
           </div>
+          <PetsPagination
+            pets={pets.length}
+            showPerPage={showPerPage}
+            page={page}
+            pagination={pagination}
+          />
         </div>
       </section>
       <section>
