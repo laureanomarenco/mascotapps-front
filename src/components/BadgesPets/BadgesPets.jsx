@@ -3,10 +3,11 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { BsPencilSquare } from "react-icons/bs";
 import { RiChatDeleteFill } from "react-icons/ri";
-import { deletePet } from "../../store/actions";
+import {BsCheck2Square} from "react-icons/bs"
+import { deletePet, publicUserDetail} from "../../store/actions";
 import { useState } from "react";
 import { useEffect } from "react";
-
+import EndPost from "../Detail/EndPost";
 const BadgesPets = ({
   hidden,
   setHidden,
@@ -17,6 +18,7 @@ const BadgesPets = ({
 }) => {
   const dispatch = useDispatch();
   const [states, setStates] = useState(true);
+  const [hiddenEnd,setHiddenEnd]=useState(true)
   const tokenAccess = localStorage.getItem("token");
   const handleClick = (petid, tokenAccess) => {
     dispatch(deletePet(petid, tokenAccess));
@@ -24,7 +26,15 @@ const BadgesPets = ({
     setOrder(order === "now" ? "newNow" : "now");
   };
   const myPets = useSelector((state) => state.userPets);
+  const userContact = useSelector((state) => state.publicUserDetail);
   useEffect(() => {}, [states]);
+
+  const handleHidden = (id)=>{
+
+    setHiddenEnd(hiddenEnd === true? false : true);
+    dispatch(publicUserDetail(id))
+    console.log("SE Manda la action ")
+  }
   return (
     <div
       className="flex flex-col items-center gap-5 grid-rows-1 py-5 px-5 md:grid md:grid-cols-2 xl:grid-cols-3 w-full relative border border-gray-300  rounded-lg my-2 shadow-lg  "
@@ -84,8 +94,18 @@ const BadgesPets = ({
                   >
                     <RiChatDeleteFill color="red" />
                   </button>
+                  <p  className="text-2xl">
+                  <BsCheck2Square onClick={handleHidden} color="green"/>
+                  </p>
                 </div>
               </div>
+                  <div className="w-full" hidden={hiddenEnd}>
+                  <EndPost 
+                    user={userContact}
+                    hiddenEnd={hiddenEnd}
+                    setHiddenEnd={setHiddenEnd}
+                    idPet={a.id}/>
+                  </div>
             </div>
           ))
         : null}
