@@ -27,7 +27,7 @@ export default function RatingStar({ objBello, setShowModal, setOrder }) {
     dispatch(rateUser(review, tokenAccess));
     dispatch(resetMyProfile());
     setShowModal(false);
-    setOrder(review.comments);
+    setOrder("review.comments");
   };
 
   return (

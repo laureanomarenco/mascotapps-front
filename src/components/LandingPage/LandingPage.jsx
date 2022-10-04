@@ -2,17 +2,17 @@ import Login from "../Login/Login";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { visitorsCounter } from "../../store/actions/index";
-import { useDispatch } from "react-redux";
+// import { visitorsCounter } from "../../store/actions/index";
+// import { useDispatch } from "react-redux";
 
 export default function LandingPage() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const images = [
+    "https://res.cloudinary.com/dfbxjt69z/image/upload/v1664916985/mascotapps/pexels-mati-mango-4734723_bjtdq3.jpg",
     "https://res.cloudinary.com/dfbxjt69z/image/upload/v1662821915/mascotapps/StockSnap_EJELGQPXN6_dkux6i.jpg",
+    "https://res.cloudinary.com/dfbxjt69z/image/upload/v1664916557/mascotapps/pexels-pixabay-416160_1_x8t9z7.jpg",
     "https://res.cloudinary.com/dfbxjt69z/image/upload/v1662831899/mascotapps/StockSnap_LPZFCLQN45_d2wvmc.jpg",
-    "https://res.cloudinary.com/dfbxjt69z/image/upload/v1662821916/mascotapps/animals-dogs_3CLDGN47PX_uqeek0.jpg",
   ];
-
   //eslint-disable-next-line
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState(images[0]);
@@ -32,14 +32,14 @@ export default function LandingPage() {
         : images.length - 1;
       setSelectedImage(images[nextIndex]);
       setSelectedIndex(nextIndex);
-    }, 500);
+    }, 200);
   };
 
   useEffect(() => {
-    dispatch(visitorsCounter());
+    // dispatch(visitorsCounter());
     const interval = setInterval(() => {
       selectNewImage(selectedIndex, images);
-    }, 1800);
+    }, 2500);
     return () => clearInterval(interval);
   }, [selectedIndex, selectedImage]);
 
@@ -48,8 +48,8 @@ export default function LandingPage() {
       <img
         className={
           loaded
-            ? "opacity-100 w-full ease-in duration-300 object-cover"
-            : "w-full  ease-in duration-300 object-cover  opacity-0"
+            ? "opacity-100 w-full ease-in duration-500 object-cover"
+            : "w-full  ease-in duration-500 object-cover  opacity-0"
         }
         src={selectedImage}
         alt=""
