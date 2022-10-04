@@ -26,7 +26,7 @@ const PetsPagination = ({ pagination, pets, page, showPerPage }) => {
                 ? "bg-transparent border border-1 border-teal-400 rounded text-black font-bold py-1 px-2"
                 : "bg-teal-400 border border-1 border-teal-400 rounded text-gray-50 font-bold py-1 px-2"
             }
-            hidden={n > page + 2 || n < page - 2 ? true : false}
+            hidden={n >= page + 2 || n <= page - 2 ? true : false}
             onClick={() => pagination(n)}
           >
             {n}
