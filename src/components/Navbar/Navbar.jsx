@@ -16,10 +16,7 @@ export default function Navbar({ setPage }) {
   const [showMenu, setShowMenu] = useState(false);
   const [input, setInput] = useState("");
   const myProfileData = useSelector((state) => state.myProfile);
-  console.log(
-    "🚀 ~ file: Navbar.jsx ~ line 19 ~ Navbar ~ myProfileData",
-    myProfileData
-  );
+ 
   const dispatch = useDispatch();
 
   function handleChange(e) {
