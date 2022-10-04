@@ -18,7 +18,7 @@ const Transactions = ({ transactions, setOrder }) => {
     setOrder("completed");
   };
 
-  useEffect(() => {}, [transactions, setOrder, dispatch]);
+  useEffect(() => {}, [transactions, setOrder]);
 
   //------------------//PAGINACION//------------------------//
   const [page, setPage] = useState(1);
@@ -58,7 +58,7 @@ const Transactions = ({ transactions, setOrder }) => {
                   Anunciante
                 </th>
                 <th className="px-5 py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
-                  Estado
+                  Estado del post
                 </th>
                 <th className=" py-3 border-b-2 border-gray-200 bg-gray-100 text-left text-xs font-semibold text-gray-600 uppercase tracking-wider">
                   Acciones
@@ -141,7 +141,7 @@ const Transactions = ({ transactions, setOrder }) => {
                     {(transaction?.user_offering_id === user?.sub
                       ? transaction.user_offering_check === "calificado"
                       : transaction.user_demanding_check === "calificado") && (
-                      <div className="flex gap-3 text-red-400">
+                      <div className="flex gap-3 text-gray-500">
                         <HiLockClosed size={22} />
                         <span>Finalizado</span>
                       </div>

@@ -77,7 +77,7 @@ const NuevoProfile = () => {
       dispatch(resetMyProfile());
       dispatch(resetDetail());
     };
-  }, [order, dispatch, user, isLoading, isAuthenticated]);
+  }, [order, dispatch, user, isLoading, isAuthenticated, setOrder]);
   if (isLoading) {
     return (
       <div className="flex w-screen h-screen justify-center items-center">
