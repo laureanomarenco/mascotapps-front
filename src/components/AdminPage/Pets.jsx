@@ -345,7 +345,7 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
       <section>
         {/* <Suspense fallback={<div>Loading...</div>}> */}
         {/* <Maps cities={cities} /> */}
-        {/* </Suspense> */}
+        {/* </Suspense> a ver pullRequestSiApareces*/}
       </section>
     </main>
   );
