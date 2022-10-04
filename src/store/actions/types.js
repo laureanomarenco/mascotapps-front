@@ -8,8 +8,6 @@ export const CREAT_USER = "CREAT_USER";
 export const GET_PUBLIC_USER_DETAIL = "GET_PUBLIC_USER_DETAIL";
 export const DONATE_USER_POINTS = "DONATE_USER_POINTS";
 
-
-
 //pets
 export const FETCH_CITY = "FETCH_CITY";
 export const FETCH_PETS = "FETCH_PETS";
@@ -24,7 +22,6 @@ export const CLEAR_SUCCESS = "CLEAR_SUCCESS";
 export const GET_PET_COMMENTS = "GET_PET_COMMENTS";
 export const GET_SPECIES = "GET_SPECIES";
 export const DELETE_PET = "DELETE_PET";
-
 
 //admin
 export const GET_ALL_USERS = "GET_ALL_USERS";

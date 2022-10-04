@@ -5,6 +5,7 @@ import {
   deletePetsWithNoUserId,
   deleteUserPosts,
   getAllUsers,
+  banUsers,
 } from "../../store/actions/index";
 import UsersPagination from "./UsersPagination/UsersPagination";
 import { useDispatch } from "react-redux";
@@ -71,12 +72,50 @@ const Users = ({ users }) => {
     });
   };
 
+  const handleBan = (id) => {
+    return Swal.fire({
+      title: "¿Banear usuario?",
+      text: "Ingresa tu contraseña confirmar",
+      html: `<input type="password" id="password" className="swal2-input" placeholder="Password">`,
+      confirmButtonText: "Banear",
+      confirmButtonColor: "#28B0A2",
+      focusConfirm: false,
+      preConfirm: () => {
+        const password = Swal.getPopup().querySelector("#password").value;
+        if (!password) {
+          Swal.showValidationMessage(`Ingresa tu contraseña`);
+        } else if (password !== ultraSecreta) {
+          Swal.showValidationMessage(`Contraseña incorrecta`);
+        }
+        return { password: password };
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(banUsers({ id: id, password: ultraSecreta }, tokenAccess));
+        dispatch(
+          deleteUserPosts({ password: ultraSecreta, userId: id }, tokenAccess)
+        );
+        dispatch(
+          deletePetsWithNoUserId({ password: ultraSecreta }, tokenAccess)
+        );
+        dispatch(adminFetchUsers(tokenAccess));
+        dispatch(getAllUsers());
+        Swal.fire({
+          title: "Usuario baneado correctamente!",
+          icon: "success",
+          confirmButtonColor: "#28B0A2",
+        });
+      }
+    });
+  };
+
+  console.log(users);
   useEffect(() => {
     dispatch(adminFetchUsers(tokenAccess));
-  }, []);
+  }, [dispatch]);
   return (
-    <section className="bg-blueGray-50">
-      <div className="w-full mx-auto  ">
+    <section className="bg-white">
+      <div className="w-full mx-auto  bg-white">
         <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
           <div className="rounded-t mb-0 px-4 py-3 border-0">
             <div className="flex flex-wrap items-center">
@@ -110,8 +149,15 @@ const Users = ({ users }) => {
               <tbody>
                 {showUsers?.map((u) => {
                   return (
-                    <tr key={u.id}>
-                      <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs  p-4 text-left text-blueGray-700 flex items-center gap-1">
+                    <tr
+                      key={u.id}
+                      className={u.isBanned === "true" && "bg-purple-300"}
+                    >
+                      <th
+                        className={
+                          "border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs  p-4 text-left text-blueGray-700 flex items-center gap-1"
+                        }
+                      >
                         <img
                           className="w-8 h-8 rounded-full"
                           src={u.image}
@@ -138,6 +184,17 @@ const Users = ({ users }) => {
                           <FaTrashAlt />
                           Eliminar
                         </button>
+                        <button
+                          className={
+                            u.isBanned !== "true"
+                              ? "text-purple-500 flex  items-center gap-1 visible"
+                              : "invisible"
+                          }
+                          onClick={() => handleBan(u.id)}
+                        >
+                          <FaTrashAlt />
+                          Banear
+                        </button>
                       </td>
                     </tr>
                   );
@@ -145,13 +202,13 @@ const Users = ({ users }) => {
               </tbody>
             </table>
           </div>
+          <UsersPagination
+            users={users.length}
+            showPerPage={showPerPage}
+            page={page}
+            pagination={pagination}
+          />
         </div>
-        <UsersPagination
-          users={users.length}
-          showPerPage={showPerPage}
-          page={page}
-          pagination={pagination}
-        />
       </div>
     </section>
   );

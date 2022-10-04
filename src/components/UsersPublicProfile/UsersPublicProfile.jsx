@@ -20,9 +20,14 @@ export default function UserPuserProfsPublicProfile() {
   const { user } = useAuth0();
   const location = useLocation();
   const { userProf, idPet } = location.state;
+  const myProfile = useSelector((state) => state.myProfile);
+  const transactionAlready = myProfile?.transactions?.find(
+    (t) => t.pet_id === idPet
+  )?.user_demanding_check;
+
   console.log(
-    "🚀 ~ file: UsersPublicProfile.jsx ~ line 22 ~ UserPuserProfsPublicProfile ~ userProf",
-    userProf
+    "🚀 ~ file: UsersPublicProfile.jsx ~ line 30 ~ UserPuserProfsPublicProfile ~ transactionAlready",
+    transactionAlready
   );
   //eslint-disable-next-line
   const reviews = useSelector((state) => state.userReviews);
@@ -59,7 +64,11 @@ export default function UserPuserProfsPublicProfile() {
                 Perfil de {userProf?.name}
               </p>
               {userProf?.linkToDonate && (
-                <a href={userProf.linkToDonate}>
+                <a
+                  href={userProf.linkToDonate}
+                  rel="noreferrer"
+                  target="_blank"
+                >
                   {" "}
                   <img
                     className="h-12 w-12 ml-2 object-cover"
@@ -173,7 +182,20 @@ export default function UserPuserProfsPublicProfile() {
                 </p>
                 <p>{userProf?.city}</p>
               </div>
-              {contact ? (
+
+              {transactionAlready === undefined && contact === false && (
+                <button
+                  onClick={handleBeginTransaction}
+                  className="px-6 py-3 my-4 bg-[#FFC700] rounded-md font-bold hover:bg-[ffd803]/80 transition-all duration-300"
+                  hidden={userProf?.email === user.email ? true : false}
+                >
+                  Contactar anunciante
+                </button>
+              )}
+              {(contact ||
+                transactionAlready === null ||
+                transactionAlready === "finalizado" ||
+                transactionAlready === "calificado") && (
                 <>
                   <div className="flex gap-3 items-center my-2">
                     <p className="text-teal-800">
@@ -188,14 +210,6 @@ export default function UserPuserProfsPublicProfile() {
                     <p> {userProf?.email}</p>
                   </div>
                 </>
-              ) : (
-                <button
-                  onClick={handleBeginTransaction}
-                  className="px-6 py-3 my-4 bg-[#FFC700] rounded-md font-bold hover:bg-[ffd803]/80 transition-all duration-300"
-                  hidden={userProf?.email === user.email ? true : false}
-                >
-                  Contactar anunciante
-                </button>
               )}
             </div>
           </div>

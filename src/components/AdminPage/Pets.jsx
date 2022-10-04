@@ -27,7 +27,7 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
 
   //---------PAGINACION------------//
   const [page, setPage] = useState(1);
-  const showPerPage = 6;
+  const showPerPage = 4;
   const lastOnPage = page * showPerPage;
   const firstOnPage = lastOnPage - showPerPage;
   const showPets = pets?.slice(firstOnPage, lastOnPage);
@@ -290,7 +290,7 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
             <div className="flex flex-wrap items-center">
               <div className="relative w-full  max-w-full flex-grow flex-1">
                 <h3 className="font-semibold text-base text-blueGray-700">
-                  Usuarios registrados
+                  Publicaciones
                 </h3>
               </div>
             </div>
@@ -319,11 +319,11 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
                 {showPets?.map((p) => {
                   return (
                     <tr key={p.id}>
-                      <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs  p-4 text-left text-blueGray-700 flex items-center gap-1">
+                      <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs  p-4 text-left text-blueGray-400 flex items-center gap-1">
                         <img
-                          className="w-8 h-8 rounded-full"
+                          className="w-8 h-8 rounded-full font-medium text-gray-400"
                           src={p.image}
-                          alt="user-img"
+                          alt="img"
                         />
                         <div className="grid ">
                           <span className="w-full">{p.name}</span>
@@ -339,6 +339,12 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
                         {p.status}
                       </td>
                       <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs  p-4">
+                        <button
+                          className="text-teal-500 flex  items-center gap-1"
+                          onClick={() => window.open("/pets/" + p.id)}
+                        >
+                          Ver publicación
+                        </button>
                         <button
                           className="text-red-500 flex  items-center gap-1"
                           onClick={() => handleClick(p.id)}
