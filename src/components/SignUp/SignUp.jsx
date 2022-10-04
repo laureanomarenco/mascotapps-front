@@ -11,6 +11,7 @@ import Swal from "sweetalert2";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import { useAuth0 } from "@auth0/auth0-react";
 import { GiReceiveMoney } from "react-icons/gi";
+import { tokenAccess } from "../../constants/token";
 
 const SignUp = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
@@ -18,6 +19,7 @@ const SignUp = () => {
   const dispatch = useDispatch();
   const cities = useSelector((state) => state.cities);
   const navigate = useNavigate();
+
   useEffect(() => {
     dispatch(fetchCity());
   }, [dispatch]);
@@ -36,7 +38,6 @@ const SignUp = () => {
   //ESTADOS ---------------------------------------------------------------------------------------------------------
 
   const [input, setInput] = useState({
-    id: `${user?.sub}`,
     name: "",
     email: `${user?.email}`,
     city: "",
@@ -84,7 +85,7 @@ const SignUp = () => {
     if (errors.name || errors.city || errors.contact) {
       alert("Verifique los campos");
     } else {
-      dispatch(CreateUser(input));
+      dispatch(CreateUser(input, tokenAccess));
       Swal.fire({
         title: "Usuario creado correctamente",
         text: "Gracias por registrarte en Mascotapp.",

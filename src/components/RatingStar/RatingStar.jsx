@@ -4,14 +4,15 @@ import Rating from "@mui/material/Rating";
 import TextField from "@mui/material/TextField";
 import { useDispatch } from "react-redux";
 import { rateUser, resetMyProfile } from "../../store/actions";
+import { tokenAccess } from "../../constants/token";
 
 export default function RatingStar({ objBello, setShowModal, setOrder }) {
   const dispatch = useDispatch();
   const [value, setValue] = React.useState(2);
-  //eslint-disable-next-line
+
   const [review, setReview] = React.useState({
     ...objBello,
-    stars: 0,
+    stars: 2,
     comments: "",
   });
 
@@ -22,17 +23,12 @@ export default function RatingStar({ objBello, setShowModal, setOrder }) {
     });
   };
 
-  console.log(review);
-
-  const handleClick = (event) => {
-    event.preventDefault();
-    dispatch(rateUser(review));
+  const handleClick = () => {
+    dispatch(rateUser(review, tokenAccess));
     dispatch(resetMyProfile());
     setShowModal(false);
-    setOrder("ne noww");
+    setOrder(review.comments);
   };
-
-  React.useEffect(() => {}, [dispatch]);
 
   return (
     <div className="flex flex-col text-center">

@@ -16,14 +16,14 @@ const Users = ({ users }) => {
   // const ultraSecreta = process.env.ULTRA_SECRETA;
   const ultraSecreta = "SoyAdmin";
 
-  // console.log(users);
   const dispatch = useDispatch();
   // const users = useSelector((state) => state.usersInfo);
   const [page, setPage] = useState(1);
   const showPerPage = 4;
   const lastOnPage = page * showPerPage;
   const firstOnPage = lastOnPage - showPerPage;
-  const showUsers = users.slice(firstOnPage, lastOnPage);
+  const showUsers = users?.slice(firstOnPage, lastOnPage);
+  const tokenAccess = localStorage.getItem("token");
 
   function pagination(pageNumber) {
     setPage(pageNumber);
@@ -47,10 +47,19 @@ const Users = ({ users }) => {
       },
     }).then((result) => {
       if (result.isConfirmed) {
-        dispatch(deleteUser({ id: id, email: email, password: ultraSecreta }));
-        dispatch(deleteUserPosts({ password: ultraSecreta, userId: id }));
-        dispatch(deletePetsWithNoUserId({ password: ultraSecreta }));
-        dispatch(adminFetchUsers());
+        dispatch(
+          deleteUser(
+            { id: id, email: email, password: ultraSecreta },
+            tokenAccess
+          )
+        );
+        dispatch(
+          deleteUserPosts({ password: ultraSecreta, userId: id }, tokenAccess)
+        );
+        dispatch(
+          deletePetsWithNoUserId({ password: ultraSecreta }, tokenAccess)
+        );
+        dispatch(adminFetchUsers(tokenAccess));
         Swal.fire({
           title: "Usuario eliminado correctamente!",
           icon: "success",
@@ -61,7 +70,7 @@ const Users = ({ users }) => {
   };
 
   useEffect(() => {
-    dispatch(adminFetchUsers());
+    dispatch(adminFetchUsers(tokenAccess));
   }, [dispatch]);
   return (
     <section className="bg-blueGray-50">

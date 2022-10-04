@@ -16,6 +16,7 @@ import { MdAlternateEmail } from "react-icons/md";
 import Autocomplete from "@mui/material/Autocomplete";
 import { AiOutlineCamera } from "react-icons/ai";
 import { GiReceiveMoney } from "react-icons/gi";
+import { tokenAccess } from "../../../constants/token";
 
 export default function ModalProfile({ belloPerfil }) {
   const [showModal, setShowModal] = React.useState(false);
@@ -23,9 +24,8 @@ export default function ModalProfile({ belloPerfil }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const cities = useSelector((state) => state.cities);
-  //eslint-disable-next-line
+
   const [input, setInput] = useState({
-    id: user?.sub,
     email: user?.email,
     name: belloPerfil.name,
     city: belloPerfil.city,
@@ -91,18 +91,20 @@ export default function ModalProfile({ belloPerfil }) {
 
   //VALIDACIONES------------------------------------------------------------------------------------------------------------------
   function validate(input) {
+    let regexName = /^[a-zA-ZáéíóúàèìòùÀÈÌÒÙÁÉÍÓÚ\s]*$/;
     let errorObj = {};
     if (!input.name.trim()) {
       errorObj.name = "Todos los datos son obligatorios";
     }
-    if (input.name.search("[0-9]") !== -1) {
-      errorObj.name = "El nombre puede incluir números";
+    if (!input.name.match(regexName)) {
+      errorObj.name = "El nombre puede incluir únicamente letras y espacios.";
     }
-    if (input.name.search("[^A-Za-z0-9]") !== -1) {
-      errorObj.name = "El nombre puede incluir números, símbolos ni espacios";
+    if (input.name.length > 50) {
+      errorObj.name = "El nombre no puede tener más de 50 caracteres.";
     }
+
     if (!input.contact.trim()) {
-      errorObj.contact = "Debes incluir un número de contacto";
+      errorObj.contact = "Debes incluir un número de contacto válido";
     }
     return errorObj;
   }
@@ -110,7 +112,13 @@ export default function ModalProfile({ belloPerfil }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     if (errors.name || errors.city || errors.contact) {
-      alert("Verifique los campos");
+      //alert("Verifique los campos");
+      Swal.fire({
+        title: "Verifique los campos",
+        icon: "error",
+        showCancelButton: false,
+        confirmButtonColor: "#3085d6",
+      });
     } else {
       if (e.target.name === "city" && e.target.value.length === "") {
         setInput({
@@ -130,7 +138,7 @@ export default function ModalProfile({ belloPerfil }) {
           contact: belloPerfil?.contact,
         });
       }
-      dispatch(updateProfile(input));
+      dispatch(updateProfile(input, tokenAccess));
       Swal.fire({
         title: "Perfil modificado correctamente",
         icon: "success",
@@ -139,7 +147,7 @@ export default function ModalProfile({ belloPerfil }) {
       }).then((result) => {
         if (result.isConfirmed) {
           setShowModal(false);
-          dispatch(myProfile({ id: user?.sub }));
+          dispatch(myProfile(tokenAccess));
         }
       });
     }
@@ -212,6 +220,9 @@ export default function ModalProfile({ belloPerfil }) {
                           type="text"
                           name="name"
                           className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm "
+                          placeholder="Nombre"
+                          minLength={1}
+                          maxLength={50}
                           value={input.name}
                         />
 
@@ -299,10 +310,13 @@ export default function ModalProfile({ belloPerfil }) {
                       <div className="relative">
                         <input
                           onChange={handleChange}
-                          type="text"
+                          type="tel"
                           name="contact"
                           className="w-full p-4 pr-12 text-sm border-gray-200 rounded-lg shadow-sm"
-                          placeholder="Contacto"
+                          placeholder="Número de contacto"
+                          pattern="^\+?\d{0,13}"
+                          minLength={6}
+                          maxLength={20}
                           value={input.contact}
                         />
 

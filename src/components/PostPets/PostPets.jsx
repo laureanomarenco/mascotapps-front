@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-
+import { tokenAccess } from "../../constants/token";
 import React, { useEffect, useState } from "react";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import { AiOutlineCamera } from "react-icons/ai";
@@ -21,24 +21,17 @@ import TabsRender from "./Tabs";
 import TextRender from "./TextRender";
 import Spinner from "../Spinner/Spinner";
 
-
-// import Button from "../Button/Button"
-
 const PostPets = () => {
-  //eslint-disable-next-line
   const [post, setPost] = useState(1);
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  const { isAuthenticated, isLoading } = useAuth0();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const Petspecies = useSelector((state) => state.species);
   const [error, setError] = useState({});
   const postResult = useSelector((state) => state.newPost);
-  //eslint-disable-next-line
   const myProfileData = useSelector((state) => state.myProfile);
-  //eslint-disable-next-line
   const city = myProfileData["userProps"]?.city;
 
-  console.log("🚀 ~ file: PostPets.jsx ~ line 27 ~ PostPets ~", city);
   const [input, setInput] = useState({
     name: "",
     specie: "",
@@ -160,12 +153,12 @@ const PostPets = () => {
       if (input.status == "perdido") {
         let notification = {
           name: input.name,
-          city:input.city
+          city: input.city,
         };
         console.log("condicion para despachar", city == input.city);
-        dispatch(sendNotification(notification))
+        dispatch(sendNotification(notification));
       }
-      const tokenAccess = localStorage.getItem("token");
+
       dispatch(postPet(input, tokenAccess));
     }
   };
@@ -181,9 +174,14 @@ const PostPets = () => {
     dispatch(fetchCity());
     dispatch(getSpecies());
     dispatch(resetDetail());
-    dispatch(myProfile({ id: user?.sub }));
-  }, [dispatch, isLoading, isAuthenticated, user?.sub]);
-  if(isLoading) return <div><Spinner/></div>
+    dispatch(myProfile(tokenAccess));
+  }, [dispatch, isLoading, isAuthenticated]);
+  if (isLoading)
+    return (
+      <div>
+        <Spinner />
+      </div>
+    );
   if (!isLoading && !isAuthenticated) {
     Swal.fire({
       title: "No estás logueado",
@@ -308,8 +306,8 @@ const PostPets = () => {
                     {post === 1
                       ? "encontrado"
                       : post === 2
-                        ? "perdido"
-                        : "en adopción"}
+                      ? "perdido"
+                      : "en adopción"}
                   </div>
                 </div>
                 <div className="text-center text-xs text-red-500 mt-1">

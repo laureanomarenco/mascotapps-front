@@ -1,20 +1,21 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { BsPencilSquare } from "react-icons/bs";
 import { RiChatDeleteFill } from "react-icons/ri";
 import {BsCheck2Square} from "react-icons/bs"
-import { deletePet, publicUserDetail} from "../../store/actions";
+import { deletePet, publicUserDetail,getMyPets} from "../../store/actions";
 import { useState } from "react";
 import { useEffect } from "react";
 import EndPost from "../Detail/EndPost";
+import { tokenAccess } from "../../constants/token";
 const BadgesPets = ({
   hidden,
   setHidden,
   setOrder,
   handleActiveEditDog,
-  setActiveModalEditDog,
   order,
+  myPets
 }) => {
   const dispatch = useDispatch();
   const [states, setStates] = useState(true);
@@ -22,12 +23,12 @@ const BadgesPets = ({
   const tokenAccess = localStorage.getItem("token");
   const handleClick = (petid, tokenAccess) => {
     dispatch(deletePet(petid, tokenAccess));
-    setStates(!states);
-    setOrder(order === "now" ? "newNow" : "now");
+    dispatch(getMyPets(tokenAccess));
+    setOrder(order === "nowpAPASITO" ? "now" : "nowpAPASITO");
   };
   const myPets = useSelector((state) => state.userPets);
   const userContact = useSelector((state) => state.publicUserDetail);
-  useEffect(() => {}, [states]);
+  useEffect(() => {}, [myPets]);
 
   const handleHidden = (id)=>{
 
@@ -85,7 +86,6 @@ const BadgesPets = ({
                     <BsPencilSquare
                       onClick={() => handleActiveEditDog(a)}
                       className="cursor-pointer"
-                      setActiveModalEditDog={setActiveModalEditDog}
                     />
                   </p>
                   <button

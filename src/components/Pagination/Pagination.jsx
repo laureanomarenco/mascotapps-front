@@ -1,15 +1,14 @@
 import React from "react";
 
-const Pagination = ({
+function Pagination({
   showPerPage,
   pets,
-  pagination,
   page,
+  pagination,
   statusPets,
   filterPets,
   searchedPets,
-}) => {
-  const pageNumbers = [];
+}) {
   const total =
     pets && !searchedPets
       ? Math.ceil(pets / showPerPage)
@@ -19,43 +18,45 @@ const Pagination = ({
       ? Math.ceil(statusPets / showPerPage)
       : filterPets && Math.ceil(filterPets / showPerPage);
 
-  for (let i = 1; i <= Math.ceil(total); i++) {
-    pageNumbers.push(i);
-  }
-
   return (
-    // <div className="flex bg-[red] justify-self-center justify-items-centers gap-2">
-    <div className="flex w-[300px] mx-auto gap-[10px] my-8 justify-center">
-      <button
-        className="bg-transparent border border-1 border-yellow-400 rounded text-[#28B0A2] font-semibold py-1 px-2"
-        onClick={page > 1 ? () => pagination(page - 1) : null}
-        hidden={page === 1 ? true : false}
+    <div className="flex w-[285px] mx-auto gap-[10px] my-8 justify-center items-center font-semibold">
+      <span
+        onClick={() => pagination(1)}
+        className={`bg-transparent border border-1 border-yellow-400 rounded text-[#28B0A2] font-semibold py-1 px-2 cursor-pointer hover:bg-yellow-100 transition-colors ${
+          page === 1 ? "grayscale-[85%] pointer-events-none" : ""
+        }`}
+      >
+        &lt;&lt;
+      </span>
+      <span
+        onClick={() => pagination(page > 1 ? page - 1 : page - 0)}
+        className={`bg-transparent border border-1 border-yellow-400 rounded text-[#28B0A2] font-semibold py-1 px-2 cursor-pointer hover:bg-yellow-100 transition-colors ${
+          page === 1 ? "grayscale-[85%] pointer-events-none" : ""
+        }`}
       >
         &lt;
-      </button>
-      {pageNumbers &&
-        pageNumbers.map((n) => (
-          <button
-            key={n}
-            className={
-              page !== n
-                ? "bg-transparent border border-1 border-yellow-400 rounded text-[#28B0A2] font-semibold py-1 px-2"
-                : "bg-yellow-400 border border-1 border-yellow-400 rounded text-gray-50 font-semibold py-1 px-2"
-            }
-            onClick={() => pagination(n)}
-          >
-            {n}
-          </button>
-        ))}
-      <button
-        className="bg-transparent border border-1 border-yellow-400 rounded text-[#28B0A2] font-semibold py-1 px-2"
-        onClick={page < total ? () => pagination(page + 1) : null}
-        hidden={page === total ? true : false}
+      </span>
+      <span>
+        Página {page} de {total}
+      </span>
+      <span
+        onClick={() => pagination(page < total ? page + 1 : page + 0)}
+        className={`bg-transparent border border-1 border-yellow-400 rounded text-[#28B0A2] font-semibold py-1 px-2 cursor-pointer hover:bg-yellow-100 transition-colors ${
+          page === total ? "grayscale-[85%] pointer-events-none" : ""
+        }`}
       >
         &gt;
-      </button>
+      </span>
+      <span
+        onClick={() => pagination(total)}
+        className={`bg-transparent border border-1 border-yellow-400 rounded text-[#28B0A2] font-semibold py-1 px-2 cursor-pointer hover:bg-yellow-100 transition-colors ${
+          page === total ? "grayscale-[85%] pointer-events-none" : ""
+        }`}
+      >
+        &gt;&gt;
+      </span>
     </div>
   );
-};
+}
 
 export default Pagination;

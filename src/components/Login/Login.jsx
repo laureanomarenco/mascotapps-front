@@ -5,7 +5,7 @@ import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoginButton } from "./LoginButton";
 import Spinner from "../Spinner/Spinner";
-import { URL_EXIST } from "../../url/url";
+import { URL_EXIST } from "../../constants/url";
 
 export default function Login() {
   const {
@@ -16,15 +16,16 @@ export default function Login() {
   } = useAuth0();
 
   const navigate = useNavigate();
-
   const handleValidation = async (user, isAuthenticated) => {
     try {
       const claims = await getAccessTokenSilently();
       localStorage.setItem("token", claims);
 
       if (isAuthenticated && user) {
-        let existe = await axios.post(URL_EXIST, {
-          id: user?.sub,
+        let existe = await axios.get(URL_EXIST, {
+          headers: {
+            Authorization: `Bearer ${claims}`,
+          },
         });
 
         if (existe.data.msg) {

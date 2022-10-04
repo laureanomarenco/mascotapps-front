@@ -5,24 +5,29 @@ import { useDispatch, useSelector } from "react-redux";
 import { myProfile, cancelPost, finishPost } from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
+import { tokenAccess } from "../../constants/token";
 
 const EndPost = ({ hiddenEnd, setHiddenEnd, idPet }) => {
   const { user } = useAuth0();
   const myProfileData = useSelector((state) => state.myProfile);
   const transactions = myProfileData?.transactions;
+  const filteredByPet = transactions?.filter((t) => t.pet_id === idPet)
+  //const userToConcrete = filteredByPet?.map((t) => t?.user_demanding_name)
+  const setUsers = new Set(filteredByPet)
+  const arrayUser = Array.from(setUsers)
+  const  dispatch = useDispatch();
 
-  let dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(myProfile({ id: user?.sub }));
+    dispatch(myProfile(tokenAccess));
   }, [dispatch]);
 
   const [input, setInput] = useState({
-    id: user?.sub,
     statusPost: "",
     id_demanding: "",
     petId: idPet,
   });
+  console.log(input)
   function onChange(e) {
     e.preventDefault();
     setInput({
@@ -34,10 +39,11 @@ const EndPost = ({ hiddenEnd, setHiddenEnd, idPet }) => {
   function onSubmit(e) {
     e.preventDefault();
     if (input.statusPost === "cancelado") {
-      dispatch(cancelPost(input));
+      dispatch(cancelPost(input, tokenAccess));
+    } else {
+      dispatch(finishPost(input, tokenAccess));
     }
-    dispatch(finishPost(input));
-    setHiddenEnd(hiddenEnd = true)
+    setHiddenEnd((hiddenEnd = true));
     Swal.fire({
       title:
         "Tu publicación fue finalizada correctamente y ya no figurará entre las mascotas activas.",
@@ -57,6 +63,9 @@ no-repeat
       window.location.href = "/home";
     });
   }
+  useEffect(() => {
+    dispatch(myProfile(tokenAccess));
+  }, [dispatch]);
 
   return (
     <div
@@ -103,11 +112,14 @@ no-repeat
                   onChange={onChange}
                 >
                   <option hidden>Usuario con el que finalizó</option>
-                  {transactions?.map((t) => {
+                  {arrayUser.map((t) => {
                     if (user.sub !== t.user_demanding_id) {
                       return (
-                        <option key={Math.random()} value={t?.user_demanding_id}>
-                          {t?.user_demanding_name}
+                        <option
+                          key={Math.random()}
+                          value={t.user_demanding_id}
+                        >
+                          {t.user_demanding_name}
                         </option>
                       );
                     }

@@ -21,6 +21,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
 import { FaUser } from "react-icons/fa";
 import ModalEditDog from "./ModalEditDog/ModalEditDog";
+import  {tokenAccess} from '../../constants/token'
 
 const NuevoProfile = () => {
   const [order, setOrder] = useState("");
@@ -35,11 +36,8 @@ const NuevoProfile = () => {
   } = useAuth0();
   const dispatch = useDispatch();
   const myPets = useSelector((state) => state.userPets);
-
   const myProfileData = useSelector((state) => state.myProfile);
   const transactions = myProfileData?.transactions;
-  const tokenAccess = localStorage.getItem("token");
-
   const [activeDonateModal, setActiveDonateModal] = useState(false);
   const [activeAdopterModal, setActiveAdopterModal] = useState(false);
   const [activeFounderModal, setActiveFounderModal] = useState(false);
@@ -73,13 +71,13 @@ const NuevoProfile = () => {
   useEffect(() => {
     if (tokenAccess !== "") {
       dispatch(myProfile(tokenAccess));
-      handleSubmit()
+      handleSubmit();
     }
     return () => {
       dispatch(resetMyProfile());
       dispatch(resetDetail());
     };
-  }, [order, dispatch, user, isLoading, isAuthenticated]);
+  }, [order, dispatch, user, isLoading, isAuthenticated, setOrder]);
   if (isLoading) {
     return (
       <div className="flex w-screen h-screen justify-center items-center">
@@ -408,6 +406,7 @@ const NuevoProfile = () => {
                     setOrder={setOrder}
                     setActiveModalEditDog={setActiveModalEditDog}
                     order={order}
+                    myPets={myPets}
                   />
                 ) : null}
               </div>

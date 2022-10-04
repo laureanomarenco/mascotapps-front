@@ -39,38 +39,39 @@ export default function CardContainer() {
   };
   return (
     <>
-    <div className="flex md:flex-row-reverse flex-col ">
-      <Pagination
-        pets={pets.length}
-        searchedPets={
-          searchedPets.length !== pets.length
-          ? searchedPets.length
-          : pets.length
-        }
-        showPerPage={showPerPage}
-        page={page}
-        pagination={pagination}
+      <div className="flex md:flex-row-reverse flex-col ">
+        <p className="text-center my-8 text-4xl font-bold">
+          Mascotas activas actualmente
+        </p>
+        <Pagination
+          pets={pets.length}
+          searchedPets={
+            searchedPets.length !== pets.length
+              ? searchedPets.length
+              : pets.length
+          }
+          showPerPage={showPerPage}
+          page={page}
+          pagination={pagination}
         />
-      <SortBy/>
-    </div>
-    <div
-      className={`${
-        loading
-          ? "grid gap-1 grid-rows-1 pt-40"
-          : "grid gap-1 grid-rows-1 md:grid-cols-2 xl:grid-cols-3"
-      } min-h-[70vh]`}
-    >
-      {notFound && showAlert()}
-      {loading && !notFound ? (
-        <Spinner />
-      ) : searchedPets.length ? (
-        showSearch?.map((pet, i) => <Card key={i} data={pet} />)
-      ) : (
-        showPets?.map((pet) => <Card key={pet.id} data={pet} />)
-      )}
-
-    </div>
+        <SortBy />
+      </div>
+      <div
+        className={`${
+          loading
+            ? "grid gap-1 grid-rows-1 pt-40"
+            : "grid gap-1 grid-rows-1 md:grid-cols-2 xl:grid-cols-3"
+        } min-h-[70vh]`}
+      >
+        {notFound && showAlert()}
+        {loading && !notFound ? (
+          <Spinner />
+        ) : searchedPets.length ? (
+          showSearch?.map((pet, i) => <Card key={i} data={pet} />)
+        ) : (
+          showPets?.map((pet) => <Card key={pet.id} data={pet} />)
+        )}
+      </div>
     </>
-
   );
 }

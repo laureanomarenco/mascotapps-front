@@ -15,10 +15,6 @@ import RenderText from "./RenderText";
 const PetsContainer = () => {
   const pets = useSelector((state) => state.statusPets);
   const filterPet = useSelector((state) => state.filterPets);
-  console.log(
-    "🚀 ~ file: PetsContainer.jsx ~ line 17 ~ PetsContainer ~ filterPet",
-    filterPet
-  );
   const notFound = useSelector((state) => state.notFound);
   const dispatch = useDispatch();
 
@@ -46,7 +42,8 @@ const PetsContainer = () => {
       ...filter,
       [e.target.name]: e.target.value,
     };
-    dispatch(filterPets(obj));
+		dispatch(filterPets(obj));
+		setPage(1);
   };
 
   const showAlert = () => {
@@ -100,17 +97,16 @@ const PetsContainer = () => {
         handleClearFilter={handleClearFilter}
         filter={filter}
         handleFilter={handleFilter}
-        filterPet={filterPet}
+        filterPets={filterPet}
         pets={pets}
+        setPage={setPage}
       />
       {notFound && showAlert()}
-      {/* xs:col-span-2 md:col-span-2 justify-self-center */}
       <Pagination
-        filterPets={filterPet.length}
-        statusPets={pets.length}
-        pagination={pagination}
+        pets={filterPet.length > 0 ? filterPet.length : pets.length}
         showPerPage={showPerPage}
         page={page}
+        pagination={pagination}
       />
       <div className="grid gap-1 grid-rows-1 md:grid-cols-2 xl:grid-cols-3 justify-self-center">
         {showPets.length > 0 && !notFound

@@ -13,6 +13,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { BiDonateHeart } from "react-icons/bi";
 import { GiTrophyCup } from "react-icons/gi";
 import { MdPets } from "react-icons/md";
+import { tokenAccess } from "../../constants/token";
 
 export default function UserPuserProfsPublicProfile() {
   const { user } = useAuth0();
@@ -20,7 +21,7 @@ export default function UserPuserProfsPublicProfile() {
   const { userProf, idPet } = location.state;
   //eslint-disable-next-line
   const reviews = useSelector((state) => state.userReviews);
-  const tokenAccess = localStorage.getItem("token");
+
   //eslint-disable-next-line
   const [activeDonateModal, setActiveDonateModal] = useState(false);
   //eslint-disable-next-line

@@ -8,6 +8,7 @@ import {
   getDonations,
   usersPointsRank,
   usersAdoptionsRank,
+  fetchCity,
   // pointsMultiplier
 } from "../../store/actions/index";
 import { FaDonate } from "react-icons/fa";
@@ -28,6 +29,9 @@ const NuevoAdmin = () => {
   const pets = useSelector((state) => state.pets);
   const users = useSelector((state) => state.totalUsers);
   const donations = useSelector((state) => state.donations);
+  const cities = useSelector((state) => state.cities);
+
+  const tokenAccess = localStorage.getItem("token");
   // const pointsRank = useSelector((state) => state.adoptionsRank);
   const adoptionsRank = useSelector((state) => state.adoptionsRank);
   const orderAdoptions = adoptionsRank?.sort(
@@ -36,15 +40,39 @@ const NuevoAdmin = () => {
   const visitors = useSelector((state) => state.visitors);
   const amounts = donations.map((done) => done.amount);
   const totalDonationsInCents = amounts.reduce((prev, next) => prev + next, 0);
+  const usersss = usersDetails;
   // foundAPet: 0
 
-  // gaveUpForAdoption: 0
+  //--------PARA EL MAPA---------------//
+  const petsForMap = pets && { ...pets };
+  // const citiesForMap = cities && { ...cities };
 
-  // gotAPetBack: 0
-  console.log(usersDetails);
+  let localidades = cities?.map((loc) => {
+    return {
+      lon: loc.centroide.lon,
+      lat: loc.centroide.lat,
+      nombre: loc.nombre,
+      provincia: loc.provincia.nombre,
+    };
+  });
+
+  const match = pets?.map((p) => {
+    var prov = localidades.find(
+      (l) =>
+        l.nombre === p.city.split(", ")[0] &&
+        l.provincia === p.city.split(", ")[1]
+    );
+    return {
+      ...p,
+      position: [Number(prov?.lat), Number(prov?.lon)],
+    };
+  });
+  console.log("MAAAAATCH", match);
+
+  //--------PARA EL MAPA---------------//
 
   const usersPosts = (arr) => {
-    let withPosts = arr.filter(
+    let withPosts = arr?.filter(
       (u) =>
         u.foundAPet !== 0 || u.gaveUpForAdoption !== 0 || u.gotAPetBack !== 0
     ).length;
@@ -53,17 +81,31 @@ const NuevoAdmin = () => {
         u.foundAPet === 0 && u.gaveUpForAdoption === 0 && u.gotAPetBack === 0
     ).length;
     return [withPosts, noPosts];
+    // if (arr.length > 0) {
+    //   let withPosts = arr?.filter(
+    //     (u) =>
+    //       u.foundAPet !== 0 || u.gaveUpForAdoption !== 0 || u.gotAPetBack !== 0
+    //   ).length;
+    //   let noPosts = arr?.filter(
+    //     (u) =>
+    //       u.foundAPet === 0 && u.gaveUpForAdoption === 0 && u.gotAPetBack === 0
+    //   ).length;
+    //   return [withPosts, noPosts];
+    // }
   };
-  let usersPostsOrNo = usersPosts(usersDetails);
+
+  let usersPostsOrNo = usersPosts(usersss);
 
   useEffect(() => {
     dispatch(fetchPets());
     dispatch(getDonations());
     dispatch(getAllUsers());
-    dispatch(adminFetchUsers());
+    dispatch(adminFetchUsers(tokenAccess));
     dispatch(totalVisitors());
     dispatch(usersPointsRank());
     dispatch(usersAdoptionsRank());
+    dispatch(fetchCity());
+    usersPostsOrNo = usersPosts(usersss);
   }, [dispatch, visitors, users]);
 
   //------------//CERRAR SESION//------------------//
@@ -150,6 +192,7 @@ const NuevoAdmin = () => {
               <Link
                 to="/admin/general/pets"
                 className="inline-flex items-center justify-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg"
+                state={{ pets: petsForMap, cities: match }}
               >
                 <span className="sr-only">Mascotas</span>
                 <MdPets />
@@ -340,7 +383,7 @@ const NuevoAdmin = () => {
                 </div>
                 <div className="p-4 ">
                   <div className=" w-full bg-gray-100 border-2 border-gray-200 border-dashed rounded-md">
-                    <Users users={usersDetails} />
+                    <Users users={usersss} />
                   </div>
                 </div>
               </div>
@@ -353,7 +396,7 @@ const NuevoAdmin = () => {
                 </div>
                 <div>
                   <span className="block text-2xl font-bold">
-                    {usersPostsOrNo[0]}
+                    {usersPostsOrNo && usersPostsOrNo[0]}
                   </span>
                   <span className="block text-gray-500">
                     Usuarios con publicaciones
@@ -369,7 +412,7 @@ const NuevoAdmin = () => {
                 </div>
                 <div>
                   <span className="block text-2xl font-bold">
-                    {usersPostsOrNo[1]}
+                    {usersPostsOrNo && usersPostsOrNo[1]}
                   </span>
                   <span className="block text-gray-500">
                     Usuarios sin publicaciones
@@ -430,26 +473,6 @@ const NuevoAdmin = () => {
                   </ul>
                 </div>
               </div>
-            </section>
-            <section className="text-right font-semibold text-gray-500">
-              <a href="#" className="text-purple-600 hover:underline">
-                Recreated on Codepen
-              </a>{" "}
-              with{" "}
-              <a
-                href="https://tailwindcss.com/"
-                className="text-teal-400 hover:underline"
-              >
-                Tailwind CSS
-              </a>{" "}
-              by Azri Kahar,{" "}
-              <a
-                href="https://dribbble.com/shots/10711741-Free-UI-Kit-for-Figma-Online-Courses-Dashboard"
-                className="text-purple-600 hover:underline"
-              >
-                original design
-              </a>{" "}
-              made by Chili Labs
             </section>
           </main>
         </div>

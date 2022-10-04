@@ -17,7 +17,6 @@ import PetComments from "./PetComments";
 import { TbVaccine } from "react-icons/tb";
 import { BiMap } from "react-icons/bi";
 import { BsExclamationSquare } from "react-icons/bs";
-
 import { useDispatch, useSelector } from "react-redux";
 import EndPost from "./EndPost";
 import Chat from "./Chat/Chat";
@@ -207,25 +206,30 @@ export default function Detail() {
                           />
                         </div>
                       </div>
-                      <div className=" flex gap-5 mt-4 w-full max-w-[500px] justify-between">
-                        <div>
-                          <p className="mr-8 sm:mr-0 text-sm text-gray-500 w-3/4">
-                            ¿Has visto esta mascota?
-                          </p>
-                          <p className="mr-8 sm:mr-0 text-sm text-gray-500 w-3/4">
-                            Envíale información al vendedor a través de nuestro
-                            Chat
-                          </p>
+                      {pet.status === "perdido" && (
+                        <div className=" flex gap-5 mt-4 w-full max-w-[500px] justify-between">
+                          <div>
+                            <p className="mr-8 sm:mr-0 text-sm text-gray-500 w-3/4">
+                              ¿Has visto esta mascota?
+                            </p>
+                            <p className="mr-8 sm:mr-0 text-sm text-gray-500 w-3/4">
+                              Envíale información al anunciante a través de
+                              nuestro Chat
+                            </p>
+                          </div>
+                          <div className="">
+                            <Chat pet={pet} />
+                          </div>
                         </div>
-                        <div className="">
-                          <Chat />
-                        </div>
-                      </div>
+                      )}
                     </div>
                   </>
                 ) : null}
                 {/* finalizar publicacion */}
                 {user?.sub === pet.UserId && (
+                  //agregar condicion para que no renderice el boton si el status de la mascota es 'cancelado' o 'concretado'
+                  pet.postStatus === 'activo' ?
+                  (
                   <div>
                     <button
                       onClick={handleClickEnd}
@@ -242,6 +246,8 @@ export default function Detail() {
                       />
                     </div>
                   </div>
+                ) : pet.postStatus === 'cancelado' ? <p className="text-xl font-bold text-red-700">Has cancelado esta publicación</p>
+                  : <p className="text-xl font-bold text-teal-700">Has concretado esta publicación</p> 
                 )}
               </div>
               {/* chat etc */}
