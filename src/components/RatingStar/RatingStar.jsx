@@ -12,7 +12,7 @@ export default function RatingStar({ objBello, setShowModal, setOrder }) {
 
   const [review, setReview] = React.useState({
     ...objBello,
-    stars: 0,
+    stars: 2,
     comments: "",
   });
 
@@ -23,15 +23,12 @@ export default function RatingStar({ objBello, setShowModal, setOrder }) {
     });
   };
 
-  const handleClick = (event) => {
-    event.preventDefault();
+  const handleClick = () => {
     dispatch(rateUser(review, tokenAccess));
     dispatch(resetMyProfile());
     setShowModal(false);
-    setOrder("ne noww");
+    setOrder(review.comments);
   };
-
-  React.useEffect(() => {}, [dispatch]);
 
   return (
     <div className="flex flex-col text-center">
