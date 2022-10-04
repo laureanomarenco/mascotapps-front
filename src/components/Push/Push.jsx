@@ -9,7 +9,7 @@ import { useEffect } from "react";
 export default function Push({ myProfileData }) {
   const { user } = useAuth0();
   const [status, setStatus] = useState(false);
-
+  console.log(myProfileData)
   //eslint-disable-next-line
   const publicVapidKey =
     "BCwg51aFOCgO2eiv9bYtJio7TZsmk_8nVnsIbVUdpeLjdEy-bygTnkhglxPNJSGM7RM3Qm5oB3cX5-KXniNv2mw";
