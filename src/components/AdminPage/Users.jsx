@@ -61,7 +61,6 @@ const Users = ({ users }) => {
           deletePetsWithNoUserId({ password: ultraSecreta }, tokenAccess)
         );
         dispatch(adminFetchUsers(tokenAccess));
-        dispatch(adminFetchUsers(tokenAccess));
         dispatch(getAllUsers());
         Swal.fire({
           title: "Usuario eliminado correctamente!",
