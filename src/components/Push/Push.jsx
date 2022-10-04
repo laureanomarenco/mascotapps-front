@@ -73,7 +73,7 @@ export default function Push({ myProfileData }) {
     }
     dispatch(myProfile(tokenAccess));
   }
-  useEffect(()=>{},[status])
+  useEffect(()=>{},[status,dispatch])
   return myProfileData && myProfileData?.userProps?.endpoints === null ? (
     <NavBtn icon="unsubscribe" handleClick={handleSuscripcion} />
   ) : (
