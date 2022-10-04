@@ -412,7 +412,7 @@ const NuevoProfile = () => {
               </div>
 
               <div>
-                <Transactions transactions={transactions} setOrder={setOrder} />
+                <Transactions  transactions={transactions} setOrder={setOrder} />
               </div>
             </div>
           </div>
