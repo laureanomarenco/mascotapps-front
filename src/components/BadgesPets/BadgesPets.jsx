@@ -1,15 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { BsPencilSquare } from "react-icons/bs";
+import { useDispatch, useSelector } from "react-redux";
+import { BsPencilSquare, BsCheck2Square } from "react-icons/bs";
 import { RiChatDeleteFill } from "react-icons/ri";
-import { BsCheck2Square } from "react-icons/bs";
 import { deletePet, publicUserDetail, getMyPets } from "../../store/actions";
-import { useState } from "react";
-import { useEffect } from "react";
-import { useSelector } from "react-redux";
 import EndPost from "../Detail/EndPost";
 import { tokenAccess } from "../../constants/token";
+
+
 const BadgesPets = ({
   hidden,
   setHidden,
@@ -23,7 +21,7 @@ const BadgesPets = ({
   const handleClick = (petid, tokenAccess) => {
     dispatch(deletePet(petid, tokenAccess));
     dispatch(getMyPets(tokenAccess));
-    setOrder(order === "nowpAPASITO" ? "now" : "nowpAPASITO");
+    setOrder(order === "nowpAPTO" ? "now" : "nowpAPTO");
   };
   const userContact = useSelector((state) => state.publicUserDetail);
   useEffect(() => {}, [myPets]);
