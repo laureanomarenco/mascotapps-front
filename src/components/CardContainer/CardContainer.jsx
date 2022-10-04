@@ -39,10 +39,12 @@ export default function CardContainer() {
   };
   return (
     <>
-      <div className="flex md:flex-row-reverse flex-col ">
+      <div>
         <p className="text-center my-8 text-4xl font-bold">
           Mascotas activas actualmente
         </p>
+      </div>
+      <div className="flex md:flex-row-reverse flex-col ">
         <Pagination
           pets={pets.length}
           searchedPets={

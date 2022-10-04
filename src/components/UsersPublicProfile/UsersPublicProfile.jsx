@@ -58,6 +58,16 @@ export default function UserPuserProfsPublicProfile() {
               <p className="text-4xl font-semibold uppercase text-[#28B0A2]">
                 Perfil de {userProf?.name}
               </p>
+              {userProf?.linkToDonate && (
+                <a href={userProf.linkToDonate}>
+                  {" "}
+                  <img
+                    className="h-12 w-12 ml-2 object-contain"
+                    src="https://res.cloudinary.com/dfbxjt69z/image/upload/v1664901593/mascotapps/Logo-Mercado-Pago-fondocrema-removebg-preview_xccsdw.png"
+                    alt=""
+                  />
+                </a>
+              )}
             </div>
             <div className="w-full mx-auto relative border-t-4 border-[#FFC700] p-3 max-w-[370px]">
               <div className="flex absolute flex-col gap-3 transition-all ease-in-out  duration-250	 cursor-pointer text-teal-500 hover:text-amber-400 top-5 right-0 text-4xl">
