@@ -16,6 +16,10 @@ export default function Navbar({ setPage }) {
   const [showMenu, setShowMenu] = useState(false);
   const [input, setInput] = useState("");
   const myProfileData = useSelector((state) => state.myProfile);
+  console.log(
+    "🚀 ~ file: Navbar.jsx ~ line 19 ~ Navbar ~ myProfileData",
+    myProfileData
+  );
   const dispatch = useDispatch();
 
   function handleChange(e) {
@@ -37,6 +41,7 @@ export default function Navbar({ setPage }) {
       dispatch(myProfile(tokenAccess));
     }
   }, [isLoading, isAuthenticated, user, dispatch]);
+
   return (
     <div className=" z-50 w-full">
       <div>
@@ -195,7 +200,7 @@ export default function Navbar({ setPage }) {
                           />
                         </div>
                       </Icons>
-                      <Push />
+                      <Push myProfileData={myProfileData} />
                     </>
                   ) : (
                     <LoginButton text="Iniciar sesión" />
