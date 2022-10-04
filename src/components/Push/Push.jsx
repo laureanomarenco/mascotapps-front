@@ -13,6 +13,7 @@ export default function Push({ myProfileData }) {
   const { user } = useAuth0();
   //eslint-disable-next-line
   const [status, setStatus] = useState(false);
+
   const dispatch = useDispatch();
 
   //eslint-disable-next-line
