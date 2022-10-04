@@ -321,6 +321,12 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
                       </td>
                       <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs  p-4">
                         <button
+                          className="text-teal-500 flex  items-center gap-1"
+                          onClick={() => window.open("/pets/" + p.id)}
+                        >
+                          Ver publicación
+                        </button>
+                        <button
                           className="text-red-500 flex  items-center gap-1"
                           onClick={() => handleClick(p.id)}
                         >
