@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { NavBtn } from "../Navbar/items";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
@@ -6,7 +6,7 @@ import { WEB_PUSH, DESUBSCRIBE } from "../../constants/url";
 
 export default function Push({ myProfileData }) {
   const { user } = useAuth0();
-  const [subscribed, setSubscribed] = useState(false);
+
   //eslint-disable-next-line
   const publicVapidKey =
     "BCwg51aFOCgO2eiv9bYtJio7TZsmk_8nVnsIbVUdpeLjdEy-bygTnkhglxPNJSGM7RM3Qm5oB3cX5-KXniNv2mw";
@@ -57,13 +57,10 @@ export default function Push({ myProfileData }) {
   }
 
   function handleSuscripcion() {
-    if (!subscribed) {
+    if (myProfileData && myProfileData?.userProps?.endpoints === null) {
       subscribeUser();
-      setSubscribed(true);
-    }
-    if (subscribed) {
+    } else {
       desubscribeUser();
-      setSubscribed(false);
     }
   }
   return myProfileData && myProfileData?.userProps?.endpoints === null ? (
