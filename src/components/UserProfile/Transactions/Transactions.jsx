@@ -8,10 +8,10 @@ import { updateTransactionStatus } from "../../../store/actions/index";
 import TransactionsPagination from "./Pagination/TransasctionsPagination";
 import { tokenAccess } from "../../../constants/token";
 
-const Transactions = ({ transactions, setOrder,}) => {
+const Transactions = ({ transactions, setOrder, puntos }) => {
   //eslint-disable-next-line
   const { user } = useAuth0();
-  const dispatch = useDispatch(); 
+  const dispatch = useDispatch();
 
   const handleClick = (trId, tokenAccess) => {
     dispatch(updateTransactionStatus(trId, tokenAccess));
@@ -127,6 +127,7 @@ const Transactions = ({ transactions, setOrder,}) => {
                       ? transaction.user_offering_check === "finalizado"
                       : transaction.user_demanding_check === "finalizado") && (
                       <Calificar
+                        puntos={puntos}
                         tdId={transaction.id}
                         reviewer_id={user?.sub}
                         reviewed_id={

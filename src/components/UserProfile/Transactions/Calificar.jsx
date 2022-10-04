@@ -12,6 +12,7 @@ const Calificar = ({
   reviewed_id,
   setOrder,
   transactions,
+  puntos,
 }) => {
   const [showModal, setShowModal] = React.useState(false);
   const [pointsToDonate, setPointsToDonate] = React.useState(0);
@@ -25,19 +26,29 @@ const Calificar = ({
   const handleClick = () => {
     setShowModal(true);
   };
+  const handleChange = (e) => {
+    if (e.target.value <= puntos) {
+      setPointsToDonate(e.target.value);
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Puntos insuficientes...",
+        text: "No tenés tantos puntos para donar!",
+      });
+    }
+  };
 
   const onSubmit = () => {
     const body = {
       pointsToDonate,
-      idToDonate: reviewed_id
-    }
+      idToDonate: reviewed_id,
+    };
 
     dispatch(donatePoints(body, tokenAccess));
     Swal.fire({
       title: "Puntos enviados",
-    })
-  }
-
+    });
+  };
 
   return (
     <>
@@ -60,9 +71,17 @@ const Calificar = ({
                   <h3 className=" text-3xl w-full mb-2 font-semibold">
                     Califica al usuario
                   </h3>
-                  <p >
-                    ¡Gracias! Tu feedback es importante para nosotros.<br/>
-                    Recuerda que podés <a href="https://mascotapps.vercel.app/donate" className="font-bold text-amber-400">donar</a> a Mascotapp y{" "}
+                  <p>
+                    ¡Gracias! Tu feedback es importante para nosotros.
+                    <br />
+                    Recuerda que podés{" "}
+                    <a
+                      href="https://mascotapps.vercel.app/donate"
+                      className="font-bold text-amber-400"
+                    >
+                      donar
+                    </a>{" "}
+                    a Mascotapp y{" "}
                     {/* <Link to="/donate">
                     <button className="flex inline-block justify-center px-6 py-2 my-3 bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300">
                       Donar
@@ -70,8 +89,18 @@ const Calificar = ({
                   </Link> */}
                     <br /> también podés transferirle puntos a este usuario.
                   </p>
-                  <input type='number' name='pointsToDonate' onChange={(e) => setPointsToDonate(e.target.value)} className="p-2 pr-12 text-sm border-gray-200 rounded-lg shadow-xl"></input>
-                  <button onClick={onSubmit} placeholder="Cantidad de puntos..." className="inline-block px-6 py-2 my-3 bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300">
+                  <input
+                    type="number"
+                    name="pointsToDonate"
+                    onChange={handleChange}
+                    className="p-2 pr-12 text-sm border-gray-200 rounded-lg shadow-xl"
+                    value={pointsToDonate}
+                  ></input>
+                  <button
+                    onClick={onSubmit}
+                    placeholder="Cantidad de puntos..."
+                    className="inline-block px-6 py-2 my-3 bg-[#FFC700] rounded-md font-bold hover:bg-[#ffd803]/80 transition-all duration-300"
+                  >
                     Enviar puntos
                   </button>
                 </div>
@@ -101,7 +130,6 @@ const Calificar = ({
           <div className="opacity-25 fixed inset-0 z-40 bg-black"></div>
         </>
       ) : null}
-
     </>
   );
 };
