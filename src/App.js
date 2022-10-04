@@ -42,7 +42,7 @@ function App() {
           <Route path="/account" element={<NuevoProfile />} />
           <Route path="/pets/:id" element={<Detail />} />
           <Route path="/estado/:status" element={<PetsContainer />} />
-          <Route path="/admin" element={<LoginAdmin />} />
+          <Route path="/admin/*" element={<LoginAdmin />} />
           <Route path="/admin/general" element={<NuevoAdmin />} />
           {/* <Route exact path="/admin/general/pets" element={<Pets />} /> */}
           <Route path="/donate" element={<Donate />} />
