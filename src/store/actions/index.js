@@ -67,6 +67,5 @@ export {
   deleteUserPosts,
   deletePetsWithNoUserId,
   pointsMultiplier,
+  deletePost,
 } from "./admin";
-
-
