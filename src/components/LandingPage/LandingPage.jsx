@@ -8,9 +8,10 @@ import { useDispatch } from "react-redux";
 export default function LandingPage() {
   const dispatch = useDispatch();
   const images = [
+    "https://res.cloudinary.com/dfbxjt69z/image/upload/v1664914949/mascotapps/pexels-%D0%B0%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D0%B0%D1%80-%D1%86%D0%B2%D0%B5%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%9B-1440403_m7sahm.jpg",
     "https://res.cloudinary.com/dfbxjt69z/image/upload/v1662821915/mascotapps/StockSnap_EJELGQPXN6_dkux6i.jpg",
+    "https://res.cloudinary.com/dfbxjt69z/image/upload/v1664915145/mascotapps/pexels-pixabay-416160_bfph8s.jpg",
     "https://res.cloudinary.com/dfbxjt69z/image/upload/v1662831899/mascotapps/StockSnap_LPZFCLQN45_d2wvmc.jpg",
-    "https://res.cloudinary.com/dfbxjt69z/image/upload/v1662821916/mascotapps/animals-dogs_3CLDGN47PX_uqeek0.jpg",
   ];
 
   //eslint-disable-next-line
@@ -32,14 +33,14 @@ export default function LandingPage() {
         : images.length - 1;
       setSelectedImage(images[nextIndex]);
       setSelectedIndex(nextIndex);
-    }, 500);
+    }, 200);
   };
 
   useEffect(() => {
     dispatch(visitorsCounter());
     const interval = setInterval(() => {
       selectNewImage(selectedIndex, images);
-    }, 1800);
+    }, 2500);
     return () => clearInterval(interval);
   }, [selectedIndex, selectedImage]);
 

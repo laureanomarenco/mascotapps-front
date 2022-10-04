@@ -51,7 +51,7 @@ export default function UserPuserProfsPublicProfile() {
       <div>
         <Navbar />
 
-        <div className=" my-8 mx-3 md:mx-20  rounded-sm drop-shadow-md">
+        <div className=" py-8  md:px-20  rounded-sm drop-shadow-md">
           {/* perfil */}
           <div className="grid md:grid-cols-2 gap-2 items-center justify-center content-center w-full px-4  max-h-fit md:pb-12 bg-white p-3  max-w-screen-xl mx-auto">
             <div className="md:col-span-3 h-36 text-center flex content-center items-center justify-center">
@@ -62,7 +62,7 @@ export default function UserPuserProfsPublicProfile() {
                 <a href={userProf.linkToDonate}>
                   {" "}
                   <img
-                    className="h-12 w-12 ml-2 object-contain"
+                    className="h-12 w-12 ml-2 object-cover"
                     src="https://res.cloudinary.com/dfbxjt69z/image/upload/v1664901593/mascotapps/Logo-Mercado-Pago-fondocrema-removebg-preview_xccsdw.png"
                     alt=""
                   />
