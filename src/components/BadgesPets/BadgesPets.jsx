@@ -1,10 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch} from "react-redux";
 import { BsPencilSquare } from "react-icons/bs";
 import { RiChatDeleteFill } from "react-icons/ri";
-import { deletePet } from "../../store/actions";
-import { useState } from "react";
+import { deletePet, getMyPets } from "../../store/actions";
 import { useEffect } from "react";
 import { tokenAccess } from "../../constants/token";
 const BadgesPets = ({
@@ -12,18 +11,18 @@ const BadgesPets = ({
   setHidden,
   setOrder,
   handleActiveEditDog,
-  setActiveModalEditDog,
   order,
+  myPets
 }) => {
   const dispatch = useDispatch();
-  const [states, setStates] = useState(true);
+
   const handleClick = (petid, tokenAccess) => {
     dispatch(deletePet(petid, tokenAccess));
-    setStates(!states);
-    setOrder(order === "now" ? "newNow" : "now");
+    dispatch(getMyPets(tokenAccess));
+    setOrder(order === "nowpAPASITO" ? "now" : "nowpAPASITO");
   };
-  const myPets = useSelector((state) => state.userPets);
-  useEffect(() => {}, [states]);
+
+  useEffect(() => {}, [myPets]);
   return (
     <div
       className="flex flex-col items-center gap-5 grid-rows-1 py-5 px-5 md:grid md:grid-cols-2 xl:grid-cols-3 w-full relative border border-gray-300  rounded-lg my-2 shadow-lg  "
@@ -74,7 +73,6 @@ const BadgesPets = ({
                     <BsPencilSquare
                       onClick={() => handleActiveEditDog(a)}
                       className="cursor-pointer"
-                      setActiveModalEditDog={setActiveModalEditDog}
                     />
                   </p>
                   <button
