@@ -4,6 +4,7 @@ import {
   adminFetchUsers,
   deletePetsWithNoUserId,
   deleteUserPosts,
+  getAllUsers,
 } from "../../store/actions/index";
 import UsersPagination from "./UsersPagination/UsersPagination";
 import { useDispatch } from "react-redux";
@@ -60,6 +61,8 @@ const Users = ({ users }) => {
           deletePetsWithNoUserId({ password: ultraSecreta }, tokenAccess)
         );
         dispatch(adminFetchUsers(tokenAccess));
+        dispatch(adminFetchUsers(tokenAccess));
+        dispatch(getAllUsers());
         Swal.fire({
           title: "Usuario eliminado correctamente!",
           icon: "success",
@@ -71,7 +74,7 @@ const Users = ({ users }) => {
 
   useEffect(() => {
     dispatch(adminFetchUsers(tokenAccess));
-  }, [dispatch]);
+  }, []);
   return (
     <section className="bg-blueGray-50">
       <div className="w-full mx-auto  ">
@@ -82,14 +85,6 @@ const Users = ({ users }) => {
                 <h3 className="font-semibold text-base text-blueGray-700">
                   Usuarios registrados
                 </h3>
-              </div>
-              <div className="relative w-full  max-w-full flex-grow flex-1 text-right">
-                <button
-                  className="bg-indigo-500 text-white active:bg-indigo-600 text-xs font-bold uppercase px-3 py-1 rounded outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
-                  type="button"
-                >
-                  See all
-                </button>
               </div>
             </div>
           </div>

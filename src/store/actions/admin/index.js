@@ -13,6 +13,7 @@ import {
   DELETE_USER,
   DELETE_POST_OF_USER,
   DELETE_PET_WITH_NO_OWNER,
+  DELETE_POST,
 } from "../../../constants/url";
 import {
   GET_ALL_USERS,
@@ -168,11 +169,23 @@ export function deletePetsWithNoUserId(obj, token) {
     }
   };
 }
+
 export function pointsMultiplier(obj, token) {
   return async function() {
     try {
       var multiply = await axios.post(POINTS_SALE, obj, header(token));
       console.log(multiply);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
+
+export function deletePost(obj, token) {
+  return async function() {
+    try {
+      var json = await axios.post(DELETE_POST, obj, header(token));
+      console.log(json);
     } catch (error) {
       console.log(error.message);
     }

@@ -67,7 +67,6 @@ const NuevoAdmin = () => {
       position: [Number(prov?.lat), Number(prov?.lon)],
     };
   });
-  console.log("MAAAAATCH", match);
 
   //--------PARA EL MAPA---------------//
 
@@ -81,17 +80,6 @@ const NuevoAdmin = () => {
         u.foundAPet === 0 && u.gaveUpForAdoption === 0 && u.gotAPetBack === 0
     ).length;
     return [withPosts, noPosts];
-    // if (arr.length > 0) {
-    //   let withPosts = arr?.filter(
-    //     (u) =>
-    //       u.foundAPet !== 0 || u.gaveUpForAdoption !== 0 || u.gotAPetBack !== 0
-    //   ).length;
-    //   let noPosts = arr?.filter(
-    //     (u) =>
-    //       u.foundAPet === 0 && u.gaveUpForAdoption === 0 && u.gotAPetBack === 0
-    //   ).length;
-    //   return [withPosts, noPosts];
-    // }
   };
 
   let usersPostsOrNo = usersPosts(usersss);
@@ -106,7 +94,7 @@ const NuevoAdmin = () => {
     dispatch(usersAdoptionsRank());
     dispatch(fetchCity());
     usersPostsOrNo = usersPosts(usersss);
-  }, [dispatch, visitors, users]);
+  }, [dispatch, visitors, users, pets.length]);
 
   //------------//CERRAR SESION//------------------//
   const handleClick = () => {
@@ -144,31 +132,11 @@ const NuevoAdmin = () => {
               className="h-full w-full object-cover"
             />
           </div>
-          <div className="flex-grow flex flex-col justify-between text-gray-500 bg-gray-800">
+          <div className="flex-grow flex flex-col justify-between text-gray-400 bg-gray-800">
             <nav className="flex flex-col mx-4 my-6 space-y-4stroke-linejoin">
               <a
                 href="#"
-                className="inline-flex items-center justify-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg"
-              >
-                <span className="sr-only">Folders</span>
-                <svg
-                  aria-hidden="true"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  className="h-6 w-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M3 7v10a2 2 0 002 2h14a2 2 0 002-2V9a2 2 0 00-2-2h-6l-2-2H5a2 2 0 00-2 2z"
-                  />
-                </svg>
-              </a>
-              <a
-                href="#"
-                className="inline-flex items-center justify-center py-3 text-purple-600 bg-white rounded-lg"
+                className="inline-flex items-center justify-center py-3 text-gray-400 rounded-lg"
               >
                 <span className="sr-only">Dashboard</span>
                 <svg
@@ -188,11 +156,11 @@ const NuevoAdmin = () => {
               </a>
               <Link
                 to="/admin/general#pets"
-                className="inline-flex items-center justify-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg"
+                className="inline-flex items-center justify-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700  rounded-lg"
                 smooth
               >
                 <span className="sr-only">Mascotas</span>
-                <MdPets />
+                <MdPets size={28} />
               </Link>
               <a
                 href="#"
@@ -217,27 +185,8 @@ const NuevoAdmin = () => {
             </nav>
             <div className="inline-flex items-center justify-center h-20 w-20 border-t border-gray-700">
               <button className="p-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg">
-                <span className="sr-only">Settings</span>
-                <svg
-                  aria-hidden="true"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                  className="h-6 w-6"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"
-                  />
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth="2"
-                    d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"
-                  />
-                </svg>
+                <span className="sr-only">Cerrar sesión</span>
+                <TbLogout size={28} onClick={handleClick} />
               </button>
             </div>
           </div>
@@ -261,7 +210,7 @@ const NuevoAdmin = () => {
                 />
               </svg>
             </button>
-            <div className="relative w-full max-w-md sm:-ml-2">
+            {/* <div className="relative w-full max-w-md sm:-ml-2">
               <svg
                 aria-hidden="true"
                 viewBox="0 0 20 20"
@@ -280,13 +229,13 @@ const NuevoAdmin = () => {
                 placeholder="Search..."
                 className="py-2 pl-10 pr-4 w-full border-4 border-transparent placeholder-gray-400 focus:bg-gray-50 rounded-lg"
               />
-            </div>
+            </div> */}
             <div className="flex flex-shrink-0 items-center ml-auto">
-              <button className="inline-flex items-center p-2 hover:bg-gray-100 focus:bg-gray-100 rounded-lg">
+              <div className="inline-flex items-center p-2  rounded-lg">
                 <span className="sr-only">User Menu</span>
                 <div className="hidden md:flex md:flex-col md:items-end md:leading-tight">
                   <span className="font-semibold">Admin</span>
-                  <span className="text-sm text-gray-600">Mascotapps</span>
+                  <span className="text-sm text-gray-600">Mascotapp</span>
                 </div>
                 <span className="h-12 w-12 ml-2 sm:ml-3 mr-2  rounded-full overflow-hidden">
                   <img
@@ -295,7 +244,7 @@ const NuevoAdmin = () => {
                     className="h-full w-full object-cover"
                   />
                 </span>
-              </button>
+              </div>
               <div className="border-l pl-3 ml-3 space-x-1">
                 <button
                   className="relative p-2 text-gray-400 hover:bg-gray-100 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-full"
@@ -307,7 +256,7 @@ const NuevoAdmin = () => {
               </div>
             </div>
           </header>
-          <main className="p-6 sm:p-10 space-y-6">
+          <main className="p-6 sm:p-10 space-y-6 sm:ml-12">
             <div className="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between">
               <div className="mr-6">
                 <h1 className="text-4xl font-semibold mb-2">Dashboard</h1>
@@ -471,7 +420,7 @@ const NuevoAdmin = () => {
                 </div>
               </div>
             </section>
-            <Pets pets={petsForMap} cities={match} />
+            <Pets pets={petsForMap} cities={match} tokenAccess={tokenAccess} />
           </main>
         </div>
       </div>
