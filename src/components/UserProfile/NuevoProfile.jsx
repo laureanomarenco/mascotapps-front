@@ -412,7 +412,11 @@ const NuevoProfile = () => {
               </div>
 
               <div>
-                <Transactions  transactions={transactions} setOrder={setOrder} />
+                <Transactions
+                  transactions={transactions}
+                  setOrder={setOrder}
+                  puntos={myProfileData["userProps"]?.points}
+                />
               </div>
             </div>
           </div>
