@@ -303,7 +303,7 @@ const NuevoProfile = () => {
                   {myProfileData["userProps"]?.name}
                 </h1>
                 <p className="text-gray-600 text-l leading-8 text-center">
-                  {myProfileData["userProps"]?.points} puntos
+                  {myProfileData["userProps"]?.points} Mascopoints
                 </p>
                 <ul className=" mt-3 divide-y ">
                   <li className="grid items-center text-center py-3 gap-1">
