@@ -19,18 +19,17 @@ export default function UserPuserProfsPublicProfile() {
   const { user } = useAuth0();
   const location = useLocation();
   const { userProf, idPet } = location.state;
+  console.log(
+    "🚀 ~ file: UsersPublicProfile.jsx ~ line 22 ~ UserPuserProfsPublicProfile ~ userProf",
+    userProf
+  );
   //eslint-disable-next-line
   const reviews = useSelector((state) => state.userReviews);
 
-  //eslint-disable-next-line
   const [activeDonateModal, setActiveDonateModal] = useState(false);
-  //eslint-disable-next-line
   const [activeAdopterModal, setActiveAdopterModal] = useState(false);
-  //eslint-disable-next-line
   const [activeFounderModal, setActiveFounderModal] = useState(false);
-
   const dispatch = useDispatch();
-
   const [contact, setContact] = useState(false);
 
   function handleBeginTransaction() {
