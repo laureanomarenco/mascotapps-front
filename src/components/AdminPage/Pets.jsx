@@ -72,7 +72,7 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
 
   useEffect(() => {
     dispatch(fetchPets(tokenAccess));
-  }, [pets]);
+  }, [dispatch]);
 
   return (
     <main id="pets" className="p-6 sm:p-10 space-y-6">

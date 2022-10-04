@@ -94,7 +94,7 @@ const NuevoAdmin = () => {
     dispatch(usersAdoptionsRank());
     dispatch(fetchCity());
     usersPostsOrNo = usersPosts(usersss);
-  }, [dispatch, visitors, users, pets.length]);
+  }, [dispatch, visitors, users]);
 
   //------------//CERRAR SESION//------------------//
   const handleClick = () => {
