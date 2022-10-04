@@ -13,7 +13,6 @@ export default function LandingPage() {
     "https://res.cloudinary.com/dfbxjt69z/image/upload/v1664915145/mascotapps/pexels-pixabay-416160_bfph8s.jpg",
     "https://res.cloudinary.com/dfbxjt69z/image/upload/v1662831899/mascotapps/StockSnap_LPZFCLQN45_d2wvmc.jpg",
   ];
-
   //eslint-disable-next-line
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [selectedImage, setSelectedImage] = useState(images[0]);

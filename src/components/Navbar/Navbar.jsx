@@ -16,7 +16,7 @@ export default function Navbar({ setPage }) {
   const [showMenu, setShowMenu] = useState(false);
   const [input, setInput] = useState("");
   const myProfileData = useSelector((state) => state.myProfile);
- 
+
   const dispatch = useDispatch();
 
   function handleChange(e) {
@@ -82,7 +82,7 @@ export default function Navbar({ setPage }) {
                   <Push />
                 </>
               ) : (
-                <LoginButton text="Iniciar sesión" />
+                <LoginButton text="Acceder" />
               )}
 
               <Link
@@ -200,7 +200,10 @@ export default function Navbar({ setPage }) {
                       <Push myProfileData={myProfileData} />
                     </>
                   ) : (
-                    <LoginButton text="Iniciar sesión" />
+                    <LoginButton
+                      text="Acceder"
+                      className={`bg-[#28B0A2] tracking-wide text-white font-semibold h-fit transition-all  py-1.5 px-3 text-center ml-auto w-full md:w-max rounded hover:bg-[#1f978b] hover:text-white`}
+                    />
                   )}
                 </div>
                 <div className="flex lg:hidden">
