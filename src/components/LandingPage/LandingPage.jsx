@@ -36,10 +36,10 @@ export default function LandingPage() {
   };
 
   useEffect(() => {
-    dispatch(visitorsCounter());
     const interval = setInterval(() => {
       selectNewImage(selectedIndex, images);
     }, 1800);
+    dispatch(visitorsCounter());
     return () => clearInterval(interval);
   }, [selectedIndex, selectedImage]);
 

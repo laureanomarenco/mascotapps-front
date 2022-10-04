@@ -123,7 +123,7 @@ const NuevoAdmin = () => {
   //-------------------------------------------------------
   return (
     <div>
-      <div className="flex bg-gray-100 min-h-screen">
+      <div className="flex bg-gray-100 min-h-screen ml-12">
         <aside className="hidden  sm:fixed sm:top-0 sm:left-0 h-full sm:z-50 sm:flex sm:flex-col   ">
           <div className="inline-flex items-center justify-center h-20 w-20 bg-yellow-400 hover:bg-teal-500 focus:bg-purple-500">
             <img
@@ -328,7 +328,7 @@ const NuevoAdmin = () => {
                   Listado de usuarios registrados en tu aplicación
                 </div>
                 <div className="p-4 ">
-                  <div className=" w-full bg-gray-100 border-2 border-gray-200 border-dashed rounded-md">
+                  <div className=" w-full bg-white border-2 border-gray-200 border-dashed rounded-md">
                     <Users users={usersss} />
                   </div>
                 </div>

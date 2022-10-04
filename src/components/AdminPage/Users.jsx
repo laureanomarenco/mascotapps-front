@@ -76,8 +76,8 @@ const Users = ({ users }) => {
     dispatch(adminFetchUsers(tokenAccess));
   }, []);
   return (
-    <section className="bg-blueGray-50">
-      <div className="w-full mx-auto  ">
+    <section className="bg-white">
+      <div className="w-full mx-auto  bg-white">
         <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
           <div className="rounded-t mb-0 px-4 py-3 border-0">
             <div className="flex flex-wrap items-center">
@@ -146,13 +146,13 @@ const Users = ({ users }) => {
               </tbody>
             </table>
           </div>
+          <UsersPagination
+            users={users.length}
+            showPerPage={showPerPage}
+            page={page}
+            pagination={pagination}
+          />
         </div>
-        <UsersPagination
-          users={users.length}
-          showPerPage={showPerPage}
-          page={page}
-          pagination={pagination}
-        />
       </div>
     </section>
   );
