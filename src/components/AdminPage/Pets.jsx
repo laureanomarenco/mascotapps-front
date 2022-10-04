@@ -1,8 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 // import Maps from "./Maps/Maps";
 
-import { fetchPets, deletePost } from "../../store/actions/index";
 import Percents from "./Percents";
+import PetsPagination from "./PetsPagination/PetsPagination";
+
+import { fetchPets, deletePost } from "../../store/actions/index";
 import { FaHands } from "react-icons/fa";
 import { GiDogHouse } from "react-icons/gi";
 import { GiCat } from "react-icons/gi";
@@ -21,6 +23,19 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
   const pets = useSelector((state) => state.pets);
   const dispatch = useDispatch();
   const ultraSecreta = "SoyAdmin";
+
+  //---------PAGINACION------------//
+  const [page, setPage] = useState(1);
+  const showPerPage = 6;
+  const lastOnPage = page * showPerPage;
+  const firstOnPage = lastOnPage - showPerPage;
+  const showPets = pets?.slice(firstOnPage, lastOnPage);
+
+  function pagination(pageNumber) {
+    setPage(pageNumber);
+  }
+
+  //---------PAGINACION------------//
 
   const handleClick = (id) => {
     return Swal.fire({
@@ -57,7 +72,7 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
 
   useEffect(() => {
     dispatch(fetchPets(tokenAccess));
-  }, [pets]);
+  }, [dispatch]);
 
   return (
     <main id="pets" className="p-6 sm:p-10 space-y-6">
@@ -282,7 +297,7 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
               </thead>
 
               <tbody>
-                {pets?.map((p) => {
+                {showPets?.map((p) => {
                   return (
                     <tr key={p.id}>
                       <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs  p-4 text-left text-blueGray-700 flex items-center gap-1">
@@ -319,24 +334,21 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
               </tbody>
             </table>
           </div>
+          <PetsPagination
+            pets={pets.length}
+            showPerPage={showPerPage}
+            page={page}
+            pagination={pagination}
+          />
         </div>
       </section>
       <section>
         {/* <Suspense fallback={<div>Loading...</div>}> */}
         {/* <Maps cities={cities} /> */}
-        {/* </Suspense> */}
+        {/* </Suspense> a ver pullRequestSiApareces*/}
       </section>
     </main>
   );
 };
 
 export default Pets;
-
-//         <Percents
-//           value={
-//             (
-//               (pets?.filter((p) => p.gender === "macho").length * 100) /
-//               pets.length
-//             ).toFixed(2) + "%"
-//           }
-//         />
