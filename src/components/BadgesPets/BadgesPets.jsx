@@ -78,8 +78,8 @@ const BadgesPets = ({
                     Raza: <span className="font-semibold">{a.race}</span>
                   </p>
                 </div>
-                <div className="flex mx-auto gap-5 ">
-                  <p className="text-2xl">
+                <div className="flex mx-auto gap-3 items-center">
+                  <p className="text-xl">
                     <BsPencilSquare
                       onClick={() => handleActiveEditDog(a)}
                       className="cursor-pointer"
@@ -91,7 +91,7 @@ const BadgesPets = ({
                   >
                     <RiChatDeleteFill color="red" />
                   </button>
-                  <p className="text-2xl">
+                  <p className="text-xl">
                     <BsCheck2Square onClick={handleHidden} color="green" />
                   </p>
                 </div>
