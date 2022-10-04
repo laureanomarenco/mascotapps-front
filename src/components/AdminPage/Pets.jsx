@@ -1,5 +1,7 @@
-import React from "react";
-import Maps from "./Maps/Maps";
+import React, { useEffect } from "react";
+// import Maps from "./Maps/Maps";
+
+import { fetchPets, deletePost } from "../../store/actions/index";
 import Percents from "./Percents";
 import { FaHands } from "react-icons/fa";
 import { GiDogHouse } from "react-icons/gi";
@@ -9,20 +11,62 @@ import { GiSittingDog } from "react-icons/gi";
 import { MdImageSearch } from "react-icons/md";
 import { CgSearchFound } from "react-icons/cg";
 import { BsGenderAmbiguous } from "react-icons/bs";
+import { useDispatch } from "react-redux";
+import { FaTrashAlt } from "react-icons/fa";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
+import Swal from "sweetalert2";
+
 // const Maps = React.lazy(() => import("./Maps/Maps"));
-const Pets = () => {
-  const location = useLocation();
+const Pets = (/*{ cities }*/ { tokenAccess }) => {
   const pets = useSelector((state) => state.pets);
-  // const petsForMaps = [...pets];
-  const { cities } = location.state;
+  const dispatch = useDispatch();
+  const ultraSecreta = "SoyAdmin";
+
+  const handleClick = (id) => {
+    return Swal.fire({
+      title: "¿Eliminar posteo?",
+      text: "Ingresa tu contraseña confirmar",
+      html: `<input type="password" id="password" className="swal2-input" placeholder="Password">`,
+      confirmButtonText: "Eliminar",
+      confirmButtonColor: "#28B0A2",
+      focusConfirm: false,
+      preConfirm: () => {
+        const password = Swal.getPopup().querySelector("#password").value;
+        if (!password) {
+          Swal.showValidationMessage(`Ingresa tu contraseña`);
+        } else if (password !== ultraSecreta) {
+          Swal.showValidationMessage(`Contraseña incorrecta`);
+        }
+        return { password: password };
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        dispatch(
+          deletePost({ petId: id, password: ultraSecreta }, tokenAccess)
+        );
+        dispatch(fetchPets(tokenAccess));
+
+        Swal.fire({
+          title: "Usuario eliminado correctamente!",
+          icon: "success",
+          confirmButtonColor: "#28B0A2",
+        });
+      }
+    });
+  };
+
+  useEffect(() => {
+    dispatch(fetchPets(tokenAccess));
+  }, [pets]);
+
   return (
-    <main className="p-6 sm:p-10 space-y-6">
+    <main id="pets" className="p-6 sm:p-10 space-y-6">
       <div className="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between">
         <div className="mr-6">
-          <h1 className="text-4xl font-semibold mb-2">Dashboard</h1>
-          <h2 className="text-gray-600 ml-0.5">Panel de control Mascotapp</h2>
+          <h1 className="text-4xl font-semibold mb-2 ">Mascotas</h1>
+          <h2 className="text-gray-600 ml-0.5">
+            Estadísticas de las mascotas publicadas
+          </h2>
         </div>
         <div className="flex flex-wrap items-start justify-end -mb-3"></div>
       </div>
@@ -207,8 +251,79 @@ const Pets = () => {
         </div>
       </section>
       <section>
+        <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
+          <div className="rounded-t mb-0 px-4 py-3 border-0">
+            <div className="flex flex-wrap items-center">
+              <div className="relative w-full  max-w-full flex-grow flex-1">
+                <h3 className="font-semibold text-base text-blueGray-700">
+                  Usuarios registrados
+                </h3>
+              </div>
+            </div>
+          </div>
+
+          <div className="block w-full overflow-scroll">
+            <table className="items-center bg-white w-full border-collapse ">
+              <thead>
+                <tr>
+                  <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0  font-semibold text-left">
+                    Nombre
+                  </th>
+                  <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0  font-semibold text-left">
+                    Ciudad
+                  </th>
+                  <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0  font-semibold text-left">
+                    Estado
+                  </th>
+                  <th className="px-6 bg-blueGray-50 text-blueGray-500 align-middle border border-solid border-blueGray-100 py-3 text-xs uppercase border-l-0 border-r-0  font-semibold text-left">
+                    Acciones
+                  </th>
+                </tr>
+              </thead>
+
+              <tbody>
+                {pets?.map((p) => {
+                  return (
+                    <tr key={p.id}>
+                      <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs  p-4 text-left text-blueGray-700 flex items-center gap-1">
+                        <img
+                          className="w-8 h-8 rounded-full"
+                          src={p.image}
+                          alt="user-img"
+                        />
+                        <div className="grid ">
+                          <span className="w-full">{p.name}</span>
+                          <span className="w-full text-gray-500 font-medium">
+                            {p.email}
+                          </span>
+                        </div>
+                      </th>
+                      <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs  p-4 ">
+                        {p.city}
+                      </td>
+                      <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs  p-4">
+                        {p.status}
+                      </td>
+                      <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs  p-4">
+                        <button
+                          className="text-red-500 flex  items-center gap-1"
+                          onClick={() => handleClick(p.id)}
+                        >
+                          <FaTrashAlt />
+                          Eliminar
+                        </button>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </section>
+      <section>
         {/* <Suspense fallback={<div>Loading...</div>}> */}
-        <Maps cities={cities} />
+        {/* <Maps cities={cities} /> */}
         {/* </Suspense> */}
       </section>
     </main>

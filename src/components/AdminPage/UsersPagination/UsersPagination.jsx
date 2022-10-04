@@ -10,7 +10,7 @@ const UsersPagination = ({ pagination, users, page, showPerPage }) => {
 
   return (
     // <div className="flex bg-[red] justify-self-center justify-items-centers gap-2">
-    <div className="flex w-[300px] mx-auto gap-[10px] my-2 justify-center">
+    <div className="flex w-[300px] mx-auto gap-[10px] my-2 justify-center items-center">
       <button
         className="bg-transparent border border-1 border-teal-400 rounded text-black font-bold py-1 px-2"
         onClick={page > 1 ? () => pagination(page - 1) : null}
@@ -40,6 +40,10 @@ const UsersPagination = ({ pagination, users, page, showPerPage }) => {
       >
         &gt;
       </button>
+      <div>
+        <span className="mr-2 text-gray-500">página</span>
+        <span className="font-semibold text-gray-500  ">{`${page} / ${total}`}</span>
+      </div>
     </div>
   );
 };

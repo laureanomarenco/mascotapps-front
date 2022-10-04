@@ -9,7 +9,7 @@ import SignUp from "./components/SignUp/SignUp";
 import Error from "./components/Error/Error";
 import LoginAdmin from "./components/AdminPage/LoginAdmin";
 import NuevoAdmin from "./components/AdminPage/NuevoAdmin";
-import Pets from "./components/AdminPage/Pets";
+// import Pets from "./components/AdminPage/Pets";
 import Faq from "./components/Faq/Faq";
 import React from "react";
 
@@ -44,7 +44,7 @@ function App() {
           <Route path="/estado/:status" element={<PetsContainer />} />
           <Route path="/admin" element={<LoginAdmin />} />
           <Route path="/admin/general" element={<NuevoAdmin />} />
-          <Route exact path="/admin/general/pets" element={<Pets />} />
+          {/* <Route exact path="/admin/general/pets" element={<Pets />} /> */}
           <Route path="/donate" element={<Donate />} />
           <Route path="*" element={<Error />} />
           <Route path="/favoritos" element={<FavContainer />}></Route>
