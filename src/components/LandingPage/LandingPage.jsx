@@ -2,15 +2,15 @@ import Login from "../Login/Login";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { visitorsCounter } from "../../store/actions/index";
-import { useDispatch } from "react-redux";
+// import { visitorsCounter } from "../../store/actions/index";
+// import { useDispatch } from "react-redux";
 
 export default function LandingPage() {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
   const images = [
-    "https://res.cloudinary.com/dfbxjt69z/image/upload/v1664914949/mascotapps/pexels-%D0%B0%D0%BB%D0%B5%D0%BA%D1%81%D0%B0%D0%BD%D0%B4%D0%B0%D1%80-%D1%86%D0%B2%D0%B5%D1%82%D0%B0%D0%BD%D0%BE%D0%B2%D0%B8%D1%9B-1440403_m7sahm.jpg",
+    "https://res.cloudinary.com/dfbxjt69z/image/upload/v1664916985/mascotapps/pexels-mati-mango-4734723_bjtdq3.jpg",
     "https://res.cloudinary.com/dfbxjt69z/image/upload/v1662821915/mascotapps/StockSnap_EJELGQPXN6_dkux6i.jpg",
-    "https://res.cloudinary.com/dfbxjt69z/image/upload/v1664915145/mascotapps/pexels-pixabay-416160_bfph8s.jpg",
+    "https://res.cloudinary.com/dfbxjt69z/image/upload/v1664916557/mascotapps/pexels-pixabay-416160_1_x8t9z7.jpg",
     "https://res.cloudinary.com/dfbxjt69z/image/upload/v1662831899/mascotapps/StockSnap_LPZFCLQN45_d2wvmc.jpg",
   ];
   //eslint-disable-next-line
@@ -36,7 +36,7 @@ export default function LandingPage() {
   };
 
   useEffect(() => {
-    dispatch(visitorsCounter());
+    // dispatch(visitorsCounter());
     const interval = setInterval(() => {
       selectNewImage(selectedIndex, images);
     }, 2500);
@@ -48,8 +48,8 @@ export default function LandingPage() {
       <img
         className={
           loaded
-            ? "opacity-100 w-full ease-in duration-300 object-cover"
-            : "w-full  ease-in duration-300 object-cover  opacity-0"
+            ? "opacity-100 w-full ease-in duration-500 object-cover"
+            : "w-full  ease-in duration-500 object-cover  opacity-0"
         }
         src={selectedImage}
         alt=""
