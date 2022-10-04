@@ -1,10 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { BsPencilSquare } from "react-icons/bs";
 import { RiChatDeleteFill } from "react-icons/ri";
-import {BsCheck2Square} from "react-icons/bs"
-import { deletePet, publicUserDetail,getMyPets} from "../../store/actions";
+import { BsCheck2Square } from "react-icons/bs";
+import { deletePet, publicUserDetail, getMyPets } from "../../store/actions";
 import { useState } from "react";
 import { useEffect } from "react";
 import { useSelector } from "react-redux";
@@ -16,11 +16,11 @@ const BadgesPets = ({
   setOrder,
   handleActiveEditDog,
   order,
-  myPets
+  myPets,
 }) => {
   const dispatch = useDispatch();
-  const [hiddenEnd,setHiddenEnd]=useState(true)
-  const handleClick = (petid,tokenAccess) => {
+  const [hiddenEnd, setHiddenEnd] = useState(true);
+  const handleClick = (petid, tokenAccess) => {
     dispatch(deletePet(petid, tokenAccess));
     dispatch(getMyPets(tokenAccess));
     setOrder(order === "nowpAPASITO" ? "now" : "nowpAPASITO");
@@ -28,12 +28,11 @@ const BadgesPets = ({
   const userContact = useSelector((state) => state.publicUserDetail);
   useEffect(() => {}, [myPets]);
 
-  const handleHidden = (id)=>{
-
-    setHiddenEnd(hiddenEnd === true? false : true);
-    console.log("IDDDDDD ",id)
-    dispatch(publicUserDetail(id))
-  }
+  const handleHidden = (id) => {
+    setHiddenEnd(hiddenEnd === true ? false : true);
+    console.log("IDDDDDD ", id);
+    dispatch(publicUserDetail(id));
+  };
   return (
     <div
       className="flex flex-col items-center gap-5 grid-rows-1 py-5 px-5 md:grid md:grid-cols-2 xl:grid-cols-3 w-full relative border border-gray-300  rounded-lg my-2 shadow-lg  "
@@ -79,7 +78,7 @@ const BadgesPets = ({
                     Raza: <span className="font-semibold">{a.race}</span>
                   </p>
                 </div>
-                <div className="flex mx-auto gap-10 ">
+                <div className="flex mx-auto gap-5 ">
                   <p className="text-2xl">
                     <BsPencilSquare
                       onClick={() => handleActiveEditDog(a)}
@@ -92,18 +91,19 @@ const BadgesPets = ({
                   >
                     <RiChatDeleteFill color="red" />
                   </button>
-                  <p  className="text-2xl">
-                  <BsCheck2Square onClick={handleHidden} color="green"/>
+                  <p className="text-2xl">
+                    <BsCheck2Square onClick={handleHidden} color="green" />
                   </p>
                 </div>
-              </div>
-                  <div className="w-full" hidden={hiddenEnd}>
-                  <EndPost 
+                <div className="w-full" hidden={hiddenEnd}>
+                  <EndPost
                     user={userContact}
                     hiddenEnd={hiddenEnd}
                     setHiddenEnd={setHiddenEnd}
-                    idPet={a.id}/>
-                  </div>
+                    idPet={a.id}
+                  />
+                </div>
+              </div>
             </div>
           ))
         : null}
