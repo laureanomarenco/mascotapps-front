@@ -57,7 +57,11 @@ const BadgesPets = ({
         ? myPets.map((a) => (
             <div
               key={a.id}
-              className={`relative border border-gray-300 w-full rounded-lg my-2 shadow-lg ${a.postStatus==="concretado"||a.postStatus==="cancelado"?"grayscale-[100%] ":""}`}
+              className={`relative border border-gray-300 w-full rounded-lg my-2 shadow-lg ${
+                a.postStatus === "concretado" || a.postStatus === "cancelado"
+                  ? "grayscale-[100%] "
+                  : ""
+              }`}
             >
               <div className="flex items-center p-4">
                 <Link to={"/pets/" + a.id}>
@@ -89,15 +93,19 @@ const BadgesPets = ({
                   >
                     <RiChatDeleteFill color="red" />
                   </button>
-
-                  <p  className={`text-xl ${a.postStatus==="concretado"||a.postStatus==="cancelado"?"hidden":""}`}>
-                  <BsCheck2Square onClick={handleHidden} color="green"/>
+                  <p
+                    className={`text-xl ${
+                      a.postStatus === "concretado" ||
+                      a.postStatus === "cancelado"
+                        ? "hidden"
+                        : ""
+                    }`}
+                  >
+                    <BsCheck2Square onClick={handleHidden} color="green" />
                   </p>
                 </div>
-              </div>
-                  <div className="w-full mty-2" hidden={hiddenEnd}>
-                  <EndPost 
-
+                <div className="w-full mty-2" hidden={hiddenEnd}>
+                  <EndPost
                     user={userContact}
                     hiddenEnd={hiddenEnd}
                     setHiddenEnd={setHiddenEnd}
