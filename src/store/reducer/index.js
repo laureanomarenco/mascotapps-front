@@ -25,7 +25,8 @@ import {
   RESET_DETAIL,
   FILTER_PETS,
   SEARCH_PETS,
-  DONATE_USER_POINTS
+  DONATE_USER_POINTS,
+  RESET_DONATION_MESSAGE
 } from "../actions/types";
 
 const initalState = {
@@ -238,6 +239,11 @@ export default function reducer(state = initalState, action) {
       return {
         ...state,
         stateDonationPoints: action.payload.msg
+      }
+    case RESET_DONATION_MESSAGE:
+      return {
+        ...state,
+        stateDonationPoints: ''
       }
     default:
       return state;

@@ -6,6 +6,7 @@ import { tokenAccess } from "../../../constants/token";
 import { useSelector } from "react-redux";
 import RatingStar from "../../RatingStar/RatingStar";
 import Swal from "sweetalert2";
+import { resetDonatePoints } from "../../../store/actions/user";
 
 const Calificar = ({
   tdId,
@@ -17,6 +18,7 @@ const Calificar = ({
   const [showModal, setShowModal] = React.useState(false);
   const [pointsToDonate, setPointsToDonate] = React.useState(0);
   const dispatch = useDispatch();
+
   const messageOfDonation = useSelector((state) => state.stateDonationPoints);
 
   const objBello = {
@@ -35,9 +37,12 @@ const Calificar = ({
     }
 
     dispatch(donatePoints(body, tokenAccess));
-    Swal.fire({
-      title: `${messageOfDonation}`,
-    })
+    if(messageOfDonation){
+      Swal.fire({
+        title: `${messageOfDonation}`,
+      })
+      dispatch(resetDonatePoints())
+    }
   }
 
 

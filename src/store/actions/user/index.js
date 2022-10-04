@@ -22,7 +22,8 @@ import {
   CREAT_USER,
   GET_PUBLIC_USER_DETAIL,
   USER_POINTS,
-  DONATE_USER_POINTS
+  DONATE_USER_POINTS,
+  RESET_DONATION_MESSAGE
 } from "../types";
 
 function myProfile(token) {
@@ -208,6 +209,16 @@ function donatePoints(body, token) {
   };
 }
 
+function resetDonatePoints() {
+  return async function(dispatch) {
+    try {
+      return dispatch({ type: RESET_DONATION_MESSAGE, payload: '' });
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
+
 
 export {
   myProfile,
@@ -224,4 +235,5 @@ export {
   cancelPost,
   finishPost,
   donatePoints,
+  resetDonatePoints
 };
