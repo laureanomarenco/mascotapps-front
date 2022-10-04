@@ -7,6 +7,7 @@ import {BsCheck2Square} from "react-icons/bs"
 import { deletePet, publicUserDetail,getMyPets} from "../../store/actions";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useSelector } from "react-redux";
 import EndPost from "../Detail/EndPost";
 import { tokenAccess } from "../../constants/token";
 const BadgesPets = ({
@@ -18,23 +19,20 @@ const BadgesPets = ({
   myPets
 }) => {
   const dispatch = useDispatch();
-  const [states, setStates] = useState(true);
   const [hiddenEnd,setHiddenEnd]=useState(true)
-  const tokenAccess = localStorage.getItem("token");
-  const handleClick = (petid, tokenAccess) => {
+  const handleClick = (petid,tokenAccess) => {
     dispatch(deletePet(petid, tokenAccess));
     dispatch(getMyPets(tokenAccess));
     setOrder(order === "nowpAPASITO" ? "now" : "nowpAPASITO");
   };
-  const myPets = useSelector((state) => state.userPets);
   const userContact = useSelector((state) => state.publicUserDetail);
   useEffect(() => {}, [myPets]);
 
   const handleHidden = (id)=>{
 
     setHiddenEnd(hiddenEnd === true? false : true);
+    console.log("IDDDDDD ",id)
     dispatch(publicUserDetail(id))
-    console.log("SE Manda la action ")
   }
   return (
     <div
