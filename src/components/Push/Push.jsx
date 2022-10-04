@@ -5,10 +5,14 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { WEB_PUSH, DESUBSCRIBE } from "../../constants/url";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { myProfile } from "../../store/actions";
+import { tokenAccess } from "../../constants/token";
 
 export default function Push({ myProfileData }) {
   const { user } = useAuth0();
   const [status, setStatus] = useState(false);
+  const dispatch = useDispatch()
 
   //eslint-disable-next-line
   const publicVapidKey =
@@ -67,6 +71,7 @@ export default function Push({ myProfileData }) {
       desubscribeUser();
       setStatus(false);
     }
+    dispatch(myProfile(tokenAccess));
   }
   useEffect(()=>{},[status])
   return myProfileData && myProfileData?.userProps?.endpoints === null ? (
