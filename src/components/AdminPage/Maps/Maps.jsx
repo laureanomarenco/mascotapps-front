@@ -27,19 +27,18 @@ const Maps = ({ cities }) => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> '
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
-        <Marker position={cities[0].position} icon={markerIcon}>
-          <Popup>
-            <div className="flex gap-2 items-center p-0 w-9/12">
-              <img
-                src={cities[0].image}
-                alt="pet"
-                className="rounded-full w-9/12"
-              />
-              <h1 className="font-bold text-xl capitalize">{cities[0].name}</h1>
-            </div>
-            <span>{cities[0].city}</span>
-          </Popup>
-        </Marker>
+
+        {cities?.map((p) => {
+          <Marker key={Math.random()} position={p.position} icon={markerIcon}>
+            <Popup>
+              <div className="flex gap-2 items-center p-0 w-9/12">
+                <img src={p.image} alt="pet" className="rounded w-9/12" />
+                <h1 className="font-bold text-xl capitalize">{p.name}</h1>
+              </div>
+              <span>{p.city}</span>
+            </Popup>
+          </Marker>;
+        })}
       </MapContainer>
     </div>
   );
