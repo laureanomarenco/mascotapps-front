@@ -74,7 +74,7 @@ const Users = ({ users }) => {
   }, [dispatch]);
   return (
     <section className="bg-blueGray-50">
-      <div className="w-full mx-auto ">
+      <div className="w-full mx-auto  ">
         <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
           <div className="rounded-t mb-0 px-4 py-3 border-0">
             <div className="flex flex-wrap items-center">
@@ -94,7 +94,7 @@ const Users = ({ users }) => {
             </div>
           </div>
 
-          <div className="block w-full overflow-x-auto">
+          <div className="block w-full overflow-scroll">
             <table className="items-center bg-white w-full border-collapse ">
               <thead>
                 <tr>

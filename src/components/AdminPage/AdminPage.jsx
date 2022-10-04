@@ -5,34 +5,24 @@ import {
   getAllUsers,
   adminFetchUsers,
   totalVisitors,
+  getDonations,
   // pointsMultiplier (pasale el token gonza)
 } from "../../store/actions/index";
 import SideMenu from "./NavBar";
-// import CircularProgressWithLabel from "@mui/material/CircularProgress";
 import Percents from "./Percents";
 import Users from "./Users";
-// import Alert from './Alert';
 //icons
 //gonza el admin
-import { MdPets } from "react-icons/md";
-import { FaHands } from "react-icons/fa";
-import { GiDogHouse } from "react-icons/gi";
-import { GiCat } from "react-icons/gi";
-import { GiNestBirds } from "react-icons/gi";
-import { GiSittingDog } from "react-icons/gi";
-import { MdImageSearch } from "react-icons/md";
-import { CgSearchFound } from "react-icons/cg";
+import { AiOutlineMan, AiOutlineWoman } from "react-icons/ai";
 import { BsEyeFill } from "react-icons/bs";
-import { TbUsers } from "react-icons/tb";
-import { FaDonate } from "react-icons/fa";
-import { TbView360 } from "react-icons/tb";
-import { AiOutlineWoman } from "react-icons/ai";
-import { AiOutlineMan } from "react-icons/ai";
 import { BiDonateHeart } from "react-icons/bi";
-import { getDonations } from "../../store/actions/index";
+import { CgSearchFound } from "react-icons/cg";
+import { FaHands, FaDonate } from "react-icons/fa";
+import { GiNestBirds, GiSittingDog, GiCat, GiDogHouse } from "react-icons/gi";
+import { MdImageSearch, MdPets } from "react-icons/md";
+import { TbUsers, TbView360 } from "react-icons/tb";
 
 const AdminPage = () => {
-
   const dispatch = useDispatch();
   const usersDetails = useSelector((state) => state.usersInfo);
   const pets = useSelector((state) => state.pets);

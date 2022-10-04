@@ -10,19 +10,19 @@ import { MdImageSearch } from "react-icons/md";
 import { CgSearchFound } from "react-icons/cg";
 import { BsGenderAmbiguous } from "react-icons/bs";
 import { useSelector } from "react-redux";
-import { useLocation } from "react-router-dom";
 // const Maps = React.lazy(() => import("./Maps/Maps"));
-const Pets = () => {
-  const location = useLocation();
+const Pets = ({ cities }) => {
   const pets = useSelector((state) => state.pets);
   // const petsForMaps = [...pets];
-  const { cities } = location.state;
+
   return (
-    <main className="p-6 sm:p-10 space-y-6">
+    <main id="pets" className="p-6 sm:p-10 space-y-6">
       <div className="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between">
         <div className="mr-6">
-          <h1 className="text-4xl font-semibold mb-2">Dashboard</h1>
-          <h2 className="text-gray-600 ml-0.5">Panel de control Mascotapp</h2>
+          <h1 className="text-4xl font-semibold mb-2 ">Mascotas</h1>
+          <h2 className="text-gray-600 ml-0.5">
+            Estadísticas de las mascotas publicadas
+          </h2>
         </div>
         <div className="flex flex-wrap items-start justify-end -mb-3"></div>
       </div>

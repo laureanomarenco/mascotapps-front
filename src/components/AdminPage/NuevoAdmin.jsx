@@ -1,5 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import Users from "./Users";
+import Pets from "./Pets";
 import {
   fetchPets,
   getAllUsers,
@@ -11,6 +13,7 @@ import {
   fetchCity,
   // pointsMultiplier
 } from "../../store/actions/index";
+import { HashLink as Link } from "react-router-hash-link";
 import { FaDonate } from "react-icons/fa";
 import { MdPets } from "react-icons/md";
 import { MdHideImage } from "react-icons/md";
@@ -19,9 +22,6 @@ import { TbUsers } from "react-icons/tb";
 import { TbView360 } from "react-icons/tb";
 import { TbLogout } from "react-icons/tb";
 import Swal from "sweetalert2";
-
-import Users from "./Users";
-import { Link } from "react-router-dom";
 
 const NuevoAdmin = () => {
   const dispatch = useDispatch();
@@ -136,17 +136,14 @@ const NuevoAdmin = () => {
   return (
     <div>
       <div className="flex bg-gray-100 min-h-screen">
-        <aside className="hidden sm:flex sm:flex-col">
-          <a
-            href="#"
-            className="inline-flex items-center justify-center h-20 w-20 bg-yellow-400 hover:bg-teal-500 focus:bg-purple-500"
-          >
+        <aside className="hidden  sm:fixed sm:top-0 sm:left-0 h-full sm:z-50 sm:flex sm:flex-col   ">
+          <div className="inline-flex items-center justify-center h-20 w-20 bg-yellow-400 hover:bg-teal-500 focus:bg-purple-500">
             <img
               src="https://res.cloudinary.com/dfbxjt69z/image/upload/v1663007100/mascotapps/mascotapss_zihxad.png"
               alt="user profile photo"
               className="h-full w-full object-cover"
             />
-          </a>
+          </div>
           <div className="flex-grow flex flex-col justify-between text-gray-500 bg-gray-800">
             <nav className="flex flex-col mx-4 my-6 space-y-4stroke-linejoin">
               <a
@@ -190,9 +187,9 @@ const NuevoAdmin = () => {
                 </svg>
               </a>
               <Link
-                to="/admin/general/pets"
+                to="/admin/general#pets"
                 className="inline-flex items-center justify-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg"
-                state={{ pets: petsForMap, cities: match }}
+                smooth
               >
                 <span className="sr-only">Mascotas</span>
                 <MdPets />
@@ -474,6 +471,7 @@ const NuevoAdmin = () => {
                 </div>
               </div>
             </section>
+            <Pets pets={petsForMap} cities={match} />
           </main>
         </div>
       </div>
