@@ -28,16 +28,12 @@ import PointsStore from "./components/PetStore/PointsStore";
 import UserBanned from "./components/UserBanned/UserBanned";
 
 function App() {
-  var banned= localStorage.getItem("banned");
   const dispatch = useDispatch();
-  console.log(banned);
-
 
   useEffect(() => {
     console.log("estoy en el useEffect");
     dispatch(fetchPets());
-     banned = localStorage.getItem("banned");
-  }, [dispatch, banned]);
+  }, [dispatch]);
 
   return (
     <div className=".App">
@@ -46,82 +42,71 @@ function App() {
           <Route
             exact
             path="/"
-            element={banned === "true" ? <UserBanned /> : <LandingPage />}
+            element={ <LandingPage />}
           />
           <Route
             path="/home"
-            element={banned === "true" ? <UserBanned /> : <Home />}
+            element={ <Home />}
           />
           <Route path="/register" element={<SignUp />} />
 
           <Route
             path="/account"
-            element={banned === "true" ? <UserBanned /> : <NuevoProfile />}
+            element={ <NuevoProfile />}
           />
           <Route
             path="/pets/:id"
-            element={banned === "true" ? <UserBanned /> : <Detail />}
+            element={ <Detail />}
           />
           <Route
             path="/estado/:status"
-            element={banned === "true" ? <UserBanned /> : <PetsContainer />}
+            element={ <PetsContainer />}
           />
           <Route
             path="/admin"
-            element={banned === "true" ? <UserBanned /> : <LoginAdmin />}
+            element={ <LoginAdmin />}
           />
           <Route
             path="/admin/general"
-            element={banned === "true" ? <UserBanned /> : <NuevoAdmin />}
+            element={ <NuevoAdmin />}
           />
           <Route
             path="/donate"
-            element={banned === "true" ? <UserBanned /> : <Donate />}
+            element={ <Donate />}
           />
 
           <Route path="*" element={<Error />} />
           <Route
             path="/favoritos"
-            element={banned === "true" ? <UserBanned /> : <FavContainer />}
+            element={ <FavContainer />}
           ></Route>
           <Route
             path="/profile"
             element={
-              banned === "true" ? <UserBanned /> : <UsersPublicProfile />
+               <UsersPublicProfile />
             }
           ></Route>
           <Route
             path="/postpets"
-            element={banned === "true" ? <UserBanned /> : <PostPets />}
+            element={ <PostPets />}
           ></Route>
-          <Route
-            path="/faqs"
-            element={ <Faq />}
-          ></Route>
-          <Route
-            path="/query"
-            element={ <ConsultasForm />}
-          />
+          <Route path="/faqs" element={<Faq />}></Route>
+          <Route path="/query" element={<ConsultasForm />} />
           <Route
             path="/team"
-            element={banned === "true" ? <UserBanned /> : <Team />}
+            element={ <Team />}
           />
           <Route
             path="/store"
-            element={banned === "true" ? <UserBanned /> : <PointsStore />}
+            element={ <PointsStore />}
           />
           <Route
             path="/success"
             element={
-              banned === "true" ? <UserBanned /> : <SuccessPetsContainer />
+               <SuccessPetsContainer />
             }
           />
-          <Route
-            path="/banned"
-            element={
-              <UserBanned/>
-            }
-          />
+          <Route path="/banned" element={<UserBanned />} />
         </Routes>
       </BrowserRouter>
     </div>
