@@ -50,7 +50,6 @@ export {
   buyItems,
   cancelPost,
   finishPost,
-  donatePoints,
 } from "./user";
 
 //ADMIN ACTIONS
