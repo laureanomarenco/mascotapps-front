@@ -53,6 +53,7 @@ function App() {
             element={banned === "true" ? <UserBanned /> : <Home />}
           />
           <Route path="/register" element={<SignUp />} />
+
           <Route
             path="/account"
             element={banned === "true" ? <UserBanned /> : <NuevoProfile />}
@@ -77,6 +78,7 @@ function App() {
             path="/donate"
             element={banned === "true" ? <UserBanned /> : <Donate />}
           />
+
           <Route path="*" element={<Error />} />
           <Route
             path="/favoritos"
