@@ -310,7 +310,7 @@ const NuevoAdmin = () => {
                   />
                 </div>
                 <div>
-                  <span className="block text-2xl font-bold">{`${users}`}</span>
+                  <span className="block text-2xl font-bold">{`${usersss.length}`}</span>
                   <span className="block text-gray-500">
                     Usuarios registrados
                   </span>
