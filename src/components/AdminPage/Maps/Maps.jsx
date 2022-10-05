@@ -27,7 +27,6 @@ const Maps = ({ cities }) => {
         />
 
         {cities?.map((p, i) => {
-          console.log(p.position);
           if (!isNaN(p.position[0])) {
             return (
               <Marker key={i} position={p.position} icon={markerIcon}>

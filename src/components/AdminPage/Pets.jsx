@@ -37,7 +37,6 @@ const Pets = ({ cities, tokenAccess }) => {
     setPage(pageNumber);
   }
 
-  console.log(successPets);
   //---------PAGINACION------------//
 
   const handleClick = (id) => {
@@ -73,8 +72,6 @@ const Pets = ({ cities, tokenAccess }) => {
       }
     });
   };
-
-  console.log(pets);
 
   useEffect(() => {
     dispatch(fetchPets(tokenAccess));
