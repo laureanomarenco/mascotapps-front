@@ -10,16 +10,12 @@ import {
 import UsersPagination from "./UsersPagination/UsersPagination";
 import { useDispatch } from "react-redux";
 import { FaTrashAlt } from "react-icons/fa";
-// import dotenv from "dotenv";
 
 import Swal from "sweetalert2";
 const Users = ({ users }) => {
-  // dotenv.config();
-  // const ultraSecreta = process.env.ULTRA_SECRETA;
   const ultraSecreta = "SoyAdmin";
 
   const dispatch = useDispatch();
-  // const users = useSelector((state) => state.usersInfo);
   const [page, setPage] = useState(1);
   const showPerPage = 4;
   const lastOnPage = page * showPerPage;
@@ -109,7 +105,6 @@ const Users = ({ users }) => {
     });
   };
 
-  console.log(users);
   useEffect(() => {
     dispatch(adminFetchUsers(tokenAccess));
   }, [dispatch]);
