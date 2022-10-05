@@ -402,7 +402,7 @@ const Pets = ({ cities, tokenAccess }) => {
           />
         </div>
       </section>
-      <section className="flex gap-4">
+      <section className="flex flex-col-reverse md:flex-row gap-4 ">
         <Maps cities={cities} />
         <div className="items-center self-center">
           <h1 className="text-[45px] text-center ">
