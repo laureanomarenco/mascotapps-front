@@ -7,7 +7,7 @@ import { useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function LandingPage() {
-  const { isAuthenticated, isLoading } = useAuth0();
+  const {  isLoading } = useAuth0();
   const dispatch = useDispatch();
   const images = [
     "https://res.cloudinary.com/dfbxjt69z/image/upload/v1662821915/mascotapps/StockSnap_EJELGQPXN6_dkux6i.jpg",
@@ -37,9 +37,6 @@ export default function LandingPage() {
   };
 
   useEffect(() => {
-    if (!isLoading && !isAuthenticated) {
-      localStorage.setItem("banned", "false");
-    }
     dispatch(visitorsCounter());
     const interval = setInterval(() => {
       selectNewImage(selectedIndex, images);
