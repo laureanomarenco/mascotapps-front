@@ -9,9 +9,10 @@ import Swal from "sweetalert2";
 import { useDispatch, useSelector } from "react-redux";
 import { userPoints } from "../../store/actions";
 import Spinner from "../Spinner/Spinner";
-import { tokenAccess } from "../../constants/token";
+
 
 export default function PointsStore() {
+  const tokenAccess = localStorage.getItem("token");
   const { user, isAuthenticated, isLoading } = useAuth0();
   var carritoStorage = JSON.parse(localStorage.getItem("carrito")) || [];
   const [carrito, setCarrito] = useState(carritoStorage);

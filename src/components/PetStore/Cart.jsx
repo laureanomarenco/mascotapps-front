@@ -9,16 +9,15 @@ import Swal from "sweetalert2";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { buyItems } from "../../store/actions";
-import { tokenAccess } from "../../constants/token";
 
 export default function Cart({ carrito, setCarrito, setUpdate, update }) {
+  const tokenAccess = localStorage.getItem("token");
   const { user } = useAuth0();
   const [showModal, setShowModal] = useState(false);
   const [errors, setErrors] = useState({});
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const myItems = carrito;
-
 
   const [compra, setCompra] = useState({
     name: "",

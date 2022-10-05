@@ -5,7 +5,7 @@ import { BsPencilSquare, BsCheck2Square } from "react-icons/bs";
 import { RiChatDeleteFill } from "react-icons/ri";
 import { deletePet, publicUserDetail, getMyPets } from "../../store/actions";
 import EndPost from "../Detail/EndPost";
-import { tokenAccess } from "../../constants/token";
+
 
 
 const BadgesPets = ({
@@ -16,6 +16,7 @@ const BadgesPets = ({
   order,
   myPets,
 }) => {
+  const tokenAccess = localStorage.getItem("token");
   const dispatch = useDispatch();
   const [hiddenEnd, setHiddenEnd] = useState(true);
   const handleClick = (petid, tokenAccess) => {

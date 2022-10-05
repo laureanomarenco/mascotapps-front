@@ -7,9 +7,10 @@ import { useState } from "react";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { myProfile } from "../../store/actions";
-import { tokenAccess } from "../../constants/token";
+
 
 export default function Push({ myProfileData }) {
+  const tokenAccess = localStorage.getItem("token");
   const { user } = useAuth0();
   //eslint-disable-next-line
   const [status, setStatus] = useState(false);
