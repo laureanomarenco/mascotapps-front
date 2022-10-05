@@ -2,9 +2,9 @@ self.addEventListener("push", (e) => {
   const data = e.data.json();
   console.log(data);
   console.log("Notification Received");
-  self.registration.showNotification(data.title,
-    {
+  self.registration.showNotification(data.title, {
     body: data.text,
-    icon: "https://res.cloudinary.com/dfbxjt69z/image/upload/v1663276317/mascotapps/perrito_apwyz0.png",
+    icon:
+      "https://res.cloudinary.com/dfbxjt69z/image/upload/v1663276317/mascotapps/perrito_apwyz0.png",
   });
 });

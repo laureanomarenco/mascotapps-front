@@ -44,6 +44,7 @@ export const DELETE_POST_OF_USER = URL + "admin/cleanPostsOfUserId/";
 export const DELETE_PET_WITH_NO_OWNER = URL + "admin/deletePetsWithNoUserId";
 export const POINTS_SALE = URL + "admin/changeMultiplier/";
 export const DELETE_POST = URL + "admin/deletePet/";
+export const BAN_USERS = URL + "admin/banUser/";
 
 export const GET_USER_REVIEWS = URL + "/reviews/getReviewsToUser";
 export const WEB_PUSH = URL + "pets/subscribe";
