@@ -13,6 +13,7 @@ export default function Login() {
     isAuthenticated,
     getAccessTokenSilently,
     isLoading,
+    logout,
   } = useAuth0();
 
   const navigate = useNavigate();
@@ -27,9 +28,12 @@ export default function Login() {
             Authorization: `Bearer ${claims}`,
           },
         });
-
-        if (existe.data.msg) {
+        console.log(existe.data.msg);
+        if (existe.data.msg === true) {
           navigate("/home");
+        } else if (existe.data.msg === "banned") {
+          localStorage.removeItem("token");
+          logout({ returnTo: "https://mascotapps.vercel.app/banned" });
         } else {
           navigate("/register");
         }

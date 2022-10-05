@@ -5,10 +5,16 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { WEB_PUSH, DESUBSCRIBE } from "../../constants/url";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { myProfile } from "../../store/actions";
+import { tokenAccess } from "../../constants/token";
 
 export default function Push({ myProfileData }) {
   const { user } = useAuth0();
+  //eslint-disable-next-line
   const [status, setStatus] = useState(false);
+
+  const dispatch = useDispatch();
 
   //eslint-disable-next-line
   const publicVapidKey =
@@ -59,17 +65,18 @@ export default function Push({ myProfileData }) {
     axios.post(DESUBSCRIBE, object);
   }
 
-  function handleSuscripcion() {
+  async function handleSuscripcion() {
     if (myProfileData && myProfileData?.userProps?.endpoints === null) {
       subscribeUser();
-      setStatus(true);
     } else {
       desubscribeUser();
-      setStatus(false);
     }
+    dispatch(myProfile(tokenAccess));
   }
-  useEffect(()=>{},[status])
-  return myProfileData && myProfileData?.userProps?.endpoints === null ? (
+  useEffect(() => {
+    setStatus(myProfileData && myProfileData?.userProps?.endpoints === null);
+  }, [dispatch, myProfileData]);
+  return !status ? (
     <NavBtn icon="unsubscribe" handleClick={handleSuscripcion} />
   ) : (
     <NavBtn icon="subscribe" handleClick={handleSuscripcion} />

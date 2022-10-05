@@ -14,6 +14,7 @@ import {
   DELETE_POST_OF_USER,
   DELETE_PET_WITH_NO_OWNER,
   DELETE_POST,
+  BAN_USERS,
 } from "../../../constants/url";
 import {
   GET_ALL_USERS,
@@ -185,6 +186,16 @@ export function deletePost(obj, token) {
   return async function() {
     try {
       var json = await axios.post(DELETE_POST, obj, header(token));
+      console.log(json);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
+export function banUsers(obj, token) {
+  return async function() {
+    try {
+      var json = await axios.post(BAN_USERS, obj, header(token));
       console.log(json);
     } catch (error) {
       console.log(error.message);

@@ -2,42 +2,82 @@ import React, { useEffect } from "react";
 
 import { MapContainer, TileLayer, Popup, Marker } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
-// import { FaMapMarkerAlt } from "react-icons/fa";
-import icon from "leaflet/dist/images/marker-icon.png";
+// import icon from "leaflet/dist/images/marker-icon.png";
 import L from "leaflet";
+const encontradoIcon = new L.Icon({
+  iconUrl:
+    "https://res.cloudinary.com/dpxrr2uyq/image/upload/v1664954719/marker1_mpxhq3.png",
+  iconSize: [25, 25],
+});
+const perdidoIcon = new L.Icon({
+  iconUrl:
+    "https://res.cloudinary.com/dpxrr2uyq/image/upload/v1664954719/marker2_ulne98.png",
+  iconSize: [25, 25],
+});
+const adopcionIcon = new L.Icon({
+  iconUrl:
+    "https://res.cloudinary.com/dpxrr2uyq/image/upload/v1664954719/marker3_obgzdo.png",
+  iconSize: [25, 25],
+});
 
 const Maps = ({ cities }) => {
-  const markerIcon = new L.Icon({
-    iconUrl: icon,
-    iconSize: [25, 25],
-    popupAnchor: [3, -46],
-  });
-  console.log(cities);
   useEffect(() => {}, [cities]);
-
   return (
-    <div>
+    <div className="w-full md:w-1/2 h-full ">
       <MapContainer
         center={[-38.416097, -63.616672]}
         zoom={4}
-        scrollWheelZoom={false}
-        className="w-[800px] h-[600px] rounded"
+        scrollWheelZoom={true}
+        className="w-full md:w-9/6 h-[600px]  mx-auto "
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> '
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
-        {cities?.map((p) => {
-          <Marker key={Math.random()} position={p.position} icon={markerIcon}>
-            <Popup>
-              <div className="flex gap-2 items-center p-0 w-9/12">
-                <img src={p.image} alt="pet" className="rounded w-9/12" />
-                <h1 className="font-bold text-xl capitalize">{p.name}</h1>
-              </div>
-              <span>{p.city}</span>
-            </Popup>
-          </Marker>;
+        {cities?.map((p, i) => {
+          if (!isNaN(p.position[0])) {
+            return (
+              <Marker
+                key={i}
+                position={p.position}
+                icon={
+                  p.status === "encontrado"
+                    ? encontradoIcon
+                    : p.status === "perdido"
+                    ? perdidoIcon
+                    : adopcionIcon
+                }
+              >
+                <Popup>
+                  <div className="text-center h-[175px] ">
+                    <img
+                      src={p.image}
+                      alt="pet"
+                      className="hover:cursor-pointer w-[150px] h-[120px] rounded-full mx-auto "
+                      onClick={() => window.open(`/pets/${p.id}`)}
+                    />
+
+                    <h1 className="grid text-center text-[22px] font-semibold self">
+                      {p.name}
+                      <span
+                        className={
+                          p.status === "en adopción"
+                            ? "capitalize text-[15px] text-purple-600"
+                            : p.status === "encontrado"
+                            ? "capitalize text-[15px] text-teal-600"
+                            : "capitalize text-[15px] text-red-500"
+                        }
+                      >
+                        {p.status}
+                      </span>
+                    </h1>
+                    <span className="text-center">{p.city}</span>
+                  </div>
+                </Popup>
+              </Marker>
+            );
+          }
         })}
       </MapContainer>
     </div>

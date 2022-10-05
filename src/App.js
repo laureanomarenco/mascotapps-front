@@ -25,36 +25,88 @@ import ConsultasForm from "./components/ConsultasForm/ConsultasForm";
 import SuccessPetsContainer from "./components/SuccessPetsContainer/SuccessPetsContainer";
 import Team from "./components/Team/Team";
 import PointsStore from "./components/PetStore/PointsStore";
+import UserBanned from "./components/UserBanned/UserBanned";
 
 function App() {
-  //eslint-disable-next-line
   const dispatch = useDispatch();
+
   useEffect(() => {
+    console.log("estoy en el useEffect");
     dispatch(fetchPets());
   }, [dispatch]);
+
   return (
-    <div className=".App">
+    <div className=".App overflow-x-hidden">
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<LandingPage />} />
-          <Route path="/home" element={<Home />} />
+          <Route
+            exact
+            path="/"
+            element={<LandingPage />}
+          />
+          <Route
+            path="/home"
+            element={<Home />}
+          />
           <Route path="/register" element={<SignUp />} />
-          <Route path="/account" element={<NuevoProfile />} />
-          <Route path="/pets/:id" element={<Detail />} />
-          <Route path="/estado/:status" element={<PetsContainer />} />
-          <Route path="/admin" element={<LoginAdmin />} />
-          <Route path="/admin/general" element={<NuevoAdmin />} />
-          {/* <Route exact path="/admin/general/pets" element={<Pets />} /> */}
-          <Route path="/donate" element={<Donate />} />
+
+          <Route
+            path="/account"
+            element={<NuevoProfile />}
+          />
+          <Route
+            path="/pets/:id"
+            element={<Detail />}
+          />
+          <Route
+            path="/estado/:status"
+            element={<PetsContainer />}
+          />
+          <Route
+            path="/admin"
+            element={<LoginAdmin />}
+          />
+          <Route
+            path="/admin/general"
+            element={<NuevoAdmin />}
+          />
+          <Route
+            path="/donate"
+            element={<Donate />}
+          />
+
           <Route path="*" element={<Error />} />
-          <Route path="/favoritos" element={<FavContainer />}></Route>
-          <Route path="/profile" element={<UsersPublicProfile />}></Route>
-          <Route path="/postpets" element={<PostPets />}></Route>
+          <Route
+            path="/favoritos"
+            element={<FavContainer />}
+          ></Route>
+          <Route
+            path="/profile"
+            element={
+              <UsersPublicProfile />
+            }
+          ></Route>
+          <Route
+            path="/postpets"
+            element={<PostPets />}
+          ></Route>
           <Route path="/faqs" element={<Faq />}></Route>
           <Route path="/query" element={<ConsultasForm />} />
-          <Route path="/team" element={<Team />} />
-          <Route path="/store" element={<PointsStore />} />
-          <Route path="/success" element={<SuccessPetsContainer />} />
+          <Route
+            path="/team"
+            element={<Team />}
+          />
+          <Route
+            path="/store"
+            element={<PointsStore />}
+          />
+          <Route
+            path="/success"
+            element={
+              <SuccessPetsContainer />
+            }
+          />
+          <Route path="/banned" element={<UserBanned />} />
         </Routes>
       </BrowserRouter>
     </div>

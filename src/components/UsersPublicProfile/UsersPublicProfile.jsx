@@ -20,9 +20,14 @@ export default function UserPuserProfsPublicProfile() {
   const { user } = useAuth0();
   const location = useLocation();
   const { userProf, idPet } = location.state;
+  const myProfile = useSelector((state) => state.myProfile);
+  const transactionAlready = myProfile?.transactions?.find(
+    (t) => t.pet_id === idPet
+  )?.user_demanding_check;
+
   console.log(
-    "🚀 ~ file: UsersPublicProfile.jsx ~ line 22 ~ UserPuserProfsPublicProfile ~ userProf",
-    userProf
+    "🚀 ~ file: UsersPublicProfile.jsx ~ line 30 ~ UserPuserProfsPublicProfile ~ transactionAlready",
+    transactionAlready
   );
   //eslint-disable-next-line
   const reviews = useSelector((state) => state.userReviews);
@@ -51,7 +56,7 @@ export default function UserPuserProfsPublicProfile() {
       <div>
         <Navbar />
 
-        <div className=" my-8 mx-3 md:mx-20  rounded-sm drop-shadow-md">
+        <div className=" py-8  md:px-20  rounded-sm drop-shadow-md">
           {/* perfil */}
           <div className="grid md:grid-cols-2 gap-2 items-center justify-center content-center w-full px-4  max-h-fit md:pb-12 bg-white p-3  max-w-screen-xl mx-auto">
             <div className="md:col-span-3 h-36 text-center flex content-center items-center justify-center">
@@ -59,10 +64,14 @@ export default function UserPuserProfsPublicProfile() {
                 Perfil de {userProf?.name}
               </p>
               {userProf?.linkToDonate && (
-                <a href={userProf.linkToDonate}>
+                <a
+                  href={userProf.linkToDonate}
+                  rel="noreferrer"
+                  target="_blank"
+                >
                   {" "}
                   <img
-                    className="h-12 w-12 ml-2 object-contain"
+                    className="h-12 w-12 ml-2 object-cover"
                     src="https://res.cloudinary.com/dfbxjt69z/image/upload/v1664901593/mascotapps/Logo-Mercado-Pago-fondocrema-removebg-preview_xccsdw.png"
                     alt=""
                   />
@@ -173,7 +182,20 @@ export default function UserPuserProfsPublicProfile() {
                 </p>
                 <p>{userProf?.city}</p>
               </div>
-              {contact ? (
+
+              {transactionAlready === undefined && contact === false && (
+                <button
+                  onClick={handleBeginTransaction}
+                  className="px-6 py-3 my-4 bg-[#FFC700] rounded-md font-bold hover:bg-[ffd803]/80 transition-all duration-300"
+                  hidden={userProf?.email === user.email ? true : false}
+                >
+                  Contactar anunciante
+                </button>
+              )}
+              {(contact ||
+                transactionAlready === null ||
+                transactionAlready === "finalizado" ||
+                transactionAlready === "calificado") && (
                 <>
                   <div className="flex gap-3 items-center my-2">
                     <p className="text-teal-800">
@@ -188,14 +210,6 @@ export default function UserPuserProfsPublicProfile() {
                     <p> {userProf?.email}</p>
                   </div>
                 </>
-              ) : (
-                <button
-                  onClick={handleBeginTransaction}
-                  className="px-6 py-3 my-4 bg-[#FFC700] rounded-md font-bold hover:bg-[ffd803]/80 transition-all duration-300"
-                  hidden={userProf?.email === user.email ? true : false}
-                >
-                  Contactar anunciante
-                </button>
               )}
             </div>
           </div>

@@ -22,6 +22,7 @@ import {
   CREAT_USER,
   GET_PUBLIC_USER_DETAIL,
   USER_POINTS,
+  DONATE_USER_POINTS
 } from "../types";
 
 function myProfile(token) {
@@ -197,9 +198,10 @@ function finishPost(input, token) {
 }
 
 function donatePoints(body, token) {
-  return async function() {
+  return async function(dispatch) {
     try {
-      await axios.post(DONATE_POINTS, body, header(token));
+      let response = await axios.post(DONATE_POINTS, body, header(token));
+      return dispatch({ type: DONATE_USER_POINTS, payload: response.data });
     } catch (error) {
       console.log(error.message);
     }
