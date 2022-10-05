@@ -21,6 +21,7 @@ export default function Login() {
     try {
       const claims = await getAccessTokenSilently();
       localStorage.setItem("token", claims);
+      window.dispatchEvent(new Event('storage'));
 
       if (isAuthenticated && user) {
         let existe = await axios.get(URL_EXIST, {
@@ -28,7 +29,6 @@ export default function Login() {
             Authorization: `Bearer ${claims}`,
           },
         });
-        console.log(existe.data.msg);
         if (existe.data.msg === true) {
           navigate("/home");
         } else if (existe.data.msg === "banned") {

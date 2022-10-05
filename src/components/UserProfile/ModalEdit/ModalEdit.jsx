@@ -16,7 +16,6 @@ import { MdAlternateEmail } from "react-icons/md";
 import Autocomplete from "@mui/material/Autocomplete";
 import { AiOutlineCamera } from "react-icons/ai";
 import { GiReceiveMoney } from "react-icons/gi";
-import { tokenAccess } from "../../../constants/token";
 
 export default function ModalProfile({ belloPerfil }) {
   const [showModal, setShowModal] = React.useState(false);
@@ -24,7 +23,7 @@ export default function ModalProfile({ belloPerfil }) {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const cities = useSelector((state) => state.cities);
-
+  const tokenAccess = localStorage.getItem("token");
   const [input, setInput] = useState({
     email: user?.email,
     name: belloPerfil.name,

@@ -6,7 +6,7 @@ import { visitorsCounter } from "../../store/actions/index";
 import { useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 
-export default function LandingPage() {
+export default function LandingPage(){
   const {  isLoading } = useAuth0();
   const dispatch = useDispatch();
   const images = [
