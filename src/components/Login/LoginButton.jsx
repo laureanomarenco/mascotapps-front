@@ -30,6 +30,7 @@ export const LoginButton = ({ className, text, children }) => {
         if (existe.data.msg) {
           navigate("/home");
         } else if (existe.data.msg === "banned") {
+          localStorage.removeItem("token");
           logout({ returnTo: "https://mascotapps.vercel.app/banned" });
         } else {
           navigate("/register");
