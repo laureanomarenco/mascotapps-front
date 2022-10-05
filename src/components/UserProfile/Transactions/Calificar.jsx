@@ -51,6 +51,7 @@ const Calificar = ({
         Swal.fire({
           title: `${response.data.msg}`,
         });
+        setOrder("neew puntos")
       }
     } catch (error) {
       Swal.fire({
