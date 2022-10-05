@@ -6,6 +6,7 @@ import PetsPagination from "./PetsPagination/PetsPagination";
 
 import { fetchPets, deletePost, getSuccess } from "../../store/actions/index";
 import { FaHands } from "react-icons/fa";
+import { GrMapLocation } from "react-icons/gr";
 import { GiDogHouse } from "react-icons/gi";
 import { GiCat } from "react-icons/gi";
 import { GiNestBirds } from "react-icons/gi";
@@ -280,7 +281,7 @@ const Pets = ({ cities, tokenAccess }) => {
           </span>
         </div>
         <h1 className="block text-gray-300 mx-auto text-3xl flex items-center gap-2">
-          Mascotas tienen nuevo hogar{" "}
+          Tienen nuevo hogar{" "}
           <span>
             <BiHappyAlt size={50} fill="#FFD803" />
           </span>
@@ -312,7 +313,7 @@ const Pets = ({ cities, tokenAccess }) => {
           </span>
         </div>
         <h1 className="block text-gray-300 mx-auto text-3xl flex items-center gap-2">
-          Mascotas volvieron a su hogar
+          Volvieron a su hogar
           <span>
             <BiHappyAlt size={50} fill="#FFD803" />
           </span>
@@ -401,10 +402,29 @@ const Pets = ({ cities, tokenAccess }) => {
           />
         </div>
       </section>
-      <section>
-        {/* <Suspense fallback={<div>Loading...</div>}> */}
+      <section className="flex gap-4">
         <Maps cities={cities} />
-        {/* </Suspense> a ver pullRequestSiApareces*/}
+        <div className="items-center self-center">
+          <h1 className="text-[45px] text-center ">
+            <GrMapLocation size={150} className="mx-auto" color="red" />
+            Ubicaciones de las mascotas publicadas{" "}
+          </h1>
+          <h3 className="text-center">
+            Clickea sobre los marcadores para ver el detalle o ir a la
+            publicación.
+          </h3>
+          <div className="grid grid-cols-3 mt-2">
+            <div className="p-4 bg-red-600 font-bold text-white text-center">
+              PERDIDOS
+            </div>
+            <div className="p-4 bg-purple-600 font-bold text-white text-center">
+              EN ADOPCIÓN
+            </div>
+            <div className="p-4 bg-teal-600 font-bold text-white text-center">
+              ENCONTRADOS
+            </div>
+          </div>
+        </div>
       </section>
     </main>
   );
