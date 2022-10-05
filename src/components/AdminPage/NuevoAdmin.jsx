@@ -140,7 +140,6 @@ const NuevoAdmin = () => {
                 className="h-full w-full object-cover cursor-pointer"
                 onClick={() => {
                   setModalActive(!modalActive);
-                  console.log(modalActive);
                 }}
               />
             </div>
@@ -273,7 +272,9 @@ const NuevoAdmin = () => {
           </header>
           {/* <main className="w-full box-border p-2 sm:p-10 space-y-6"> */}
           <main
-            className={`w-screen box-border p-2 md:p-10 space-y-6 ${modalActive ? "ml-20" : ""} md:ml-12`}
+            className={`w-screen box-border p-2 md:p-10 space-y-6 ${
+              modalActive ? "ml-20" : ""
+            } md:ml-12`}
           >
             <div className="flex flex-col space-y-6 md:space-y-0 md:flex-row justify-between">
               <div className="mr-6">
