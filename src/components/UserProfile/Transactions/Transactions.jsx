@@ -17,7 +17,6 @@ const tokenAccess = localStorage.getItem("token");
     dispatch(updateTransactionStatus(trId, tokenAccess));
     setOrder("completed");
   };
-
   useEffect(() => {}, [transactions, setOrder]);
 
   //------------------//PAGINACION//------------------------//

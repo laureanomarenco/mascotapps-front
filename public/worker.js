@@ -1,3 +1,4 @@
+
 self.addEventListener("push", (e) => {
   const data = e.data.json();
   console.log(data);
@@ -7,4 +8,8 @@ self.addEventListener("push", (e) => {
     icon:
       "https://res.cloudinary.com/dfbxjt69z/image/upload/v1663276317/mascotapps/perrito_apwyz0.png",
   });
+});
+
+self.addEventListener('notificationclick', () => {
+  window.open(`https://mascotapps.vercel.app/home`)
 });

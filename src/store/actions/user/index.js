@@ -11,7 +11,6 @@ import {
   RATE_USER,
   POINTS,
   BUY,
-  DONATE_POINTS,
   CANCEL_POST,
   FINISH_POST,
 } from "../../../constants/url";
@@ -22,7 +21,7 @@ import {
   CREAT_USER,
   GET_PUBLIC_USER_DETAIL,
   USER_POINTS,
-  DONATE_USER_POINTS
+
 } from "../types";
 
 function myProfile(token) {
@@ -197,18 +196,6 @@ function finishPost(input, token) {
   };
 }
 
-function donatePoints(body, token) {
-  return async function(dispatch) {
-    try {
-      let response = await axios.post(DONATE_POINTS, body, header(token));
-      return dispatch({ type: DONATE_USER_POINTS, payload: response.data });
-    } catch (error) {
-      console.log(error.message);
-    }
-  };
-}
-
-
 export {
   myProfile,
   resetMyProfile,
@@ -223,5 +210,4 @@ export {
   buyItems,
   cancelPost,
   finishPost,
-  donatePoints,
 };
