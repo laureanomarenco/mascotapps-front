@@ -7,7 +7,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import Swal from "sweetalert2";
 
 
-const EndPost = ({ hiddenEnd, setHiddenEnd, idPet }) => {
+const EndPost = ({  handleHidden,idPet }) => {
   const { user } = useAuth0();
   const myProfileData = useSelector((state) => state.myProfile);
   const transactions = myProfileData?.transactions;
@@ -44,7 +44,6 @@ const EndPost = ({ hiddenEnd, setHiddenEnd, idPet }) => {
     } else {
       dispatch(finishPost(input, tokenAccess));
     }
-    setHiddenEnd((hiddenEnd = true));
     Swal.fire({
       title:
         "Tu publicación fue finalizada correctamente y ya no figurará entre las mascotas activas.",
@@ -71,11 +70,10 @@ no-repeat
   return (
     <div
       className="relative border border-gray-300 rounded-lg shadow-lg "
-      hidden={hiddenEnd}
     >
       <button
         className="absolute p-1 bg-gray-100 border border-gray-300 rounded-full -top-1 -right-1"
-        onClick={() => setHiddenEnd(hiddenEnd === true ? false : true)}
+        onClick={() => handleHidden(idPet)}
       >
         <svg
           xmlns="http://www.w3.org/2000/svg"

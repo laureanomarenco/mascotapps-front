@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import swal from "sweetalert2"
 import { useDispatch, useSelector } from "react-redux";
 import { BsPencilSquare, BsCheck2Square } from "react-icons/bs";
 import { RiChatDeleteFill } from "react-icons/ri";
@@ -18,23 +19,56 @@ const BadgesPets = ({
 }) => {
   const tokenAccess = localStorage.getItem("token");
   const dispatch = useDispatch();
-  const [hiddenEnd, setHiddenEnd] = useState(true);
+  const [hiddenEnd, setHiddenEnd] = useState(myPets.map(el=>el.id).reduce((obj,prop)=>{
+    if(!obj[prop]) obj[prop] = false;
+    return obj
+  },{}));
   const handleClick = (petid, tokenAccess) => {
     dispatch(deletePet(petid, tokenAccess));
     dispatch(getMyPets(tokenAccess));
-    setOrder(order === "nowpAPTO" ? "now" : "nowpAPTO");
-  };
-  const userContact = useSelector((state) => state.publicUserDetail);
-  useEffect(() => {}, [myPets]);
+    setOrder(order === "nowpAPTO" ? "now" : "nowpAPTO");};
 
+  const userContact = useSelector((state) => state.publicUserDetail);
+  useEffect(() => {
+
+  }, [myPets]);
+
+  const showAlert=(id)=>{
+    swal.fire({
+      title:"Estas seguro de borrar la mascota?",
+      text:"Si la borras se perdera todos los datos relacionado con la mascota",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor:'#3085d6',
+      cancelButtonColor: '#d33',
+      confirmButtonText: '¡Sí, bórralo!'
+    }).then((result)=>{
+      if(result.isConfirmed){
+        handleClick(id,tokenAccess)
+        swal.fire(
+          'Mascota borrada!',
+          'Tu mascota fue borrada con exito!',
+          'success'
+        )
+      }
+    })
+  }
   const handleHidden = (id) => {
-    setHiddenEnd(hiddenEnd === true ? false : true);
-    console.log("IDDDDDD ", id);
+    setHiddenEnd({...hiddenEnd,
+      [id]:!hiddenEnd[id]
+    })
+    // setHiddenEnd(hiddenEnd === true ? false : true);
     dispatch(publicUserDetail(id));
   };
+
+  useEffect(()=>{
+    console.log(hiddenEnd)
+  },[hiddenEnd])
+
+
   return (
     <div
-      className="flex flex-col items-center gap-5 grid-rows-1 py-5 px-5 md:grid md:grid-cols-2 xl:grid-cols-3 w-full relative border border-gray-300  rounded-lg my-2 shadow-lg  "
+      className="flex flex-col items-start gap-5 grid-rows-1 py-5 px-5 md:grid md:grid-cols-2 xl:grid-cols-3 w-full relative border border-gray-300  rounded-lg my-2 shadow-lg  "
       hidden={hidden}
     >
       <button
@@ -90,11 +124,11 @@ const BadgesPets = ({
                   </p>
                   <button
                     className="text-2xl "
-                    onClick={() => handleClick(a.id, tokenAccess)}
+                    onClick={()=>showAlert(a.id)}
                   >
                     <RiChatDeleteFill color="red" />
                   </button>
-                  <p
+                  <p name={"kk"} onClick={()=>handleHidden(a.id)}
                     className={`text-xl ${
                       a.postStatus === "concretado" ||
                       a.postStatus === "cancelado"
@@ -102,18 +136,20 @@ const BadgesPets = ({
                         : ""
                     }`}
                   >
-                    <BsCheck2Square onClick={handleHidden} color="green" />
+                    <BsCheck2Square  color="green" />
                   </p>
                 </div>
-                <div className="w-full mty-2" hidden={hiddenEnd}>
+              </div>
+              {
+                hiddenEnd[a.id] &&
+                <div className="w-full mty-2">
                   <EndPost
                     user={userContact}
-                    hiddenEnd={hiddenEnd}
-                    setHiddenEnd={setHiddenEnd}
+                    handleHidden={handleHidden}
                     idPet={a.id}
-                  />
+                    />
                 </div>
-              </div>
+              }
             </div>
           ))
         : null}
