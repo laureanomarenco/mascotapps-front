@@ -25,36 +25,103 @@ import ConsultasForm from "./components/ConsultasForm/ConsultasForm";
 import SuccessPetsContainer from "./components/SuccessPetsContainer/SuccessPetsContainer";
 import Team from "./components/Team/Team";
 import PointsStore from "./components/PetStore/PointsStore";
+import UserBanned from "./components/UserBanned/UserBanned";
 
 function App() {
-  //eslint-disable-next-line
+  var banned= localStorage.getItem("banned");
   const dispatch = useDispatch();
+  console.log(banned);
+
+
   useEffect(() => {
+    console.log("estoy en el useEffect");
     dispatch(fetchPets());
-  }, [dispatch]);
+     banned = localStorage.getItem("banned");
+  }, [dispatch, banned]);
+
   return (
     <div className=".App">
       <BrowserRouter>
         <Routes>
-          <Route exact path="/" element={<LandingPage />} />
-          <Route path="/home" element={<Home />} />
+          <Route
+            exact
+            path="/"
+            element={banned === "true" ? <UserBanned /> : <LandingPage />}
+          />
+          <Route
+            path="/home"
+            element={banned === "true" ? <UserBanned /> : <Home />}
+          />
           <Route path="/register" element={<SignUp />} />
-          <Route path="/account" element={<NuevoProfile />} />
-          <Route path="/pets/:id" element={<Detail />} />
-          <Route path="/estado/:status" element={<PetsContainer />} />
-          <Route path="/admin/*" element={<LoginAdmin />} />
-          <Route path="/admin/general" element={<NuevoAdmin />} />
-          {/* <Route exact path="/admin/general/pets" element={<Pets />} /> */}
-          <Route path="/donate" element={<Donate />} />
+
+          <Route
+            path="/account"
+            element={banned === "true" ? <UserBanned /> : <NuevoProfile />}
+          />
+          <Route
+            path="/pets/:id"
+            element={banned === "true" ? <UserBanned /> : <Detail />}
+          />
+          <Route
+            path="/estado/:status"
+            element={banned === "true" ? <UserBanned /> : <PetsContainer />}
+          />
+          <Route
+            path="/admin"
+            element={banned === "true" ? <UserBanned /> : <LoginAdmin />}
+          />
+          <Route
+            path="/admin/general"
+            element={banned === "true" ? <UserBanned /> : <NuevoAdmin />}
+          />
+          <Route
+            path="/donate"
+            element={banned === "true" ? <UserBanned /> : <Donate />}
+          />
+
           <Route path="*" element={<Error />} />
-          <Route path="/favoritos" element={<FavContainer />}></Route>
-          <Route path="/profile" element={<UsersPublicProfile />}></Route>
-          <Route path="/postpets" element={<PostPets />}></Route>
-          <Route path="/faqs" element={<Faq />}></Route>
-          <Route path="/query" element={<ConsultasForm />} />
-          <Route path="/team" element={<Team />} />
-          <Route path="/store" element={<PointsStore />} />
-          <Route path="/success" element={<SuccessPetsContainer />} />
+          <Route
+            path="/favoritos"
+            element={banned === "true" ? <UserBanned /> : <FavContainer />}
+          ></Route>
+          <Route
+            path="/profile"
+            element={
+              banned === "true" ? <UserBanned /> : <UsersPublicProfile />
+            }
+          ></Route>
+          <Route
+            path="/postpets"
+            element={banned === "true" ? <UserBanned /> : <PostPets />}
+          ></Route>
+          <Route
+            path="/faqs"
+            element={ <Faq />}
+          ></Route>
+          <Route
+            path="/query"
+            element={ <ConsultasForm />}
+          />
+          <Route
+            path="/team"
+            element={banned === "true" ? <UserBanned /> : <Team />}
+          />
+          <Route
+            path="/store"
+            element={banned === "true" ? <UserBanned /> : <PointsStore />}
+          />
+          <Route
+            path="/success"
+            element={
+              banned === "true" ? <UserBanned /> : <SuccessPetsContainer />
+            }
+          />
+          <Route
+            path="/banned"
+            element={
+              <UserBanned/>
+            }
+          />
         </Routes>
       </BrowserRouter>
     </div>

@@ -27,9 +27,12 @@ export default function Login() {
             Authorization: `Bearer ${claims}`,
           },
         });
-
-        if (existe.data.msg) {
+        console.log(existe.data.msg);
+        if (existe.data.msg === true){
           navigate("/home");
+        } else if (existe.data.msg === "banned") {
+          localStorage.setItem("banned", 'true');
+          navigate("/banned");
         } else {
           navigate("/register");
         }

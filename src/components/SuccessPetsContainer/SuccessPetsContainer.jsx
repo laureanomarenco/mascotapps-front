@@ -66,7 +66,7 @@ export default function SuccessPetsContainer() {
                     .map((el) => (
                       <li
                         key={el.id}
-                        className="flex bg-gradient-to-r from-yellow-50 via-yellow-50 to-yellow-200 shadow-md m-2 p-4 rounded shadow-sm items-center"
+                        className="flex bg-gradient-to-r from-yellow-50 via-yellow-50 to-yellow-200 shadow-md m-2 p-4 rounded items-center"
                       >
                         <img
                           src={el.image}
