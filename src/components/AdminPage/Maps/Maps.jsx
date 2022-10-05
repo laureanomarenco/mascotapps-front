@@ -12,9 +12,7 @@ const markerIcon = new L.Icon({
 });
 
 const Maps = ({ cities }) => {
-  console.log(cities);
   useEffect(() => {}, [cities]);
-
   return (
     <div>
       <MapContainer
