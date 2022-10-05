@@ -11,9 +11,10 @@ import Swal from "sweetalert2";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import { useAuth0 } from "@auth0/auth0-react";
 import { GiReceiveMoney } from "react-icons/gi";
-import { tokenAccess } from "../../constants/token";
 
 const SignUp = () => {
+  const tokenAccess = localStorage.getItem("token");
+
   const { user, isAuthenticated, isLoading } = useAuth0();
   //CIUDADES ARG--------------------------------------------------------------------------
   const dispatch = useDispatch();
@@ -85,6 +86,7 @@ const SignUp = () => {
     if (errors.name || errors.city || errors.contact) {
       alert("Verifique los campos");
     } else {
+      console.log(tokenAccess);
       dispatch(CreateUser(input, tokenAccess));
       Swal.fire({
         title: "Usuario creado correctamente",
