@@ -46,10 +46,10 @@ const NuevoAdmin = () => {
   // foundAPet: 0
 
   //--------PARA EL MAPA---------------//
-  const petsForMap = pets && { ...pets };
+  var petsForMap = pets && { ...pets };
   // const citiesForMap = cities && { ...cities };
 
-  let localidades = cities?.map((loc) => {
+  var localidades = cities?.map((loc) => {
     return {
       lon: loc.centroide.lon,
       lat: loc.centroide.lat,
@@ -58,7 +58,7 @@ const NuevoAdmin = () => {
     };
   });
 
-  const match = pets?.map((p) => {
+  var match = pets?.map((p) => {
     var prov = localidades.find(
       (l) =>
         l.nombre === p.city.split(", ")[0] &&

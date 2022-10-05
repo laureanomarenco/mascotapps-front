@@ -62,20 +62,23 @@ const Pets = ({ cities, tokenAccess }) => {
         dispatch(
           deletePost({ petId: id, password: ultraSecreta }, tokenAccess)
         );
-        dispatch(fetchPets(tokenAccess));
         dispatch(getSuccess());
 
         Swal.fire({
           title: "Publicación eliminada correctamente!",
           icon: "success",
           confirmButtonColor: "#28B0A2",
+        }).then((result) => {
+          if (result.isConfirmed) {
+            dispatch(fetchPets());
+          }
         });
       }
     });
   };
 
   useEffect(() => {
-    dispatch(fetchPets(tokenAccess));
+    dispatch(fetchPets());
     dispatch(getSuccess());
   }, [dispatch]);
 
