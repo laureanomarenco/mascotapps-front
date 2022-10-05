@@ -23,12 +23,12 @@ const adopcionIcon = new L.Icon({
 const Maps = ({ cities }) => {
   useEffect(() => {}, [cities]);
   return (
-    <div className="w-1/2 h-full ">
+    <div className="w-full md:w-1/2 h-full ">
       <MapContainer
         center={[-38.416097, -63.616672]}
         zoom={4}
         scrollWheelZoom={true}
-        className="w-9/6 h-[600px]  mx-auto "
+        className="w-full md:w-9/6 h-[600px]  mx-auto "
       >
         <TileLayer
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> '
