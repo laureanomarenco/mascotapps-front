@@ -4,7 +4,7 @@ import React, { useEffect, useState } from "react";
 import Percents from "./Percents";
 import PetsPagination from "./PetsPagination/PetsPagination";
 
-import { fetchPets, deletePost } from "../../store/actions/index";
+import { fetchPets, deletePost, getSuccess } from "../../store/actions/index";
 import { FaHands } from "react-icons/fa";
 import { GiDogHouse } from "react-icons/gi";
 import { GiCat } from "react-icons/gi";
@@ -15,12 +15,14 @@ import { CgSearchFound } from "react-icons/cg";
 import { BsGenderAmbiguous } from "react-icons/bs";
 import { useDispatch } from "react-redux";
 import { FaTrashAlt } from "react-icons/fa";
+import { BiHappyAlt } from "react-icons/bi";
 import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 
 // const Maps = React.lazy(() => import("./Maps/Maps"));
 const Pets = (/*{ cities }*/ { tokenAccess }) => {
   const pets = useSelector((state) => state.pets);
+  const successPets = useSelector((state) => state.successArr);
   const dispatch = useDispatch();
   const ultraSecreta = "SoyAdmin";
 
@@ -35,11 +37,12 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
     setPage(pageNumber);
   }
 
+  console.log(successPets);
   //---------PAGINACION------------//
 
   const handleClick = (id) => {
     return Swal.fire({
-      title: "¿Eliminar posteo?",
+      title: "¿Eliminar publicación?",
       text: "Ingresa tu contraseña confirmar",
       html: `<input type="password" id="password" className="swal2-input" placeholder="Password">`,
       confirmButtonText: "Eliminar",
@@ -60,9 +63,10 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
           deletePost({ petId: id, password: ultraSecreta }, tokenAccess)
         );
         dispatch(fetchPets(tokenAccess));
+        dispatch(getSuccess());
 
         Swal.fire({
-          title: "Usuario eliminado correctamente!",
+          title: "Publicación eliminada correctamente!",
           icon: "success",
           confirmButtonColor: "#28B0A2",
         });
@@ -70,8 +74,11 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
     });
   };
 
+  console.log(pets);
+
   useEffect(() => {
     dispatch(fetchPets(tokenAccess));
+    dispatch(getSuccess());
   }, [dispatch]);
 
   return (
@@ -92,11 +99,17 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
           </div>
           <div>
             <span className="block flex gap-2 text-2xl font-bold">
-              {pets && pets?.filter((p) => p.status === "en adopción").length}
+              {pets &&
+                pets?.filter(
+                  (p) => p.status === "en adopción" && p.postStatus === "activo"
+                ).length}
               <Percents
                 value={
                   (
-                    (pets?.filter((p) => p.status === "en adopción").length *
+                    (pets?.filter(
+                      (p) =>
+                        p.status === "en adopción" && p.postStatus === "activo"
+                    ).length *
                       100) /
                     pets.length
                   ).toFixed(2) + "%"
@@ -105,28 +118,6 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
             </span>
 
             <span className="block text-gray-500">en Adopción</span>
-          </div>
-        </div>
-        <div className="flex items-center p-8 bg-white shadow rounded-lg">
-          <div className="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-yellow-600  rounded-full mr-6">
-            <GiDogHouse className="mx-auto h-1/2 fill-yellow-600" size={100} />
-          </div>
-          <div>
-            <span className="block flex gap-2 text-2xl font-bold">
-              {pets
-                ? pets?.filter((p) => p.status === "adoptado").length
-                : null}
-              <Percents
-                value={
-                  (
-                    (pets?.filter((p) => p.status === "adoptado").length *
-                      100) /
-                    pets.length
-                  ).toFixed(2) + "%"
-                }
-              />
-            </span>
-            <span className="block text-gray-500">Adoptadas</span>
           </div>
         </div>
         <div className="flex items-center p-8 bg-white shadow rounded-lg">
@@ -265,6 +256,72 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
           </div>
         </div>
       </section>
+      <div className="flex items-center p-8 bg-white shadow rounded-lg ">
+        <div className="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-yellow-600  rounded-full mr-6">
+          <GiDogHouse className="mx-auto h-1/2 fill-yellow-600" size={100} />
+        </div>
+        <div>
+          <span className="block flex gap-2 text-2xl font-bold">
+            {successPets
+              ? successPets?.filter(
+                  (p) =>
+                    p.status === "en adopción" && p.postStatus === "concretado"
+                ).length
+              : null}
+            <Percents
+              value={
+                (
+                  (successPets?.filter(
+                    (p) =>
+                      p.status === "en adopción" &&
+                      p.postStatus === "concretado"
+                  ).length *
+                    100) /
+                  successPets.length
+                ).toFixed(2) + "%"
+              }
+            />
+          </span>
+        </div>
+        <h1 className="block text-gray-300 mx-auto text-3xl flex items-center gap-2">
+          Mascotas tienen nuevo hogar{" "}
+          <span>
+            <BiHappyAlt size={50} fill="#FFD803" />
+          </span>
+        </h1>
+      </div>
+      <div className="flex items-center p-8 bg-white shadow rounded-lg">
+        <div className="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-yellow-600  rounded-full mr-6">
+          <GiDogHouse className="mx-auto h-1/2 fill-yellow-600" size={100} />
+        </div>
+        <div>
+          <span className="block flex gap-2 text-2xl font-bold">
+            {successPets
+              ? successPets?.filter(
+                  (p) => p.status === "perdido" && p.postStatus === "concretado"
+                ).length
+              : null}
+            <Percents
+              value={
+                (
+                  (successPets?.filter(
+                    (p) =>
+                      p.status === "perdido" && p.postStatus === "concretado"
+                  ).length *
+                    100) /
+                  successPets.length
+                ).toFixed(2) + "%"
+              }
+            />
+          </span>
+        </div>
+        <h1 className="block text-gray-300 mx-auto text-3xl flex items-center gap-2">
+          Mascotas volvieron a su hogar
+          <span>
+            <BiHappyAlt size={50} fill="#FFD803" />
+          </span>
+        </h1>
+      </div>
       <section>
         <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded ">
           <div className="rounded-t mb-0 px-4 py-3 border-0">
