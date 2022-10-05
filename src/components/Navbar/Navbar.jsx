@@ -37,10 +37,7 @@ export default function Navbar({ setPage }) {
     if (!isLoading && isAuthenticated) {
       dispatch(myProfile(tokenAccess));
     }
-    if (myProfileData?.userProps?.isBanned) {
-      localStorage.setItem("banned", "true");
-    }
-  }, [isLoading, isAuthenticated, user, dispatch, myProfileData]);
+  }, [isLoading, isAuthenticated, user, dispatch]);
 
   return (
     <div className=" z-50 w-full">

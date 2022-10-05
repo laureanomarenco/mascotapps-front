@@ -5,40 +5,44 @@ import axios from "axios";
 import { URL_EXIST } from "../../constants/url";
 
 export const LoginButton = ({ className, text, children }) => {
-  const { loginWithRedirect , user,
+  const {
+    loginWithRedirect,
+    user,
     isAuthenticated,
     getAccessTokenSilently,
-    isLoading, } = useAuth0();
-const navigate = useNavigate();
+    isLoading,
+    logout,
+  } = useAuth0();
+  const navigate = useNavigate();
 
-const handleValidation = async (user, isAuthenticated) => {
-  try {
-    const claims = await getAccessTokenSilently();
-    localStorage.setItem("token", claims);
+  const handleValidation = async (user, isAuthenticated) => {
+    try {
+      const claims = await getAccessTokenSilently();
+      localStorage.setItem("token", claims);
 
-    if (isAuthenticated && user) {
-      let existe = await axios.get(URL_EXIST, {
-        headers: {
-          Authorization: `Bearer ${claims}`,
-        },
-      });
-      console.log(existe.data.msg);
-      if (existe.data.msg) {
-        navigate("/home");
-      } else if (existe.data.msg === "banned") {
-        localStorage.setItem("banned", "true");
-      } else {
-        navigate("/register");
+      if (isAuthenticated && user) {
+        let existe = await axios.get(URL_EXIST, {
+          headers: {
+            Authorization: `Bearer ${claims}`,
+          },
+        });
+        console.log(existe.data.msg);
+        if (existe.data.msg) {
+          navigate("/home");
+        } else if (existe.data.msg === "banned") {
+          logout({ returnTo: "https://mascotapps.vercel.app/banned" });
+        } else {
+          navigate("/register");
+        }
       }
+    } catch (error) {
+      console.log(error);
     }
-  } catch (error) {
-    console.log(error);
-  }
-};
+  };
 
-if (!isLoading && isAuthenticated) {
-  handleValidation(user, isAuthenticated);
-}
+  if (!isLoading && isAuthenticated) {
+    handleValidation(user, isAuthenticated);
+  }
   return (
     <button onClick={() => loginWithRedirect()} className={className}>
       {children}

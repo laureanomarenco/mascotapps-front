@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-
-import { Logout } from "../Logout/Logout";
+import Button from "../Button/Button";
 
 const Error = () => {
   return (
@@ -27,7 +26,7 @@ const Error = () => {
           </p>
         </div>
         <div className=" font-bold text-center ml-auto w-full md:w-max rounded">
-          <Logout />
+          <Button path="/home" text="Ir al inicio"/>
         </div>
       </section>
     </div>
