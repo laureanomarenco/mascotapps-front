@@ -93,8 +93,8 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
         <div className="flex flex-wrap items-start justify-end -mb-3"></div>
       </div>
       <section className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
-        <div className="flex items-center p-8 bg-white shadow rounded-lg">
-          <div className="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-purple-600  rounded-full mr-6">
+        <div className="flex items-center p-8 bg-white justify-evenly shadow rounded-lg">
+          <div className="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-purple-600 rounded-full mr-6">
             <FaHands className="mx-auto h-1/2 fill-yellow-600" size={100} />
           </div>
           <div>
@@ -116,11 +116,10 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
                 }
               />
             </span>
-
             <span className="block text-gray-500">en Adopción</span>
           </div>
         </div>
-        <div className="flex items-center p-8 bg-white shadow rounded-lg">
+        <div className="flex items-center p-8 justify-evenly shadow rounded-lg bg-white">
           <div className="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-yellow-600 rounded-full mr-6">
             <MdImageSearch
               className="mx-auto h-1/2 fill-yellow-600"
@@ -143,7 +142,7 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
             <span className="block text-gray-500">Perdidas</span>
           </div>
         </div>
-        <div className="flex items-center p-8 bg-white shadow rounded-lg">
+        <div className="flex items-center p-8 bg-white justify-evenly shadow rounded-lg">
           <div className="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-yellow-600  rounded-full mr-6">
             <CgSearchFound
               className="mx-auto h-1/2 stroke-yellow-600"
@@ -171,7 +170,7 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
       </section>
 
       <section className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
-        <div className="flex items-center p-8 bg-white shadow rounded-lg">
+        <div className="flex items-center p-8 bg-white justify-evenly shadow rounded-lg">
           <div className="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-green-600 bg-green-100  rounded-full mr-6">
             <GiCat className="mx-auto h-1/2 fill-green-600" size={100} />
           </div>
@@ -190,7 +189,7 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
             <span className="block text-gray-500">Gatos</span>
           </div>
         </div>
-        <div className="flex items-center p-8 bg-white shadow rounded-lg">
+        <div className="flex items-center p-8 bg-white justify-evenly shadow rounded-lg">
           <div className="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-green-600 bg-green-100 rounded-full mr-6">
             <GiSittingDog className="mx-auto h-1/2 fill-green-600" size={100} />
           </div>
@@ -209,7 +208,7 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
             <span className="block text-gray-500">Perros</span>
           </div>
         </div>
-        <div className="flex items-center p-8 bg-white shadow rounded-lg">
+        <div className="flex items-center p-8 bg-white justify-evenly shadow rounded-lg">
           <div className="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-red-600 bg-green-100 rounded-full mr-6">
             <GiNestBirds className="mx-auto h-1/2 fill-green-600" size={100} />
           </div>
@@ -231,7 +230,7 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
             <span className="block text-gray-500">Otra especie</span>
           </div>
         </div>
-        <div className="flex items-center p-8 bg-white shadow rounded-lg">
+        <div className="flex items-center p-8 bg-white justify-evenly shadow rounded-lg">
           <div className="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-blue-600 bg-gradient-to-tr from-blue-500 via-pink-100 to-pink-600  rounded-full mr-6">
             <BsGenderAmbiguous
               className="mx-auto h-1/2 stroke-blue-600"
@@ -256,7 +255,7 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
           </div>
         </div>
       </section>
-      <div className="flex items-center p-8 bg-white shadow rounded-lg ">
+      <div className="flex items-center p-8 bg-white shadow rounded-lg flex-col md:flex-row">
         <div className="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-yellow-600  rounded-full mr-6">
           <GiDogHouse className="mx-auto h-1/2 fill-yellow-600" size={100} />
         </div>
@@ -290,7 +289,7 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
           </span>
         </h1>
       </div>
-      <div className="flex items-center p-8 bg-white shadow rounded-lg">
+      <div className="flex items-center p-8 shadow bg-white rounded-lg flex-col md:flex-row">
         <div className="inline-flex flex-shrink-0 items-center justify-center h-16 w-16 text-yellow-600  rounded-full mr-6">
           <GiDogHouse className="mx-auto h-1/2 fill-yellow-600" size={100} />
         </div>

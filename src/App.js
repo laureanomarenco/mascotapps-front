@@ -36,74 +36,74 @@ function App() {
   }, [dispatch]);
 
   return (
-    <div className=".App">
+    <div className=".App overflow-x-hidden">
       <BrowserRouter>
         <Routes>
           <Route
             exact
             path="/"
-            element={ <LandingPage />}
+            element={<LandingPage />}
           />
           <Route
             path="/home"
-            element={ <Home />}
+            element={<Home />}
           />
           <Route path="/register" element={<SignUp />} />
 
           <Route
             path="/account"
-            element={ <NuevoProfile />}
+            element={<NuevoProfile />}
           />
           <Route
             path="/pets/:id"
-            element={ <Detail />}
+            element={<Detail />}
           />
           <Route
             path="/estado/:status"
-            element={ <PetsContainer />}
+            element={<PetsContainer />}
           />
           <Route
             path="/admin"
-            element={ <LoginAdmin />}
+            element={<LoginAdmin />}
           />
           <Route
             path="/admin/general"
-            element={ <NuevoAdmin />}
+            element={<NuevoAdmin />}
           />
           <Route
             path="/donate"
-            element={ <Donate />}
+            element={<Donate />}
           />
 
           <Route path="*" element={<Error />} />
           <Route
             path="/favoritos"
-            element={ <FavContainer />}
+            element={<FavContainer />}
           ></Route>
           <Route
             path="/profile"
             element={
-               <UsersPublicProfile />
+              <UsersPublicProfile />
             }
           ></Route>
           <Route
             path="/postpets"
-            element={ <PostPets />}
+            element={<PostPets />}
           ></Route>
           <Route path="/faqs" element={<Faq />}></Route>
           <Route path="/query" element={<ConsultasForm />} />
           <Route
             path="/team"
-            element={ <Team />}
+            element={<Team />}
           />
           <Route
             path="/store"
-            element={ <PointsStore />}
+            element={<PointsStore />}
           />
           <Route
             path="/success"
             element={
-               <SuccessPetsContainer />
+              <SuccessPetsContainer />
             }
           />
           <Route path="/banned" element={<UserBanned />} />
