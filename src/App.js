@@ -31,7 +31,6 @@ function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    console.log("estoy en el useEffect");
     dispatch(fetchPets());
   }, [dispatch]);
 

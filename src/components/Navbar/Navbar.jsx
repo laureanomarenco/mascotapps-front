@@ -7,9 +7,10 @@ import { searchPets, resetDetail } from "../../store/actions";
 import { useAuth0 } from "@auth0/auth0-react";
 import { LoginButton } from "../Login/LoginButton";
 import Push from "../Push/Push";
-import { tokenAccess } from "../../constants/token";
+
 
 export default function Navbar({ setPage }) {
+  const tokenAccess = localStorage.getItem("token");
   const { isAuthenticated, user, isLoading } = useAuth0();
   const [searchInput, setSearchInput] = useState(true);
   const [mdOptionsToggle, setMdOptionsToggle] = useState(true);

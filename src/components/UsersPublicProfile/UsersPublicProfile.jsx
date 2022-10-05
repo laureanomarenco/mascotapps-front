@@ -13,10 +13,11 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { BiDonateHeart } from "react-icons/bi";
 import { GiTrophyCup } from "react-icons/gi";
 import { MdPets } from "react-icons/md";
-import { tokenAccess } from "../../constants/token";
+
 import Modal from "../Modal/Modal";
 
 export default function UserPuserProfsPublicProfile() {
+  const tokenAccess = localStorage.getItem("token");
   const { user } = useAuth0();
   const location = useLocation();
   const { userProf, idPet } = location.state;

@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { tokenAccess } from "../../constants/token";
+
 import React, { useEffect, useState } from "react";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import { AiOutlineCamera } from "react-icons/ai";
@@ -22,6 +22,7 @@ import TextRender from "./TextRender";
 import Spinner from "../Spinner/Spinner";
 
 const PostPets = () => {
+  const tokenAccess = localStorage.getItem("token");
   const [post, setPost] = useState(1);
   const { isAuthenticated, isLoading } = useAuth0();
   const navigate = useNavigate();

@@ -28,7 +28,6 @@ export default function Login() {
             Authorization: `Bearer ${claims}`,
           },
         });
-        console.log(existe.data.msg);
         if (existe.data.msg === true) {
           navigate("/home");
         } else if (existe.data.msg === "banned") {

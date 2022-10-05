@@ -25,7 +25,8 @@ import {
   RESET_DETAIL,
   FILTER_PETS,
   SEARCH_PETS,
-  DONATE_USER_POINTS
+  DONATE_USER_POINTS,
+  CREAT_USER,
 } from "../actions/types";
 
 const initalState = {
@@ -40,7 +41,7 @@ const initalState = {
   species: [],
   donations: [],
   cities: [],
-  user: {},
+  user: "",
   userPets: [],
   totalUsers: "",
   statusLogin: false,
@@ -55,7 +56,7 @@ const initalState = {
   userPoints: 0,
   pointsRank: [],
   adoptionsRank: [],
-  stateDonationPoints: ""
+  stateDonationPoints: "",
 };
 
 export default function reducer(state = initalState, action) {
@@ -237,8 +238,13 @@ export default function reducer(state = initalState, action) {
     case DONATE_USER_POINTS:
       return {
         ...state,
-        stateDonationPoints: action.payload.msg
-      }
+        stateDonationPoints: action.payload.msg,
+      };
+    case CREAT_USER:
+      return {
+        ...state,
+        user: action.payload,
+      };
     default:
       return state;
   }

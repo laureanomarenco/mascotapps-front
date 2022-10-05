@@ -6,15 +6,20 @@ import TextField from "@mui/material/TextField";
 import Autocomplete from "@mui/material/Autocomplete";
 import { AiOutlineUserAdd } from "react-icons/ai";
 import { MdAlternateEmail } from "react-icons/md";
-import { CreateUser } from "../../store/actions/index";
+// import { CreateUser } from "../../store/actions/index";
 import Swal from "sweetalert2";
 import { AiOutlineWhatsApp } from "react-icons/ai";
 import { useAuth0 } from "@auth0/auth0-react";
 import { GiReceiveMoney } from "react-icons/gi";
-import { tokenAccess } from "../../constants/token";
+import { header } from "../../constants/token";
+import axios from "axios";
+import { CREAT } from "../../constants/url";
 
 const SignUp = () => {
-  const { user, isAuthenticated, isLoading } = useAuth0();
+  //eslint-disable-next-line
+  const tokenAccess = localStorage.getItem("token");
+  const response = useSelector((state) => state.user);
+  const { user, isAuthenticated, isLoading, logout } = useAuth0();
   //CIUDADES ARG--------------------------------------------------------------------------
   const dispatch = useDispatch();
   const cities = useSelector((state) => state.cities);
@@ -22,7 +27,7 @@ const SignUp = () => {
 
   useEffect(() => {
     dispatch(fetchCity());
-  }, [dispatch]);
+  }, [dispatch, response]);
 
   let localidades = cities?.map((loc) => {
     return {
@@ -80,24 +85,46 @@ const SignUp = () => {
     return errorObj;
   }
   //SUBMIT --------------------------------------------------------------------------------------------------------------
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (errors.name || errors.city || errors.contact) {
       alert("Verifique los campos");
     } else {
-      dispatch(CreateUser(input, tokenAccess));
-      Swal.fire({
-        title: "Usuario creado correctamente",
-        text: "Gracias por registrarte en Mascotapp.",
-        icon: "success",
-        showCancelButton: false,
-        confirmButtonColor: "#3085d6",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          navigate("/home");
-          setInput({});
+      try {
+        let result = await axios.post(CREAT, input, header(tokenAccess))
+        if (result.status === 200) {
+          Swal.fire({
+            title: "Usuario creado correctamente",
+            text: "Gracias por registrarte en Mascotapp.",
+            icon: "success",
+            showCancelButton: false,
+            confirmButtonColor: "#3085d6",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              navigate("/home");
+              setInput({});
+            }
+          });
         }
-      });
+      } catch (error) {
+        console.log("errocito", error.message);
+        if (error.message) {
+          Swal.fire({
+            title: "Hubo un error!",
+            text:
+              "Hubo un error al crear tu usuario, por favor vuelve a intentarlo.",
+            icon: "warning",
+            showCancelButton: false,
+            confirmButtonColor: "#3085d6",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              localStorage.removeItem("token");
+              logout({ returnTo: window.location.origin });
+              setInput({});
+            }
+          });
+        }
+      }
     }
   };
   if (!isLoading && !isAuthenticated) {
