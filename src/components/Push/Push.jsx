@@ -3,9 +3,12 @@ import { NavBtn } from "../Navbar/items";
 import axios from "axios";
 import { useAuth0 } from "@auth0/auth0-react";
 import { WEB_PUSH, DESUBSCRIBE } from "../../constants/url";
+import { useState } from "react";
+import { useEffect } from "react";
 
 export default function Push({ myProfileData }) {
   const { user } = useAuth0();
+  const [status, setStatus] = useState(false);
 
   //eslint-disable-next-line
   const publicVapidKey =
@@ -59,10 +62,13 @@ export default function Push({ myProfileData }) {
   function handleSuscripcion() {
     if (myProfileData && myProfileData?.userProps?.endpoints === null) {
       subscribeUser();
+      setStatus(true);
     } else {
       desubscribeUser();
+      setStatus(false);
     }
   }
+  useEffect(()=>{},[status])
   return myProfileData && myProfileData?.userProps?.endpoints === null ? (
     <NavBtn icon="unsubscribe" handleClick={handleSuscripcion} />
   ) : (
