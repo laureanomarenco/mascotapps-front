@@ -22,9 +22,11 @@ const handleValidation = async (user, isAuthenticated) => {
           Authorization: `Bearer ${claims}`,
         },
       });
-
+      console.log(existe.data.msg);
       if (existe.data.msg) {
         navigate("/home");
+      } else if (existe.data.msg === "banned") {
+        localStorage.setItem("banned", "true");
       } else {
         navigate("/register");
       }
