@@ -6,7 +6,7 @@ export const USER_POINTS = "USER_POINTS";
 export const RESET_MY_PROFILE = "RESET_MY_PROFILE";
 export const CREAT_USER = "CREAT_USER";
 export const GET_PUBLIC_USER_DETAIL = "GET_PUBLIC_USER_DETAIL";
-export const DONATE_USER_POINTS = "DONATE_USER_POINTS";
+
 
 //pets
 export const FETCH_CITY = "FETCH_CITY";

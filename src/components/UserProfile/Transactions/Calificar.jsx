@@ -1,11 +1,12 @@
 import React from "react";
 import { AiFillStar } from "react-icons/ai";
-import { useDispatch } from "react-redux";
-import { donatePoints } from "../../../store/actions";
 
-import { useSelector } from "react-redux";
+// import { donatePoints } from "../../../store/actions";
+import axios from "axios";
 import RatingStar from "../../RatingStar/RatingStar";
 import Swal from "sweetalert2";
+import { DONATE_POINTS } from "../../../constants/url";
+import { header } from "../../../constants/token";
 
 const Calificar = ({
   tdId,
@@ -15,12 +16,9 @@ const Calificar = ({
   transactions,
   puntos,
 }) => {
-
   const tokenAccess = localStorage.getItem("token");
   const [showModal, setShowModal] = React.useState(false);
   const [pointsToDonate, setPointsToDonate] = React.useState(0);
-  const dispatch = useDispatch();
-  const messageOfDonation = useSelector((state) => state.stateDonationPoints);
 
   const objBello = {
     transaction_id: tdId,
@@ -42,19 +40,24 @@ const Calificar = ({
     }
   };
 
-  const onSubmit = () => {
+  const onSubmit = async () => {
     const body = {
       pointsToDonate,
       idToDonate: reviewed_id,
     };
-
-    dispatch(donatePoints(body, tokenAccess));
-    Swal.fire({
-      title: `${messageOfDonation}`,
-    })
-  }
-
-
+    try {
+      let response = await axios.post(DONATE_POINTS, body, header(tokenAccess));
+      if (response.data.msg) {
+        Swal.fire({
+          title: `${response.data.msg}`,
+        });
+      }
+    } catch (error) {
+      Swal.fire({
+        title: `Hubo un error, no pudimos enviar los puntos.`,
+      });
+    }
+  };
 
   return (
     <>

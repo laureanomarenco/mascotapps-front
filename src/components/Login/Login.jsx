@@ -17,6 +17,7 @@ export default function Login() {
   } = useAuth0();
 
   const navigate = useNavigate();
+
   const handleValidation = async (user, isAuthenticated) => {
     try {
       const claims = await getAccessTokenSilently();
