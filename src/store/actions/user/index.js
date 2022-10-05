@@ -85,9 +85,11 @@ function getMyPets(token) {
 }
 
 function CreateUser(input, token) {
+  console.log('lo que va para el back', input, token)
   return async function(dispatch) {
     try {
       var json = await axios.post(CREAT, input, header(token));
+      console.log("🚀 ~ file: index.js ~ line 91 ~ returnfunction ~ json", json)
       return dispatch({ type: CREAT_USER, payload: json.data });
     } catch (error) {
       return dispatch({

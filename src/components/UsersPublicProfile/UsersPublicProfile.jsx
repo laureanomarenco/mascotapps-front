@@ -25,10 +25,6 @@ export default function UserPuserProfsPublicProfile() {
     (t) => t.pet_id === idPet
   )?.user_demanding_check;
 
-  console.log(
-    "🚀 ~ file: UsersPublicProfile.jsx ~ line 30 ~ UserPuserProfsPublicProfile ~ transactionAlready",
-    transactionAlready
-  );
   //eslint-disable-next-line
   const reviews = useSelector((state) => state.userReviews);
 
