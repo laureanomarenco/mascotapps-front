@@ -11,6 +11,7 @@ import {
   usersPointsRank,
   usersAdoptionsRank,
   fetchCity,
+  myProfile,
   // pointsMultiplier
 } from "../../store/actions/index";
 import { HashLink as Link } from "react-router-hash-link";
@@ -22,14 +23,17 @@ import { TbUsers } from "react-icons/tb";
 import { TbView360 } from "react-icons/tb";
 import { TbLogout } from "react-icons/tb";
 import Swal from "sweetalert2";
+import {useAuth0} from "@auth0/auth0-react";
 
 const NuevoAdmin = () => {
+  const {isLoading,isAuthenticated} = useAuth0();
   const dispatch = useDispatch();
   const usersDetails = useSelector((state) => state.usersInfo);
   const pets = useSelector((state) => state.pets);
   const users = useSelector((state) => state.totalUsers);
   const donations = useSelector((state) => state.donations);
   const cities = useSelector((state) => state.cities);
+  const myProfileData = useSelector((state) => state.myProfile);
 
   const tokenAccess = localStorage.getItem("token");
   // const pointsRank = useSelector((state) => state.adoptionsRank);
@@ -94,6 +98,13 @@ const NuevoAdmin = () => {
     dispatch(usersAdoptionsRank());
     dispatch(fetchCity());
     usersPostsOrNo = usersPosts(usersss);
+    if (!isLoading && isAuthenticated) {
+      dispatch(myProfile(tokenAccess));
+      if (myProfileData?.userProps?.isBanned) {
+        localStorage.setItem("banned", "true");
+      }
+    }
+
   }, [dispatch, visitors, users]);
 
   //------------//CERRAR SESION//------------------//
