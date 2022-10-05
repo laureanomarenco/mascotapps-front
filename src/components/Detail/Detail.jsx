@@ -42,11 +42,11 @@ export default function Detail() {
   const { image } = pet;
 
   const handleClick = () => {
-    setHidden(hidden === true ? false : true);
+    setHidden(!hidden);
   };
-  const handleClickEnd = () => {
-    setHiddenEnd(hiddenEnd === true ? false : true);
-  };
+  // const handleClickEnd = () => {
+  //   setHiddenEnd(!hiddenEnd);
+  // };
 
   const handleBack = () => {
     dispatch(resetDetail());
@@ -232,12 +232,12 @@ export default function Detail() {
                   (
                   <div>
                     <button
-                      onClick={handleClickEnd}
+                      onClick={()=>setHidden(false)}
                       className="text-black bg-[#ffd803] hover:bg-[#ffd803]/80 focus:ring-2 focus:outline-none font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center mr-2 mb-2 gap-6 "
                     >
                       Dar por concretada la publicación
                     </button>
-                    <div hidden={hiddenEnd} className="w-full">
+                    <div hidden={false} className="w-full">
                       <EndPost
                         user={userContact}
                         hiddenEnd={hiddenEnd}

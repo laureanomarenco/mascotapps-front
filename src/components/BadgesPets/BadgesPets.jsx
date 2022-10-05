@@ -18,14 +18,19 @@ const BadgesPets = ({
   myPets,
 }) => {
   const dispatch = useDispatch();
-  const [hiddenEnd, setHiddenEnd] = useState(true);
+  const [hiddenEnd, setHiddenEnd] = useState(myPets.map(el=>el.id).reduce((obj,prop)=>{
+    if(!obj[prop]) obj[prop] = false;
+    return obj
+  },{}));
   const handleClick = (petid, tokenAccess) => {
     dispatch(deletePet(petid, tokenAccess));
     dispatch(getMyPets(tokenAccess));
     setOrder(order === "nowpAPTO" ? "now" : "nowpAPTO");};
 
   const userContact = useSelector((state) => state.publicUserDetail);
-  useEffect(() => {}, [myPets]);
+  useEffect(() => {
+
+  }, [myPets]);
 
   const showAlert=(id)=>{
     swal.fire({
@@ -48,16 +53,21 @@ const BadgesPets = ({
     })
   }
   const handleHidden = (id) => {
-    setHiddenEnd(hiddenEnd === true ? false : true);
-    console.log("IDDDDDD ", id);
+    setHiddenEnd({...hiddenEnd,
+      [id]:!hiddenEnd[id]
+    })
+    // setHiddenEnd(hiddenEnd === true ? false : true);
     dispatch(publicUserDetail(id));
   };
 
+  useEffect(()=>{
+    console.log(hiddenEnd)
+  },[hiddenEnd])
 
 
   return (
     <div
-      className="flex flex-col items-center gap-5 grid-rows-1 py-5 px-5 md:grid md:grid-cols-2 xl:grid-cols-3 w-full relative border border-gray-300  rounded-lg my-2 shadow-lg  "
+      className="flex flex-col items-start gap-5 grid-rows-1 py-5 px-5 md:grid md:grid-cols-2 xl:grid-cols-3 w-full relative border border-gray-300  rounded-lg my-2 shadow-lg  "
       hidden={hidden}
     >
       <button
@@ -117,7 +127,7 @@ const BadgesPets = ({
                   >
                     <RiChatDeleteFill color="red" />
                   </button>
-                  <p name={"kk"} onClick={handleHidden}
+                  <p name={"kk"} onClick={()=>handleHidden(a.id)}
                     className={`text-xl ${
                       a.postStatus === "concretado" ||
                       a.postStatus === "cancelado"
@@ -129,14 +139,16 @@ const BadgesPets = ({
                   </p>
                 </div>
               </div>
-                <div className="w-full mty-2" hidden={hiddenEnd}>
+              {
+                hiddenEnd[a.id] &&
+                <div className="w-full mty-2">
                   <EndPost
                     user={userContact}
-                    hiddenEnd={hiddenEnd}
-                    setHiddenEnd={setHiddenEnd}
+                    handleHidden={handleHidden}
                     idPet={a.id}
-                  />
+                    />
                 </div>
+              }
             </div>
           ))
         : null}

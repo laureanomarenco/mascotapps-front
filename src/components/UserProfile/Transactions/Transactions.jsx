@@ -17,7 +17,6 @@ const Transactions = ({ transactions, setOrder, puntos }) => {
     dispatch(updateTransactionStatus(trId, tokenAccess));
     setOrder("completed");
   };
-  console.log("MYPETS TRANSACTIONSSS",myPets)
   useEffect(() => {}, [transactions, setOrder]);
 
   //------------------//PAGINACION//------------------------//
