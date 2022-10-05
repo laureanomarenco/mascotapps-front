@@ -8,7 +8,7 @@ import { updateTransactionStatus } from "../../../store/actions/index";
 import TransactionsPagination from "./Pagination/TransasctionsPagination";
 import { tokenAccess } from "../../../constants/token";
 
-const Transactions = ({ transactions, setOrder,}) => {
+const Transactions = ({ transactions, setOrder,myPets}) => {
   //eslint-disable-next-line
   const { user } = useAuth0();
   const dispatch = useDispatch(); 
@@ -17,7 +17,7 @@ const Transactions = ({ transactions, setOrder,}) => {
     dispatch(updateTransactionStatus(trId, tokenAccess));
     setOrder("completed");
   };
-
+  console.log("MYPETS TRANSACTIONSSS",myPets)
   useEffect(() => {}, [transactions, setOrder]);
 
   //------------------//PAGINACION//------------------------//
