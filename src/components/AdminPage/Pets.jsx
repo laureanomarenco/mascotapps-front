@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-// import Maps from "./Maps/Maps";
+import Maps from "./Maps/Maps";
 
 import Percents from "./Percents";
 import PetsPagination from "./PetsPagination/PetsPagination";
@@ -20,7 +20,7 @@ import { useSelector } from "react-redux";
 import Swal from "sweetalert2";
 
 // const Maps = React.lazy(() => import("./Maps/Maps"));
-const Pets = (/*{ cities }*/ { tokenAccess }) => {
+const Pets = ({ cities, tokenAccess }) => {
   const pets = useSelector((state) => state.pets);
   const successPets = useSelector((state) => state.successArr);
   const dispatch = useDispatch();
@@ -407,7 +407,7 @@ const Pets = (/*{ cities }*/ { tokenAccess }) => {
       </section>
       <section>
         {/* <Suspense fallback={<div>Loading...</div>}> */}
-        {/* <Maps cities={cities} /> */}
+        <Maps cities={cities} />
         {/* </Suspense> a ver pullRequestSiApareces*/}
       </section>
     </main>
