@@ -35,14 +35,14 @@ export default function Footer() {
           </li>
 
           <li>
-            <Link
-              to="/https://github.com/laureanomarenco/mascotapps-front"
+            <a
+            href="https://github.com/laureanomarenco/mascotapps-front"
               rel="noopener noreferrer"
               target="_blank"
               className="text-gray-700 transition hover:text-gray-700/75"
             >
               <AiOutlineGithub className="pointer text-[24px] text-gray-700/75  hover:text-gray-700 transition-colors" />
-            </Link>
+            </a>
           </li>
 
           <li>
