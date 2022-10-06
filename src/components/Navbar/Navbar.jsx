@@ -33,7 +33,8 @@ export default function Navbar({ setPage }) {
     dispatch(getPetsByStatus(e.target.name));
     setPage(1);
   };
-  if (!isLoading && isAuthenticated && myProfileData?.userProps?.isBanned !== null) {
+
+  if (!isLoading && isAuthenticated && myProfileData?.userProps?.isBanned !== "true") {
     localStorage.removeItem("token");
     logout({ returnTo: "https://mascotapps.vercel.app/banned" });
   }
