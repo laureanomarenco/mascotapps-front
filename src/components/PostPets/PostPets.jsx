@@ -80,8 +80,8 @@ const PostPets = () => {
     };
   });
   localidades = localidades
-    .sort((a, b) => a.provincia - b.provincia)
-    .map((l) => `${l.nombre}, ${l.provincia}`);
+    ?.sort((a, b) => a.provincia - b.provincia)
+    ?.map((l) => `${l.nombre}, ${l.provincia}`);
   //-------------------------------------------------------------------------------------------------------------------
   //eslint-disable-next-line
   const showAlert = () => {

@@ -45,8 +45,8 @@ export default function ModalProfile({ belloPerfil }) {
   });
 
   localidades = localidades
-    .sort((a, b) => a.provincia - b.provincia)
-    .map((l) => `${l.nombre}, ${l.provincia}`);
+    ?.sort((a, b) => a.provincia - b.provincia)
+    ?.map((l) => `${l.nombre}, ${l.provincia}`);
   //CLOUDINARY-------------------------------------
   //eslint-disable-next-line
 
