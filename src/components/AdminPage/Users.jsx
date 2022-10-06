@@ -176,24 +176,31 @@ const Users = ({ users }) => {
                         {u.contact}
                       </td>
                       <td className="border-t-0 px-6 align-center border-l-0 border-r-0 text-xs  p-4">
-                        <button
-                          className="text-red-500 flex  items-center gap-1"
-                          onClick={() => handleClick(u.id, u.email)}
-                        >
-                          <FaTrashAlt />
-                          Eliminar
-                        </button>
-                        <button
-                          className={
-                            u.isBanned !== "true"
-                              ? "text-purple-500 flex  items-center gap-1 visible"
-                              : "invisible"
-                          }
-                          onClick={() => handleBan(u.id)}
-                        >
-                          <FaTrashAlt />
-                          Banear
-                        </button>
+                        {!u.isSuperAdmin ? (
+                          <button
+                            className="text-red-500 flex  items-center gap-1"
+                            onClick={() => handleClick(u.id, u.email)}
+                          >
+                            <FaTrashAlt />
+                            Eliminar
+                          </button>
+                        ) : (
+                          <p className="font-bold text-yellow-500">ADMIN</p>
+                        )}
+                        {!u.isSuperAdmin && (
+                          <button
+                            className={
+                              u.isBanned !== "true"
+                                ? "text-purple-500 flex  items-center gap-1 visible"
+                                : "invisible"
+                            }
+                            onClick={() => handleBan(u.id)}
+                            disabled={u.isSuperAdmin ? true : false}
+                          >
+                            <FaTrashAlt />
+                            Banear
+                          </button>
+                        )}
                       </td>
                     </tr>
                   );
