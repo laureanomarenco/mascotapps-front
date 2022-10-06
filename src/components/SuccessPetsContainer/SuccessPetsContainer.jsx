@@ -9,7 +9,7 @@ import Footer from "../Footer/Footer.jsx";
 import Navbar from "../Navbar/Navbar";
 
 export default function SuccessPetsContainer() {
-  const [firstActive, setFirstActive] = useState("en adopción");
+  const [firstActive, setFirstActive] = useState(["en adopción"]);
   const dispatch = useDispatch();
   const handleChangeActive = (value) => {
     setFirstActive(value);
@@ -44,7 +44,7 @@ export default function SuccessPetsContainer() {
                 className={`cursor-pointer h-fit basis-2/4 text-center p-4 border-b-2 border-[#FFC700] transition-colors duration-300 ${
                   firstActive === "en adopción" ? "bg-[#FFC700]" : "bg-[white]"
                 }`}
-                onClick={() => handleChangeActive("en adopción")}
+                onClick={() => handleChangeActive(["en adopción"])}
               >
                 Adopciones
               </h3>
@@ -52,17 +52,17 @@ export default function SuccessPetsContainer() {
                 className={`cursor-pointer h-fit basis-2/4 text-center p-4 border-b-2 border-[#FFC700] transition-colors duration-300 ${
                   firstActive === "perdido" ? "bg-[#FFC700]" : "bg-[white]"
                 }`}
-                onClick={() => handleChangeActive("perdido")}
+                onClick={() => handleChangeActive(["perdido", "encontrado"])}
               >
                 Encontrados
               </h3>
             </div>
             <ul className="successList min-h-[250px] h-[444px] p-2">
-              {successPets.length ? (
-                successPets?.filter((el) => el.status === firstActive)
+              {successPets?.length ? (
+                successPets?.filter((el) => el.status === firstActive[0] || el.status === firstActive[1])
                   .length ? (
                   successPets
-                    ?.filter((el) => el.status === firstActive)
+                    ?.filter((el) => el.status === firstActive[0] || el.status === firstActive[1])
                     .map((el) => (
                       <li
                         key={el.id}
