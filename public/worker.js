@@ -11,5 +11,6 @@ self.addEventListener("push", (e) => {
 });
 
 self.addEventListener('notificationclick', () => {
-  window.open(`https://mascotapps.vercel.app/home`)
+  console.log("click en la notificacion")
+  window.open("https://mascotapps.vercel.app/home")
 });
