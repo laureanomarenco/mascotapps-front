@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 // import PropTypes from "prop-types";
 import ChatBot from "react-simple-chatbot";
 // import Review from "./Review.jsx";
-// import Post from "./Post.jsx";
+import Post from "./Post.jsx";
 import { ThemeProvider } from "styled-components";
 
 // Review.propTypes = {
@@ -81,7 +81,7 @@ class SimpleForm extends Component {
               id: "confirm",
               options: [
                 { value: "no", label: "No", trigger: "finish" },
-                { value: "si", label: "Si", trigger: "where" },
+                { value: "si", label: "Sí", trigger: "where" },
               ],
             },
 
@@ -222,7 +222,7 @@ class SimpleForm extends Component {
               id: "confirm-info",
               options: [
                 { value: "no", label: "No", trigger: "preg-contact" },
-                { value: "si", label: "Si", trigger: "text-comentarios" },
+                { value: "si", label: "Sí", trigger: "text-comentarios" },
               ],
             },
             {
@@ -244,7 +244,7 @@ class SimpleForm extends Component {
             {
               id: "confirm-contact",
               options: [
-                { value: "no", label: "No", trigger: "update" },
+                { value: "no", label: "No", trigger: "review" },
                 { value: "si", label: "Sí", trigger: "text-contact" },
               ],
             },
@@ -256,7 +256,7 @@ class SimpleForm extends Component {
             {
               id: "contact",
               user: true,
-              trigger: "update",
+              trigger: "review",
               validator: (value) => {
                 if (isNaN(value)) {
                   return "Introduce un número válido";
@@ -273,15 +273,15 @@ class SimpleForm extends Component {
             //     this.props.pet.name,
             //   trigger: "review",
             // },
-            // {
-            //   id: "review",
-            //   component: <Post petId={this.props.pet?.id} />,
-            //   // asMessage: true,
-            //   trigger: "update",
-            // },
+            {
+              id: "review",
+              component: <Post petId={this.props.pet?.id} />,
+              // asMessage: true,
+              trigger: "update",
+            },
             {
               id: "update",
-              message: "Eso es todo. Los datos se enviarán al anunciante.",
+              message: "Eso es todo. Los datos se han enviado al anunciante.",
               trigger: "end-message",
             },
 

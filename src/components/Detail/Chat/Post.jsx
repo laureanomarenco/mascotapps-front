@@ -1,7 +1,6 @@
 import { Component } from "react";
 import axios from "axios";
 
-
 export default class Post extends Component {
   constructor(props) {
     super(props);
