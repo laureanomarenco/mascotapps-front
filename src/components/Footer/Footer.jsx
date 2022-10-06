@@ -36,7 +36,7 @@ export default function Footer() {
 
           <li>
             <Link
-              to="/"
+              to="/https://github.com/laureanomarenco/mascotapps-front"
               rel="noopener noreferrer"
               target="_blank"
               className="text-gray-700 transition hover:text-gray-700/75"
