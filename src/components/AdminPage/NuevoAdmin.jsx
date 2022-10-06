@@ -34,6 +34,7 @@ const NuevoAdmin = () => {
   const [modalActive, setModalActive] = React.useState(false);
 
   const tokenAccess = localStorage.getItem("token");
+  console.log(tokenAccess);
   // const pointsRank = useSelector((state) => state.adoptionsRank);
   const adoptionsRank = useSelector((state) => state.adoptionsRank);
   const orderAdoptions = adoptionsRank?.sort(
@@ -173,26 +174,6 @@ const NuevoAdmin = () => {
                   <span className="sr-only">Mascotas</span>
                   <MdPets size={28} />
                 </Link>
-                <a
-                  href="#"
-                  className="inline-flex items-center justify-center py-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg"
-                >
-                  <span className="sr-only">Documents</span>
-                  <svg
-                    aria-hidden="true"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                    className="h-6 w-6"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth="2"
-                      d="M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z"
-                    />
-                  </svg>
-                </a>
               </nav>
               <div className="inline-flex items-center justify-center h-20 w-20 border-t border-gray-700">
                 <button className="p-3 hover:text-gray-400 hover:bg-gray-700 focus:text-gray-400 focus:bg-gray-700 rounded-lg">
