@@ -37,8 +37,8 @@ const SignUp = () => {
   });
 
   localidades = localidades
-    .sort((a, b) => a.provincia - b.provincia)
-    .map((l) => `${l.nombre}, ${l.provincia}`);
+    ?.sort((a, b) => a.provincia - b.provincia)
+    ?.map((l) => `${l.nombre}, ${l.provincia}`);
 
   //ESTADOS ---------------------------------------------------------------------------------------------------------
 
@@ -91,7 +91,7 @@ const SignUp = () => {
       alert("Verifique los campos");
     } else {
       try {
-        let result = await axios.post(CREAT, input, header(tokenAccess))
+        let result = await axios.post(CREAT, input, header(tokenAccess));
         if (result.status === 200) {
           Swal.fire({
             title: "Usuario creado correctamente",
