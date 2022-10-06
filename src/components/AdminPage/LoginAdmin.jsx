@@ -1,5 +1,6 @@
 // import React from "react";
 // import axios from "axios";
+import axios from "axios";
 import Swal from "sweetalert2";
 // import { header } from "../../constants/token";
 
@@ -27,15 +28,18 @@ const LoginAdmin = () => {
   }).then(async (result) => {
     console.log(result.value.password);
     if (result.isConfirmed) {
-      await fetch(
-        "https://juka-production.up.railway.app/admin/hasAdminPowers/",
-        {
-          password: result.value.password,
-          headers: {
-            Authorization: `Bearer ${tokenAccess}`,
+      await axios
+        .post(
+          "https://juka-production.up.railway.app/admin/hasAdminPowers/",
+          {
+            password: result.value.password,
           },
-        }
-      )
+          {
+            headers: {
+              Authorization: `Bearer ${tokenAccess}`,
+            },
+          }
+        )
         .then((res) => {
           console.log(res.status);
           Swal.fire({

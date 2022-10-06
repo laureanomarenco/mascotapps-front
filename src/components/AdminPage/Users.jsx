@@ -185,7 +185,7 @@ const Users = ({ users }) => {
                             Eliminar
                           </button>
                         ) : (
-                          "ADMIN"
+                          <p className="font-bold text-yellow-500">ADMIN</p>
                         )}
                         {!u.isSuperAdmin && (
                           <button
