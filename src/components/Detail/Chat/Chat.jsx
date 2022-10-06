@@ -244,7 +244,7 @@ class SimpleForm extends Component {
             {
               id: "confirm-contact",
               options: [
-                { value: "no", label: "No", trigger: "review" },
+                { value: "no", label: "No", trigger: "update" },
                 { value: "si", label: "Sí", trigger: "text-contact" },
               ],
             },
