@@ -155,8 +155,12 @@ const Users = ({ users }) => {
                       >
                         <img
                           className="w-8 h-8 rounded-full"
-                          src={u.image}
-                          alt="user-img"
+                          src={
+                            u.image
+                              ? u.image
+                              : "https://res.cloudinary.com/dpxrr2uyq/image/upload/v1664984724/pngwing.com_16_qd4ib7.png"
+                          }
+                          alt="user"
                         />
                         <div className="grid ">
                           <span className="w-full">{u.name}</span>

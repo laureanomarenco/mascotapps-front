@@ -1,5 +1,4 @@
 import React, { useEffect } from "react";
-
 import { MapContainer, TileLayer, Popup, Marker } from "react-leaflet";
 import "leaflet/dist/leaflet.css";
 // import icon from "leaflet/dist/images/marker-icon.png";
@@ -31,7 +30,7 @@ const Maps = ({ cities }) => {
         className="w-full md:w-9/6 h-[600px]  mx-auto "
       >
         <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> '
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">Mascotapp</a> '
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         />
 
@@ -48,11 +47,16 @@ const Maps = ({ cities }) => {
                     ? perdidoIcon
                     : adopcionIcon
                 }
+                className="m-2"
               >
                 <Popup>
                   <div className="text-center h-[175px] ">
                     <img
-                      src={p.image}
+                      src={
+                        p.image
+                          ? p.image
+                          : "https://res.cloudinary.com/dfbxjt69z/image/upload/v1663007100/mascotapps/mascotapss_zihxad.png"
+                      }
                       alt="pet"
                       className="hover:cursor-pointer w-[150px] h-[120px] rounded-full mx-auto "
                       onClick={() => window.open(`/pets/${p.id}`)}

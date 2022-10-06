@@ -1,39 +1,66 @@
 // import React from "react";
+// import axios from "axios";
 import Swal from "sweetalert2";
+// import { header } from "../../constants/token";
 
 const LoginAdmin = () => {
-  const adminName = "adm_mascotapp";
-  const adminPass = "mascotapp1234";
-
+  // const adminName = "adm_mascotapp";
+  const adminPass = "SoyAdmin";
+  const tokenAccess = localStorage.getItem("token");
   return Swal.fire({
     title: "Bienvenido",
     text: "Inicia sesión para continuar",
-    html: `<input type="password" id="login" class="swal2-input" placeholder="Username">
-    <input type="password" id="password" class="swal2-input" placeholder="Password">`,
+    html: `
+    <input type="password" id="password" class="swal2-input" placeholder="Password" name="password" >`,
     confirmButtonText: "Inicia sesión",
     confirmButtonColor: "#28B0A2",
     focusConfirm: false,
     preConfirm: () => {
-      const login = Swal.getPopup().querySelector("#login").value;
       const password = Swal.getPopup().querySelector("#password").value;
-      if (!login || !password) {
+      if (!password) {
         Swal.showValidationMessage(`Ingrese su usuario y contraseña`);
-      } else if (login !== adminName || password !== adminPass) {
+      } else if (password !== adminPass) {
         Swal.showValidationMessage(`Verifique los datos ingresados`);
       }
-      return { login: login, password: password };
+      return { password: password };
     },
-  }).then((result) => {
+  }).then(async (result) => {
+    console.log(result.value.password);
     if (result.isConfirmed) {
-      Swal.fire({
-        title: "Bienvenido!",
-        icon: "success",
-        confirmButtonColor: "#28B0A2",
-      }).then((result) => {
-        if (result.isConfirmed) {
-          window.location.replace("/admin/general");
+      await fetch(
+        "https://juka-production.up.railway.app/admin/hasAdminPowers/",
+        {
+          password: result.value.password,
+          headers: {
+            Authorization: `Bearer ${tokenAccess}`,
+          },
         }
-      });
+      )
+        .then((res) => {
+          console.log(res.status);
+          Swal.fire({
+            title: "Bienvenido!",
+            icon: "success",
+            confirmButtonColor: "#28B0A2",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.replace("/admin/general");
+            }
+          });
+        })
+        .catch((error) => {
+          console.log(error);
+          Swal.fire({
+            title: "Ups!",
+            message: error.message,
+            icon: "error",
+            confirmButtonColor: "#28B0A2",
+          }).then((result) => {
+            if (result.isConfirmed) {
+              window.location.replace("/admin/");
+            }
+          });
+        });
     }
   });
 };
