@@ -102,8 +102,12 @@ const NuevoProfile = () => {
   }
 
   if (!isLoading && isAuthenticated) {
-    if (myProfileData["userProps"]?.isBanned === null) {
-      return (
+    if (myProfileData?.userProps?.isBanned === "true") {
+      localStorage.removeItem("token");
+             logout({ returnTo: "https://mascotapps.vercel.app/banned" });
+     }
+     else {
+return (
         <div>
           <Navbar></Navbar>
           <div className=" my-5 mx-5 p-3">
@@ -429,9 +433,6 @@ const NuevoProfile = () => {
           </div>
         </div>
       );
-    } else {
-             localStorage.removeItem("token");
-             logout({ returnTo: "https://mascotapps.vercel.app/banned" });
            }
   }
 };
