@@ -81,7 +81,7 @@ class SimpleForm extends Component {
               id: "confirm",
               options: [
                 { value: "no", label: "No", trigger: "finish" },
-                { value: "si", label: "Si", trigger: "where" },
+                { value: "si", label: "Sí", trigger: "where" },
               ],
             },
 
@@ -222,7 +222,7 @@ class SimpleForm extends Component {
               id: "confirm-info",
               options: [
                 { value: "no", label: "No", trigger: "preg-contact" },
-                { value: "si", label: "Si", trigger: "text-comentarios" },
+                { value: "si", label: "Sí", trigger: "text-comentarios" },
               ],
             },
             {
