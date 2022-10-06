@@ -34,7 +34,7 @@ export default function Navbar({ setPage }) {
     setPage(1);
   };
 
-  if (!isLoading && isAuthenticated && myProfileData?.userProps?.isBanned !== "true") {
+  if (!isLoading && isAuthenticated && myProfileData?.userProps?.isBanned === "true") {
     localStorage.removeItem("token");
     logout({ returnTo: "https://mascotapps.vercel.app/banned" });
   }
