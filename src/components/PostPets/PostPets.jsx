@@ -24,7 +24,7 @@ import Spinner from "../Spinner/Spinner";
 const PostPets = () => {
   const tokenAccess = localStorage.getItem("token");
   const [post, setPost] = useState(1);
-  const { isAuthenticated, isLoading } = useAuth0();
+  const { isAuthenticated, isLoading ,logout} = useAuth0();
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const Petspecies = useSelector((state) => state.species);
@@ -202,8 +202,9 @@ const PostPets = () => {
     });
   }
   if (!isLoading && isAuthenticated) {
-    return (
-      <div className="relative flex justify-center lg:min-h-screen lg:items-center ">
+    if ( myProfileData?.userProps?.isBanned === null){
+      return (
+        <div className="relative flex justify-center lg:min-h-screen lg:items-center ">
         <div className="w-full px-4 py-12 md:w-3/5 sm:px-4 lg:px-0 sm:py-6 lg:py-12 ">
           <div className=" w-full max-w-[600px] md:w-[600px] mx-auto text-center ">
             <h1 className="text-2xl font-bold sm:text-3xl">Publicá un aviso</h1>
@@ -512,7 +513,11 @@ const PostPets = () => {
         </div>
       </div>
     );
+  } else{
+    localStorage.removeItem("token");
+    logout({ returnTo: "https://mascotapps.vercel.app/banned" });
   }
+}
 };
 
 export default PostPets;

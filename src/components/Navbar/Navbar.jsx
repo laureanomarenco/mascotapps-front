@@ -11,7 +11,7 @@ import Push from "../Push/Push";
 
 export default function Navbar({ setPage }) {
   const tokenAccess = localStorage.getItem("token");
-  const { isAuthenticated, user, isLoading } = useAuth0();
+  const { isAuthenticated, user, isLoading ,logout} = useAuth0();
   const [searchInput, setSearchInput] = useState(true);
   const [mdOptionsToggle, setMdOptionsToggle] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
@@ -33,6 +33,10 @@ export default function Navbar({ setPage }) {
     dispatch(getPetsByStatus(e.target.name));
     setPage(1);
   };
+  if (!isLoading && isAuthenticated && myProfileData?.userProps?.isBanned !== null) {
+    localStorage.removeItem("token");
+    logout({ returnTo: "https://mascotapps.vercel.app/banned" });
+  }
 
   useEffect(() => {
     if (!isLoading && isAuthenticated) {
