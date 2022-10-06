@@ -3,7 +3,7 @@ import { connect } from "react-redux";
 // import PropTypes from "prop-types";
 import ChatBot from "react-simple-chatbot";
 // import Review from "./Review.jsx";
-import Post from "./Post.jsx";
+// import Post from "./Post.jsx";
 import { ThemeProvider } from "styled-components";
 
 // Review.propTypes = {
@@ -204,7 +204,7 @@ class SimpleForm extends Component {
             {
               id: "preg-condicion",
               message:
-                "En qué condiciones estaba la mascota? Ej: 'Se veía flaca y con frío / Se veía en buen estado'",
+                "En qué condiciones estaba la mascota? Ej: 'Estaba sola abajo de un banco / Se veía en buen/mal estado'",
               trigger: "condicion",
             },
             {
@@ -227,7 +227,7 @@ class SimpleForm extends Component {
             },
             {
               id: "text-comentarios",
-              message: "Ingresa la información que deseas agregar",
+              message: "Ingresá la información que deseas agregar",
               trigger: "comentarios",
             },
             {
@@ -245,7 +245,7 @@ class SimpleForm extends Component {
               id: "confirm-contact",
               options: [
                 { value: "no", label: "No", trigger: "review" },
-                { value: "si", label: "Si", trigger: "text-contact" },
+                { value: "si", label: "Sí", trigger: "text-contact" },
               ],
             },
             {
@@ -256,11 +256,11 @@ class SimpleForm extends Component {
             {
               id: "contact",
               user: true,
-              trigger: "review",
+              trigger: "update",
               validator: (value) => {
                 if (isNaN(value)) {
                   return "Introduce un número válido";
-                } else if (value.length < 10 || value.length > 11) {
+                } else if (value.length < 6 || value.length > 20) {
                   return "Introduce un número válido";
                 }
                 return true;
@@ -273,12 +273,12 @@ class SimpleForm extends Component {
             //     this.props.pet.name,
             //   trigger: "review",
             // },
-            {
-              id: "review",
-              component: <Post petId={this.props.pet?.id} />,
-              // asMessage: true,
-              trigger: "update",
-            },
+            // {
+            //   id: "review",
+            //   component: <Post petId={this.props.pet?.id} />,
+            //   // asMessage: true,
+            //   trigger: "update",
+            // },
             {
               id: "update",
               message: "Eso es todo. Los datos se enviarán al anunciante.",
@@ -288,14 +288,14 @@ class SimpleForm extends Component {
             {
               id: "end-message",
               message:
-                "Muchas gracias por colaborar en la búsqueda de " +
+                "¡Muchas gracias por colaborar en la búsqueda de " +
                 this.props.pet.name +
-                ". Tus datos han sido enviados!",
+                "! Tus datos han sido enviados!",
               end: true,
             },
             {
               id: "finish",
-              message: "Bueno, muchas gracias pero no atiendo peleles",
+              message: "Bueno, muchas gracias pero no atiendo peleles.",
               end: true,
             },
           ]}
