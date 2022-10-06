@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { getPetsByStatus, myProfile } from "../../store/actions/index";
 import { useDispatch, useSelector } from "react-redux";
 import { Icons, Links, NavBtn, SearchBar } from "./items";
@@ -8,16 +8,16 @@ import { useAuth0 } from "@auth0/auth0-react";
 import { LoginButton } from "../Login/LoginButton";
 import Push from "../Push/Push";
 
-
 export default function Navbar({ setPage }) {
   const tokenAccess = localStorage.getItem("token");
-  const { isAuthenticated, user, isLoading ,logout} = useAuth0();
+  const { isAuthenticated, user, isLoading, logout } = useAuth0();
   const [searchInput, setSearchInput] = useState(true);
   const [mdOptionsToggle, setMdOptionsToggle] = useState(true);
   const [showMenu, setShowMenu] = useState(false);
   const [input, setInput] = useState("");
   const myProfileData = useSelector((state) => state.myProfile);
-
+  const location = useLocation();
+  const home = location.pathname === "/home";
   const dispatch = useDispatch();
 
   function handleChange(e) {
@@ -34,7 +34,11 @@ export default function Navbar({ setPage }) {
     setPage(1);
   };
 
-  if (!isLoading && isAuthenticated && myProfileData?.userProps?.isBanned === "true") {
+  if (
+    !isLoading &&
+    isAuthenticated &&
+    myProfileData?.userProps?.isBanned === "true"
+  ) {
     localStorage.removeItem("token");
     logout({ returnTo: "https://mascotapps.vercel.app/banned" });
   }
@@ -56,13 +60,15 @@ export default function Navbar({ setPage }) {
               mdOptionsToggle ? "hidden" : "flex sticky top-0 "
             } bg-white  lg:hidden py-5 px-6 items-center justify-between`}
           >
-            <SearchBar
-              styleDiv="flex items-center space-x-3 text-gray-800 "
-              type="text"
-              placeholder="Buscar"
-              handleChange={handleChange}
-              className="text-sm leading-none   text-gray-600 focus:outline-none"
-            />
+            {home && (
+              <SearchBar
+                styleDiv="flex items-center space-x-3 text-gray-800 "
+                type="text"
+                placeholder="Buscar"
+                handleChange={handleChange}
+                className="text-sm leading-none   text-gray-600 focus:outline-none"
+              />
+            )}
 
             <div className="space-x-6 flex items-center">
               {!isLoading && isAuthenticated ? (
@@ -163,7 +169,8 @@ export default function Navbar({ setPage }) {
                   />
                 </li>
               </ul>
-              <div className="md:w-2/12 justify-end flex items-center space-x-4 xl:space-x-8">
+              <div className="w-8/12  md:w-6/12 justify-end flex items-center space-x-4 xl:space-x-8">
+                {home &&
                 <SearchBar
                   styleDiv="hidden lg:flex items-center"
                   ariaLabel="Buscar"
@@ -176,8 +183,7 @@ export default function Navbar({ setPage }) {
                   styelInput={` ${
                     searchInput ? "hidden" : ""
                   } text-sm   text-gray-600 rounded ml-1 border border-transparent focus:outline-none focus:border-gray-400 px-1`}
-                />
-
+                />}
                 <div className="hidden lg:flex items-center space-x-4 xl:space-x-8">
                   <Icons
                     ariaLabel="view favourites"
@@ -238,14 +244,14 @@ export default function Navbar({ setPage }) {
             } absolute z-50 inset-0 md:hidden bg-white flex-col h-screen w-full`}
           >
             <div className="flex items-center justify-between border-b border-gray-200  pb-4 p-4">
-              <SearchBar
+              {home && <SearchBar
                 styleDiv="flex items-center space-x-3"
                 styelInput="text-sm  text-gray-600 placeholder-gray-600  focus:outline-none"
                 ariaLabel="Buscar..."
                 type="text"
                 placeholder="Buscar..."
                 handleChange={handleChange}
-              />
+              />}
               <NavBtn
                 ariaLabel="close menu"
                 btnStyle="focus:outline-none focus:ring-2 rounded focus:ring-gray-600"

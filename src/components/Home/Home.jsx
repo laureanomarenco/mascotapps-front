@@ -4,7 +4,7 @@ import CardContainer from "../CardContainer/CardContainer";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { BsCircle, BsCircleFill } from "react-icons/bs";
 import SuccessBanner from "../SuccessPetsContainer/SuccessBanner";
 import FlowChart from "../FlowChart/FlowChart";
