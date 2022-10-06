@@ -77,7 +77,7 @@ export default function Home() {
             <div
               className={
                 loaded
-                  ? "opacity-100 w-full ease-in duration-300 object-cover z-50 px-10 flex flex-col gap-2"
+                  ? "opacity-100 w-full ease-in duration-300 object-cover z-30 px-10 flex flex-col gap-2"
                   : "w-full  ease-in duration-300 object-cover  opacity-0 px-10 flex flex-col gap-2"
               }
             >

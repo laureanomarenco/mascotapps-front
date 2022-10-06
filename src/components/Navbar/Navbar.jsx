@@ -230,7 +230,7 @@ export default function Navbar({ setPage }) {
             id="mobile-menu"
             className={`${
               showMenu ? "flex z-50" : "hidden"
-            } absolute z-10 inset-0 md:hidden bg-white flex-col h-screen w-full`}
+            } absolute z-50 inset-0 md:hidden bg-white flex-col h-screen w-full`}
           >
             <div className="flex items-center justify-between border-b border-gray-200  pb-4 p-4">
               <SearchBar
