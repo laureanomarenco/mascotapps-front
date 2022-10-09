@@ -68,10 +68,10 @@ const NuevoAdmin = () => {
   });
 
   var match = pets?.map((p) => {
-    var prov = localidades.find(
+    var prov = localidades?.find(
       (l) =>
-        l.nombre === p.city.split(", ")[0] &&
-        l.provincia === p.city.split(", ")[1]
+        l.nombre === p.city?.split(", ")[0] &&
+        l.provincia === p.city?.split(", ")[1]
     );
     return {
       ...p,
