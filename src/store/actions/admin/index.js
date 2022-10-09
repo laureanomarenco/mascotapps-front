@@ -15,6 +15,7 @@ import {
   DELETE_PET_WITH_NO_OWNER,
   DELETE_POST,
   BAN_USERS,
+  GET_ADMIN_ACTIONS,
 } from "../../../constants/url";
 import {
   GET_ALL_USERS,
@@ -92,7 +93,7 @@ export function usersPointsRank() {
   return async function(dispatch) {
     try {
       var json = await axios.get(POINTS_RANK);
-      return dispatch({ type: USERS_POINTS_RANK, payload: json.dataw });
+      return dispatch({ type: USERS_POINTS_RANK, payload: json.data });
     } catch (error) {
       console.log(error);
     }
@@ -197,6 +198,17 @@ export function banUsers(obj, token) {
     try {
       var json = await axios.post(BAN_USERS, obj, header(token));
       console.log(json);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+}
+
+export function getAdminActions(obj, token) {
+  return async function() {
+    try {
+      const adminActions = axios.post(GET_ADMIN_ACTIONS, obj, header(token));
+      console.log(adminActions);
     } catch (error) {
       console.log(error.message);
     }

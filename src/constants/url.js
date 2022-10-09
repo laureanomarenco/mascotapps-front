@@ -46,7 +46,8 @@ export const POINTS_SALE = URL + "admin/changeMultiplier/";
 export const DELETE_POST = URL + "admin/deletePet/";
 export const BAN_USERS = URL + "admin/banUser/";
 
-export const GET_USER_REVIEWS = URL + "/reviews/getReviewsToUser";
+export const GET_USER_REVIEWS = URL + "reviews/getReviewsToUser";
 export const WEB_PUSH = URL + "pets/subscribe";
 export const NOTIFY_POST = URL + "pets/notify";
 export const DESUBSCRIBE = URL + "pets/desubscribe";
+export const GET_ADMIN_ACTIONS = URL + "admin/getAdminActions";
