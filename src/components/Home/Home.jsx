@@ -4,7 +4,7 @@ import CardContainer from "../CardContainer/CardContainer";
 import Footer from "../Footer/Footer";
 import Navbar from "../Navbar/Navbar";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link} from "react-router-dom";
 import { BsCircle, BsCircleFill } from "react-icons/bs";
 import SuccessBanner from "../SuccessPetsContainer/SuccessBanner";
 import FlowChart from "../FlowChart/FlowChart";
@@ -77,7 +77,7 @@ export default function Home() {
             <div
               className={
                 loaded
-                  ? "opacity-100 w-full ease-in duration-300 object-cover z-50 px-10 flex flex-col gap-2"
+                  ? "opacity-100 w-full ease-in duration-300 object-cover z-30 px-10 flex flex-col gap-2"
                   : "w-full  ease-in duration-300 object-cover  opacity-0 px-10 flex flex-col gap-2"
               }
             >

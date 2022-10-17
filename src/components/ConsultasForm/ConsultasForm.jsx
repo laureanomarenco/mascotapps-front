@@ -45,7 +45,7 @@ export default function ConsultasForm() {
 			confirmButtonText: "Ok",
 		}).then(result => {
 			if (result.isConfirmed) {
-				navigate("/account");
+				navigate("/home");
 			}
 		});
 	};
