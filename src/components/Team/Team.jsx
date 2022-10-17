@@ -38,6 +38,7 @@ export default function Team() {
             role="Full Stack Developer"
             linkedin="https://www.linkedin.com/in/lucas-colman-paganelli-2a9086186/"
             picture="https://res.cloudinary.com/dfbxjt69z/image/upload/v1664415162/mascotapps/1657140637220_m2f51y.jpg"
+            github="https://github.com/lucascolm"
           />
           <TeamMember
             name="Martin Fiori"
