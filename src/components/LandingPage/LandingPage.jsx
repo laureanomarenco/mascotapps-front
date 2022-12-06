@@ -2,12 +2,12 @@ import Login from "../Login/Login";
 import React from "react";
 import { useEffect } from "react";
 import { useState } from "react";
-import { visitorsCounter } from "../../store/actions/index";
+// import { visitorsCounter } from "../../store/actions/index";
 import { useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 
-export default function LandingPage(){
-  const {  isLoading } = useAuth0();
+export default function LandingPage() {
+  const { isLoading } = useAuth0();
   const dispatch = useDispatch();
   const images = [
     "https://res.cloudinary.com/dfbxjt69z/image/upload/v1662821915/mascotapps/StockSnap_EJELGQPXN6_dkux6i.jpg",
@@ -37,7 +37,7 @@ export default function LandingPage(){
   };
 
   useEffect(() => {
-    dispatch(visitorsCounter());
+    // dispatch(visitorsCounter());
     const interval = setInterval(() => {
       selectNewImage(selectedIndex, images);
     }, 2500);
