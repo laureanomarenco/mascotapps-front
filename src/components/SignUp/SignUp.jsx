@@ -29,16 +29,19 @@ const SignUp = () => {
     dispatch(fetchCity());
   }, [dispatch, response]);
 
-  let localidades = cities?.map((loc) => {
-    return {
-      nombre: loc.nombre,
-      provincia: loc.provincia.nombre,
-    };
-  });
+  let localidades = [];
+  if (Array.isArray(cities)) {
+    localidades = cities?.map((loc) => {
+      return {
+        nombre: loc.nombre,
+        provincia: loc.provincia.nombre,
+      };
+    });
+  }
 
   localidades = localidades
-    ?.sort((a, b) => a.provincia - b.provincia)
-    ?.map((l) => `${l.nombre}, ${l.provincia}`);
+    ?.sort((a, b) => a?.provincia - b?.provincia)
+    ?.map((l) => `${l?.nombre}, ${l?.provincia}`);
 
   //ESTADOS ---------------------------------------------------------------------------------------------------------
 
