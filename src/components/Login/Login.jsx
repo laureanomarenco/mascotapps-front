@@ -21,7 +21,6 @@ export default function Login() {
   const handleValidation = async (user, isAuthenticated) => {
     try {
       const claims = await getAccessTokenSilently();
-      console.log("ACCESS TOKEN = ", claims);
       localStorage.setItem("token", claims);
 
       if (isAuthenticated && user) {
