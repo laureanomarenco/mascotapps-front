@@ -33,7 +33,7 @@ export default function Login() {
           navigate("/home");
         } else if (existe.data.msg === "banned") {
           localStorage.removeItem("token");
-          logout({ returnTo: "https://mascotapps.vercel.app/banned" });
+          logout({ returnTo: "https://mascotapp.vercel.app/banned" });
         } else {
           navigate("/register");
         }

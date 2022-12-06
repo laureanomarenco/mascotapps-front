@@ -47,7 +47,7 @@ const SignUp = () => {
     email: `${user?.email}`,
     city: "",
     contact: "",
-    image: `https://res.cloudinary.com/dfbxjt69z/image/upload/v1664199194/mascotapps/Dise%C3%B1o_sin_t%C3%ADtulo_1_qqzx4h.png`,
+    image: `${user?.picture}`,
     linkToDonate: "",
   });
   const [errors, setErrors] = useState({});

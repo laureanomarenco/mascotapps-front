@@ -12,12 +12,12 @@ const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   // <React.StrictMode>
   <Auth0Provider
-    domain="dev-nxuk8wmn.us.auth0.com"
-    clientId="YKWqA32lwyrttvqr5ce3sWfmkY1y9CME"
+    domain={process.env.REACT_APP_DOMAIN}
+    clientId={process.env.REACT_APP_CLIENT_ID}
     redirectUri={window.location.origin}
     useRefreshTokens={true}
     cacheLocation="localstorage"
-    audience="https://juka-production.up.railway.app/"
+    audience={process.env.REACT_APP_AUDIENCE}
   >
     <Provider store={store}>
       <App className="font-sans" />
