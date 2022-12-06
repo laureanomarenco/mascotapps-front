@@ -17,7 +17,7 @@ root.render(
     redirectUri={window.location.origin}
     useRefreshTokens={true}
     cacheLocation="localstorage"
-    audience="https://juka-production.up.railway.app/"
+    audience={process.env.REACT_APP_AUDIENCE}
   >
     <Provider store={store}>
       <App className="font-sans" />
