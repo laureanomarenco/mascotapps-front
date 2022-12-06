@@ -1,4 +1,5 @@
-export const URL = "https://juka-production.up.railway.app/";
+// export const URL = "https://juka-production.up.railway.app/";
+export const URL = "http://localhost:3001/";
 export const URL_CIUDAD_API =
   "https://apis.datos.gob.ar/georef/api/municipios?max=2500";
 
