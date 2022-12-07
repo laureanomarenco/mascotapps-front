@@ -21,4 +21,4 @@ Utilizamos [Express](https://expressjs.com/es/) como framework de desarrollo par
 Se utilizó [Nodemailer](https://nodemailer.com/) para envíar los mails necesarios para notificar a los usuarios de sus distintas acciones con la página y también [Web-Push](https://www.npmjs.com/package/web-push) para generar las notificaciones y guardar las subscripciones en el modelo de usuario.
 
 ### Contacto
-Te agradecemos por el interes en la página. Por cualquier duda o consulta podes escribirnos a service.mascotapp@gmai.com, o a nuestras redes personales que podes encontrar en el apartado [Team](https://mascotapps.vercel.app/team) de la página.
+Te agradecemos por el interes en la página. Por cualquier duda o consulta podes escribirnos a service.mascotapp@gmail.com, o a nuestras redes personales que podes encontrar en el apartado [Team](https://mascotapp.vercel.app/team) de la página.
